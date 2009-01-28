@@ -94,7 +94,6 @@ static Loader * shared;
           finished++;
         }
       }
-      [self text: [NSString stringWithFormat: @"Loading data (%d / %d files downloaded)", finished, [loaders count]]];
     }
     
     finished = 0;
