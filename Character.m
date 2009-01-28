@@ -36,6 +36,8 @@
 
 @dynamic portraitData;
 
+@dynamic skills, skillpoints;
+
 
 - (id) initWithIdentifier: (NSNumber *) ident
                   account: (Account *) acc
@@ -106,15 +108,20 @@
   return [[NSImage alloc] initWithData: [self portraitData]];
 }
 
-- (NSNumber *) trainingCurrentSkillpoints
+- (NSNumber *) additionalSkillpoints
 {
   NSInteger skillTime = [[self trainingStartedAt] timeIntervalSinceReferenceDate] - [[self trainingEndsAt] timeIntervalSinceReferenceDate];
-  NSInteger currentDifference = -[[self trainingStartedAt] timeIntervalSinceNow];
+  NSInteger currentDifference = [[self trainingStartedAt] timeIntervalSinceNow];
   double percentage = (double)currentDifference / skillTime;
   
-  NSInteger skillSP = [[self trainingSkillpointsStart] integerValue] - [[self trainingSkillpointsEnd] integerValue];
+  NSInteger skillSP = [[self trainingSkillpointsEnd] integerValue] - [[self trainingSkillpointsStart] integerValue];
   
-  return [NSNumber numberWithInteger: [[self trainingSkillpointsStart] integerValue] + [[NSNumber numberWithDouble: (skillSP * percentage)] integerValue]];
+  return [NSNumber numberWithDouble: (skillSP * percentage)];
+}
+
+- (NSNumber *) trainingCurrentSkillpoints
+{
+  return [NSNumber numberWithInteger: [[self trainingSkillpointsStart] integerValue] + [[self additionalSkillpoints] integerValue]];
 }
 
 - (void) update
@@ -174,8 +181,19 @@
       updatedCharacter = true;
     }
     
-    [[Ceres instance] notificationCenter];
-    [[Ceres instance] save];
+    NSArray * skills = [document readNodes: @"/eveapi/result/rowset[@name='skills']/row"];
+    NSLog(@"Skills: %d", [skills count]);
+    for (NSXMLNode * skill in skills)
+    {
+      NSNumber * i = [NSNumber numberWithInteger: [[skill readAttribute: @"typeID"] integerValue]];
+      Skill * s = [Skill findWithIdentifier: i];
+      TrainedSkill * ts = [[TrainedSkill alloc] initWithCharacter: self skill: s];
+      [ts setSkillpoints: [NSNumber numberWithInteger: [[skill readAttribute: @"skillpoints"] integerValue]]];
+      [ts setLevel: [NSNumber numberWithInteger: [[skill readAttribute: @"level"] integerValue]]];
+    }
+    
+    [self setSkillpoints: [self valueForKeyPath: @"skills.@sum.skillpoints"]];
+    NSLog(@"%@", [self skillpoints]);
   }
   
   if([[self trainingCachedUntil] timeIntervalSinceNow] < 0) {
@@ -193,6 +211,8 @@
       NSDate * startDate = [[NSDate alloc] initWithString: startTimeString];
       
       if (![self trainingStartedAt] || [startDate compare: [self trainingStartedAt]] != NSOrderedSame) {
+        [self setSkillpoints: [NSNumber numberWithInteger: [[self skillpoints] integerValue] + [[self additionalSkillpoints] integerValue]]];
+        
         [self setTrainingStartedAt: startDate];
         
         NSString * endTimeString = [[[document readNode: @"/eveapi/result/trainingEndTime"] stringValue] stringByAppendingString: @" +0000"];
@@ -219,6 +239,11 @@
     
     [[Ceres instance] save];
   }
+}
+
+- (NSNumber *) totalSkillpoints
+{
+  return [NSNumber numberWithInteger: [[self skillpoints] integerValue] + [[self additionalSkillpoints] integerValue]];
 }
 
 - (void) prepareMessages

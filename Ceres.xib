@@ -955,6 +955,14 @@
 					</object>
 					<int key="connectionID">617</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">serverStatusController</string>
+						<reference key="source" ref="1021"/>
+						<reference key="destination" ref="960813942"/>
+					</object>
+					<int key="connectionID">619</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -1713,7 +1721,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">618</int>
+			<int key="maxID">619</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1741,7 +1749,6 @@
 							<string>apiWindow</string>
 							<string>apikey</string>
 							<string>button</string>
-							<string>characterController</string>
 							<string>identifier</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
@@ -1749,7 +1756,6 @@
 							<string>NSWindow</string>
 							<string>NSTextField</string>
 							<string>NSButton</string>
-							<string>CharacterListController</string>
 							<string>NSTextField</string>
 						</object>
 					</object>
@@ -1762,12 +1768,24 @@
 					<string key="className">CharacterListController</string>
 					<string key="superclassName">NSArrayController</string>
 					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">update:</string>
+						<string key="NS.key.0">notification:</string>
 						<string key="NS.object.0">id</string>
 					</object>
 					<object class="NSMutableDictionary" key="outlets">
 						<string key="NS.key.0">characterTableView</string>
 						<string key="NS.object.0">CharacterTableView</string>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">CharacterListController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">CharacterListController</string>
+					<string key="superclassName">NSArrayController</string>
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">update:</string>
+						<string key="NS.object.0">id</string>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBUserSource</string>
@@ -1785,10 +1803,6 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">Interface</string>
 					<string key="superclassName">NSObject</string>
-					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">update:</string>
-						<string key="NS.object.0">id</string>
-					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">Interface.h</string>
@@ -1815,19 +1829,6 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">ServerStatusController</string>
 					<string key="superclassName">NSObject</string>
-					<object class="NSMutableDictionary" key="actions">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSMutableArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>serverstatus:</string>
-							<string>start:</string>
-						</object>
-						<object class="NSMutableArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>id</string>
-							<string>id</string>
-						</object>
-					</object>
 					<object class="NSMutableDictionary" key="outlets">
 						<string key="NS.key.0">serverStatus</string>
 						<string key="NS.object.0">NSTextField</string>

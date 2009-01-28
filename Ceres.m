@@ -112,7 +112,7 @@ static Ceres * shared;
       [fileManager createDirectoryAtPath: applicationSupportFolder attributes: nil];
     }
     
-    url = [NSURL fileURLWithPath: [applicationSupportFolder stringByAppendingPathComponent: @"Ceres 0.0.5.sqlite3"]];
+    url = [NSURL fileURLWithPath: [applicationSupportFolder stringByAppendingPathComponent: @"Ceres 0.0.6.sqlite3"]];
     persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel: [self managedObjectModel]];
     if ( ![persistentStoreCoordinator addPersistentStoreWithType: NSSQLiteStoreType configuration: nil URL: url options: nil error: &error] ) {
       [self handleError: error];
@@ -167,19 +167,16 @@ static Ceres * shared;
   
   NSNotification * oldNotification = [[notificationDictionary objectForKey: [notification object]] objectForKey: [notification name]];
   if (oldNotification) {
-    NSLog(@"Found old notification: %@", oldNotification);
     [NSObject cancelPreviousPerformRequestsWithTarget: self selector: @selector(postNotification:) object: oldNotification];
   }
   
   NSMutableDictionary * objectDictionary = [notificationDictionary objectForKey: [notification object]];
-  
   if (!objectDictionary) {
     objectDictionary = [[NSMutableDictionary alloc] init];
-  }
+    [notificationDictionary setObject: objectDictionary forKey: [notification object]];
+  } 
   
-  [objectDictionary setValue: notification forKey: [notification name]];  
-
-  NSLog(@"Adding notification (%@) at date %@", [notification name], date);
+  [objectDictionary setValue: notification forKey: [notification name]]; 
   
   [self performSelector: @selector(postNotification:) withObject: notification afterDelay: [date timeIntervalSinceNow]];
 }

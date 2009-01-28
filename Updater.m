@@ -72,7 +72,7 @@ static Updater * shared;
   
   NSLog(@"Running");
   
-  [self performSelector: @selector(update) withObject: nil afterDelay: 30];
+  [self performSelector: @selector(update) withObject: nil afterDelay: 180];
 }
 
 @end

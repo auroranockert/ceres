@@ -1,5 +1,5 @@
 //
-//  CeresHeader.h
+//  TrainedSkill.h
 //  This file is part of Ceres.
 //
 //  Ceres is free software: you can redistribute it and/or modify
@@ -15,40 +15,29 @@
 //  You should have received a copy of the GNU General Public License
 //  along with Ceres.  If not, see <http://www.gnu.org/licenses/>.
 //
-//  Created by Jens Nockert on 12/13/08.
+//  Created by Jens Nockert on 1/27/09.
 //
 
 #import <Cocoa/Cocoa.h>
 
 #import "CeresObject.h"
-#import "EveObject.h"
-
-#import "Ceres.h"
-#import "Loader.h"
-
-#import "Api.h"
-#import "Account.h"
-
-#import "Category.h"
-#import "Group.h"
-#import "MarketGroup.h"
 
 #import "Character.h"
-#import "CharacterInfo.h"
-// #import "Corporation.h"
-#import "CorporationInfo.h"
-
-#import "Attributes.h"
-#import "Implant.h"
-
-#import "ItemType.h"
-#import "Clone.h"
 #import "Skill.h"
 
-#import "TrainedSkill.h"
+@class Character;
 
-#import "ServerStatus.h"
+@interface TrainedSkill : CeresObject {
 
-#import "CeresNotification.h"
-#import "CharacterNotification.h"
+}
 
+@property(retain) NSNumber * skillpoints, * level;
+@property(retain) Skill * skill;
+@property(retain) Character * character;
+
+- (id) initWithCharacter: (Character *) character skill: (Skill *) skill;
+
++ (NSArray *) findWithCharacter: (Character *) character;
++ (id) findWithCharacter: (Character *) character skill: (Skill *) skill;
+
+@end

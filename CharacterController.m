@@ -27,6 +27,8 @@
 {
   if (self = [super init]) {
     character = c;
+    formatter = [[NSNumberFormatter alloc] init];
+    [formatter setNumberStyle: NSNumberFormatterDecimalStyle];
     
     [[[Ceres instance] notificationCenter] addObserver: self selector: @selector(notification:) name: nil object: character];
   }
@@ -71,12 +73,12 @@
 
 - (NSString *) balance
 {
-  return [NSString stringWithFormat: @"%@ ISK", [character balance]];
+  return [NSString stringWithFormat: @"%@ ISK", [formatter stringFromNumber: [character balance]]];
 }
 
 - (NSString *) skillpoints
 {
-  return @"Sorry, Ceres doesn't really know how to calculate SP total yet...";
+  return [NSString stringWithFormat: @"%@ SP", [formatter stringFromNumber: [character totalSkillpoints]]];
 }
 
 - (NSString *) intelligence
@@ -120,15 +122,15 @@
 {
   if ([[character training] boolValue])
   {
-    NSDateFormatter * formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"HH:mm 'on' MMMM d"];
+    NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat: @"HH:mm 'on' MMMM d"];
     NSInteger current = [[character trainingCurrentSkillpoints] integerValue];
     
     if (current > [[character trainingSkillpointsEnd] integerValue]) {
       return [[NSString alloc] initWithFormat: @"Finished", [[character trainingSkill] name]];
     }
     else {
-      return [[NSString alloc] initWithFormat: @"%ld / %ld SP Complete (Finished by %@)", current, [[character trainingSkillpointsEnd] integerValue], [formatter stringFromDate: [character trainingEndsAt]]];
+      return [[NSString alloc] initWithFormat: @"%@ / %@ SP Complete (Finished by %@)", [formatter stringFromNumber: [character trainingCurrentSkillpoints]], [formatter stringFromNumber: [character trainingSkillpointsEnd]], [dateFormatter stringFromDate: [character trainingEndsAt]]];
     }
   }
   else
@@ -139,7 +141,7 @@
 
 - (NSString *) clone
 {
-  return [NSString stringWithFormat: @"%@ (Stores %@ SP)", [[character clone] name], [[character clone] skillpoints]];
+  return [NSString stringWithFormat: @"%@ (Stores %@ SP)", [[character clone] name], [formatter stringFromNumber: [[character clone] skillpoints]]];
 }
 
 - (NSData *) portraitData

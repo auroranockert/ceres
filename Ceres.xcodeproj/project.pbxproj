@@ -25,6 +25,8 @@
 		B40C1EF70EF1C2050050F22B /* CeresMain.m in Sources */ = {isa = PBXBuildFile; fileRef = B40C1EF60EF1C2050050F22B /* CeresMain.m */; };
 		B40C26DB0F114DFD006D76F0 /* CeresObject.h in Headers */ = {isa = PBXBuildFile; fileRef = B40C26D90F114DFD006D76F0 /* CeresObject.h */; };
 		B40C26DC0F114DFD006D76F0 /* CeresObject.m in Sources */ = {isa = PBXBuildFile; fileRef = B40C26DA0F114DFD006D76F0 /* CeresObject.m */; };
+		B415CDE50F2F5EE80058F57D /* TrainedSkill.h in Headers */ = {isa = PBXBuildFile; fileRef = B415CDE30F2F5EE80058F57D /* TrainedSkill.h */; };
+		B415CDE60F2F5EE80058F57D /* TrainedSkill.m in Sources */ = {isa = PBXBuildFile; fileRef = B415CDE40F2F5EE80058F57D /* TrainedSkill.m */; };
 		B424F4DA0EEC89E900B5E7C5 /* EveObject.h in Headers */ = {isa = PBXBuildFile; fileRef = B424F4D80EEC89E900B5E7C5 /* EveObject.h */; };
 		B424F4DB0EEC89E900B5E7C5 /* EveObject.m in Sources */ = {isa = PBXBuildFile; fileRef = B424F4D90EEC89E900B5E7C5 /* EveObject.m */; };
 		B424F4F50EEC8D2900B5E7C5 /* CorporationInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = B424F4F30EEC8D2900B5E7C5 /* CorporationInfo.h */; };
@@ -149,6 +151,8 @@
 		B40C1EF60EF1C2050050F22B /* CeresMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CeresMain.m; sourceTree = "<group>"; };
 		B40C26D90F114DFD006D76F0 /* CeresObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CeresObject.h; sourceTree = "<group>"; };
 		B40C26DA0F114DFD006D76F0 /* CeresObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CeresObject.m; sourceTree = "<group>"; };
+		B415CDE30F2F5EE80058F57D /* TrainedSkill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrainedSkill.h; sourceTree = "<group>"; };
+		B415CDE40F2F5EE80058F57D /* TrainedSkill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrainedSkill.m; sourceTree = "<group>"; };
 		B424F4D80EEC89E900B5E7C5 /* EveObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EveObject.h; sourceTree = "<group>"; };
 		B424F4D90EEC89E900B5E7C5 /* EveObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EveObject.m; sourceTree = "<group>"; };
 		B424F4F30EEC8D2900B5E7C5 /* CorporationInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CorporationInfo.h; sourceTree = "<group>"; };
@@ -455,6 +459,8 @@
 			children = (
 				B424F5780EEC990100B5E7C5 /* Character.h */,
 				B424F5790EEC990100B5E7C5 /* Character.m */,
+				B415CDE30F2F5EE80058F57D /* TrainedSkill.h */,
+				B415CDE40F2F5EE80058F57D /* TrainedSkill.m */,
 			);
 			name = Character;
 			sourceTree = "<group>";
@@ -635,6 +641,7 @@
 				B462BAA10F291B9C004D04D8 /* CeresNotification.h in Headers */,
 				B462BAF80F292236004D04D8 /* Updater.h in Headers */,
 				B462C36C0F2E4B1B004D04D8 /* CharacterNotification.h in Headers */,
+				B415CDE50F2F5EE80058F57D /* TrainedSkill.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -770,6 +777,7 @@
 				B462BAA20F291B9C004D04D8 /* CeresNotification.m in Sources */,
 				B462BAF90F292236004D04D8 /* Updater.m in Sources */,
 				B462C36D0F2E4B1B004D04D8 /* CharacterNotification.m in Sources */,
+				B415CDE60F2F5EE80058F57D /* TrainedSkill.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

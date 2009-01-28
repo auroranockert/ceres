@@ -29,10 +29,13 @@
 #import "EveObject.h"
 #import "Clone.h"
 #import "Attributes.h"
+
 #import "Skill.h"
+#import "TrainedSkill.h"
 
 @class Account;
 @class CharacterInfo;
+@class TrainedSkill;
 
 @interface Character : EveObject {
   NSSet * implants;
@@ -56,6 +59,10 @@
 @property(retain) Skill * trainingSkill;
 @property(retain) NSDate * trainingStartedAt, * trainingEndsAt, * trainingCachedUntil;
 @property(retain) NSNumber * training, * trainingToLevel, * trainingSkillpointsStart, * trainingSkillpointsEnd;
+
+@property(retain) NSSet * skills;
+@property(retain) NSNumber * skillpoints;
+@property(copy, readonly) NSNumber * totalSkillpoints;
 
 - (id) initWithIdentifier: (NSNumber *) ident
                   account: (Account *) acc;
