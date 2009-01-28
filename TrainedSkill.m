@@ -55,7 +55,7 @@
 
 + (NSArray *) findWithCharacter: (Character *) character
 {
-  NSSortDescriptor * sort = [[NSSortDescriptor alloc] init];
+  NSSortDescriptor * sort = [[NSSortDescriptor alloc] initWithKey: @"skill.identifier" ascending: true];
   NSPredicate * predicate = [NSPredicate predicateWithFormat: @"character == %@", character];
   
   return [self findWithSort: sort predicate: predicate];
@@ -63,7 +63,7 @@
   
 + (id) findWithCharacter: (Character *) character skill: (Skill *) skill
 {
-  NSSortDescriptor * sort = [[NSSortDescriptor alloc] init];
+  NSSortDescriptor * sort = [[NSSortDescriptor alloc] initWithKey: @"skill.identifier" ascending: true];
   NSPredicate * predicate = [NSPredicate predicateWithFormat: @"character == %@ AND skill == %@", character, skill];
   
   NSArray * results = [self findWithSort: sort predicate: predicate];
