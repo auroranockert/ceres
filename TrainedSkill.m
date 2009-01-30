@@ -72,8 +72,8 @@
     return [results objectAtIndex: 0];
   }
   else {
-    if (![results count]) {
-      NSLog(@"Error: Not 0/1 trained skills");
+    if ([results count] != 0) {
+      NSLog(@"Error: %d trained skills with character (%@) and skill (%@)", [results count], [character name], [skill name]);
     }
     
     return nil;
