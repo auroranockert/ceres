@@ -37,5 +37,6 @@
 - (CharacterController *) controllerForCharacter: (Character *) character;
 
 - (void) notification: (id) sender;
+- (void) doubleClick: (id) object;
 
 @end

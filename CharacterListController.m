@@ -48,6 +48,11 @@
   return controller;
 }
 
+- (void) doubleClick: (id) object
+{
+  [[self controllerForCharacter: object] showCharacter];
+}
+
 - (void) notification: (id) object
 {
   [characterTableView setNeedsDisplay: true];
