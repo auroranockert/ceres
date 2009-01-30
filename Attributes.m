@@ -25,7 +25,7 @@
 
 @dynamic intelligence, charisma, perception, memory, willpower;
 
-- (id) init: (NSNumber *) intel : (NSNumber *) cha : (NSNumber *) per : (NSNumber *) mem : (NSNumber *) will
+- (id) init: (NSNumber *) intel : (NSNumber *) per : (NSNumber *) cha : (NSNumber *) mem : (NSNumber *) will
 {
   if(self = [super initWithEntity: [[self class] entityDescription] insertIntoManagedObjectContext: [[Ceres instance] managedObjectContext]]) {
     [self setIntelligence: intel];
@@ -38,9 +38,9 @@
   return self;
 }
 
-- (id) initWithoutCoreData: (NSNumber *) intel : (NSNumber *) cha : (NSNumber *) per : (NSNumber *) mem : (NSNumber *) will
+- (id) initWithoutCoreData: (NSNumber *) intel : (NSNumber *) per : (NSNumber *) cha : (NSNumber *) mem : (NSNumber *) will
 {
-  if(self = [super init]) {
+  if(self = [super initWithEntity: [[self class] entityDescription] insertIntoManagedObjectContext: nil]) {
     [self setIntelligence: intel];
     [self setCharisma: cha];
     [self setPerception: per];
@@ -60,28 +60,6 @@
   }
   
   return entityDescription;  
-}
-
-- (Attributes *) add: (Attributes *) other
-{
-  NSNumber * intel = [NSNumber numberWithDouble: [[self intelligence] doubleValue] + [[other intelligence] doubleValue]];
-  NSNumber * chari = [NSNumber numberWithDouble: [[self charisma] doubleValue] + [[other charisma] doubleValue]];
-  NSNumber * perce = [NSNumber numberWithDouble: [[self perception] doubleValue] + [[other perception] doubleValue]];
-  NSNumber * memor = [NSNumber numberWithDouble: [[self memory] doubleValue] + [[other memory] doubleValue]];
-  NSNumber * willp = [NSNumber numberWithDouble: [[self willpower] doubleValue] + [[other willpower] doubleValue]];
-  
-  return [[Attributes alloc] initWithoutCoreData: intel : chari : perce :memor : willp];
-}
-
-- (Attributes *) scale: (double) other
-{
-  NSNumber * intel = [NSNumber numberWithDouble: [[self intelligence] doubleValue] * other];
-  NSNumber * chari = [NSNumber numberWithDouble: [[self charisma] doubleValue] * other];
-  NSNumber * perce = [NSNumber numberWithDouble: [[self perception] doubleValue] * other];
-  NSNumber * memor = [NSNumber numberWithDouble: [[self memory] doubleValue] * other];
-  NSNumber * willp = [NSNumber numberWithDouble: [[self willpower] doubleValue] * other];
-  
-  return [[Attributes alloc] initWithoutCoreData: intel : chari : perce :memor : willp];
 }
 
 - (NSString *) description

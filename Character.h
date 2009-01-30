@@ -52,7 +52,9 @@
 
 @property(retain) Clone * clone;
 @property(retain) NSSet * implants;
+
 @property(retain) Attributes * baseAttributes;
+@property(retain, readonly) Attributes * skillAttributes;
 
 @property(copy, readonly) NSNumber * intelligence, * perception, * charisma, * willpower, * memory;
 
@@ -70,6 +72,7 @@
 - (CharacterInfo *) characterInfo;
 - (NSImage *) portrait;
 
+- (double) learningBonus;
 - (NSNumber *) trainingCurrentSkillpoints;
 
 - (void) prepareMessages;

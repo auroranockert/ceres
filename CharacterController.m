@@ -29,6 +29,11 @@
     character = c;
     formatter = [[NSNumberFormatter alloc] init];
     [formatter setNumberStyle: NSNumberFormatterDecimalStyle];
+    [formatter setMinimumFractionDigits: 2];
+    [formatter setMaximumFractionDigits: 2];
+    
+    spFormatter = [[NSNumberFormatter alloc] init];
+    [spFormatter setNumberStyle: NSNumberFormatterDecimalStyle];
     
     [[[Ceres instance] notificationCenter] addObserver: self selector: @selector(notification:) name: nil object: character];
   }
@@ -83,27 +88,27 @@
 
 - (NSString *) intelligence
 {
-  return [NSString stringWithFormat: @"Intelligence: %@", [character intelligence]];
+  return [NSString stringWithFormat: @"Intelligence: %@", [formatter stringFromNumber: [character intelligence]]];
 }
 
 - (NSString *) perception
 {
-  return [NSString stringWithFormat: @"Perception: %@", [character perception]];
+  return [NSString stringWithFormat: @"Perception: %@", [formatter stringFromNumber: [character perception]]];
 }
 
 - (NSString *) charisma
 {
-  return [NSString stringWithFormat: @"Charisma: %@", [character charisma]];
+  return [NSString stringWithFormat: @"Charisma: %@", [formatter stringFromNumber: [character charisma]]];
 }
 
 - (NSString *) willpower
 {
-  return [NSString stringWithFormat: @"Willpower: %@", [character willpower]];
+  return [NSString stringWithFormat: @"Willpower: %@", [formatter stringFromNumber: [character willpower]]];
 }
 
 - (NSString *) memory
 {
-  return [NSString stringWithFormat: @"Memory: %@", [character memory]];
+  return [NSString stringWithFormat: @"Memory: %@", [formatter stringFromNumber: [character memory]]];
 }
 
 - (NSString *) training
@@ -130,7 +135,7 @@
       return [[NSString alloc] initWithFormat: @"Finished", [[character trainingSkill] name]];
     }
     else {
-      return [[NSString alloc] initWithFormat: @"%@ / %@ SP Complete (Finished by %@)", [formatter stringFromNumber: [character trainingCurrentSkillpoints]], [formatter stringFromNumber: [character trainingSkillpointsEnd]], [dateFormatter stringFromDate: [character trainingEndsAt]]];
+      return [[NSString alloc] initWithFormat: @"%@ / %@ SP Complete (Finished by %@)", [spFormatter stringFromNumber: [character trainingCurrentSkillpoints]], [spFormatter stringFromNumber: [character trainingSkillpointsEnd]], [dateFormatter stringFromDate: [character trainingEndsAt]]];
     }
   }
   else
@@ -141,7 +146,7 @@
 
 - (NSString *) clone
 {
-  return [NSString stringWithFormat: @"%@ (Stores %@ SP)", [[character clone] name], [formatter stringFromNumber: [[character clone] skillpoints]]];
+  return [NSString stringWithFormat: @"%@ (Stores %@ SP)", [[character clone] name], [spFormatter stringFromNumber: [[character clone] skillpoints]]];
 }
 
 - (NSData *) portraitData

@@ -28,12 +28,9 @@
 
 @property(retain) NSNumber * intelligence, * charisma, * perception, * memory, * willpower;
 
-- (id) init: (NSNumber *) intel : (NSNumber *) cha : (NSNumber *) per : (NSNumber *) mem : (NSNumber *) will;
-- (id) initWithoutCoreData: (NSNumber *) intel : (NSNumber *) cha : (NSNumber *) per : (NSNumber *) mem : (NSNumber *) will;
+- (id) init: (NSNumber *) intel : (NSNumber *) per : (NSNumber *) cha : (NSNumber *) mem : (NSNumber *) will;
+- (id) initWithoutCoreData: (NSNumber *) intel : (NSNumber *) per : (NSNumber *) cha : (NSNumber *) mem : (NSNumber *) will;
 
 + (NSEntityDescription *) entityDescription;
-
-- (Attributes *)add: (Attributes *) other;
-- (Attributes *)scale: (double) other;
 
 @end

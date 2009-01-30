@@ -30,7 +30,7 @@
 @interface CharacterController : NSObject {
   IBOutlet NSWindow * characterWindow;
   
-  NSNumberFormatter * formatter;
+  NSNumberFormatter * formatter, * spFormatter;
   
   Character * character;
 }

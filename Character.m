@@ -52,29 +52,62 @@
   return self;
 }
 
+- (double) learningBonus
+{
+  TrainedSkill * learning = [TrainedSkill findWithCharacter: self skill: [Skill findWithName: @"Learning"]];
+  return 1.0 + 0.02 * [[learning level] integerValue];
+}
+
 - (NSNumber *) intelligence
 {
-  return [[self baseAttributes] intelligence];
+  return [NSNumber numberWithDouble: ([[[self baseAttributes] intelligence] integerValue] + [[[self skillAttributes] intelligence] integerValue]) * [self learningBonus]];
 }
 
 - (NSNumber *) perception
 {
-  return [[self baseAttributes] perception];
+  return [NSNumber numberWithDouble: ([[[self baseAttributes] perception] integerValue] + [[[self skillAttributes] perception] integerValue]) * [self learningBonus]];
 }
 
 - (NSNumber *) charisma
 {
-  return [[self baseAttributes] charisma];
+  return [NSNumber numberWithDouble: ([[[self baseAttributes] charisma] integerValue] + [[[self skillAttributes] charisma] integerValue]) * [self learningBonus]];
 }
 
 - (NSNumber *) willpower
 {
-  return [[self baseAttributes] willpower];
+  return [NSNumber numberWithDouble: ([[[self baseAttributes] willpower] integerValue] + [[[self skillAttributes] willpower] integerValue]) * [self learningBonus]];
 }
 
 - (NSNumber *) memory
 {
-  return [[self baseAttributes] memory];
+  return [NSNumber numberWithDouble: ([[[self baseAttributes] memory] integerValue] + [[[self skillAttributes] memory] integerValue]) * [self learningBonus]];
+}
+
+- (Attributes *) skillAttributes
+{
+  NSInteger intelligence, perception, charisma, willpower, memory;
+
+  TrainedSkill * analyticalMind = [TrainedSkill findWithCharacter: self skill: [Skill findWithName: @"Analytical Mind"]];
+  TrainedSkill * logic = [TrainedSkill findWithCharacter: self skill: [Skill findWithName: @"Logic"]];
+  intelligence = [[analyticalMind level] integerValue] + [[logic level] integerValue];
+  
+  TrainedSkill * spatialAwareness = [TrainedSkill findWithCharacter: self skill: [Skill findWithName: @"Spatial Awareness"]];
+  TrainedSkill * clarity = [TrainedSkill findWithCharacter: self skill: [Skill findWithName: @"Clarity"]];
+  perception   = [[spatialAwareness level] integerValue] +  [[clarity level] integerValue];
+  
+  TrainedSkill * empathy = [TrainedSkill findWithCharacter: self skill: [Skill findWithName: @"Empathy"]];
+  TrainedSkill * presence = [TrainedSkill findWithCharacter: self skill: [Skill findWithName: @"Presence"]];
+  charisma     = [[empathy level] integerValue] +  [[presence level] integerValue];
+  
+  TrainedSkill * ironWill = [TrainedSkill findWithCharacter: self skill: [Skill findWithName: @"Iron Will"]];
+  TrainedSkill * focus = [TrainedSkill findWithCharacter: self skill: [Skill findWithName: @"Focus"]];
+  willpower = [[ironWill level] integerValue] +  [[focus level] integerValue];
+  
+  TrainedSkill * instantRecall = [TrainedSkill findWithCharacter: self skill: [Skill findWithName: @"Instant Recall"]];
+  TrainedSkill * eideticMemory = [TrainedSkill findWithCharacter: self skill: [Skill findWithName: @"Eidetic Memory"]];
+  memory = [[instantRecall level] integerValue] +  [[eideticMemory level] integerValue];
+  
+  return [[Attributes alloc] initWithoutCoreData: [NSNumber numberWithUnsignedInteger: intelligence] : [NSNumber numberWithUnsignedInteger: perception] : [NSNumber numberWithUnsignedInteger: charisma] : [NSNumber numberWithUnsignedInteger: willpower] : [NSNumber numberWithUnsignedInteger: memory]];
 }
 
 - (CorporationInfo *) corporation
@@ -177,7 +210,7 @@
       NSNumber * perception = [[document readNode: @"/eveapi/result/attributes/perception"]  numberValueInteger];
       NSNumber * willpower = [[document readNode: @"/eveapi/result/attributes/willpower"]  numberValueInteger];
       
-      [self setBaseAttributes: [[Attributes alloc] init: intelligence : charisma : perception : memory : willpower]];
+      [self setBaseAttributes: [[Attributes alloc] init: intelligence : perception : charisma : memory : willpower]];
       updatedCharacter = true;
     }
     
