@@ -116,7 +116,7 @@ static Loader * shared;
 
 - (NSString *) currentVersion
 {
-  return @"0.0.6";
+  return @"0.0.7";
 }
     
 - (void) text: (NSString *) text
