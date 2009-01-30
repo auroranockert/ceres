@@ -23,6 +23,13 @@
 
 @implementation APIController
 
+- (void) awakeFromNib
+{
+  if ([[Character find] count] == 0) {
+    [self performSelectorOnMainThread: @selector(openApiWindow:) withObject: self waitUntilDone: false];
+  }
+}
+
 - (void) openApiWindow: (id) sender
 {
   [apiWindow setIsVisible: true];
