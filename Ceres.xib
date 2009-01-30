@@ -8,6 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
+			<integer value="678"/>
 			<integer value="560"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
@@ -61,6 +62,14 @@
 								<object class="NSMenuItem" id="533936885">
 									<reference key="NSMenu" ref="280627325"/>
 									<string key="NSTitle">About Ceres</string>
+									<string key="NSKeyEquiv"/>
+									<int key="NSMnemonicLoc">2147483647</int>
+									<reference key="NSOnImage" ref="156783539"/>
+									<reference key="NSMixedImage" ref="53792513"/>
+								</object>
+								<object class="NSMenuItem" id="428748973">
+									<reference key="NSMenu" ref="280627325"/>
+									<string key="NSTitle">Check for updates...</string>
 									<string key="NSKeyEquiv"/>
 									<int key="NSMnemonicLoc">2147483647</int>
 									<reference key="NSOnImage" ref="156783539"/>
@@ -754,6 +763,9 @@
 				<bool key="NSClearsFilterPredicateOnInsertion">YES</bool>
 				<bool key="NSAutomaticallyRearrangesObjects">YES</bool>
 			</object>
+			<object class="NSCustomObject" id="1068270799">
+				<string key="NSClassName">SUUpdater</string>
+			</object>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
 			<object class="NSMutableArray" key="connectionRecords">
@@ -991,6 +1003,14 @@
 					</object>
 					<int key="connectionID">676</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">checkForUpdates:</string>
+						<reference key="source" ref="1068270799"/>
+						<reference key="destination" ref="428748973"/>
+					</object>
+					<int key="connectionID">679</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -1128,6 +1148,7 @@
 							<reference ref="885724670"/>
 							<reference ref="370567128"/>
 							<reference ref="533936885"/>
+							<reference ref="428748973"/>
 						</object>
 						<reference key="parent" ref="458579802"/>
 					</object>
@@ -1472,6 +1493,16 @@
 						<reference key="object" ref="236993701"/>
 						<reference key="parent" ref="862054329"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">677</int>
+						<reference key="object" ref="1068270799"/>
+						<reference key="parent" ref="1049"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">678</int>
+						<reference key="object" ref="428748973"/>
+						<reference key="parent" ref="280627325"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -1601,6 +1632,8 @@
 					<string>590.CustomClassName</string>
 					<string>590.IBPluginDependency</string>
 					<string>618.IBPluginDependency</string>
+					<string>677.IBPluginDependency</string>
+					<string>678.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1632,7 +1665,7 @@
 					<reference ref="9"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
-					<string>{{12, 520}, {186, 183}}</string>
+					<string>{{12, 500}, {231, 203}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
 					<string>{{23, 553}, {186, 183}}</string>
@@ -1692,8 +1725,8 @@
 					<reference ref="9"/>
 					<string>{480, 118}</string>
 					<string>{480, 118}</string>
-					<string>{{-7, 399}, {480, 208}}</string>
-					<string>{{-7, 399}, {480, 208}}</string>
+					<string>{{76, 397}, {480, 208}}</string>
+					<string>{{76, 397}, {480, 208}}</string>
 					<reference ref="9"/>
 					<string>{{143, 124}, {480, 270}}</string>
 					<reference ref="9"/>
@@ -1727,6 +1760,8 @@
 					<string>CharacterListController</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="unlocalizedProperties">
@@ -1749,7 +1784,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">676</int>
+			<int key="maxID">679</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1865,6 +1900,36 @@
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">ServerStatusController.h</string>
 					</object>
+				</object>
+			</object>
+			<object class="NSMutableArray" key="referencedPartialClassDescriptionsV3.1+">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBDocumentRelativeSource</string>
+						<string key="minorKey">Frameworks/Sparkle.framework/Versions/A/Headers/SUAppcast.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier" id="455938341">
+						<string key="majorKey">IBDocumentRelativeSource</string>
+						<string key="minorKey">Frameworks/Sparkle.framework/Versions/A/Headers/SUUpdater.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">SUUpdater</string>
+					<string key="superclassName">NSObject</string>
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">checkForUpdates:</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<object class="NSMutableDictionary" key="outlets">
+						<string key="NS.key.0">delegate</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<reference key="sourceIdentifier" ref="455938341"/>
 				</object>
 			</object>
 		</object>
