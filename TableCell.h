@@ -1,5 +1,5 @@
 //
-//  CharacterCell.h
+//  TableCell.h
 //  This file is part of Ceres.
 //
 //  Ceres is free software: you can redistribute it and/or modify
@@ -15,25 +15,24 @@
 //  You should have received a copy of the GNU General Public License
 //  along with Ceres.  If not, see <http://www.gnu.org/licenses/>.
 //
-//  Created by Jens Nockert on 1/15/09.
+//  Created by Jens Nockert on 1/31/09.
 //
 
 #import <Cocoa/Cocoa.h>
 
-#import "TableCell.h"
-#import "CeresHeader.h"
-#import "CharacterController.h"
-#import "CharacterListController.h"
 
-@class CharacterListController;
-
-@interface CharacterCell : TableCell {
-  CharacterListController * characterListController;
-  Character * character;
+@interface TableCell : NSCell {
+	NSFont * font;
+	float maxImageWidth;
+	float imageTextPadding;
+	bool highlightWhenNotKey;  
 }
 
-@property(retain) Character * character;
+@property(assign) float maxImageWidth, imageTextPadding;
+@property(assign) bool highlightWhenNotKey;
 
-- (id) initWithController: (CharacterListController *) controller;
+- (NSImage *) image;
+- (NSString *) name;
+- (NSString *) subString;
 
 @end
