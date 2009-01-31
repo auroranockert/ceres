@@ -61,6 +61,11 @@
   return menu;
 }
 
+- (NSManagedObjectContext *) managedObjectContext
+{
+  return [[Interface instance] managedObjectContext];
+}
+
 - (NSString *) name
 {
   return [character name];
@@ -152,6 +157,16 @@
 - (NSData *) portraitData
 {
   return [character portraitData];
+}
+
+- (NSSet *) skills
+{
+  return [character skills];
+}
+
+- (Character *) character
+{
+  return character;
 }
 
 - (void) invalidateCharacter

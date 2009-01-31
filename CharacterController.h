@@ -38,7 +38,12 @@
 @property(copy, readonly) NSString * name, * bloodline, * corporation, * balance, * skillpoints;
 @property(copy, readonly) NSString * intelligence, * perception, * charisma, * willpower, * memory;
 @property(copy, readonly) NSString * training, * trainingSkillpoints, * clone;
-@property(copy, readonly) NSData * portraitData;
+@property(retain, readonly) NSData * portraitData;
+@property(retain, readonly) NSSet * skills;
+
+@property(retain, readonly) Character * character;
+
+@property(retain, readonly) NSManagedObjectContext * managedObjectContext;
 
 - (id) initWithCharacter: (Character *) character;
 

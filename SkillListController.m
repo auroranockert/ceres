@@ -1,5 +1,5 @@
 //
-//  TrainedSkill.h
+//  SkillListController.m
 //  This file is part of Ceres.
 //
 //  Ceres is free software: you can redistribute it and/or modify
@@ -15,32 +15,25 @@
 //  You should have received a copy of the GNU General Public License
 //  along with Ceres.  If not, see <http://www.gnu.org/licenses/>.
 //
-//  Created by Jens Nockert on 1/27/09.
+//  Created by Jens Nockert on 1/31/09.
 //
 
-#import <Cocoa/Cocoa.h>
+#import "SkillListController.h"
 
-#import "CeresObject.h"
 
-#import "Character.h"
-#import "Skill.h"
+@implementation SkillListController
 
-@class Character;
+- (void) awakeFromNib
+{
+  [super awakeFromNib];
 
-@interface TrainedSkill : CeresObject {
-
+  character = [characterController character];
+  
+  NSTableColumn * column = [[skillTableView tableColumns] objectAtIndex: 0];
+  [column setDataCell: [[SkillCell alloc] init]];
+  
+  [self setSortDescriptors: [NSArray arrayWithObjects: [[NSSortDescriptor alloc] initWithKey: @"skill.group.name" ascending: true], [[NSSortDescriptor alloc] initWithKey: @"skill.name" ascending: true], nil]];
+  [self setFetchPredicate: [NSPredicate predicateWithFormat: @"character = %@", character, character]];
 }
-
-@property(retain) NSNumber * skillpoints, * level;
-@property(retain) Skill * skill;
-@property(retain) Character * character;
-
-- (id) initWithCharacter: (Character *) character skill: (Skill *) skill;
-
-+ (NSArray *) findWithCharacter: (Character *) character;
-+ (id) findWithCharacter: (Character *) character skill: (Skill *) skill;
-
-- (NSString *) name;
-- (id) training;
 
 @end

@@ -22,7 +22,6 @@
 
 
 @interface TableCell : NSCell {
-	NSFont * font;
 	float maxImageWidth;
 	float imageTextPadding;
 	bool highlightWhenNotKey;  
@@ -32,7 +31,11 @@
 @property(assign) bool highlightWhenNotKey;
 
 - (NSImage *) image;
+
 - (NSString *) name;
 - (NSString *) subString;
+
+- (NSFont *) nameFont;
+- (NSFont *) subStringFont;
 
 @end

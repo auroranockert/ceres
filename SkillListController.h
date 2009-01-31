@@ -1,5 +1,5 @@
 //
-//  TrainedSkill.h
+//  SkillListController.h
 //  This file is part of Ceres.
 //
 //  Ceres is free software: you can redistribute it and/or modify
@@ -15,32 +15,19 @@
 //  You should have received a copy of the GNU General Public License
 //  along with Ceres.  If not, see <http://www.gnu.org/licenses/>.
 //
-//  Created by Jens Nockert on 1/27/09.
+//  Created by Jens Nockert on 1/31/09.
 //
 
 #import <Cocoa/Cocoa.h>
 
-#import "CeresObject.h"
+#import "SkillCell.h"
+#import "CharacterController.h"
 
-#import "Character.h"
-#import "Skill.h"
-
-@class Character;
-
-@interface TrainedSkill : CeresObject {
-
+@interface SkillListController : NSArrayController {
+  IBOutlet CharacterController * characterController;
+  IBOutlet CharacterTableView * skillTableView;
+  
+  Character * character;
 }
-
-@property(retain) NSNumber * skillpoints, * level;
-@property(retain) Skill * skill;
-@property(retain) Character * character;
-
-- (id) initWithCharacter: (Character *) character skill: (Skill *) skill;
-
-+ (NSArray *) findWithCharacter: (Character *) character;
-+ (id) findWithCharacter: (Character *) character skill: (Skill *) skill;
-
-- (NSString *) name;
-- (id) training;
 
 @end

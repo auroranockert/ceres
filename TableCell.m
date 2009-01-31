@@ -35,7 +35,6 @@
 - (id) init
 {
   if (self = [super init]) {
-    font = [NSFont fontWithName: @"Lucida Grande" size: 16];
 		highlightWhenNotKey = NO;
 		maxImageWidth = DEFAULT_MAX_IMAGE_WIDTH;
 		imageTextPadding = DEFAULT_IMAGE_TEXT_PADDING;
@@ -66,6 +65,16 @@
 - (NSString *) subString
 {
   return @"Something is wrong...";
+}
+
+- (NSFont *) nameFont
+{
+  return [NSFont fontWithName: @"Lucida Grande" size: 16];
+}
+
+- (NSFont *) subStringFont
+{
+  return [NSFont systemFontOfSize: 10];
 }
 
 #pragma mark Drawing
@@ -108,24 +117,13 @@
     [paragraphStyle setAlignment: [self alignment]];
     [paragraphStyle setLineBreakMode: LINEBREAKMODE];
 		
-		if (font) {
-			attributes = [NSDictionary dictionaryWithObjectsAndKeys:
-                    paragraphStyle, NSParagraphStyleAttributeName,
-                    font, NSFontAttributeName,
-                    nil];
-		} else {
-			attributes = [NSDictionary dictionaryWithObjectsAndKeys:
-                    paragraphStyle, NSParagraphStyleAttributeName,
-                    nil];
-		}
-		
+    attributes = [NSDictionary dictionaryWithObjectsAndKeys: paragraphStyle, NSParagraphStyleAttributeName, [self nameFont], NSFontAttributeName, nil];
 		nameSize = [nameString sizeWithAttributes: attributes];
 		
 		if (subString) {
 			NSSize			subStringSize;
       
-			attributes = [NSDictionary dictionaryWithObject: [NSFont systemFontOfSize:10]
-                                               forKey: NSFontAttributeName];
+			attributes = [NSDictionary dictionaryWithObject: [self subStringFont] forKey: NSFontAttributeName];
 			subStringSize = [subString sizeWithAttributes: attributes];
 			
 			if (subStringSize.width > nameSize.width) {
@@ -243,33 +241,19 @@
     [paragraphStyle setAlignment: [self alignment]];
     [paragraphStyle setLineBreakMode: LINEBREAKMODE];
     
-		if (font) {
-			mainAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
-                        paragraphStyle, NSParagraphStyleAttributeName,
-                        font, NSFontAttributeName,
-                        mainTextColor, NSForegroundColorAttributeName,
-                        nil];
-		} else {
-			mainAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
-                        paragraphStyle, NSParagraphStyleAttributeName,
-                        mainTextColor, NSForegroundColorAttributeName,
-                        nil];
-		}
+    mainAttributes = [NSDictionary dictionaryWithObjectsAndKeys:  paragraphStyle, NSParagraphStyleAttributeName, [self nameFont], NSFontAttributeName, mainTextColor, NSForegroundColorAttributeName, nil];
 		
-		attributedMainString = [[NSAttributedString alloc] initWithString:nameString
-                                                           attributes:mainAttributes];
+		attributedMainString = [[NSAttributedString alloc] initWithString: nameString attributes: mainAttributes];
 		
 		if (subString) {
-			// Keep the mainString NSDictionary attributes in case we're
-			// using NSLineBreakByTruncatingMiddle line breaking (see below).
 			subStringAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
                              paragraphStyle, NSParagraphStyleAttributeName,
-                             [NSFont systemFontOfSize:10], NSFontAttributeName,
+                             [self subStringFont], NSFontAttributeName,
                              subStringTextColor, NSForegroundColorAttributeName,
                              nil];
 			
-			attributedSubString = [[NSAttributedString alloc] initWithString:subString
-                                                            attributes:subStringAttributes];
+			attributedSubString = [[NSAttributedString alloc] initWithString: subString
+                                                            attributes: subStringAttributes];
 		}
     
     mainStringHeight = [nameString sizeWithAttributes:mainAttributes].height;

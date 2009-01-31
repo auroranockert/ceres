@@ -80,4 +80,14 @@
   }
 }
 
+- (NSString *) name
+{
+  return [[self skill] name];
+}
+
+- (id) training
+{
+  return nil;
+}
+
 @end

@@ -1,5 +1,5 @@
 //
-//  TrainedSkill.h
+//  SkillCell.m
 //  This file is part of Ceres.
 //
 //  Ceres is free software: you can redistribute it and/or modify
@@ -15,32 +15,49 @@
 //  You should have received a copy of the GNU General Public License
 //  along with Ceres.  If not, see <http://www.gnu.org/licenses/>.
 //
-//  Created by Jens Nockert on 1/27/09.
+//  Created by Jens Nockert on 1/31/09.
 //
 
-#import <Cocoa/Cocoa.h>
+#import "SkillCell.h"
 
-#import "CeresObject.h"
 
-#import "Character.h"
-#import "Skill.h"
+@implementation SkillCell
 
-@class Character;
+@synthesize skill;
 
-@interface TrainedSkill : CeresObject {
-
+- (id)copyWithZone: (NSZone *) zone
+{
+	SkillCell * newCell = [super copyWithZone: zone];
+  
+  [newCell setSkill: [self skill]];
+  
+	return newCell;
 }
 
-@property(retain) NSNumber * skillpoints, * level;
-@property(retain) Skill * skill;
-@property(retain) Character * character;
+- (void) setObjectValue: (id) object
+{
+  [super setObjectValue: object];
+  [self setSkill: object];
+}
 
-- (id) initWithCharacter: (Character *) character skill: (Skill *) skill;
+- (NSImage *) image
+{
+  return nil;
+}
 
-+ (NSArray *) findWithCharacter: (Character *) character;
-+ (id) findWithCharacter: (Character *) character skill: (Skill *) skill;
+- (NSString *) name
+{
+  return [[skill skill] name];
+}
 
-- (NSString *) name;
-- (id) training;
+- (NSFont *) nameFont
+{
+  return [NSFont fontWithName: @"Lucida Grande" size: 12];
+}
+
+- (NSString *) subString
+{
+  return [NSString stringWithFormat: @"Level %@ (%@ SP)", [skill level], [skill skillpoints]];
+}
 
 @end

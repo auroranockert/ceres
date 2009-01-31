@@ -75,6 +75,8 @@
 		B496BF5A0F33BA2B00E92DB4 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = B496BF590F33BA2B00E92DB4 /* dsa_pub.pem */; };
 		B496BF830F33C08B00E92DB4 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B496BF430F33B6EC00E92DB4 /* Sparkle.framework */; };
 		B496BF960F33C94E00E92DB4 /* TableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B496BF950F33C94E00E92DB4 /* TableCell.m */; };
+		B496C10E0F348E3000E92DB4 /* SkillListController.m in Sources */ = {isa = PBXBuildFile; fileRef = B496C10D0F348E3000E92DB4 /* SkillListController.m */; };
+		B496C1A30F34A76900E92DB4 /* SkillCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B496C1A20F34A76900E92DB4 /* SkillCell.m */; };
 		B49C056D0EF337E30044268E /* CeresHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = B49C056C0EF337E30044268E /* CeresHeader.h */; };
 		B49C080B0EF3F4610044268E /* Data.h in Headers */ = {isa = PBXBuildFile; fileRef = B49C08090EF3F4610044268E /* Data.h */; };
 		B49C080C0EF3F4610044268E /* Data.m in Sources */ = {isa = PBXBuildFile; fileRef = B49C080A0EF3F4610044268E /* Data.m */; };
@@ -201,6 +203,10 @@
 		B496BF590F33BA2B00E92DB4 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		B496BF940F33C94E00E92DB4 /* TableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableCell.h; sourceTree = "<group>"; };
 		B496BF950F33C94E00E92DB4 /* TableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableCell.m; sourceTree = "<group>"; };
+		B496C10C0F348E3000E92DB4 /* SkillListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkillListController.h; sourceTree = "<group>"; };
+		B496C10D0F348E3000E92DB4 /* SkillListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkillListController.m; sourceTree = "<group>"; };
+		B496C1A10F34A76900E92DB4 /* SkillCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkillCell.h; sourceTree = "<group>"; };
+		B496C1A20F34A76900E92DB4 /* SkillCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkillCell.m; sourceTree = "<group>"; };
 		B49C056C0EF337E30044268E /* CeresHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CeresHeader.h; sourceTree = "<group>"; };
 		B49C08090EF3F4610044268E /* Data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Data.h; sourceTree = "<group>"; };
 		B49C080A0EF3F4610044268E /* Data.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Data.m; sourceTree = "<group>"; };
@@ -532,6 +538,8 @@
 				B4A539420F1FEB9100B404E6 /* CharacterCell.h */,
 				B496BF940F33C94E00E92DB4 /* TableCell.h */,
 				B496BF950F33C94E00E92DB4 /* TableCell.m */,
+				B496C1A10F34A76900E92DB4 /* SkillCell.h */,
+				B496C1A20F34A76900E92DB4 /* SkillCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -616,6 +624,8 @@
 			children = (
 				B4F0E6590F22865900412957 /* CharacterController.h */,
 				B4F0E65A0F22865900412957 /* CharacterController.m */,
+				B496C10C0F348E3000E92DB4 /* SkillListController.h */,
+				B496C10D0F348E3000E92DB4 /* SkillListController.m */,
 			);
 			name = Character;
 			sourceTree = "<group>";
@@ -810,6 +820,8 @@
 				B4A53A720F20B8E000B404E6 /* CharacterListController.m in Sources */,
 				B4F0E65B0F22865900412957 /* CharacterController.m in Sources */,
 				B496BF960F33C94E00E92DB4 /* TableCell.m in Sources */,
+				B496C10E0F348E3000E92DB4 /* SkillListController.m in Sources */,
+				B496C1A30F34A76900E92DB4 /* SkillCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
