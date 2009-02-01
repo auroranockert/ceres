@@ -358,15 +358,15 @@ def processDB(dbPath):
     }.get(int(row[7]))
     
     #Falta por aqui o resto.
-    atribute = doc.createElement("atribute")
-    atributeText = doc.createTextNode(result)
-    atribute.appendChild(atributeText)
-    implant.appendChild(atribute)
+    attribute = doc.createElement("attribute")
+    attributeText = doc.createTextNode(result)
+    attribute.appendChild(attributeText)
+    implant.appendChild(attribute)
     
-    atributeBonus = doc.createElement("atributeBonus")
-    atributeBonusText = doc.createTextNode(str(row[8]))
-    atributeBonus.appendChild(atributeBonusText)
-    implant.appendChild(atributeBonus)
+    attributeBonus = doc.createElement("attributeBonus")
+    attributeBonusText = doc.createTextNode(str(row[8]))
+    attributeBonus.appendChild(attributeBonusText)
+    implant.appendChild(attributeBonus)
     
     implants.appendChild(implant)
 
