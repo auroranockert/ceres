@@ -5,6 +5,7 @@ profile
 *~.nib
 
 build
+Generator/Data
 
 *.pbxuser
 *.perspective
