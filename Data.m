@@ -26,7 +26,7 @@
 - (id) init
 {
   if (self = [super init]) {
-    dataApi = @"http://Ceres.doesntexist.org/xml/0.0.2/";
+    dataApi = @"http://Ceres.doesntexist.org/xml/0.0.8/";
   }
   
   return self;

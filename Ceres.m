@@ -112,7 +112,7 @@ static Ceres * shared;
       [fileManager createDirectoryAtPath: applicationSupportFolder attributes: nil];
     }
     
-    url = [NSURL fileURLWithPath: [applicationSupportFolder stringByAppendingPathComponent: @"Ceres 0.0.7.sqlite3"]];
+    url = [NSURL fileURLWithPath: [applicationSupportFolder stringByAppendingPathComponent: @"Ceres 0.0.8.sqlite3"]];
     persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel: [self managedObjectModel]];
     if ( ![persistentStoreCoordinator addPersistentStoreWithType: NSSQLiteStoreType configuration: nil URL: url options: nil error: &error] ) {
       [self handleError: error];
