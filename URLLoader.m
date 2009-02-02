@@ -52,7 +52,7 @@ enum {
   NSLog(@"Starting load of url > %@", url);
   status = URLLoaderLoading;
   connection = [[NSURLConnection alloc] initWithRequest: [NSURLRequest requestWithURL: url] delegate: self startImmediately: NO];
-  [connection scheduleInRunLoop: [NSRunLoop currentRunLoop] forMode: @"Ceres.download"];
+  [connection scheduleInRunLoop: [NSRunLoop mainRunLoop] forMode: [[NSRunLoop mainRunLoop] currentMode]];
   [connection start];
   [lock unlock];
 }

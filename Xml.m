@@ -30,8 +30,7 @@
   URLDelegate * delegate = [[URLDelegate alloc] initWithURL: url];
   
   while (![delegate done]) {
-    [[NSRunLoop currentRunLoop] runMode: @"Ceres.download"
-                             beforeDate: [NSDate dateWithTimeIntervalSinceNow: 30.0]];
+    [[NSRunLoop mainRunLoop] runMode: [[NSRunLoop mainRunLoop] currentMode] beforeDate: [NSDate dateWithTimeIntervalSinceNow: 10.0]];
   }
   
   NSError * error = nil;

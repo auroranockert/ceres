@@ -71,6 +71,31 @@ static Ceres * shared;
   return @"0.0.8";
 }
 
+- (CeresVersionComparison) compareVersion
+{
+  NSArray * application, * database;
+  
+  application = [[self applicationVersion] componentsSeparatedByString: @"."];
+  database = [[self databaseVersion] componentsSeparatedByString: @"."];
+    
+  if (!database) {
+    return ApplicationNewer;
+  }
+  
+  for (int i = 0; i < 3; i++) {
+    NSComparisonResult result = [[application objectAtIndex: i] compare: [database objectAtIndex: i] options: 0];
+        
+    if (result == NSOrderedDescending) {
+      return ApplicationNewer;
+    }
+    else if (result == NSOrderedAscending) {
+      return DatabaseNewer;
+    }
+  }
+  
+  return VersionSame;
+}
+
 - (NSString *) applicationSupportFolder
 {
   NSArray * paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);

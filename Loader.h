@@ -40,12 +40,12 @@
 
 - (void) start: (id) delegate;
 
-- (void) text: (NSString *) text;
-
 @end
 
 @interface NSObject (LoaderDelegate)
 
+- (void) downloadTimeout: (NSInteger) time;
+- (void) databaseNewer: (NSString *) version;
 - (void) setText: (NSString *) text;
 - (void) finished;
 

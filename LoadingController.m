@@ -25,8 +25,27 @@
 
 - (void) awakeFromNib
 {
+  [progressIndicator setUsesThreadedAnimation: true];
   [progressIndicator startAnimation: self];
-  [NSThread detachNewThreadSelector: @selector(start:) toTarget: [Loader instance] withObject: self];
+  [[Loader instance] performSelectorOnMainThread: @selector(start:) withObject: self waitUntilDone: false];
+}
+
+- (void) downloadTimeout: (NSInteger) timer
+{
+  NSAlert * alert = [[NSAlert alloc] init];
+  [alert setMessageText: @"Downloading the data failed, and no data is currently in the database."];
+  [alert addButtonWithTitle: @"Cancel"];
+  [alert runModal];
+  [[NSApplication sharedApplication] terminate: self];
+}
+
+- (void) databaseNewer: (NSString *) version
+{
+  NSAlert * alert = [[NSAlert alloc] init];
+  [alert setMessageText: @"The current database is newer than this version of Ceres."];
+  [alert addButtonWithTitle: @"Cancel"];
+  [alert runModal];
+  [[NSApplication sharedApplication] terminate: self];
 }
 
 - (void) setText: (NSString *) text

@@ -54,15 +54,12 @@ static Loader * shared;
 
 - (void) start: (id) d
 {
-  NSString * version = [[Ceres instance] applicationVersion];
   delegate = d;
-  [delegate setText: [NSString stringWithFormat: @"Loading Ceres (Version %@)", version]];
-  NSLog([[Ceres instance] databaseVersion]);
-  if ([version compare: [[Ceres instance] databaseVersion]] != NSOrderedSame)
+  [delegate setText: [NSString stringWithFormat: @"Loading Ceres (Version %@)", [[Ceres instance] applicationVersion]]];
+  
+  if ([[Ceres instance] compareVersion] == ApplicationNewer)
   {
-    NSLog(@"Updating from %@", [[Ceres instance] databaseVersion]);
-    
-    [[Ceres instance] setDatabaseVersion: version];
+    [[Ceres instance] setDatabaseVersion: [[Ceres instance] applicationVersion]];
 
     Data * data = [[Data alloc] init];
     
@@ -82,42 +79,62 @@ static Loader * shared;
       [loaders setValue: d forKey: key]; 
     }
     
-    int finished = 0;
-    
-    while (finished < [loaders count]) {
-      [[NSRunLoop currentRunLoop] runMode: @"Ceres.download"
-                               beforeDate: [NSDate dateWithTimeIntervalSinceNow: 30.0]];
-      finished = 0;
+    NSInteger finished = 0;
+    NSInteger count = 0;
+    NSInteger done, total;    
+    while (finished < [loaders count]) {      
+      finished = done = total = 0;
       for (URLDelegate * d in [loaders allValues])
       {
+        done += [d receivedData];
+        total += [d totalData];
+        
         if ([d done]) {
           finished++;
         }
       }
+      
+      [delegate setText: [NSString stringWithFormat: @"Downloaded %d / %d files (%d / %d kB)", finished, [loaders count], done / 1024, total / 1024]];
+      
+      if (count > 180) {
+        [delegate downloadTimeout: count];
+      }
+      else {
+        count++;
+      }
+      
+      [[NSRunLoop mainRunLoop] runUntilDate: [NSDate dateWithTimeIntervalSinceNow: 1.0]];
     }
-    
+        
     finished = 0;
-    
+    double priority = [NSThread threadPriority];
+    [NSThread setThreadPriority: 0.0];
     for (id key in [[loaders allKeys] sortedArrayUsingSelector: @selector(comparePriority:)])
     {
-      [self text: [NSString stringWithFormat: @"Parsing data (%d / %d files processed)", finished, [loaders count]]];
-      [key performSelector: @selector(load:) withObject: [[loaders objectForKey: key] xml]];
+      [delegate setText: [NSString stringWithFormat: @"Parsing data (%d / %d files processed)", finished, [loaders count]]];
+      NSThread * thread = [[NSThread alloc] initWithTarget: key selector: @selector(load:) object: [[loaders objectForKey: key] xml]];
+      [thread start];
+      
+      while (![thread isFinished]) {
+        [[NSRunLoop mainRunLoop] runUntilDate: [NSDate dateWithTimeIntervalSinceNow: 0.0]];
+        [NSThread sleepForTimeInterval: 1.0];
+      }
+      
       finished++;
     }
+    [NSThread setThreadPriority: priority];
     
     [[Ceres instance] save];
+  }
+  else if ([[Ceres instance] compareVersion] == DatabaseNewer)
+  {
+    [delegate databaseNewer: [[Ceres instance] databaseVersion]];
   }
   
   [delegate finished];
   
   [[Updater instance] performSelectorOnMainThread: @selector(prepare) withObject: nil waitUntilDone: true];
   [[Updater instance] performSelectorOnMainThread: @selector(update) withObject: nil waitUntilDone: false];
-}
-
-- (void) text: (NSString *) text
-{
-  NSLog(text);
-  [delegate setText: text];
 }
 
 @end

@@ -55,7 +55,7 @@
 
 - (NSXMLDocument *) xml
 {
-  NSError * error;
+  NSError * error = nil;
   return [[NSXMLDocument alloc] initWithData: [self data] options: 0 error: &error];
 }
 

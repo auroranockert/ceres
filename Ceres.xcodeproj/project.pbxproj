@@ -373,7 +373,6 @@
 				B49C08090EF3F4610044268E /* Data.h */,
 				B49C080A0EF3F4610044268E /* Data.m */,
 				B4668C090F0585CD002E13B4 /* Groupings */,
-				B4668C020F058481002E13B4 /* Skill */,
 				B405104E0EF6C5ED00584535 /* Item Types */,
 				B4050F800EF5293800584535 /* Clone */,
 			);
@@ -394,6 +393,8 @@
 			children = (
 				B405104F0EF6C60F00584535 /* ItemType.h */,
 				B40510500EF6C60F00584535 /* ItemType.m */,
+				B405110B0EF96E7F00584535 /* Skill.h */,
+				B405110C0EF96E7F00584535 /* Skill.m */,
 			);
 			name = "Item Types";
 			sourceTree = "<group>";
@@ -507,15 +508,6 @@
 				B462BAF70F292236004D04D8 /* Updater.m */,
 			);
 			name = Updater;
-			sourceTree = "<group>";
-		};
-		B4668C020F058481002E13B4 /* Skill */ = {
-			isa = PBXGroup;
-			children = (
-				B405110B0EF96E7F00584535 /* Skill.h */,
-				B405110C0EF96E7F00584535 /* Skill.m */,
-			);
-			name = Skill;
 			sourceTree = "<group>";
 		};
 		B4668C090F0585CD002E13B4 /* Groupings */ = {

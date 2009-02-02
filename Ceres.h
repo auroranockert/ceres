@@ -24,6 +24,13 @@
 
 #import "Api.h"
 
+enum CeresVersionComparison {
+  ApplicationNewer    = 1,
+  VersionSame   = 0,
+  DatabaseNewer = -1
+};
+typedef enum CeresVersionComparison CeresVersionComparison;
+
 @interface Ceres : NSObject {
   NSPersistentStoreCoordinator * persistentStoreCoordinator;
   NSManagedObjectModel * managedObjectModel;
@@ -49,6 +56,7 @@
 - (void) postNotification: (NSNotification *) notification date: (NSDate *) date;
 - (void) addObserver: (id) observer selector: (SEL) selector name: (NSString*) name object: (id) object;
 - (void) handleError: (NSError *) error;
+- (CeresVersionComparison) compareVersion;
 
 @end
 
