@@ -52,18 +52,23 @@ static Ceres * shared;
   return self;
 }
 
-- (NSString *) version
+- (NSString *) databaseVersion
 {
   NSDictionary * metadata = [[self persistentStoreCoordinator] metadataForPersistentStore: [[[self persistentStoreCoordinator] persistentStores] objectAtIndex: 0]];
   return [metadata valueForKey: @"Version"];
 }
 
-- (void) setVersion: (NSString *) version
+- (void) setDatabaseVersion: (NSString *) version
 {
   NSDictionary * metadata = [[NSMutableDictionary alloc] init];
   [metadata setValue: version forKey: @"Version"];
   
   [[self persistentStoreCoordinator] setMetadata: metadata forPersistentStore: [[[self persistentStoreCoordinator] persistentStores] objectAtIndex: 0]];
+}
+
+- (NSString *) applicationVersion
+{
+  return @"0.0.8";
 }
 
 - (NSString *) applicationSupportFolder
@@ -75,7 +80,7 @@ static Ceres * shared;
 
 - (NSManagedObjectModel *) managedObjectModel
 {
-  if (managedObjectModel == nil) {
+  if (!managedObjectModel) {
     
     // Load model from Ceres.framework bundle
     managedObjectModel = [NSManagedObjectModel mergedModelFromBundles: nil];
@@ -86,7 +91,7 @@ static Ceres * shared;
 
 - (NSManagedObjectContext *) managedObjectContext
 {
-  if (managedObjectContext == nil) {
+  if (!managedObjectContext) {
     NSPersistentStoreCoordinator * coordinator = [self persistentStoreCoordinator];
     
     if (coordinator != nil) {
@@ -100,7 +105,7 @@ static Ceres * shared;
 
 - (NSPersistentStoreCoordinator *) persistentStoreCoordinator
 {
-  if(persistentStoreCoordinator == nil) {
+  if(!persistentStoreCoordinator) {
     NSFileManager * fileManager;
     NSString * applicationSupportFolder = nil;
     NSURL * url;

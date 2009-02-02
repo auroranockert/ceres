@@ -40,7 +40,6 @@
 
 - (void) start: (id) delegate;
 
-- (NSString *) currentVersion;
 - (void) text: (NSString *) text;
 
 @end

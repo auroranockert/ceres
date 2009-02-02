@@ -34,7 +34,8 @@
   NSMutableDictionary * notificationDictionary;
 }
 
-@property(retain) NSString * version;
+@property(copy) NSString * databaseVersion;
+@property(copy, readonly) NSString * applicationVersion;
 
 + (Ceres *) instance;
 

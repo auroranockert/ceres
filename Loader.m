@@ -54,15 +54,15 @@ static Loader * shared;
 
 - (void) start: (id) d
 {
-  NSString * version = [self currentVersion];
+  NSString * version = [[Ceres instance] applicationVersion];
   delegate = d;
   [delegate setText: [NSString stringWithFormat: @"Loading Ceres (Version %@)", version]];
-  NSLog([[Ceres instance] version]);
-  if ([version compare: [[Ceres instance] version]] != NSOrderedSame)
+  NSLog([[Ceres instance] databaseVersion]);
+  if ([version compare: [[Ceres instance] databaseVersion]] != NSOrderedSame)
   {
-    NSLog(@"Updating from %@", [[Ceres instance] version]);
+    NSLog(@"Updating from %@", [[Ceres instance] databaseVersion]);
     
-    [[Ceres instance] setVersion: version];
+    [[Ceres instance] setDatabaseVersion: version];
 
     Data * data = [[Data alloc] init];
     
@@ -114,11 +114,6 @@ static Loader * shared;
   [[Updater instance] performSelectorOnMainThread: @selector(update) withObject: nil waitUntilDone: false];
 }
 
-- (NSString *) currentVersion
-{
-  return @"0.0.8";
-}
-    
 - (void) text: (NSString *) text
 {
   NSLog(text);
