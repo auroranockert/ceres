@@ -26,7 +26,38 @@ import os
 import bz2
 import sqlite3
 
-from minidom import Document
+from xml.dom.minidom import Document, Element, Node
+
+def fixedxml(self, writer, indent="", addindent="", newl=""):
+    # indent = current indentation
+    # addindent = indentation to add to higher levels
+    # newl = newline string
+    writer.write(indent+"<" + self.tagName)
+    
+    attrs = self._get_attributes()
+    a_names = attrs.keys()
+    a_names.sort()
+    
+    for a_name in a_names:
+      writer.write(" %s=\"" % a_name)
+      _write_data(writer, attrs[a_name].value)
+      writer.write("\"")
+    
+    if self.childNodes:
+        if len(self.childNodes) == 1 and self.childNodes[0].nodeType == Node.TEXT_NODE:
+            writer.write(">")
+            self.childNodes[0].writexml(writer, "", "", "")
+            writer.write("</%s>%s" % (self.tagName, newl))
+        else:
+            writer.write(">%s"%(newl))
+            for node in self.childNodes:
+                node.writexml(writer,indent+addindent,addindent,newl)
+            writer.write("%s</%s>%s" % (indent,self.tagName,newl))
+    else:
+        writer.write("/>%s"%(newl))
+
+
+Element.writexml = fixedxml
 
 def fileExists(f):
   try:
