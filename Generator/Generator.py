@@ -25,39 +25,34 @@ import sys
 import os
 import bz2
 import sqlite3
-from xml.dom.minidom import Document
+
+from minidom import Document
 
 def fileExists(f):
   try:
     file = open(f)
   except IOError:
-    exists = 0
+    return False
   else:
-    exists = 1
-  return exists
+    return True
 
 def getURLName(url):
-  directory=os.curdir
-
-  name="%s%s%s%s%s" % (
-    directory,
+  return "%s%s%s%s%s" % (
+    os.curdir,
     os.sep,
     "Data",
     os.sep,
     url.split("/")[-1]
   )
 
-  return name
-
 def createDownload(url):
   instream=urllib.urlopen(url)
-
+  
   filelenght=instream.info().getheader("Content-Length")
   if filelenght==None:
     filelenght="temp"
-
+  
   return (instream, filelenght)
-
 
 def downloadDump(dumpName):
   if fileExists(getURLName(dumpName)):
@@ -66,19 +61,19 @@ def downloadDump(dumpName):
   try:
     outfile=open(getURLName(dumpName), "wb")
     fileName=outfile.name.split(os.sep)[-1]
-
+    
     dumpName, length=createDownload(dumpName)
     if not length:
       length="?"
-
+    
     print "Downloading %s (%s bytes) ..." % (dumpName, length)
     if length!="?":
       length=float(length)
     bytesRead=0.0
-
+    
     for line in dumpName:
       bytesRead+=len(line)
-
+      
       if length!="?":
         print "%s: %.02f/%.02f kb (%d%%)" % (
           fileName,
@@ -86,13 +81,13 @@ def downloadDump(dumpName):
           length/1024.0,
           100*bytesRead/length
         )
-
+      
       outfile.write(line)
-
+    
     dumpName.close()
     outfile.close()
     print "Finished Downloading."
-
+  
   except Exception, e:
     print "Error downloading %s: %s" % (dumpName, e)
 
@@ -103,11 +98,20 @@ def decompressbz2(filePath):
   decompressedFileName = getURLName(sys.argv[1].split(".")[0] + ".db")
   try:
     open(decompressedFileName, "wb").write(decompressedDump)
-
   except Exception, e:
     print "Error decompressing %s" % (decompressedFileName)
   
   return decompressedFileName
+
+def writeXML(name, doc):
+  #stream = StringIO()
+  #PrettyPrint(node, stream=stream, encoding='utf-8')
+  open(getURLName(name), "w").write(doc.toprettyxml(indent="  "))
+
+def addChild(doc, parent, name, text):
+  element = doc.createElement(name)
+  element.appendChild(doc.createTextNode(text))
+  parent.appendChild(element)
 
 def processDB(dbPath):
   print dbPath
@@ -123,233 +127,114 @@ def processDB(dbPath):
   for row in c:
     category = doc.createElement("category")
     
-    identifier = doc.createElement("identifier")
-    identifierText = doc.createTextNode(str(row[0]))
-    identifier.appendChild(identifierText)
-    category.appendChild(identifier)
-    
-    name = doc.createElement("name")
-    nameText = doc.createTextNode(row[1])
-    name.appendChild(nameText)
-    category.appendChild(name)
-    
-    published = doc.createElement("published")
-    publishedText = doc.createTextNode(str(row[2]))
-    published.appendChild(publishedText)
-    category.appendChild(published)
+    addChild(doc, category, "identifier", str(row[0]))
+    addChild(doc, category, "name", str(row[1]))
+    addChild(doc, category, "published", str(row[2]))
     
     categories.appendChild(category)
-    
-  open(getURLName("Categories.xml"), "w").write(doc.toprettyxml(indent="  "))
-
+  
+  writeXML("Categories.xml", doc)
+  
   #clones
   print "Processing Clones..."
   c.execute("""SELECT invTypes.typeID AS identifier, typeName AS name, basePrice AS price, valueInt AS skillpoints
-  FROM invTypes INNER JOIN dgmTypeAttributes ON invTypes.typeID = dgmTypeAttributes.typeID
-  WHERE groupId = 23 AND attributeID = 419;""")
+               FROM invTypes INNER JOIN dgmTypeAttributes ON invTypes.typeID = dgmTypeAttributes.typeID
+               WHERE groupId = 23 AND attributeID = 419;""")
   doc = Document()
   clones = doc.createElement("clones")
   doc.appendChild(clones)
   for row in c:
     clone = doc.createElement("clone")
     
-    identifier = doc.createElement("identifier")
-    identifierText = doc.createTextNode(str(row[0]))
-    identifier.appendChild(identifierText)
-    clone.appendChild(identifier)
-    
-    name = doc.createElement("name")
-    nameText = doc.createTextNode(row[1])
-    name.appendChild(nameText)
-    clone.appendChild(name)
-    
-    price = doc.createElement("price")
-    priceText = doc.createTextNode(str(row[2]))
-    price.appendChild(priceText)
-    clone.appendChild(price)
-    
-    skillpoints = doc.createElement("skillpoints")
-    skillpointsText = doc.createTextNode(str(row[3]))
-    skillpoints.appendChild(skillpointsText)
-    clone.appendChild(skillpoints)
+    addChild(doc, clone, "identifier", str(row[0]))
+    addChild(doc, clone, "name", str(row[1]))
+    addChild(doc, clone, "price", str(row[2]))
+    addChild(doc, clone, "skillpoints", str(row[3]))
     
     clones.appendChild(clone)
-    
-  open(getURLName("Clones.xml"), "w").write(doc.toprettyxml(indent="  "))
-
+  
+  writeXML("Clones.xml", doc)
+  
   #groups
   print "Processing Groups..."
-  c.execute("""SELECT groupID AS identifier, categoryID as categoryIdentifier, groupName AS name, published FROM invGroups;""")
+  c.execute("""SELECT groupID AS identifier, categoryID as categoryIdentifier, groupName AS name, published
+               FROM invGroups;""")
   doc = Document()
   groups = doc.createElement("groups")
   doc.appendChild(groups)
   for row in c:
     group = doc.createElement("group")
     
-    identifier = doc.createElement("identifier")
-    identifierText = doc.createTextNode(str(row[0]))
-    identifier.appendChild(identifierText)
-    group.appendChild(identifier)
-    
-    categoryIdentifier = doc.createElement("categoryIdentifier")
-    categoryIdentifierText = doc.createTextNode(str(row[1]))
-    categoryIdentifier.appendChild(categoryIdentifierText)
-    group.appendChild(categoryIdentifier)
-    
-    name = doc.createElement("name")
-    nameText = doc.createTextNode(row[2])
-    name.appendChild(nameText)
-    group.appendChild(name)
-    
-    published = doc.createElement("published")
-    publishedText = doc.createTextNode(str(row[3]))
-    published.appendChild(publishedText)
-    group.appendChild(published)
+    addChild(doc, group, "identifier", str(row[0]))
+    addChild(doc, group, "categoryIdentifier", str(row[1]))
+    addChild(doc, group, "name", str(row[2]))
+    addChild(doc, group, "published", str(row[3]))
     
     groups.appendChild(group)
-    
-  open(getURLName("Groups.xml"), "w").write(doc.toprettyxml(indent="  "))
+  
+  writeXML("Groups.xml", doc)
   
   #MarketGroups
   print "Processing MarketGroups..."
-  c.execute("""SELECT marketGroupID AS identifier, parentGroupID AS parentIdentifier, marketGroupName AS name, hasTypes FROM invMarketGroups;""")
+  c.execute("""SELECT marketGroupID AS identifier, parentGroupID AS parentIdentifier, marketGroupName AS name, hasTypes
+               FROM invMarketGroups;""")
   doc = Document()
   marketgroups = doc.createElement("marketgroups")
   doc.appendChild(marketgroups)
   for row in c:
     marketgroup = doc.createElement("marketgroup")
     
-    identifier = doc.createElement("identifier")
-    identifierText = doc.createTextNode(str(row[0]))
-    identifier.appendChild(identifierText)
-    marketgroup.appendChild(identifier)
-    
-    if row[1] is None:
-      value = "NULL"
-    else:
-      value = str(row[1])
-    
-    parentIdentifier = doc.createElement("parentIdentifier")
-    parentIdentifierText = doc.createTextNode(value)
-    parentIdentifier.appendChild(parentIdentifierText)
-    marketgroup.appendChild(parentIdentifier)
-    
-    name = doc.createElement("name")
-    nameText = doc.createTextNode(row[2])
-    name.appendChild(nameText)
-    marketgroup.appendChild(name)
-    
-    types = doc.createElement("hasTypes")
-    typesText = doc.createTextNode(str(row[3]))
-    types.appendChild(typesText)
-    marketgroup.appendChild(types)
+    addChild(doc, marketgroup, "identifier", str(row[0]))
+    addChild(doc, marketgroup, "parentIdentifier", str(row[1]))
+    addChild(doc, marketgroup, "name", str(row[2]))
+    addChild(doc, marketgroup, "hasTypes", str(row[3]))
     
     marketgroups.appendChild(marketgroup)
-    
-  open(getURLName("MarketGroups.xml"), "w").write(doc.toprettyxml(indent="  "))
+  
+  writeXML("MarketGroups.xml", doc)
   
   #Skills
   print "Processing Skills..."
-  c.execute("""SELECT typeID AS identifier, typeName AS name, invGroups.groupID AS groupIdentifier, marketGroupID AS marketGroupIdentifier, basePrice, invTypes.published FROM
-  invTypes INNER JOIN invGroups ON invTypes.groupID = invGroups.groupID
-  WHERE categoryID = 16;""")
+  c.execute("""SELECT typeID AS identifier, typeName AS name, invGroups.groupID AS groupIdentifier, marketGroupID AS marketGroupIdentifier, basePrice, invTypes.published
+               FROM invTypes INNER JOIN invGroups ON invTypes.groupID = invGroups.groupID
+               WHERE categoryID = 16;""")
   doc = Document()
   skills = doc.createElement("skills")
   doc.appendChild(skills)
   for row in c:
     skill = doc.createElement("skill")
     
-    identifier = doc.createElement("identifier")
-    identifierText = doc.createTextNode(str(row[0]))
-    identifier.appendChild(identifierText)
-    skill.appendChild(identifier)
-    
-    name = doc.createElement("name")
-    nameText = doc.createTextNode(row[1])
-    name.appendChild(nameText)
-    skill.appendChild(name)
-    
-    groupIdentifier = doc.createElement("groupIdentifier")
-    groupIdentitierText = doc.createTextNode(str(row[2]))
-    groupIdentifier.appendChild(groupIdentitierText)
-    skill.appendChild(groupIdentifier)
-    
-    if row[3] is None:
-      value = "NULL"
-    else:
-      value = str(row[3])
-    
-    marketGroupIdentifier = doc.createElement("marketGroupIdentifier")
-    marketGroupIdentifierText = doc.createTextNode(value)
-    marketGroupIdentifier.appendChild(marketGroupIdentifierText)
-    skill.appendChild(marketGroupIdentifier)
-    
-    price = doc.createElement("price")
-    priceText = doc.createTextNode(str(row[4]))
-    price.appendChild(priceText)
-    skill.appendChild(price)
-    
-    published = doc.createElement("published")
-    publishedText = doc.createTextNode(str(row[5]))
-    published.appendChild(publishedText)
-    skill.appendChild(published)
+    addChild(doc, skill, "identifier", str(row[0]))
+    addChild(doc, skill, "name", str(row[1]))
+    addChild(doc, skill, "groupIdentifier", str(row[2]))
+    addChild(doc, skill, "marketGroupIdentifier", str(row[3]))
+    addChild(doc, skill, "price", str(row[4]))
+    addChild(doc, skill, "published", str(row[5]))
     
     skills.appendChild(skill)
-    
-  open(getURLName("Skills.xml"), "w").write(doc.toprettyxml(indent="  "))
-    
+  
+  writeXML("Skills.xml", doc)
+  
   #implants
   print "Processing Implants..."
   c.execute("""SELECT invTypes.typeID as Identifier, invTypes.groupID as groupIdentifier, invTypes.typeName as Name, invTypes.basePrice, invTypes.marketGroupID as marketGroupIdentifier, invTypes.published, (invTypes.marketGroupID - 617) AS slot, (attributeID - 175) AS attribute, valueInt AS attributeBonus
-    FROM dgmTypeAttributes INNER JOIN invTypes ON invTypes.typeID = dgmTypeAttributes.typeID
-    WHERE invTypes.marketGroupID >= 618 AND invTypes.marketGroupID <= 627 AND dgmTypeAttributes.attributeID >= 175 AND dgmTypeAttributes.attributeID <= 179 AND dgmTypeAttributes.valueInt != 0""")
+               FROM dgmTypeAttributes INNER JOIN invTypes ON invTypes.typeID = dgmTypeAttributes.typeID
+               WHERE invTypes.marketGroupID >= 618 AND invTypes.marketGroupID <= 627 AND dgmTypeAttributes.attributeID >= 175 AND dgmTypeAttributes.attributeID <= 179 AND dgmTypeAttributes.valueInt != 0""")
   doc = Document()
   implants = doc.createElement("implants")
   doc.appendChild(implants)
   for row in c:
     implant = doc.createElement("implant")
-
-    identifier = doc.createElement("identifier")
-    identifierText = doc.createTextNode(str(row[0]))
-    identifier.appendChild(identifierText)
-    implant.appendChild(identifier)
     
-    groupIdentifier = doc.createElement("groupIdentifier")
-    groupIdentitierText = doc.createTextNode(str(row[1]))
-    groupIdentifier.appendChild(groupIdentitierText)
-    implant.appendChild(groupIdentifier)
+    addChild(doc, implant, "identifier", str(row[0]))
+    addChild(doc, implant, "groupIdentifier", str(row[1]))
+    addChild(doc, implant, "name", str(row[2]))
+    addChild(doc, implant, "price", str(row[3]))
+    addChild(doc, implant, "marketGroupIdentifier", str(row[4]))
+    addChild(doc, implant, "published", str(row[5]))
+    addChild(doc, implant, "marketGroupIdentifier", str(row[6]))
     
-    name = doc.createElement("name")
-    nameText = doc.createTextNode(row[2])
-    name.appendChild(nameText)
-    implant.appendChild(name)
-
-    price = doc.createElement("price")
-    priceText = doc.createTextNode(str(row[3]))
-    price.appendChild(priceText)
-    implant.appendChild(price)
-    
-    if row[4] is None:
-      value = "NULL"
-    else:
-      value = str(row[4])
-
-    marketGroupIdentifier = doc.createElement("marketGroupIdentifier")
-    marketGroupIdentifierText = doc.createTextNode(value)
-    marketGroupIdentifier.appendChild(marketGroupIdentifierText)
-    implant.appendChild(marketGroupIdentifier)
-
-    published = doc.createElement("published")
-    publishedText = doc.createTextNode(str(row[5]))
-    published.appendChild(publishedText)
-    implant.appendChild(published)
-
-    slot = doc.createElement("slot")
-    slotText = doc.createTextNode(str(row[6]))
-    slot.appendChild(slotText)
-    implant.appendChild(slot)
-    
-    result = {
+    attribute = {
       0 : "Charisma",
       1 : "Intelligence",
       2 : "Memory",
@@ -357,29 +242,19 @@ def processDB(dbPath):
       4 : "Willpower"
     }.get(int(row[7]))
     
-    #Falta por aqui o resto.
-    attribute = doc.createElement("attribute")
-    attributeText = doc.createTextNode(result)
-    attribute.appendChild(attributeText)
-    implant.appendChild(attribute)
-    
-    attributeBonus = doc.createElement("attributeBonus")
-    attributeBonusText = doc.createTextNode(str(row[8]))
-    attributeBonus.appendChild(attributeBonusText)
-    implant.appendChild(attributeBonus)
+    addChild(doc, implant, "attribute", attribute)
+    addChild(doc, implant, "attributeBonus", str(row[8]))
     
     implants.appendChild(implant)
-
-  open(getURLName("Implants.xml"), "w").write(doc.toprettyxml(indent="  "))
-    
-    
+  
+  writeXML("Implants.xml", doc)
 
 def main():
   
   try:
     downloadDump(sys.argv[1])
   except Exception, e:
-    print "Link to database needed as argument!"
+    print "Link to database needed as argument! (%s)" % (e)
     sys.exit(0)
   
   dbPath = decompressbz2(getURLName(sys.argv[1]))
