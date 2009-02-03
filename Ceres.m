@@ -83,12 +83,13 @@ static Ceres * shared;
   }
   
   for (int i = 0; i < 3; i++) {
-    NSComparisonResult result = [[application objectAtIndex: i] compare: [database objectAtIndex: i] options: 0];
+    bool greater = [[application objectAtIndex: i] integerValue] > [[database objectAtIndex: i] integerValue];
+    bool less = [[application objectAtIndex: i] integerValue] < [[database objectAtIndex: i] integerValue];
         
-    if (result == NSOrderedDescending) {
+    if (greater) {
       return ApplicationNewer;
     }
-    else if (result == NSOrderedAscending) {
+    else if (less) {
       return DatabaseNewer;
     }
   }
