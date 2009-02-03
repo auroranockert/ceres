@@ -215,7 +215,6 @@
     }
     
     NSArray * skills = [document readNodes: @"/eveapi/result/rowset[@name='skills']/row"];
-    NSLog(@"Skills: %d", [skills count]);
     for (NSXMLNode * skill in skills)
     {
       NSNumber * i = [NSNumber numberWithInteger: [[skill readAttribute: @"typeID"] integerValue]];
@@ -226,7 +225,6 @@
     }
     
     [self setSkillpoints: [self valueForKeyPath: @"skills.@sum.skillpoints"]];
-    NSLog(@"%@", [self skillpoints]);
   }
   
   if([[self trainingCachedUntil] timeIntervalSinceNow] < 0) {
