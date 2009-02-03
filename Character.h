@@ -58,9 +58,9 @@
 
 @property(copy, readonly) NSNumber * intelligence, * perception, * charisma, * willpower, * memory;
 
-@property(retain) Skill * trainingSkill;
+@property(retain) TrainedSkill * trainingSkill;
 @property(retain) NSDate * trainingStartedAt, * trainingEndsAt, * trainingCachedUntil;
-@property(retain) NSNumber * training, * trainingToLevel, * trainingSkillpointsStart, * trainingSkillpointsEnd;
+@property(retain) NSNumber * trainingToLevel, * trainingSkillpointsStart, * trainingSkillpointsEnd;
 
 @property(retain) NSSet * skills;
 @property(retain) NSNumber * skillpoints;
@@ -73,6 +73,8 @@
 - (NSImage *) portrait;
 
 - (double) learningBonus;
+
+- (void) updateSkillpoints;
 - (NSNumber *) trainingCurrentSkillpoints;
 
 - (void) prepareMessages;

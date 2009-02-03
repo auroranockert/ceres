@@ -35,7 +35,7 @@
 
 - (NSString *) training
 {
-  if ([[[self character] training] boolValue])
+  if ([[self character] trainingSkill])
   {
     NSDateFormatter * formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"HH:mm 'on' MMMM d"];

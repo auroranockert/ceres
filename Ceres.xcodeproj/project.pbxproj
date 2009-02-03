@@ -67,8 +67,6 @@
 		B4668C120F0588FF002E13B4 /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = B4668C100F0588FF002E13B4 /* Group.m */; };
 		B4668C1A0F0589FD002E13B4 /* Category.h in Headers */ = {isa = PBXBuildFile; fileRef = B4668C180F0589FD002E13B4 /* Category.h */; };
 		B4668C1B0F0589FD002E13B4 /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = B4668C190F0589FD002E13B4 /* Category.m */; };
-		B4668CDA0F069939002E13B4 /* Ceres.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = B424FAE80EEF0CD700B5E7C5 /* Ceres.xcdatamodel */; };
-		B4668CF70F0699AD002E13B4 /* Ceres.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = B424FAE80EEF0CD700B5E7C5 /* Ceres.xcdatamodel */; };
 		B4668D420F06A71C002E13B4 /* Xml.h in Headers */ = {isa = PBXBuildFile; fileRef = B4668D400F06A71C002E13B4 /* Xml.h */; };
 		B4668D430F06A71C002E13B4 /* Xml.m in Sources */ = {isa = PBXBuildFile; fileRef = B4668D410F06A71C002E13B4 /* Xml.m */; };
 		B496BF500F33B6FE00E92DB4 /* Sparkle.framework in Copy Bundle Frameworks */ = {isa = PBXBuildFile; fileRef = B496BF430F33B6EC00E92DB4 /* Sparkle.framework */; };
@@ -89,6 +87,8 @@
 		B4BC107A0F12D8FA00179BAD /* Loader.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BC10780F12D8FA00179BAD /* Loader.m */; };
 		B4BDEE890F12DAF300326A9B /* URLLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = B4BDEE870F12DAF300326A9B /* URLLoader.h */; };
 		B4BDEE8A0F12DAF300326A9B /* URLLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BDEE880F12DAF300326A9B /* URLLoader.m */; };
+		B4C0E31E0F38685E00A96DD6 /* Ceres.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B4C0E31D0F38685E00A96DD6 /* Ceres.xcdatamodeld */; };
+		B4C0E4E10F38A05000A96DD6 /* Ceres 0.0.7 to 0.0.8.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = B4C0E4E00F38A05000A96DD6 /* Ceres 0.0.7 to 0.0.8.xcmappingmodel */; };
 		B4F0E6220F22806E00412957 /* Character.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4F0E6210F22806E00412957 /* Character.xib */; };
 		B4F0E65B0F22865900412957 /* CharacterController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F0E65A0F22865900412957 /* CharacterController.m */; };
 /* End PBXBuildFile section */
@@ -180,7 +180,7 @@
 		B424F6800EED44C800B5E7C5 /* Test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Test; sourceTree = BUILT_PRODUCTS_DIR; };
 		B424F6F60EED4C2D00B5E7C5 /* TestMain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestMain.h; sourceTree = "<group>"; };
 		B424F6F70EED4C2D00B5E7C5 /* TestMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestMain.m; sourceTree = "<group>"; };
-		B424FAE80EEF0CD700B5E7C5 /* Ceres.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = Ceres.xcdatamodel; sourceTree = "<group>"; };
+		B424FAE80EEF0CD700B5E7C5 /* Ceres 0.0.8.xcdatamodel */ = {isa = PBXFileReference; explicitFileType = wrapper.xcdatamodel; fileEncoding = 4; path = "Ceres 0.0.8.xcdatamodel"; sourceTree = "<group>"; };
 		B444ED070F16A8E500DDC5BF /* URLDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLDelegate.h; sourceTree = "<group>"; };
 		B444ED080F16A8E500DDC5BF /* URLDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLDelegate.m; sourceTree = "<group>"; };
 		B462BA9F0F291B9C004D04D8 /* CeresNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CeresNotification.h; sourceTree = "<group>"; };
@@ -223,6 +223,8 @@
 		B4BC10780F12D8FA00179BAD /* Loader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Loader.m; sourceTree = "<group>"; };
 		B4BDEE870F12DAF300326A9B /* URLLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLLoader.h; sourceTree = "<group>"; };
 		B4BDEE880F12DAF300326A9B /* URLLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLLoader.m; sourceTree = "<group>"; };
+		B4C0E3200F38685E00A96DD6 /* Ceres 0.0.7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Ceres 0.0.7.xcdatamodel"; sourceTree = "<group>"; };
+		B4C0E4E00F38A05000A96DD6 /* Ceres 0.0.7 to 0.0.8.xcmappingmodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcmappingmodel; path = "Ceres 0.0.7 to 0.0.8.xcmappingmodel"; sourceTree = "<group>"; };
 		B4F0E6210F22806E00412957 /* Character.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Character.xib; sourceTree = "<group>"; };
 		B4F0E6590F22865900412957 /* CharacterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterController.h; sourceTree = "<group>"; };
 		B4F0E65A0F22865900412957 /* CharacterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacterController.m; sourceTree = "<group>"; };
@@ -485,7 +487,7 @@
 		B424FB320EEF132800B5E7C5 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				B424FAE80EEF0CD700B5E7C5 /* Ceres.xcdatamodel */,
+				B4C0E31D0F38685E00A96DD6 /* Ceres.xcdatamodeld */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -766,7 +768,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4668CDA0F069939002E13B4 /* Ceres.xcdatamodel in Sources */,
+				B4C0E31E0F38685E00A96DD6 /* Ceres.xcdatamodeld in Sources */,
 				B424F4DB0EEC89E900B5E7C5 /* EveObject.m in Sources */,
 				B424F4F60EEC8D2900B5E7C5 /* CorporationInfo.m in Sources */,
 				B424F4FE0EEC8DA000B5E7C5 /* CharacterInfo.m in Sources */,
@@ -793,6 +795,7 @@
 				B462BAF90F292236004D04D8 /* Updater.m in Sources */,
 				B462C36D0F2E4B1B004D04D8 /* CharacterNotification.m in Sources */,
 				B415CDE60F2F5EE80058F57D /* TrainedSkill.m in Sources */,
+				B4C0E4E10F38A05000A96DD6 /* Ceres 0.0.7 to 0.0.8.xcmappingmodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -800,7 +803,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4668CF70F0699AD002E13B4 /* Ceres.xcdatamodel in Sources */,
 				B40C1EF70EF1C2050050F22B /* CeresMain.m in Sources */,
 				B402188D0F183BCB0068D818 /* LoadingController.m in Sources */,
 				B402198C0F18FD6C0068D818 /* APIController.m in Sources */,
@@ -1068,6 +1070,21 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		B4C0E31D0F38685E00A96DD6 /* Ceres.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B424FAE80EEF0CD700B5E7C5 /* Ceres 0.0.8.xcdatamodel */,
+				B4C0E3200F38685E00A96DD6 /* Ceres 0.0.7.xcdatamodel */,
+				B4C0E4E00F38A05000A96DD6 /* Ceres 0.0.7 to 0.0.8.xcmappingmodel */,
+			);
+			currentVersion = B424FAE80EEF0CD700B5E7C5 /* Ceres 0.0.8.xcdatamodel */;
+			path = Ceres.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 0867D690FE84028FC02AAC07 /* Project object */;
 }

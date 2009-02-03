@@ -52,18 +52,27 @@ static Ceres * shared;
   return self;
 }
 
+- (NSDictionary *) metadata
+{
+  NSError * error = nil;
+  return [NSPersistentStoreCoordinator metadataForPersistentStoreWithURL: [self persistentStoreUrl] error: &error];
+}
+
+- (void) setMetadata: (NSDictionary *) value
+{
+  [[self persistentStoreCoordinator] setMetadata: value forPersistentStore: [self persistentStore]];
+}
+
 - (NSString *) databaseVersion
 {
-  NSDictionary * metadata = [[self persistentStoreCoordinator] metadataForPersistentStore: [[[self persistentStoreCoordinator] persistentStores] objectAtIndex: 0]];
-  return [metadata valueForKey: @"Version"];
+  return [[self metadata] valueForKey: @"Version"];
 }
 
 - (void) setDatabaseVersion: (NSString *) version
 {
-  NSDictionary * metadata = [[NSMutableDictionary alloc] init];
+  NSDictionary * metadata = [self metadata];
   [metadata setValue: version forKey: @"Version"];
-  
-  [[self persistentStoreCoordinator] setMetadata: metadata forPersistentStore: [[[self persistentStoreCoordinator] persistentStores] objectAtIndex: 0]];
+  [self setMetadata: metadata];
 }
 
 - (NSString *) applicationVersion
@@ -75,13 +84,13 @@ static Ceres * shared;
 {
   NSArray * application, * database;
   
+  if (![self databaseVersion]) {
+    return NoDatabase;
+  }
+  
   application = [[self applicationVersion] componentsSeparatedByString: @"."];
   database = [[self databaseVersion] componentsSeparatedByString: @"."];
     
-  if (!database) {
-    return ApplicationNewer;
-  }
-  
   for (int i = 0; i < 3; i++) {
     bool greater = [[application objectAtIndex: i] integerValue] > [[database objectAtIndex: i] integerValue];
     bool less = [[application objectAtIndex: i] integerValue] < [[database objectAtIndex: i] integerValue];
@@ -104,17 +113,6 @@ static Ceres * shared;
   return [basePath stringByAppendingPathComponent: @"Ceres"];
 }
 
-- (NSManagedObjectModel *) managedObjectModel
-{
-  if (!managedObjectModel) {
-    
-    // Load model from Ceres.framework bundle
-    managedObjectModel = [NSManagedObjectModel mergedModelFromBundles: nil];
-  }
-  
-  return managedObjectModel;
-}
-
 - (NSManagedObjectContext *) managedObjectContext
 {
   if (!managedObjectContext) {
@@ -129,28 +127,73 @@ static Ceres * shared;
   return managedObjectContext;
 }
 
+- (NSManagedObjectModel *) managedObjectModel
+{
+  if (!managedObjectModel) {
+    
+    // Load model from Ceres.framework bundle
+    managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL: [NSURL fileURLWithPath: [self managedObjectModelPathForVersion: [self applicationVersion]]]];
+  }
+  
+  return managedObjectModel;
+}
+
+- (NSString *) managedObjectModelPathForVersion: (NSString *) version
+{
+  NSString * path = nil;
+  
+  for (NSBundle * currentBundle in [NSBundle allBundles]) {
+    path = [currentBundle pathForResource: @"Ceres" ofType: @"momd"];
+    
+    if (path) {
+      break;
+    }      
+  }
+  
+  
+  path = [NSString stringWithFormat: @"%@/Ceres %@.mom", path, version];
+  return path;
+}
+
 - (NSPersistentStoreCoordinator *) persistentStoreCoordinator
 {
   if(!persistentStoreCoordinator) {
-    NSFileManager * fileManager;
-    NSString * applicationSupportFolder = nil;
-    NSURL * url;
     NSError * error;
     
-    fileManager = [NSFileManager defaultManager];
-    applicationSupportFolder = [self applicationSupportFolder];
-    if ( ![fileManager fileExistsAtPath: applicationSupportFolder isDirectory: NULL] ) {
-      [fileManager createDirectoryAtPath: applicationSupportFolder attributes: nil];
-    }
-    
-    url = [NSURL fileURLWithPath: [applicationSupportFolder stringByAppendingPathComponent: @"Ceres 0.0.8.sqlite3"]];
     persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel: [self managedObjectModel]];
-    if ( ![persistentStoreCoordinator addPersistentStoreWithType: NSSQLiteStoreType configuration: nil URL: url options: nil error: &error] ) {
+    if ( ![persistentStoreCoordinator addPersistentStoreWithType: NSSQLiteStoreType configuration: nil URL: [self persistentStoreUrl] options: nil error: &error] ) {
       [self handleError: error];
     }
   }
   
   return persistentStoreCoordinator;
+}
+
+- (NSPersistentStore *) persistentStore
+{
+  return [[[self persistentStoreCoordinator] persistentStores] objectAtIndex: 0];
+}
+
+- (NSString *) persistentStorePathForVersion: (NSString *) version
+{
+  NSFileManager * fileManager = [NSFileManager defaultManager];
+  NSString * applicationSupportFolder = [self applicationSupportFolder];
+  
+  if ( ![fileManager fileExistsAtPath: applicationSupportFolder isDirectory: nil] ) {
+    [fileManager createDirectoryAtPath: applicationSupportFolder attributes: nil];
+  }
+  
+  if (version) {
+    return [applicationSupportFolder stringByAppendingPathComponent: [NSString stringWithFormat: @"Ceres %@.sqlite3", version]];
+  }
+  else {
+    return [applicationSupportFolder stringByAppendingPathComponent: @"Ceres.sqlite3"];
+  }
+}
+
+- (NSURL *) persistentStoreUrl
+{
+  return [NSURL fileURLWithPath: [self persistentStorePathForVersion: nil]];
 }
 
 - (NSNotificationCenter *) notificationCenter

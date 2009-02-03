@@ -27,7 +27,8 @@
 enum CeresVersionComparison {
   ApplicationNewer    = 1,
   VersionSame   = 0,
-  DatabaseNewer = -1
+  DatabaseNewer = -1,
+  NoDatabase = -2
 };
 typedef enum CeresVersionComparison CeresVersionComparison;
 
@@ -41,15 +42,22 @@ typedef enum CeresVersionComparison CeresVersionComparison;
   NSMutableDictionary * notificationDictionary;
 }
 
+@property(copy) NSDictionary * metadata;
 @property(copy) NSString * databaseVersion;
 @property(copy, readonly) NSString * applicationVersion;
 
-+ (Ceres *) instance;
+@property(retain, readonly) NSPersistentStoreCoordinator * persistentStoreCoordinator;
+@property(retain, readonly) NSPersistentStore * persistentStore;
+@property(retain, readonly) NSManagedObjectContext * managedObjectContext;
+@property(retain, readonly) NSManagedObjectModel * managedObjectModel;
+@property(retain, readonly) NSNotificationCenter * notificationCenter;
 
-- (NSPersistentStoreCoordinator *) persistentStoreCoordinator;
-- (NSManagedObjectModel *) managedObjectModel;
-- (NSManagedObjectContext *) managedObjectContext;
-- (NSNotificationCenter *) notificationCenter;
+@property(retain, readonly) NSURL * persistentStoreUrl;
+
+- (NSString *) persistentStorePathForVersion: (NSString *) version;
+- (NSString *) managedObjectModelPathForVersion: (NSString *) version;
+
++ (Ceres *) instance;
 
 - (void) save;
 - (void) postNotification: (NSNotification *) notification;

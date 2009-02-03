@@ -30,7 +30,7 @@
 
 @dynamic corporationIdentifier, corporationName;
 
-@dynamic training, trainingToLevel, trainingSkillpointsStart, trainingSkillpointsEnd;
+@dynamic trainingToLevel, trainingSkillpointsStart, trainingSkillpointsEnd;
 @dynamic trainingStartedAt, trainingEndsAt, trainingCachedUntil;
 @dynamic trainingSkill;
 
@@ -223,8 +223,6 @@
       [ts setSkillpoints: [NSNumber numberWithInteger: [[skill readAttribute: @"skillpoints"] integerValue]]];
       [ts setLevel: [NSNumber numberWithInteger: [[skill readAttribute: @"level"] integerValue]]];
     }
-    
-    [self setSkillpoints: [self valueForKeyPath: @"skills.@sum.skillpoints"]];
   }
   
   if([[self trainingCachedUntil] timeIntervalSinceNow] < 0) {
@@ -232,30 +230,35 @@
     
     [self setTrainingCachedUntil: [document cachedUntil]];
     
-    int trainingInt = [[document readNode: @"/eveapi/result/skillInTraining"] integerValue];
+    int training = [[document readNode: @"/eveapi/result/skillInTraining"] integerValue];
     
-    [self setTraining: [NSNumber numberWithBool: (trainingInt == 1)]];
-    
-    if ([[self training] boolValue])
+    if (training)
     {
       NSString * startTimeString = [[[document readNode: @"/eveapi/result/trainingStartTime"] stringValue] stringByAppendingString: @" +0000"];      
       NSDate * startDate = [[NSDate alloc] initWithString: startTimeString];
       
       if (![self trainingStartedAt] || [startDate compare: [self trainingStartedAt]] != NSOrderedSame) {
-        [self setSkillpoints: [NSNumber numberWithInteger: [[self skillpoints] integerValue] + [[self additionalSkillpoints] integerValue]]];
-        
+        [self updateSkillpoints];
         [self setTrainingStartedAt: startDate];
-        
+
         NSString * endTimeString = [[[document readNode: @"/eveapi/result/trainingEndTime"] stringValue] stringByAppendingString: @" +0000"];
         [self setTrainingEndsAt: [[NSDate alloc] initWithString: endTimeString]];
         
         NSNumber * skillIdentifer = [NSNumber numberWithInteger: [[document readNode: @"/eveapi/result/trainingTypeID"] integerValue]];
-        [self setTrainingSkill: [Skill findWithIdentifier: skillIdentifer]];
+        [self setTrainingSkill: [TrainedSkill findWithCharacter: self skill: [Skill findWithIdentifier: skillIdentifer]]];
         [self setTrainingToLevel: [NSNumber numberWithInteger: [[document readNode: @"/eveapi/result/trainingToLevel"] integerValue]]];
         [self setTrainingSkillpointsStart: [NSNumber numberWithInteger: [[document readNode: @"/eveapi/result/trainingStartSP"] integerValue]]];
         [self setTrainingSkillpointsEnd: [NSNumber numberWithInteger: [[document readNode: @"/eveapi/result/trainingDestinationSP"] integerValue]]];
         
         updatedTraining = true;
+      }
+      else {
+        if ([self trainingSkill]) {
+          [self updateSkillpoints];
+          [self setTrainingSkill: nil];
+          
+          updatedTraining = true;
+        }
       }
     }
     
@@ -270,6 +273,12 @@
     
     [[Ceres instance] save];
   }
+}
+
+- (void) updateSkillpoints
+{
+  [[self trainingSkill] setSkillpoints: [NSNumber numberWithInteger: [[[self trainingSkill] skillpoints] integerValue] + [[self additionalSkillpoints] integerValue]]];
+  [self setSkillpoints: [self valueForKeyPath: @"skills.@sum.skillpoints"]];
 }
 
 - (NSNumber *) totalSkillpoints

@@ -118,7 +118,7 @@
 
 - (NSString *) training
 {
-  if ([[character training] boolValue])
+  if ([character trainingSkill])
   {
     return [[NSString alloc] initWithFormat: @"Currently training %@ to level %@", [[character trainingSkill] name], [character trainingToLevel]];
   }
@@ -130,7 +130,7 @@
 
 - (NSString *) trainingSkillpoints
 {
-  if ([[character training] boolValue])
+  if ([character trainingSkill])
   {
     NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat: @"HH:mm 'on' MMMM d"];

@@ -39,6 +39,8 @@
 + (Loader *) instance;
 
 - (void) start: (id) delegate;
+- (void) load: (id) delegate;
+- (void) migrate: (NSManagedObjectContext *) from model: (NSManagedObjectModel *) model;
 
 @end
 
