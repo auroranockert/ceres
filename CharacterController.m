@@ -140,7 +140,7 @@
       return @"Finished";
     }
     else {
-      return [[NSString alloc] initWithFormat: @"%@ / %@ SP Complete (Finished by %@)", [spFormatter stringFromNumber: [character trainingCurrentSkillpoints]], [spFormatter stringFromNumber: [[character trainingSkill] requiredSkillpointsForNextLevel]], [dateFormatter stringFromDate: [character trainingEndsAt]]];
+      return [[NSString alloc] initWithFormat: @"%@ / %@ SP Complete (Finished by %@)", [spFormatter stringFromNumber: [character trainingCurrentSkillpoints]], [spFormatter stringFromNumber: [[[character trainingSkill] skill] skillpointsForLevel: [[character trainingSkill] nextLevel]]], [dateFormatter stringFromDate: [character trainingEndsAt]]];
     }
   }
   else

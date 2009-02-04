@@ -62,7 +62,8 @@
 
 - (NSNumber *) skillpointsForLevel: (NSNumber *) level
 {
-  return [NSNumber numberWithInteger: 250 * [[self rank] integerValue] * pow(32, [level integerValue] - 1)];
+  NSInteger currentLevel = (NSInteger)(250 * [[self rank] integerValue] * pow(32, ([level integerValue] - 1) / 2.0));
+  return [NSNumber numberWithInteger: currentLevel];
 }
 
 @end

@@ -93,6 +93,7 @@
 - (NSNumber *) requiredSkillpointsForNextLevel
 {
   NSInteger sp = [[[self skill] skillpointsForLevel: [self nextLevel]] integerValue] - [[self skillpoints] integerValue];
+
   if (sp > 0) {
     return [NSNumber numberWithInteger: sp];
   }
