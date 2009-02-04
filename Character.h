@@ -58,7 +58,7 @@
 @property(retain) ImplantSet * currentImplantSet;
 
 @property(retain) Attributes * baseAttributes;
-@property(retain, readonly) Attributes * skillAttributes;
+@property(retain, readonly) Attributes * skillAttributes, * implantAttributes;
 
 @property(copy, readonly) NSNumber * intelligence, * perception, * charisma, * willpower, * memory;
 

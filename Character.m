@@ -60,27 +60,27 @@
 
 - (NSNumber *) intelligence
 {
-  return [NSNumber numberWithDouble: ([[[self baseAttributes] intelligence] integerValue] + [[[self skillAttributes] intelligence] integerValue]) * [self learningBonus]];
+  return [NSNumber numberWithDouble: ([[[self baseAttributes] intelligence] integerValue] + [[[self skillAttributes] intelligence] integerValue] + [[[self implantAttributes] intelligence] integerValue]) * [self learningBonus]];
 }
 
 - (NSNumber *) perception
 {
-  return [NSNumber numberWithDouble: ([[[self baseAttributes] perception] integerValue] + [[[self skillAttributes] perception] integerValue]) * [self learningBonus]];
+  return [NSNumber numberWithDouble: ([[[self baseAttributes] perception] integerValue] + [[[self skillAttributes] perception] integerValue] + [[[self implantAttributes] perception] integerValue]) * [self learningBonus]];
 }
 
 - (NSNumber *) charisma
 {
-  return [NSNumber numberWithDouble: ([[[self baseAttributes] charisma] integerValue] + [[[self skillAttributes] charisma] integerValue]) * [self learningBonus]];
+  return [NSNumber numberWithDouble: ([[[self baseAttributes] charisma] integerValue] + [[[self skillAttributes] charisma] integerValue] + [[[self implantAttributes] charisma] integerValue]) * [self learningBonus]];
 }
 
 - (NSNumber *) willpower
 {
-  return [NSNumber numberWithDouble: ([[[self baseAttributes] willpower] integerValue] + [[[self skillAttributes] willpower] integerValue]) * [self learningBonus]];
+  return [NSNumber numberWithDouble: ([[[self baseAttributes] willpower] integerValue] + [[[self skillAttributes] willpower] integerValue] + [[[self implantAttributes] willpower] integerValue]) * [self learningBonus]];
 }
 
 - (NSNumber *) memory
 {
-  return [NSNumber numberWithDouble: ([[[self baseAttributes] memory] integerValue] + [[[self skillAttributes] memory] integerValue]) * [self learningBonus]];
+  return [NSNumber numberWithDouble: ([[[self baseAttributes] memory] integerValue] + [[[self skillAttributes] memory] integerValue] + [[[self implantAttributes] memory] integerValue]) * [self learningBonus]];
 }
 
 - (Attributes *) skillAttributes
@@ -89,30 +89,36 @@
 
   TrainedSkill * analyticalMind = [TrainedSkill findWithCharacter: self skill: [Skill findWithName: @"Analytical Mind"]];
   TrainedSkill * logic = [TrainedSkill findWithCharacter: self skill: [Skill findWithName: @"Logic"]];
-  NSNumber * intelligenceImplant = [[self currentImplantSet] bonusForAttribute: @"Intelligence"];
-  intelligence = [[analyticalMind level] integerValue] + [[logic level] integerValue] + [intelligenceImplant integerValue];
+  intelligence = [[analyticalMind level] integerValue] + [[logic level] integerValue];
   
   TrainedSkill * spatialAwareness = [TrainedSkill findWithCharacter: self skill: [Skill findWithName: @"Spatial Awareness"]];
   TrainedSkill * clarity = [TrainedSkill findWithCharacter: self skill: [Skill findWithName: @"Clarity"]];
-  NSNumber * perceptionImplant = [[self currentImplantSet] bonusForAttribute: @"Perception"];
-  perception   = [[spatialAwareness level] integerValue] +  [[clarity level] integerValue] + [perceptionImplant integerValue];
+  perception = [[spatialAwareness level] integerValue] +  [[clarity level] integerValue];
   
   TrainedSkill * empathy = [TrainedSkill findWithCharacter: self skill: [Skill findWithName: @"Empathy"]];
   TrainedSkill * presence = [TrainedSkill findWithCharacter: self skill: [Skill findWithName: @"Presence"]];
-  NSNumber * charismaImplant = [[self currentImplantSet] bonusForAttribute: @"Charisma"];
-  charisma     = [[empathy level] integerValue] +  [[presence level] integerValue] + [charismaImplant integerValue];
+  charisma = [[empathy level] integerValue] + [[presence level] integerValue];
   
   TrainedSkill * ironWill = [TrainedSkill findWithCharacter: self skill: [Skill findWithName: @"Iron Will"]];
   TrainedSkill * focus = [TrainedSkill findWithCharacter: self skill: [Skill findWithName: @"Focus"]];
-  NSNumber * willpowerImplant = [[self currentImplantSet] bonusForAttribute: @"Willpower"];
-  willpower = [[ironWill level] integerValue] +  [[focus level] integerValue] + [willpowerImplant integerValue];
+  willpower = [[ironWill level] integerValue] + [[focus level] integerValue];
   
   TrainedSkill * instantRecall = [TrainedSkill findWithCharacter: self skill: [Skill findWithName: @"Instant Recall"]];
   TrainedSkill * eideticMemory = [TrainedSkill findWithCharacter: self skill: [Skill findWithName: @"Eidetic Memory"]];
-  NSNumber * memoryImplant = [[self currentImplantSet] bonusForAttribute: @"Memory"];
-  memory = [[instantRecall level] integerValue] +  [[eideticMemory level] integerValue] + [memoryImplant integerValue];
+  memory = [[instantRecall level] integerValue] +  [[eideticMemory level] integerValue];
   
-  return [[Attributes alloc] initWithoutCoreData: [NSNumber numberWithUnsignedInteger: intelligence] : [NSNumber numberWithUnsignedInteger: perception] : [NSNumber numberWithUnsignedInteger: charisma] : [NSNumber numberWithUnsignedInteger: willpower] : [NSNumber numberWithUnsignedInteger: memory]];
+  return [[Attributes alloc] initWithoutCoreData: [NSNumber numberWithUnsignedInteger: intelligence] : [NSNumber numberWithUnsignedInteger: perception] : [NSNumber numberWithUnsignedInteger: charisma] : [NSNumber numberWithUnsignedInteger: memory] : [NSNumber numberWithUnsignedInteger: willpower]];
+}
+
+- (Attributes *) implantAttributes
+{
+  NSNumber * intelligenceImplant = [[self currentImplantSet] bonusForAttribute: @"Intelligence"];
+  NSNumber * perceptionImplant = [[self currentImplantSet] bonusForAttribute: @"Perception"];
+  NSNumber * charismaImplant = [[self currentImplantSet] bonusForAttribute: @"Charisma"];
+  NSNumber * willpowerImplant = [[self currentImplantSet] bonusForAttribute: @"Willpower"];
+  NSNumber * memoryImplant = [[self currentImplantSet] bonusForAttribute: @"Memory"];
+
+  return [[Attributes alloc] initWithoutCoreData: intelligenceImplant : perceptionImplant : charismaImplant : memoryImplant : willpowerImplant];
 }
 
 - (CorporationInfo *) corporation
