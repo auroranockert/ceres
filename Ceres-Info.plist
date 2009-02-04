@@ -15,7 +15,7 @@
 	<key>CFBundleSignature</key>
 	<string>CRES</string>
 	<key>CFBundleVersion</key>
-	<string>0.0.8.1</string>
+	<string>0.0.8.2</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>10.5.0</string>
 	<key>NSMainNibFile</key>
@@ -23,7 +23,7 @@
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>SUFeedURL</key>
-	<string>http://Ceres.doesntexist.org/ceres2.xml</string>
+	<string>http://Ceres.doesntexist.org/ceres.xml</string>
 	<key>SUPublicDSAKeyFile</key>
 	<string>dsa_pub.pem</string>
 </dict>
