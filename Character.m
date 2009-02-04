@@ -250,6 +250,8 @@
       [ts setSkillpoints: [NSNumber numberWithInteger: [[skill readAttribute: @"skillpoints"] integerValue]]];
       [ts setLevel: [NSNumber numberWithInteger: [[skill readAttribute: @"level"] integerValue]]];
     }
+    
+    [self updateSkillpoints];
   }
   
   if([[self trainingCachedUntil] timeIntervalSinceNow] < 0) {
