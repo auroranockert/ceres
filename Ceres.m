@@ -263,7 +263,7 @@ static Ceres * shared;
 }
 - (void) handleError: (NSError *) error
 {
-  NSLog(@"Error > %@ (%@)", error, [error userInfo]);
+  NSLog(@"Error > %@", error);
 }
 
 @end
