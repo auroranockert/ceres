@@ -33,8 +33,17 @@
 @property(retain) NSMutableSet * implants;
 
 - (Implant *) implantForSlot: (NSNumber *) slot;
-- (void) addImplant: (Implant *) implant;
+- (void) replaceImplant: (Implant *) implant;
 
 - (NSNumber *) bonusForAttribute: (NSString *) attribute;
+
+@end
+
+@interface ImplantSet (ImplantAccessors)
+
+- (void)addImplantsObject: (Implant *) value;
+- (void)removeImplantsObject: (Implant *) value;
+- (void)addImplants: (NSSet *) value;
+- (void)removeImplants: (NSSet *) value;
 
 @end

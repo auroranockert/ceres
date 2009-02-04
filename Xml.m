@@ -55,7 +55,14 @@
 
 - (NSXMLNode *) readNode: (NSString *) xpath
 {
-  return [[self readNodes: xpath] objectAtIndex: 0];
+  NSArray * nodes = [self readNodes: xpath];
+  
+  if ([nodes count]) {
+    return [nodes objectAtIndex: 0];
+  }
+  else {
+    return nil;
+  }\
 }
 
 - (NSDate *) cachedUntil

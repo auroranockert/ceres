@@ -60,23 +60,22 @@
 
 - (Implant *) implantForSlot: (NSNumber *) slot
 {
-  NSSortDescriptor * sort = [[NSSortDescriptor alloc] initWithKey: @"identifier" ascending: true];
-  NSPredicate * predicate = [NSPredicate predicateWithFormat: @"implantSets == %@", self];
-  
-  NSSet * set = [[self implants] filteredSetUsingPredicate: [NSPredicate predicateWithFormat: @"slot == %@", slot]];
+  NSSet * set = [[self mutableSetValueForKey: @"implants"] filteredSetUsingPredicate: [NSPredicate predicateWithFormat: @"slot == %@", slot]];
   
   return [set anyObject];
 }
 
-- (void) addImplant: (Implant *) implant
+- (void) replaceImplant: (Implant *) implant
 {
   Implant * oldImplant = [self implantForSlot: [implant slot]];
   
   if (oldImplant) {
-    [[self implants] removeObject: oldImplant];
+    [self removeImplantsObject: oldImplant];
   }
   
-  [[self implants] addObject: implant];
+  if (implant) {
+    [self addImplantsObject: implant];
+  }
 }
 
 @end

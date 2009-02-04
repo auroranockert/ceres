@@ -71,6 +71,11 @@ static Ceres * shared;
 - (void) setDatabaseVersion: (NSString *) version
 {
   NSDictionary * metadata = [self metadata];
+  
+  if (!metadata) {
+    metadata = [[NSMutableDictionary alloc] init];
+  }
+  
   [metadata setValue: version forKey: @"Version"];
   [self setMetadata: metadata];
 }

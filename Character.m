@@ -223,11 +223,17 @@
     
     ImplantSet * current = [self currentImplantSet];
     
-    [current addImplant: [Implant findWithName: [[document readNode: @"/eveapi/result/attributeEnhancers/intelligenceBonus/augmentatorName"]  stringValue]]];
-    [current addImplant: [Implant findWithName: [[document readNode: @"/eveapi/result/attributeEnhancers/memoryBonus/augmentatorName"]  stringValue]]];
-    [current addImplant: [Implant findWithName: [[document readNode: @"/eveapi/result/attributeEnhancers/charismaBonus/augmentatorName"]  stringValue]]];
-    [current addImplant: [Implant findWithName: [[document readNode: @"/eveapi/result/attributeEnhancers/perceptionBonus/augmentatorName"]  stringValue]]];
-    [current addImplant: [Implant findWithName: [[document readNode: @"/eveapi/result/attributeEnhancers/willpowerBonus/augmentatorName"]  stringValue]]];
+    NSString * intelligenceImplant = [[document readNode: @"/eveapi/result/attributeEnhancers/intelligenceBonus/augmentatorName"]  stringValue];
+    NSString * memoryImplant = [[document readNode: @"/eveapi/result/attributeEnhancers/memoryBonus/augmentatorName"]  stringValue];
+    NSString * charismaImplant = [[document readNode: @"/eveapi/result/attributeEnhancers/charismaBonus/augmentatorName"]  stringValue];
+    NSString * perceptionImplant = [[document readNode: @"/eveapi/result/attributeEnhancers/perceptionBonus/augmentatorName"]  stringValue];
+    NSString * willpowerImplant = [[document readNode: @"/eveapi/result/attributeEnhancers/willpowerBonus/augmentatorName"]  stringValue];
+    
+    [current replaceImplant: [Implant findWithName: intelligenceImplant]];
+    [current replaceImplant: [Implant findWithName: memoryImplant]];
+    [current replaceImplant: [Implant findWithName: charismaImplant]];
+    [current replaceImplant: [Implant findWithName: perceptionImplant]];
+    [current replaceImplant: [Implant findWithName: willpowerImplant]];
     
     NSArray * skills = [document readNodes: @"/eveapi/result/rowset[@name='skills']/row"];
     for (NSXMLNode * skill in skills)
