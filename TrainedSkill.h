@@ -31,7 +31,7 @@
 
 }
 
-@property(retain) NSNumber * skillpoints, * level;
+@property(retain) NSNumber * skillpoints, * level, * training;
 @property(retain) Skill * skill;
 @property(retain) Character * character;
 
@@ -41,6 +41,7 @@
 + (id) findWithCharacter: (Character *) character skill: (Skill *) skill;
 
 - (NSString *) name;
-- (id) training;
+- (NSNumber *) nextLevel;
+- (NSNumber *) requiredSkillpointsForNextLevel;
 
 @end

@@ -84,6 +84,8 @@ static Ceres * shared;
 {
   NSArray * application, * database;
   
+  NSLog(@"Application version: %@ Database version: %@", [self applicationVersion], [self databaseVersion]);
+  
   if (![self databaseVersion]) {
     return NoDatabase;
   }
@@ -256,7 +258,7 @@ static Ceres * shared;
 }
 - (void) handleError: (NSError *) error
 {
-  NSLog(@"Error > %@", error);
+  NSLog(@"Error > %@ (%@)", error, [error userInfo]);
 }
 
 @end

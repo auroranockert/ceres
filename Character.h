@@ -60,7 +60,7 @@
 
 @property(retain) TrainedSkill * trainingSkill;
 @property(retain) NSDate * trainingStartedAt, * trainingEndsAt, * trainingCachedUntil;
-@property(retain) NSNumber * trainingToLevel, * trainingSkillpointsStart, * trainingSkillpointsEnd;
+@property(retain) NSNumber * trainingToLevel, * trainingSkillpointsEnd;
 
 @property(retain) NSSet * skills;
 @property(retain) NSNumber * skillpoints;

@@ -30,7 +30,7 @@
   URLDelegate * delegate = [[URLDelegate alloc] initWithURL: url];
   
   while (![delegate done]) {
-    [[NSRunLoop mainRunLoop] runMode: [[NSRunLoop mainRunLoop] currentMode] beforeDate: [NSDate dateWithTimeIntervalSinceNow: 10.0]];
+    [[NSRunLoop mainRunLoop] runUntilDate: [NSDate dateWithTimeIntervalSinceNow: 0.1]];
   }
   
   NSError * error = nil;

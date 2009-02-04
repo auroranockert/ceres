@@ -120,7 +120,7 @@
 {
   if ([character trainingSkill])
   {
-    return [[NSString alloc] initWithFormat: @"Currently training %@ to level %@", [[character trainingSkill] name], [character trainingToLevel]];
+    return [[NSString alloc] initWithFormat: @"Currently training %@ to level %@", [[character trainingSkill] name], [[character trainingSkill] nextLevel]];
   }
   else
   {
@@ -135,17 +135,17 @@
     NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat: @"HH:mm 'on' MMMM d"];
     NSInteger current = [[character trainingCurrentSkillpoints] integerValue];
-    
-    if (current > [[character trainingSkillpointsEnd] integerValue]) {
-      return [[NSString alloc] initWithFormat: @"Finished", [[character trainingSkill] name]];
+        
+    if ([[[character trainingSkill] requiredSkillpointsForNextLevel] integerValue] == 0) {
+      return @"Finished";
     }
     else {
-      return [[NSString alloc] initWithFormat: @"%@ / %@ SP Complete (Finished by %@)", [spFormatter stringFromNumber: [character trainingCurrentSkillpoints]], [spFormatter stringFromNumber: [character trainingSkillpointsEnd]], [dateFormatter stringFromDate: [character trainingEndsAt]]];
+      return [[NSString alloc] initWithFormat: @"%@ / %@ SP Complete (Finished by %@)", [spFormatter stringFromNumber: [character trainingCurrentSkillpoints]], [spFormatter stringFromNumber: [[character trainingSkill] requiredSkillpointsForNextLevel]], [dateFormatter stringFromDate: [character trainingEndsAt]]];
     }
   }
   else
   {
-    return @"";
+    return @"Not training";
   }
 }
 

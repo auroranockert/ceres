@@ -88,6 +88,7 @@
 		B4BDEE890F12DAF300326A9B /* URLLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = B4BDEE870F12DAF300326A9B /* URLLoader.h */; };
 		B4BDEE8A0F12DAF300326A9B /* URLLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BDEE880F12DAF300326A9B /* URLLoader.m */; };
 		B4C0E31E0F38685E00A96DD6 /* Ceres.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B4C0E31D0F38685E00A96DD6 /* Ceres.xcdatamodeld */; };
+		B4C0E7010F38F4D600A96DD6 /* Ceres.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B4C0E31D0F38685E00A96DD6 /* Ceres.xcdatamodeld */; };
 		B4F0E6220F22806E00412957 /* Character.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4F0E6210F22806E00412957 /* Character.xib */; };
 		B4F0E65B0F22865900412957 /* CharacterController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F0E65A0F22865900412957 /* CharacterController.m */; };
 /* End PBXBuildFile section */
@@ -800,6 +801,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4C0E7010F38F4D600A96DD6 /* Ceres.xcdatamodeld in Sources */,
 				B40C1EF70EF1C2050050F22B /* CeresMain.m in Sources */,
 				B402188D0F183BCB0068D818 /* LoadingController.m in Sources */,
 				B402198C0F18FD6C0068D818 /* APIController.m in Sources */,

@@ -41,11 +41,11 @@
     [formatter setDateFormat:@"HH:mm 'on' MMMM d"];
     NSInteger current = [[[self character] trainingCurrentSkillpoints] integerValue];
     
-    if (current > [[[self character] trainingSkillpointsEnd] integerValue]) {
-      return [[NSString alloc] initWithFormat: @"Training %@ to level %ld is finished", [[[self character] trainingSkill] name], [[[self character] trainingToLevel] integerValue]];
+    if ([[[[self character] trainingSkill] requiredSkillpointsForNextLevel] integerValue] == 0) {
+      return [[NSString alloc] initWithFormat: @"Training %@ to level %@ is finished", [[[[self character] trainingSkill] skill] name], [[[self character] trainingSkill] nextLevel]];
     }
     else {
-      return [[NSString alloc] initWithFormat: @"Training %@ to level %ld and is finished by %@", [[[self character] trainingSkill] name], [[[self character] trainingToLevel] integerValue], [formatter stringFromDate: [[self character] trainingEndsAt]]];
+      return [[NSString alloc] initWithFormat: @"Training %@ to level %@ and is finished by %@", [[[[self character] trainingSkill] skill] name], [[[self character] trainingSkill] nextLevel], [formatter stringFromDate: [[self character] trainingEndsAt]]];
     }
   }
   else

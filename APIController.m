@@ -26,7 +26,7 @@
 - (void) awakeFromNib
 {
   if ([[Character find] count] == 0) {
-    [self performSelectorOnMainThread: @selector(openApiWindow:) withObject: self waitUntilDone: false];
+    [self openApiWindow: self];
   }
 }
 
@@ -45,7 +45,7 @@
   
   [self freeze];
   
-  [NSThread detachNewThreadSelector: @selector(addCharacters:) toTarget: self withObject: a];
+  [self performSelectorOnMainThread: @selector(addCharacters:) withObject: a waitUntilDone: false];
 }
 
 - (void) addCharacters: (Account *) account
@@ -57,9 +57,9 @@
     [[Character alloc] initWithIdentifier: [ci identifier] account: account];
   }
   
-  [[Ceres instance] save];
+  [self performSelectorOnMainThread: @selector(unfreeze) withObject: nil waitUntilDone: false];
   
-  [self performSelectorOnMainThread: @selector(unfreeze) withObject: nil waitUntilDone: true];
+  [[Ceres instance] save];
 }
 
 - (void) freeze

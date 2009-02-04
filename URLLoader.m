@@ -51,9 +51,11 @@ enum {
   [lock lock];
   NSLog(@"Starting load of url > %@", url);
   status = URLLoaderLoading;
-  connection = [[NSURLConnection alloc] initWithRequest: [NSURLRequest requestWithURL: url] delegate: self startImmediately: NO];
-  [connection scheduleInRunLoop: [NSRunLoop mainRunLoop] forMode: [[NSRunLoop mainRunLoop] currentMode]];
-  [connection start];
+  connection = [[NSURLConnection alloc] initWithRequest: [NSURLRequest requestWithURL: url] delegate: self startImmediately: true];
+  /* NSRunLoop * main = [NSRunLoop mainRunLoop];
+  NSString * currentMode = [main currentMode];
+  [connection scheduleInRunLoop: main forMode: currentMode];
+  [connection start]; */
   [lock unlock];
 }
 

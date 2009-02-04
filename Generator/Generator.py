@@ -123,10 +123,15 @@ def downloadDump(dumpName):
     print "Error downloading %s: %s" % (dumpName, e)
 
 def decompressbz2(filePath):
-  print "Extracting %s..." % (sys.argv[1].split("/")[-1])
+  fileName = sys.argv[1].split("/")[-1]
+  print "Extracting %s..." % (fileName)
+  decompressedFileName = getURLName(fileName.split(".")[0] + ".db")
+  
+  if fileExists(decompressedFileName):
+    return decompressedFileName
+  
   compressedDump = open(getURLName(sys.argv[1]), "rb")
   decompressedDump = bz2.decompress(compressedDump.read())
-  decompressedFileName = getURLName(sys.argv[1].split(".")[0] + ".db")
   try:
     open(decompressedFileName, "wb").write(decompressedDump)
   except Exception, e:
@@ -147,6 +152,7 @@ def addChild(doc, parent, name, text):
 def processDB(dbPath):
   print dbPath
   conn = sqlite3.connect(dbPath)
+  
   c = conn.cursor()
   
   #categories
@@ -226,9 +232,29 @@ def processDB(dbPath):
   
   #Skills
   print "Processing Skills..."
-  c.execute("""SELECT typeID AS identifier, typeName AS name, invGroups.groupID AS groupIdentifier, marketGroupID AS marketGroupIdentifier, basePrice, invTypes.published
-               FROM invTypes INNER JOIN invGroups ON invTypes.groupID = invGroups.groupID
-               WHERE categoryID = 16;""")
+  # c.execute("""SELECT typeID AS identifier, typeName AS name, invGroups.groupID AS groupIdentifier, marketGroupID AS marketGroupIdentifier, basePrice, invTypes.published
+  #              FROM invTypes INNER JOIN invGroups ON invTypes.groupID = invGroups.groupID
+  #              WHERE categoryID = 16;""")
+  c.execute("""SELECT
+                 inv.typeID AS identifier,
+                 inv.typeName AS name,
+                 inv.groupID AS groupIdentifier,
+                 inv.marketGroupID as marketGroupIdentifier,
+                 inv.basePrice as basePrice,
+                 inv.published AS published,
+                 rank.valueFloat AS rank,
+                 (primaryAttribute.valueInt - 164) AS primaryAttribute,
+                 (secondaryAttribute.valueInt - 164) AS secondaryAttribute
+               FROM invTypes inv
+               INNER JOIN invGroups ON (inv.groupID = invGroups.groupID)
+               INNER JOIN dgmTypeAttributes primaryAttribute ON (inv.typeID = primaryAttribute.typeID)
+               INNER JOIN dgmTypeAttributes secondaryAttribute ON (inv.typeID = secondaryAttribute.typeID)
+               INNER JOIN dgmTypeAttributes rank ON (inv.typeID = rank.typeID)
+               WHERE invGroups.categoryID = 16
+                 AND rank.attributeID = 275
+                 AND primaryAttribute.attributeID = 180
+                 AND secondaryAttribute.attributeID = 181
+               ORDER BY identifier;""")
   doc = Document()
   skills = doc.createElement("skills")
   doc.appendChild(skills)
@@ -241,6 +267,26 @@ def processDB(dbPath):
     addChild(doc, skill, "marketGroupIdentifier", str(row[3]))
     addChild(doc, skill, "price", str(row[4]))
     addChild(doc, skill, "published", str(row[5]))
+    addChild(doc, skill, "rank", str(row[6]))
+    
+    primary = attribute = {
+      0 : "Charisma",
+      1 : "Intelligence",
+      2 : "Memory",
+      3 : "Perception",
+      4 : "Willpower"
+    }.get(int(row[7]))
+    
+    secondary = attribute = {
+      0 : "Charisma",
+      1 : "Intelligence",
+      2 : "Memory",
+      3 : "Perception",
+      4 : "Willpower"
+    }.get(int(row[8]))
+    
+    addChild(doc, skill, "primaryAttribute", primary)
+    addChild(doc, skill, "secondaryAttribute", secondary)
     
     skills.appendChild(skill)
   

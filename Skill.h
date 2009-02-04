@@ -32,6 +32,8 @@
 @property(retain) NSNumber * rank;
 @property(retain) NSString * primaryAttribute, * secondaryAttribute;
 
+- (NSNumber *) skillpointsForLevel: (NSNumber *) level;
+
 + (void) load: (NSXMLDocument *) document;
 
 @end

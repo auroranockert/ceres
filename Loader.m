@@ -57,14 +57,16 @@ static Loader * shared;
   delegate = d;
   [delegate setText: [NSString stringWithFormat: @"Loading Ceres (Version %@)", [[Ceres instance] applicationVersion]]];
   
-  if ([[Ceres instance] compareVersion] == NoDatabase)
+  CeresVersionComparison versionComparison = [[Ceres instance] compareVersion];
+  
+  if (versionComparison == NoDatabase)
   {
     [self load: self];
   }
-  else if ([[Ceres instance] compareVersion] == DatabaseNewer) {
+  else if (versionComparison == DatabaseNewer) {
     [delegate databaseNewer: [[Ceres instance] databaseVersion]];
   }
-  else if ([[Ceres instance] compareVersion] == ApplicationNewer) {
+  else if (versionComparison == ApplicationNewer) {
     NSString * databaseVersion = [[Ceres instance] databaseVersion];
     NSString * from = [[Ceres instance] persistentStorePathForVersion: nil];
     NSString * to = [[Ceres instance] persistentStorePathForVersion: databaseVersion];

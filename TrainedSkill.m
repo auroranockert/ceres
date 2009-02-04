@@ -23,7 +23,7 @@
 
 @implementation TrainedSkill
 
-@dynamic skillpoints, level;
+@dynamic skillpoints, level, training;
 @dynamic skill, character;
 
 - (id) initWithCharacter: (Character *) character skill: (Skill *) skill
@@ -85,9 +85,20 @@
   return [[self skill] name];
 }
 
-- (id) training
+- (NSNumber *) nextLevel
 {
-  return nil;
+  return [NSNumber numberWithInteger: [[self level] integerValue] + 1];
+}
+
+- (NSNumber *) requiredSkillpointsForNextLevel
+{
+  NSInteger sp = [[[self skill] skillpointsForLevel: [self nextLevel]] integerValue] - [[self skillpoints] integerValue];
+  if (sp > 0) {
+    return [NSNumber numberWithInteger: sp];
+  }
+  else {
+    return [NSNumber numberWithInteger: 0];
+  }
 }
 
 @end

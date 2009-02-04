@@ -45,11 +45,24 @@
     Skill * s = [[Skill alloc] initWithIdentifier: [[skill readNode: @"/identifier"] numberValueInteger]];
     [s setName: [[skill readNode: @"/name"] stringValue]];
     [s setPrice: [[skill readNode: @"/price"] numberValueInteger]];
-    if (![[skill readNode: @"/marketGroupIdentifier"] integerValue] == 0) {
-      [s setMarketGroup: [MarketGroup findWithIdentifier: [[skill readNode: @"/marketGroupIdentifier"] numberValueInteger]]];
+    [s setRank: [[skill readNode: @"/rank"] numberValueInteger]];
+    [s setPrimaryAttribute: [[skill readNode: @"/primaryAttribute"] stringValue]];
+    [s setSecondaryAttribute: [[skill readNode: @"/secondaryAttribute"] stringValue]];
+    NSInteger ident = [[skill readNode: @"/marketGroupIdentifier"] integerValue];
+    if (ident) {
+      [s setMarketGroup: [MarketGroup findWithIdentifier: [NSNumber numberWithInteger: ident]]];
     }
-    [s setGroup: [Group findWithIdentifier: [[skill readNode: @"/groupIdentifier"] numberValueInteger]]];
+    
+    ident = [[skill readNode: @"/groupIdentifier"] integerValue];
+    if (ident) {
+      [s setGroup: [Group findWithIdentifier: [NSNumber numberWithInteger: ident]]];
+    }
   }
+}
+
+- (NSNumber *) skillpointsForLevel: (NSNumber *) level
+{
+  return [NSNumber numberWithInteger: 250 * [[self rank] integerValue] * pow(32, [level integerValue] - 1)];
 }
 
 @end
