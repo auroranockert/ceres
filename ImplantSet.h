@@ -1,5 +1,5 @@
 //
-//  Implant.h
+//  ImplantSet.h
 //  This file is part of Ceres.
 //
 //  Ceres is free software: you can redistribute it and/or modify
@@ -15,19 +15,26 @@
 //  You should have received a copy of the GNU General Public License
 //  along with Ceres.  If not, see <http://www.gnu.org/licenses/>.
 //
-//  Created by Jens Nockert on 12/8/08.
+//  Created by Jens Nockert on 2/4/09.
 //
 
 #import <Cocoa/Cocoa.h>
 
-#import "ItemType.h"
+#import "Character.h"
+#import "Implant.h"
 
-@interface Implant : ItemType {
+@class Character;
+
+@interface ImplantSet : CeresObject {
 
 }
 
-@property(retain) NSNumber * slot;
-@property(retain) NSString * attribute;
-@property(retain) NSNumber * attributeBonus;
+@property(retain) Character * character;
+@property(retain) NSMutableSet * implants;
+
+- (Implant *) implantForSlot: (NSNumber *) slot;
+- (void) addImplant: (Implant *) implant;
+
+- (NSNumber *) bonusForAttribute: (NSString *) attribute;
 
 @end

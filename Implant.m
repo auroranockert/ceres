@@ -23,6 +23,43 @@
 
 @implementation Implant
 
-@synthesize attributes;
+@dynamic slot;
+@dynamic attribute, attributeBonus;
+
++ (NSEntityDescription *) entityDescription
+{
+  static NSEntityDescription * entityDescription;
+  
+  if (!entityDescription) {
+    entityDescription = [[[[Ceres instance] managedObjectModel] entitiesByName] objectForKey: @"Implant"];
+  }
+  
+  return entityDescription;  
+}
+
++ (void) load: (NSXMLDocument *) document
+{
+  NSArray * implants = [document readNodes: @"/implants/implant"];
+  
+  for (NSXMLNode * implant in implants)
+  {
+    Implant * i = [[Implant alloc] initWithIdentifier: [[implant readNode: @"/identifier"] numberValueInteger]];
+    [i setName: [[implant readNode: @"/name"] stringValue]];
+    [i setPrice: [[implant readNode: @"/price"] numberValueInteger]];
+    [i setAttribute: [[implant readNode: @"/attribute"] stringValue]];
+    [i setAttributeBonus: [[implant readNode: @"/attributeBonus"] numberValueInteger]];
+    [i setSlot: [[implant readNode: @"/slot"] numberValueInteger]];
+    
+    NSInteger ident = [[implant readNode: @"/marketGroupIdentifier"] integerValue];
+    if (ident) {
+      [i setMarketGroup: [MarketGroup findWithIdentifier: [NSNumber numberWithInteger: ident]]];
+    }
+    
+    ident = [[implant readNode: @"/groupIdentifier"] integerValue];
+    if (ident) {
+      [i setGroup: [Group findWithIdentifier: [NSNumber numberWithInteger: ident]]];
+    }
+  }
+}
 
 @end

@@ -309,7 +309,7 @@ def processDB(dbPath):
     addChild(doc, implant, "price", str(row[3]))
     addChild(doc, implant, "marketGroupIdentifier", str(row[4]))
     addChild(doc, implant, "published", str(row[5]))
-    addChild(doc, implant, "marketGroupIdentifier", str(row[6]))
+    addChild(doc, implant, "slot", str(row[6]))
     
     attribute = {
       0 : "Charisma",

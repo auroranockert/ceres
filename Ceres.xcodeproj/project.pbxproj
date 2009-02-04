@@ -89,6 +89,8 @@
 		B4BDEE8A0F12DAF300326A9B /* URLLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BDEE880F12DAF300326A9B /* URLLoader.m */; };
 		B4C0E31E0F38685E00A96DD6 /* Ceres.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B4C0E31D0F38685E00A96DD6 /* Ceres.xcdatamodeld */; };
 		B4C0E7010F38F4D600A96DD6 /* Ceres.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B4C0E31D0F38685E00A96DD6 /* Ceres.xcdatamodeld */; };
+		B4C0E8070F39C43600A96DD6 /* ImplantSet.h in Headers */ = {isa = PBXBuildFile; fileRef = B4C0E8050F39C43600A96DD6 /* ImplantSet.h */; };
+		B4C0E8080F39C43600A96DD6 /* ImplantSet.m in Sources */ = {isa = PBXBuildFile; fileRef = B4C0E8060F39C43600A96DD6 /* ImplantSet.m */; };
 		B4F0E6220F22806E00412957 /* Character.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4F0E6210F22806E00412957 /* Character.xib */; };
 		B4F0E65B0F22865900412957 /* CharacterController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F0E65A0F22865900412957 /* CharacterController.m */; };
 /* End PBXBuildFile section */
@@ -224,6 +226,8 @@
 		B4BDEE870F12DAF300326A9B /* URLLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLLoader.h; sourceTree = "<group>"; };
 		B4BDEE880F12DAF300326A9B /* URLLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLLoader.m; sourceTree = "<group>"; };
 		B4C0E3200F38685E00A96DD6 /* Ceres 0.0.7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Ceres 0.0.7.xcdatamodel"; sourceTree = "<group>"; };
+		B4C0E8050F39C43600A96DD6 /* ImplantSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImplantSet.h; sourceTree = "<group>"; };
+		B4C0E8060F39C43600A96DD6 /* ImplantSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImplantSet.m; sourceTree = "<group>"; };
 		B4F0E6210F22806E00412957 /* Character.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Character.xib; sourceTree = "<group>"; };
 		B4F0E6590F22865900412957 /* CharacterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterController.h; sourceTree = "<group>"; };
 		B4F0E65A0F22865900412957 /* CharacterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacterController.m; sourceTree = "<group>"; };
@@ -392,6 +396,8 @@
 		B405104E0EF6C5ED00584535 /* Item Types */ = {
 			isa = PBXGroup;
 			children = (
+				B424F5740EEC98A800B5E7C5 /* Implant.h */,
+				B424F5750EEC98A800B5E7C5 /* Implant.m */,
 				B405104F0EF6C60F00584535 /* ItemType.h */,
 				B40510500EF6C60F00584535 /* ItemType.m */,
 				B405110B0EF96E7F00584535 /* Skill.h */,
@@ -466,8 +472,6 @@
 			children = (
 				B424F5000EEC8E4F00B5E7C5 /* Attributes.h */,
 				B424F5010EEC8E4F00B5E7C5 /* Attributes.m */,
-				B424F5740EEC98A800B5E7C5 /* Implant.h */,
-				B424F5750EEC98A800B5E7C5 /* Implant.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -479,6 +483,8 @@
 				B424F5790EEC990100B5E7C5 /* Character.m */,
 				B415CDE30F2F5EE80058F57D /* TrainedSkill.h */,
 				B415CDE40F2F5EE80058F57D /* TrainedSkill.m */,
+				B4C0E8050F39C43600A96DD6 /* ImplantSet.h */,
+				B4C0E8060F39C43600A96DD6 /* ImplantSet.m */,
 			);
 			name = Character;
 			sourceTree = "<group>";
@@ -657,6 +663,7 @@
 				B462BAF80F292236004D04D8 /* Updater.h in Headers */,
 				B462C36C0F2E4B1B004D04D8 /* CharacterNotification.h in Headers */,
 				B415CDE50F2F5EE80058F57D /* TrainedSkill.h in Headers */,
+				B4C0E8070F39C43600A96DD6 /* ImplantSet.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -794,6 +801,7 @@
 				B462BAF90F292236004D04D8 /* Updater.m in Sources */,
 				B462C36D0F2E4B1B004D04D8 /* CharacterNotification.m in Sources */,
 				B415CDE60F2F5EE80058F57D /* TrainedSkill.m in Sources */,
+				B4C0E8080F39C43600A96DD6 /* ImplantSet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

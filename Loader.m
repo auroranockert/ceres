@@ -118,6 +118,7 @@ static Loader * shared;
                                    @"MarketGroups.xml", [MarketGroup class],
                                    @"Groups.xml",       [Group class],
                                    @"Categories.xml",   [Category class],
+                                   @"Implants.xml",     [Implant class],
                                    nil
                                    ];
   

@@ -23,8 +23,6 @@
 
 @implementation Character
 
-@synthesize implants;
-
 @dynamic balance, race, bloodline, gender;
 @dynamic account, clone, baseAttributes;
 
@@ -33,6 +31,8 @@
 @dynamic trainingToLevel, trainingSkillpointsEnd;
 @dynamic trainingStartedAt, trainingEndsAt, trainingCachedUntil;
 @dynamic trainingSkill;
+
+@dynamic currentImplantSet;
 
 @dynamic portraitData;
 
@@ -89,23 +89,28 @@
 
   TrainedSkill * analyticalMind = [TrainedSkill findWithCharacter: self skill: [Skill findWithName: @"Analytical Mind"]];
   TrainedSkill * logic = [TrainedSkill findWithCharacter: self skill: [Skill findWithName: @"Logic"]];
-  intelligence = [[analyticalMind level] integerValue] + [[logic level] integerValue];
+  NSNumber * intelligenceImplant = [[self currentImplantSet] bonusForAttribute: @"Intelligence"];
+  intelligence = [[analyticalMind level] integerValue] + [[logic level] integerValue] + [intelligenceImplant integerValue];
   
   TrainedSkill * spatialAwareness = [TrainedSkill findWithCharacter: self skill: [Skill findWithName: @"Spatial Awareness"]];
   TrainedSkill * clarity = [TrainedSkill findWithCharacter: self skill: [Skill findWithName: @"Clarity"]];
-  perception   = [[spatialAwareness level] integerValue] +  [[clarity level] integerValue];
+  NSNumber * perceptionImplant = [[self currentImplantSet] bonusForAttribute: @"Perception"];
+  perception   = [[spatialAwareness level] integerValue] +  [[clarity level] integerValue] + [perceptionImplant integerValue];
   
   TrainedSkill * empathy = [TrainedSkill findWithCharacter: self skill: [Skill findWithName: @"Empathy"]];
   TrainedSkill * presence = [TrainedSkill findWithCharacter: self skill: [Skill findWithName: @"Presence"]];
-  charisma     = [[empathy level] integerValue] +  [[presence level] integerValue];
+  NSNumber * charismaImplant = [[self currentImplantSet] bonusForAttribute: @"Charisma"];
+  charisma     = [[empathy level] integerValue] +  [[presence level] integerValue] + [charismaImplant integerValue];
   
   TrainedSkill * ironWill = [TrainedSkill findWithCharacter: self skill: [Skill findWithName: @"Iron Will"]];
   TrainedSkill * focus = [TrainedSkill findWithCharacter: self skill: [Skill findWithName: @"Focus"]];
-  willpower = [[ironWill level] integerValue] +  [[focus level] integerValue];
+  NSNumber * willpowerImplant = [[self currentImplantSet] bonusForAttribute: @"Willpower"];
+  willpower = [[ironWill level] integerValue] +  [[focus level] integerValue] + [willpowerImplant integerValue];
   
   TrainedSkill * instantRecall = [TrainedSkill findWithCharacter: self skill: [Skill findWithName: @"Instant Recall"]];
   TrainedSkill * eideticMemory = [TrainedSkill findWithCharacter: self skill: [Skill findWithName: @"Eidetic Memory"]];
-  memory = [[instantRecall level] integerValue] +  [[eideticMemory level] integerValue];
+  NSNumber * memoryImplant = [[self currentImplantSet] bonusForAttribute: @"Memory"];
+  memory = [[instantRecall level] integerValue] +  [[eideticMemory level] integerValue] + [memoryImplant integerValue];
   
   return [[Attributes alloc] initWithoutCoreData: [NSNumber numberWithUnsignedInteger: intelligence] : [NSNumber numberWithUnsignedInteger: perception] : [NSNumber numberWithUnsignedInteger: charisma] : [NSNumber numberWithUnsignedInteger: willpower] : [NSNumber numberWithUnsignedInteger: memory]];
 }
@@ -211,6 +216,18 @@
       [self setBaseAttributes: [[Attributes alloc] init: intelligence : perception : charisma : memory : willpower]];
       updatedCharacter = true;
     }
+    
+    if (![self currentImplantSet]) {
+      [self setCurrentImplantSet: [[ImplantSet alloc] init]];
+    }
+    
+    ImplantSet * current = [self currentImplantSet];
+    
+    [current addImplant: [Implant findWithName: [[document readNode: @"/eveapi/result/attributeEnhancers/intelligenceBonus/augmentatorName"]  stringValue]]];
+    [current addImplant: [Implant findWithName: [[document readNode: @"/eveapi/result/attributeEnhancers/memoryBonus/augmentatorName"]  stringValue]]];
+    [current addImplant: [Implant findWithName: [[document readNode: @"/eveapi/result/attributeEnhancers/charismaBonus/augmentatorName"]  stringValue]]];
+    [current addImplant: [Implant findWithName: [[document readNode: @"/eveapi/result/attributeEnhancers/perceptionBonus/augmentatorName"]  stringValue]]];
+    [current addImplant: [Implant findWithName: [[document readNode: @"/eveapi/result/attributeEnhancers/willpowerBonus/augmentatorName"]  stringValue]]];
     
     NSArray * skills = [document readNodes: @"/eveapi/result/rowset[@name='skills']/row"];
     for (NSXMLNode * skill in skills)

@@ -33,12 +33,16 @@
 #import "Skill.h"
 #import "TrainedSkill.h"
 
+#import "Implant.h"
+#import "ImplantSet.h"
+
 @class Account;
 @class CharacterInfo;
 @class TrainedSkill;
+@class ImplantSet;
 
 @interface Character : EveObject {
-  NSSet * implants;
+
 }
 
 @property(retain) NSString * race, * bloodline, * gender;
@@ -51,7 +55,7 @@
 @property(retain) NSString * corporationName;
 
 @property(retain) Clone * clone;
-@property(retain) NSSet * implants;
+@property(retain) ImplantSet * currentImplantSet;
 
 @property(retain) Attributes * baseAttributes;
 @property(retain, readonly) Attributes * skillAttributes;
