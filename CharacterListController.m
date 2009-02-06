@@ -67,10 +67,10 @@
     NSInteger current = [[character trainingCurrentSkillpoints] integerValue];
     
     if (current > [[character trainingSkillpointsEnd] integerValue]) {
-      return [[NSString alloc] initWithFormat: @"Training %@ to level %ld is finished", [[character trainingSkill] name], [[character trainingToLevel] integerValue]];
+      return [[NSString alloc] initWithFormat: @"Training %@ to level %ld is finished", [[character trainingSkill] name], [[[character trainingSkill] nextLevel] integerValue]];
     }
     else {
-      return [[NSString alloc] initWithFormat: @"Training %@ to level %ld and is finished by %@", [[character trainingSkill] name], [[character trainingToLevel] integerValue], [formatter stringFromDate: [character trainingEndsAt]]];
+      return [[NSString alloc] initWithFormat: @"Training %@ to level %ld and is finished by %@", [[character trainingSkill] name], [[[character trainingSkill] nextLevel] integerValue], [formatter stringFromDate: [character trainingEndsAt]]];
     }
   }
   else

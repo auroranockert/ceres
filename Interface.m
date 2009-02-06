@@ -70,7 +70,7 @@ static Interface * shared;
 {
   Character * character = [o object];
   [GrowlApplicationBridge notifyWithTitle: [character name]
-                              description: [NSString stringWithFormat: @"Training %@ to level %@ complete", [character trainingToLevel], [[character trainingSkill] name]]
+                              description: [NSString stringWithFormat: @"Training %@ to level %@ complete", [[character trainingSkill] nextLevel], [[character trainingSkill] name]]
                          notificationName: @"Skill training completed"
                                  iconData: [character portraitData]
                                  priority: 0
