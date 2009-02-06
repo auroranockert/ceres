@@ -54,8 +54,8 @@
 
 - (double) learningBonus
 {
-  TrainedSkill * learning = [TrainedSkill findWithCharacter: self skill: [Skill findWithName: @"Learning"]];
-  return 1.0 + 0.02 * [[learning level] integerValue];
+  TrainedSkill * ts = [TrainedSkill findWithCharacter: self skill: [Skill findWithName: @"Learning"]];
+  return 1.0 + 0.02 * [[ts level] integerValue];
 }
 
 - (NSNumber *) intelligence
@@ -85,29 +85,29 @@
 
 - (Attributes *) skillAttributes
 {
-  NSInteger intelligence, perception, charisma, willpower, memory;
+  NSNumber * intelligence, * perception, * charisma, * willpower, * memory;
 
   TrainedSkill * analyticalMind = [TrainedSkill findWithCharacter: self skill: [Skill findWithName: @"Analytical Mind"]];
   TrainedSkill * logic = [TrainedSkill findWithCharacter: self skill: [Skill findWithName: @"Logic"]];
-  intelligence = [[analyticalMind level] integerValue] + [[logic level] integerValue];
+  intelligence = [[analyticalMind level] addInteger: [logic level]];
   
   TrainedSkill * spatialAwareness = [TrainedSkill findWithCharacter: self skill: [Skill findWithName: @"Spatial Awareness"]];
   TrainedSkill * clarity = [TrainedSkill findWithCharacter: self skill: [Skill findWithName: @"Clarity"]];
-  perception = [[spatialAwareness level] integerValue] +  [[clarity level] integerValue];
+  perception = [[spatialAwareness level] addInteger: [clarity level]];
   
   TrainedSkill * empathy = [TrainedSkill findWithCharacter: self skill: [Skill findWithName: @"Empathy"]];
   TrainedSkill * presence = [TrainedSkill findWithCharacter: self skill: [Skill findWithName: @"Presence"]];
-  charisma = [[empathy level] integerValue] + [[presence level] integerValue];
+  charisma = [[empathy level] addInteger: [presence level]];
   
   TrainedSkill * ironWill = [TrainedSkill findWithCharacter: self skill: [Skill findWithName: @"Iron Will"]];
   TrainedSkill * focus = [TrainedSkill findWithCharacter: self skill: [Skill findWithName: @"Focus"]];
-  willpower = [[ironWill level] integerValue] + [[focus level] integerValue];
+  willpower = [[ironWill level] addInteger: [focus level]];
   
   TrainedSkill * instantRecall = [TrainedSkill findWithCharacter: self skill: [Skill findWithName: @"Instant Recall"]];
   TrainedSkill * eideticMemory = [TrainedSkill findWithCharacter: self skill: [Skill findWithName: @"Eidetic Memory"]];
-  memory = [[instantRecall level] integerValue] +  [[eideticMemory level] integerValue];
+  memory = [[instantRecall level] addInteger: [eideticMemory level]];
   
-  return [[Attributes alloc] initWithoutCoreData: [NSNumber numberWithUnsignedInteger: intelligence] : [NSNumber numberWithUnsignedInteger: perception] : [NSNumber numberWithUnsignedInteger: charisma] : [NSNumber numberWithUnsignedInteger: memory] : [NSNumber numberWithUnsignedInteger: willpower]];
+  return [[Attributes alloc] initWithoutCoreData: intelligence : perception : charisma : memory : willpower];
 }
 
 - (Attributes *) implantAttributes
@@ -163,7 +163,7 @@
 
 - (NSNumber *) trainingCurrentSkillpoints
 {
-  return [NSNumber numberWithInteger: [[[self trainingSkill] skillpoints] integerValue] + [[self additionalSkillpoints] integerValue]];
+  return [[[self trainingSkill] skillpoints] addInteger: [self additionalSkillpoints]];
 }
 
 - (void) update
@@ -288,7 +288,13 @@
     
     if (updatedTraining) {
       [[Ceres instance] postNotification: [CharacterNotification notificationWithCharacter: self name: @"updatedTraining"]];
-      [[Ceres instance] postNotification: [CharacterNotification notificationWithCharacter: self name: @"skillTrainingCompleted"] date: [self trainingEndsAt]];
+      
+      if ([self trainingSkill]) {
+        [[Ceres instance] postNotification: [CharacterNotification notificationWithCharacter: self name: @"skillTrainingCompleted"] date: [self trainingEndsAt]];
+      }
+      else {
+        [[Ceres instance] cancelNotification: [CharacterNotification notificationWithCharacter: self name: @"skillTrainingCompleted"]];
+      }
     }
     
     [[Ceres instance] save];
@@ -297,13 +303,13 @@
 
 - (void) updateSkillpoints
 {
-  [[self trainingSkill] setSkillpoints: [NSNumber numberWithInteger: [[[self trainingSkill] skillpoints] integerValue] + [[self additionalSkillpoints] integerValue]]];
+  [[self trainingSkill] setSkillpoints: [[[self trainingSkill] skillpoints] addInteger: [self additionalSkillpoints]]];
   [self setSkillpoints: [self valueForKeyPath: @"skills.@sum.skillpoints"]];
 }
 
 - (NSNumber *) totalSkillpoints
 {
-  return [NSNumber numberWithInteger: [[self skillpoints] integerValue] + [[self additionalSkillpoints] integerValue]];
+  return [[self skillpoints] addInteger: [self additionalSkillpoints]];
 }
 
 - (void) prepareMessages

@@ -76,7 +76,7 @@
 
 - (NSNumber *) nextLevel
 {
-  return [NSNumber numberWithInteger: [[self level] integerValue] + 1];
+  return [[self level] next];
 }
 
 - (NSNumber *) requiredSkillpointsForNextLevel

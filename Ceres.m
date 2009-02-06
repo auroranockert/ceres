@@ -235,14 +235,7 @@ static Ceres * shared;
 
 - (void) postNotification: (NSNotification *) notification date: (NSDate *) date
 {
-  if (!notificationDictionary) {
-    notificationDictionary = [[NSMutableDictionary alloc] init];
-  }
-  
-  NSNotification * oldNotification = [[notificationDictionary objectForKey: [notification object]] objectForKey: [notification name]];
-  if (oldNotification) {
-    [NSObject cancelPreviousPerformRequestsWithTarget: self selector: @selector(postNotification:) object: oldNotification];
-  }
+  [self cancelNotification: notification];
   
   NSMutableDictionary * objectDictionary = [notificationDictionary objectForKey: [notification object]];
   if (!objectDictionary) {
@@ -254,6 +247,19 @@ static Ceres * shared;
   
   [self performSelector: @selector(postNotification:) withObject: notification afterDelay: [date timeIntervalSinceNow]];
 }
+
+- (void) cancelNotification: (NSNotification *) notification
+{
+  if (!notificationDictionary) {
+    notificationDictionary = [[NSMutableDictionary alloc] init];
+  }
+  
+  NSNotification * oldNotification = [[notificationDictionary objectForKey: [notification object]] objectForKey: [notification name]];
+  if (oldNotification) {
+    [NSObject cancelPreviousPerformRequestsWithTarget: self selector: @selector(postNotification:) object: oldNotification];
+  }
+}
+
 - (void) handleError: (NSError *) error
 {
   NSLog(@"Error > %@", error);

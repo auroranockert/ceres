@@ -64,6 +64,7 @@ typedef enum CeresVersionComparison CeresVersionComparison;
 - (void) save;
 - (void) postNotification: (NSNotification *) notification;
 - (void) postNotification: (NSNotification *) notification date: (NSDate *) date;
+- (void) cancelNotification: (NSNotification *) notification;
 - (void) addObserver: (id) observer selector: (SEL) selector name: (NSString*) name object: (id) object;
 - (void) handleError: (NSError *) error;
 - (CeresVersionComparison) compareVersion;

@@ -1,5 +1,5 @@
 //
-//  NSArray.h
+//  NSNumber.m
 //  This file is part of Ceres.
 //
 //  Ceres is free software: you can redistribute it and/or modify
@@ -18,10 +18,29 @@
 //  Created by Jens Nockert on 2/6/09.
 //
 
-#import "NSArray.h"
-#import "NSBundle.h"
-
-#import "NSXMLDocument.h"
-#import "NSXMLNode.h"
-
 #import "NSNumber.h"
+
+
+@implementation NSNumber (CeresAdditions)
+
+- (NSNumber *) next
+{
+  return [NSNumber numberWithInteger: [self integerValue] + 1];
+}
+
+- (NSNumber *) previous
+{
+  return [NSNumber numberWithInteger: [self integerValue] - 1];
+}
+
+- (NSNumber *) addInteger: (NSNumber *) other
+{
+  return [NSNumber numberWithInteger: [self integerValue] + [other integerValue]];
+}
+
+- (NSNumber *) subtractInteger: (NSNumber *) other
+{
+  return [NSNumber numberWithInteger: [self integerValue] - [other integerValue]];
+}
+
+@end

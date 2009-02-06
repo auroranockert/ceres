@@ -100,6 +100,8 @@
 		B4E9AE1A0F3C8D8E007A175C /* NSXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E9AE180F3C8D8E007A175C /* NSXMLDocument.m */; };
 		B4E9AE390F3C8E34007A175C /* NSXMLNode.h in Headers */ = {isa = PBXBuildFile; fileRef = B4E9AE370F3C8E34007A175C /* NSXMLNode.h */; };
 		B4E9AE3A0F3C8E34007A175C /* NSXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E9AE380F3C8E34007A175C /* NSXMLNode.m */; };
+		B4E9AE7A0F3CAAC0007A175C /* NSNumber.h in Headers */ = {isa = PBXBuildFile; fileRef = B4E9AE780F3CAAC0007A175C /* NSNumber.h */; };
+		B4E9AE7B0F3CAAC0007A175C /* NSNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E9AE790F3CAAC0007A175C /* NSNumber.m */; };
 		B4F0E6220F22806E00412957 /* Character.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4F0E6210F22806E00412957 /* Character.xib */; };
 		B4F0E65B0F22865900412957 /* CharacterController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F0E65A0F22865900412957 /* CharacterController.m */; };
 /* End PBXBuildFile section */
@@ -246,6 +248,8 @@
 		B4E9AE180F3C8D8E007A175C /* NSXMLDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSXMLDocument.m; sourceTree = "<group>"; };
 		B4E9AE370F3C8E34007A175C /* NSXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSXMLNode.h; sourceTree = "<group>"; };
 		B4E9AE380F3C8E34007A175C /* NSXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSXMLNode.m; sourceTree = "<group>"; };
+		B4E9AE780F3CAAC0007A175C /* NSNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSNumber.h; sourceTree = "<group>"; };
+		B4E9AE790F3CAAC0007A175C /* NSNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSNumber.m; sourceTree = "<group>"; };
 		B4F0E6210F22806E00412957 /* Character.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Character.xib; sourceTree = "<group>"; };
 		B4F0E6590F22865900412957 /* CharacterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterController.h; sourceTree = "<group>"; };
 		B4F0E65A0F22865900412957 /* CharacterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacterController.m; sourceTree = "<group>"; };
@@ -618,6 +622,7 @@
 		B4E9AD950F3C8363007A175C /* Additions */ = {
 			isa = PBXGroup;
 			children = (
+				B4E9AE770F3CAAB3007A175C /* NSNumber */,
 				B4E9AE350F3C8E1A007A175C /* XML */,
 				B4E9ADA70F3C8782007A175C /* NSBundle */,
 				B4E9ADA20F3C85F1007A175C /* NSArray */,
@@ -669,6 +674,15 @@
 				B4E9AE380F3C8E34007A175C /* NSXMLNode.m */,
 			);
 			name = NSXMLNode;
+			sourceTree = "<group>";
+		};
+		B4E9AE770F3CAAB3007A175C /* NSNumber */ = {
+			isa = PBXGroup;
+			children = (
+				B4E9AE780F3CAAC0007A175C /* NSNumber.h */,
+				B4E9AE790F3CAAC0007A175C /* NSNumber.m */,
+			);
+			name = NSNumber;
 			sourceTree = "<group>";
 		};
 		B4F0E5F80F2247D500412957 /* Ceres */ = {
@@ -744,6 +758,7 @@
 				B4E9ADB00F3C8983007A175C /* CeresAdditions.h in Headers */,
 				B4E9AE190F3C8D8E007A175C /* NSXMLDocument.h in Headers */,
 				B4E9AE390F3C8E34007A175C /* NSXMLNode.h in Headers */,
+				B4E9AE7A0F3CAAC0007A175C /* NSNumber.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -886,6 +901,7 @@
 				B4E9ADAB0F3C8792007A175C /* NSBundle.m in Sources */,
 				B4E9AE1A0F3C8D8E007A175C /* NSXMLDocument.m in Sources */,
 				B4E9AE3A0F3C8E34007A175C /* NSXMLNode.m in Sources */,
+				B4E9AE7B0F3CAAC0007A175C /* NSNumber.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
