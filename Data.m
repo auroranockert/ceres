@@ -44,15 +44,4 @@
   return [super request: urlString];
 }
 
-- (NSXMLDocument *) requestVersion
-{
-  static NSXMLDocument * version;
-  
-  if (!version) {
-    version = [self request: @"Version.xml"];
-  }
-  
-  return version;
-}
-
 @end

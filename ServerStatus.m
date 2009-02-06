@@ -63,7 +63,7 @@ static ServerStatus * shared;
     NSXMLDocument * status = [api request: @"server/ServerStatus.xml.aspx"];
     NSString * open = [[status readNode: @"/eveapi/result/serverOpen"] stringValue];
     cachedUntil = [status cachedUntil];
-    if ([open compare: @"True"] == 0) {
+    if ([open compare: @"True"] == NSOrderedSame) {
       online = [NSNumber numberWithBool: true];
       players = [[status readNode: @"/eveapi/result/onlinePlayers"] numberValueInteger];
     }

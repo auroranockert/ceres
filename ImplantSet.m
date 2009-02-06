@@ -68,7 +68,6 @@
 - (void) replaceImplant: (Implant *) implant
 {
   Implant * oldImplant = [self implantForSlot: [implant slot]];
-  
   if (oldImplant) {
     [self removeImplantsObject: oldImplant];
   }

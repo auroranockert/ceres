@@ -66,18 +66,7 @@
   NSSortDescriptor * sort = [[NSSortDescriptor alloc] initWithKey: @"skill.identifier" ascending: true];
   NSPredicate * predicate = [NSPredicate predicateWithFormat: @"character == %@ AND skill == %@", character, skill];
   
-  NSArray * results = [self findWithSort: sort predicate: predicate];
-  
-  if ([results count] == 1) {
-    return [results objectAtIndex: 0];
-  }
-  else {
-    if ([results count] != 0) {
-      NSLog(@"Error: %d trained skills with character (%@) and skill (%@)", [results count], [character name], [skill name]);
-    }
-    
-    return nil;
-  }
+  return [[self findWithSort: sort predicate: predicate] anyObject];
 }
 
 - (NSString *) name

@@ -74,14 +74,7 @@
   NSSortDescriptor * sort = [[NSSortDescriptor alloc] initWithKey: @"identifier" ascending: YES];
   NSPredicate * predicate = [NSPredicate predicateWithFormat: @"identifier == %@", ident];
   
-  NSArray * value = [[self class] findWithSort: sort predicate: predicate];
-  
-  if ([value count]) {
-    return [value objectAtIndex: 0];
-  }
-  else {
-    return nil;
-  }
+  return [[[self class] findWithSort: sort predicate: predicate] anyObject];
 }
 
 + (id) findWithName: (NSString *) n
@@ -89,14 +82,7 @@
   NSSortDescriptor * sort = [[NSSortDescriptor alloc] initWithKey: @"identifier" ascending: YES];
   NSPredicate * predicate = [NSPredicate predicateWithFormat: @"name == %@", n];
   
-  NSArray * value = [[self class] findWithSort: sort predicate: predicate];
-  
-  if ([value count]) {
-    return [value objectAtIndex: 0];
-  }
-  else {
-    return nil;
-  }
+  return [[[self class] findWithSort: sort predicate: predicate] anyObject];
 }
 
 + (NSInteger) priority

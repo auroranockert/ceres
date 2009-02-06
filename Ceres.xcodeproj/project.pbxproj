@@ -91,6 +91,15 @@
 		B4C0E7010F38F4D600A96DD6 /* Ceres.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B4C0E31D0F38685E00A96DD6 /* Ceres.xcdatamodeld */; };
 		B4C0E8070F39C43600A96DD6 /* ImplantSet.h in Headers */ = {isa = PBXBuildFile; fileRef = B4C0E8050F39C43600A96DD6 /* ImplantSet.h */; };
 		B4C0E8080F39C43600A96DD6 /* ImplantSet.m in Sources */ = {isa = PBXBuildFile; fileRef = B4C0E8060F39C43600A96DD6 /* ImplantSet.m */; };
+		B4E9ADA50F3C8605007A175C /* NSArray.h in Headers */ = {isa = PBXBuildFile; fileRef = B4E9ADA30F3C8605007A175C /* NSArray.h */; };
+		B4E9ADA60F3C8605007A175C /* NSArray.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E9ADA40F3C8605007A175C /* NSArray.m */; };
+		B4E9ADAA0F3C8792007A175C /* NSBundle.h in Headers */ = {isa = PBXBuildFile; fileRef = B4E9ADA80F3C8792007A175C /* NSBundle.h */; };
+		B4E9ADAB0F3C8792007A175C /* NSBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E9ADA90F3C8792007A175C /* NSBundle.m */; };
+		B4E9ADB00F3C8983007A175C /* CeresAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = B4E9ADAF0F3C8983007A175C /* CeresAdditions.h */; };
+		B4E9AE190F3C8D8E007A175C /* NSXMLDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = B4E9AE170F3C8D8E007A175C /* NSXMLDocument.h */; };
+		B4E9AE1A0F3C8D8E007A175C /* NSXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E9AE180F3C8D8E007A175C /* NSXMLDocument.m */; };
+		B4E9AE390F3C8E34007A175C /* NSXMLNode.h in Headers */ = {isa = PBXBuildFile; fileRef = B4E9AE370F3C8E34007A175C /* NSXMLNode.h */; };
+		B4E9AE3A0F3C8E34007A175C /* NSXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E9AE380F3C8E34007A175C /* NSXMLNode.m */; };
 		B4F0E6220F22806E00412957 /* Character.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4F0E6210F22806E00412957 /* Character.xib */; };
 		B4F0E65B0F22865900412957 /* CharacterController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F0E65A0F22865900412957 /* CharacterController.m */; };
 /* End PBXBuildFile section */
@@ -228,6 +237,15 @@
 		B4C0E3200F38685E00A96DD6 /* Ceres 0.0.7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Ceres 0.0.7.xcdatamodel"; sourceTree = "<group>"; };
 		B4C0E8050F39C43600A96DD6 /* ImplantSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImplantSet.h; sourceTree = "<group>"; };
 		B4C0E8060F39C43600A96DD6 /* ImplantSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImplantSet.m; sourceTree = "<group>"; };
+		B4E9ADA30F3C8605007A175C /* NSArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSArray.h; sourceTree = "<group>"; };
+		B4E9ADA40F3C8605007A175C /* NSArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSArray.m; sourceTree = "<group>"; };
+		B4E9ADA80F3C8792007A175C /* NSBundle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSBundle.h; sourceTree = "<group>"; };
+		B4E9ADA90F3C8792007A175C /* NSBundle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSBundle.m; sourceTree = "<group>"; };
+		B4E9ADAF0F3C8983007A175C /* CeresAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CeresAdditions.h; sourceTree = "<group>"; };
+		B4E9AE170F3C8D8E007A175C /* NSXMLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSXMLDocument.h; sourceTree = "<group>"; };
+		B4E9AE180F3C8D8E007A175C /* NSXMLDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSXMLDocument.m; sourceTree = "<group>"; };
+		B4E9AE370F3C8E34007A175C /* NSXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSXMLNode.h; sourceTree = "<group>"; };
+		B4E9AE380F3C8E34007A175C /* NSXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSXMLNode.m; sourceTree = "<group>"; };
 		B4F0E6210F22806E00412957 /* Character.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Character.xib; sourceTree = "<group>"; };
 		B4F0E6590F22865900412957 /* CharacterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterController.h; sourceTree = "<group>"; };
 		B4F0E65A0F22865900412957 /* CharacterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacterController.m; sourceTree = "<group>"; };
@@ -277,9 +295,10 @@
 		0867D691FE84028FC02AAC07 /* Ceres */ = {
 			isa = PBXGroup;
 			children = (
-				B402187F0F1838C60068D818 /* Interface */,
+				B4E9AD950F3C8363007A175C /* Additions */,
+				B402187F0F1838C60068D818 /* Ceres Interface */,
 				B424FB320EEF132800B5E7C5 /* Models */,
-				08FB77AEFE84172EC02AAC07 /* Classes */,
+				08FB77AEFE84172EC02AAC07 /* Ceres Framework */,
 				32C88DFF0371C24200C91783 /* Other Sources */,
 				089C1665FE841158C02AAC07 /* Resources */,
 				0867D69AFE84028FC02AAC07 /* External Frameworks and Libraries */,
@@ -312,14 +331,14 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		08FB77AEFE84172EC02AAC07 /* Classes */ = {
+		08FB77AEFE84172EC02AAC07 /* Ceres Framework */ = {
 			isa = PBXGroup;
 			children = (
 				B4050F7F0EF5291700584535 /* Data */,
 				B424F4F20EEC8D1400B5E7C5 /* API */,
 				B424F4D40EEC894000B5E7C5 /* Common */,
 			);
-			name = Classes;
+			name = "Ceres Framework";
 			sourceTree = "<group>";
 		};
 		1058C7B0FEA5585E11CA2CBB /* Linked Frameworks */ = {
@@ -352,7 +371,7 @@
 			name = "Other Sources";
 			sourceTree = "<group>";
 		};
-		B402187F0F1838C60068D818 /* Interface */ = {
+		B402187F0F1838C60068D818 /* Ceres Interface */ = {
 			isa = PBXGroup;
 			children = (
 				B4A539E90F20AD3D00B404E6 /* Elements */,
@@ -360,7 +379,7 @@
 				B40581400F19AF7C009EEDD8 /* Controllers */,
 				B40581140F19AE42009EEDD8 /* Main */,
 			);
-			name = Interface;
+			name = "Ceres Interface";
 			sourceTree = "<group>";
 		};
 		B4050EDA0EF5141900584535 /* Server Status */ = {
@@ -596,6 +615,62 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		B4E9AD950F3C8363007A175C /* Additions */ = {
+			isa = PBXGroup;
+			children = (
+				B4E9AE350F3C8E1A007A175C /* XML */,
+				B4E9ADA70F3C8782007A175C /* NSBundle */,
+				B4E9ADA20F3C85F1007A175C /* NSArray */,
+				B4E9ADAF0F3C8983007A175C /* CeresAdditions.h */,
+			);
+			name = Additions;
+			sourceTree = "<group>";
+		};
+		B4E9ADA20F3C85F1007A175C /* NSArray */ = {
+			isa = PBXGroup;
+			children = (
+				B4E9ADA30F3C8605007A175C /* NSArray.h */,
+				B4E9ADA40F3C8605007A175C /* NSArray.m */,
+			);
+			name = NSArray;
+			sourceTree = "<group>";
+		};
+		B4E9ADA70F3C8782007A175C /* NSBundle */ = {
+			isa = PBXGroup;
+			children = (
+				B4E9ADA80F3C8792007A175C /* NSBundle.h */,
+				B4E9ADA90F3C8792007A175C /* NSBundle.m */,
+			);
+			name = NSBundle;
+			sourceTree = "<group>";
+		};
+		B4E9AE160F3C8D73007A175C /* NSXMLDocument */ = {
+			isa = PBXGroup;
+			children = (
+				B4E9AE170F3C8D8E007A175C /* NSXMLDocument.h */,
+				B4E9AE180F3C8D8E007A175C /* NSXMLDocument.m */,
+			);
+			name = NSXMLDocument;
+			sourceTree = "<group>";
+		};
+		B4E9AE350F3C8E1A007A175C /* XML */ = {
+			isa = PBXGroup;
+			children = (
+				B4E9AE360F3C8E27007A175C /* NSXMLNode */,
+				B4E9AE160F3C8D73007A175C /* NSXMLDocument */,
+			);
+			name = XML;
+			sourceTree = "<group>";
+		};
+		B4E9AE360F3C8E27007A175C /* NSXMLNode */ = {
+			isa = PBXGroup;
+			children = (
+				B4E9AE370F3C8E34007A175C /* NSXMLNode.h */,
+				B4E9AE380F3C8E34007A175C /* NSXMLNode.m */,
+			);
+			name = NSXMLNode;
+			sourceTree = "<group>";
+		};
 		B4F0E5F80F2247D500412957 /* Ceres */ = {
 			isa = PBXGroup;
 			children = (
@@ -664,6 +739,11 @@
 				B462C36C0F2E4B1B004D04D8 /* CharacterNotification.h in Headers */,
 				B415CDE50F2F5EE80058F57D /* TrainedSkill.h in Headers */,
 				B4C0E8070F39C43600A96DD6 /* ImplantSet.h in Headers */,
+				B4E9ADA50F3C8605007A175C /* NSArray.h in Headers */,
+				B4E9ADAA0F3C8792007A175C /* NSBundle.h in Headers */,
+				B4E9ADB00F3C8983007A175C /* CeresAdditions.h in Headers */,
+				B4E9AE190F3C8D8E007A175C /* NSXMLDocument.h in Headers */,
+				B4E9AE390F3C8E34007A175C /* NSXMLNode.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -802,6 +882,10 @@
 				B462C36D0F2E4B1B004D04D8 /* CharacterNotification.m in Sources */,
 				B415CDE60F2F5EE80058F57D /* TrainedSkill.m in Sources */,
 				B4C0E8080F39C43600A96DD6 /* ImplantSet.m in Sources */,
+				B4E9ADA60F3C8605007A175C /* NSArray.m in Sources */,
+				B4E9ADAB0F3C8792007A175C /* NSBundle.m in Sources */,
+				B4E9AE1A0F3C8D8E007A175C /* NSXMLDocument.m in Sources */,
+				B4E9AE3A0F3C8E34007A175C /* NSXMLNode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -20,6 +20,8 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import "CeresAdditions.h"
+
 #import "URLLoader.h"
 #import "URLDelegate.h"
 
@@ -28,24 +30,5 @@
 }
 
 - (NSXMLDocument *) request: (NSString *) url;
-
-@end
-
-@interface NSXMLDocument (CeresXmlProcessing)
-
-- (NSArray *) readNodes: (NSString *) xpath;
-- (NSXMLNode *) readNode: (NSString *) xpath;
-- (NSDate *) cachedUntil;
-
-@end
-
-@interface NSXMLNode (CeresXmlProcessing)
-
-- (NSArray *) readNodes: (NSString *) xpath;
-- (NSXMLNode *) readNode: (NSString *) xpath;
-- (NSString *) readAttribute: (NSString *) xpath;
-- (NSNumber *) numberValueInteger;
-- (NSNumber *) numberValueDouble;
-- (NSInteger) integerValue;
 
 @end

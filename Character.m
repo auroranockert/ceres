@@ -188,11 +188,18 @@
       [self setBloodline: [[document readNode: @"/eveapi/result/bloodLine"] stringValue]];
       [self setGender: [[document readNode: @"/eveapi/result/gender"] stringValue]];
       
+      NSNumber * intelligence = [[document readNode: @"/eveapi/result/attributes/intelligence"]  numberValueInteger];
+      NSNumber * memory = [[document readNode: @"/eveapi/result/attributes/memory"]  numberValueInteger];
+      NSNumber * charisma = [[document readNode: @"/eveapi/result/attributes/charisma"]  numberValueInteger];
+      NSNumber * perception = [[document readNode: @"/eveapi/result/attributes/perception"]  numberValueInteger];
+      NSNumber * willpower = [[document readNode: @"/eveapi/result/attributes/willpower"]  numberValueInteger];
+      
+      [self setBaseAttributes: [[Attributes alloc] init: intelligence : perception : charisma : memory : willpower]];      
+      
       updatedCharacter = true;
     }
     
     NSNumber * corporationIdentifier = [NSNumber numberWithInteger: [[document readNode: @"/eveapi/result/corporationID"] integerValue]];
-    
     if ([[self corporationIdentifier] compare: corporationIdentifier] != NSOrderedSame) {
       [self setCorporationIdentifier: corporationIdentifier];
       [self setCorporationName: [[document readNode: @"/eveapi/result/corporationName"] stringValue]];
@@ -212,41 +219,22 @@
       [self setClone: clone];
     }
     
-    if (![self baseAttributes]) {
-      NSNumber * intelligence = [[document readNode: @"/eveapi/result/attributes/intelligence"]  numberValueInteger];
-      NSNumber * memory = [[document readNode: @"/eveapi/result/attributes/memory"]  numberValueInteger];
-      NSNumber * charisma = [[document readNode: @"/eveapi/result/attributes/charisma"]  numberValueInteger];
-      NSNumber * perception = [[document readNode: @"/eveapi/result/attributes/perception"]  numberValueInteger];
-      NSNumber * willpower = [[document readNode: @"/eveapi/result/attributes/willpower"]  numberValueInteger];
-      
-      [self setBaseAttributes: [[Attributes alloc] init: intelligence : perception : charisma : memory : willpower]];
-      updatedCharacter = true;
-    }
-    
     if (![self currentImplantSet]) {
       [self setCurrentImplantSet: [[ImplantSet alloc] init]];
     }
     
     ImplantSet * current = [self currentImplantSet];
     
-    NSString * intelligenceImplant = [[document readNode: @"/eveapi/result/attributeEnhancers/intelligenceBonus/augmentatorName"]  stringValue];
-    NSString * memoryImplant = [[document readNode: @"/eveapi/result/attributeEnhancers/memoryBonus/augmentatorName"]  stringValue];
-    NSString * charismaImplant = [[document readNode: @"/eveapi/result/attributeEnhancers/charismaBonus/augmentatorName"]  stringValue];
-    NSString * perceptionImplant = [[document readNode: @"/eveapi/result/attributeEnhancers/perceptionBonus/augmentatorName"]  stringValue];
-    NSString * willpowerImplant = [[document readNode: @"/eveapi/result/attributeEnhancers/willpowerBonus/augmentatorName"]  stringValue];
-    
-    [current replaceImplant: [Implant findWithName: intelligenceImplant]];
-    [current replaceImplant: [Implant findWithName: memoryImplant]];
-    [current replaceImplant: [Implant findWithName: charismaImplant]];
-    [current replaceImplant: [Implant findWithName: perceptionImplant]];
-    [current replaceImplant: [Implant findWithName: willpowerImplant]];
+    [current replaceImplant: [Implant findWithName: [[document readNode: @"/eveapi/result/attributeEnhancers/intelligenceBonus/augmentatorName"]  stringValue]]];
+    [current replaceImplant: [Implant findWithName: [[document readNode: @"/eveapi/result/attributeEnhancers/memoryBonus/augmentatorName"]  stringValue]]];
+    [current replaceImplant: [Implant findWithName: [[document readNode: @"/eveapi/result/attributeEnhancers/charismaBonus/augmentatorName"]  stringValue]]];
+    [current replaceImplant: [Implant findWithName: [[document readNode: @"/eveapi/result/attributeEnhancers/perceptionBonus/augmentatorName"]  stringValue]]];
+    [current replaceImplant: [Implant findWithName: [[document readNode: @"/eveapi/result/attributeEnhancers/willpowerBonus/augmentatorName"]  stringValue]]];
     
     NSArray * skills = [document readNodes: @"/eveapi/result/rowset[@name='skills']/row"];
     for (NSXMLNode * skill in skills)
     {
-      NSNumber * i = [NSNumber numberWithInteger: [[skill readAttribute: @"typeID"] integerValue]];
-      Skill * s = [Skill findWithIdentifier: i];
-      TrainedSkill * ts = [[TrainedSkill alloc] initWithCharacter: self skill: s];
+      TrainedSkill * ts = [[TrainedSkill alloc] initWithCharacter: self skill: [Skill findWithIdentifier: [NSNumber numberWithInteger: [[skill readAttribute: @"typeID"] integerValue]]]];
       [ts setSkillpoints: [NSNumber numberWithInteger: [[skill readAttribute: @"skillpoints"] integerValue]]];
       [ts setLevel: [NSNumber numberWithInteger: [[skill readAttribute: @"level"] integerValue]]];
     }
@@ -259,9 +247,7 @@
     
     [self setTrainingCachedUntil: [document cachedUntil]];
     
-    int training = [[document readNode: @"/eveapi/result/skillInTraining"] integerValue];
-    
-    if (training)
+    if ([[document readNode: @"/eveapi/result/skillInTraining"] integerValue])
     {
       NSString * startTimeString = [[[document readNode: @"/eveapi/result/trainingStartTime"] stringValue] stringByAppendingString: @" +0000"];      
       NSDate * startDate = [[NSDate alloc] initWithString: startTimeString];

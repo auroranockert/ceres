@@ -22,6 +22,8 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import "CeresAdditions.h"
+
 #import "Api.h"
 
 enum CeresVersionComparison {

@@ -21,6 +21,7 @@
 #import <Cocoa/Cocoa.h>
 
 #import "Ceres.h"
+#import "CeresAdditions.h"
 
 #import "Api.h"
 #import "Data.h"

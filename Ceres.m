@@ -113,13 +113,6 @@ static Ceres * shared;
   return VersionSame;
 }
 
-- (NSString *) applicationSupportFolder
-{
-  NSArray * paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
-  NSString * basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : NSTemporaryDirectory();
-  return [basePath stringByAppendingPathComponent: @"Ceres"];
-}
-
 - (NSManagedObjectContext *) managedObjectContext
 {
   if (!managedObjectContext) {
@@ -178,13 +171,13 @@ static Ceres * shared;
 
 - (NSPersistentStore *) persistentStore
 {
-  return [[[self persistentStoreCoordinator] persistentStores] objectAtIndex: 0];
+  return [[[self persistentStoreCoordinator] persistentStores] anyObject];
 }
 
 - (NSString *) persistentStorePathForVersion: (NSString *) version
 {
   NSFileManager * fileManager = [NSFileManager defaultManager];
-  NSString * applicationSupportFolder = [self applicationSupportFolder];
+  NSString * applicationSupportFolder = [[NSBundle mainBundle] applicationSupportFolder];
   
   if ( ![fileManager fileExistsAtPath: applicationSupportFolder isDirectory: nil] ) {
     [fileManager createDirectoryAtPath: applicationSupportFolder attributes: nil];
