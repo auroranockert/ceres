@@ -30,6 +30,9 @@
 @property(retain) NSString * name;
 @property(retain) NSSet * groups;
 
+- (id) initWithDictionary: (NSDictionary *) dictionary;
+
 + (void) load: (NSXMLDocument *) document;
++ (void) worker;
 
 @end

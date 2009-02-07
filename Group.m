@@ -26,6 +26,16 @@
 @dynamic identifier, name, published;
 @dynamic category, items;
 
+- (id) initWithDictionary: (NSDictionary *) dictionary
+{
+  if (self = [super initWithIdentifier: [dictionary valueForKey: @"Identifier"]]) {
+    [self setName: [dictionary valueForKey: @"Name"]];
+    [self setCategory: [Category findWithIdentifier: [dictionary valueForKey: @"categoryIdentifier"]]];
+  }
+  
+  return self;
+}
+
 + (NSEntityDescription *) entityDescription
 {
   static NSEntityDescription * entityDescription;
@@ -41,11 +51,27 @@
 {
   NSArray * groups = [document readNodes: @"/groups/group"];
   
-  for (NSXMLNode * group in groups)
+  NSThread * worker = [[NSThread alloc] initWithTarget: [self class] selector: @selector(worker) object: nil];
+  [worker process: groups sender: self];
+}
+
++ (void) worker
+{
+  NSArray * objects = [[[NSThread currentThread] threadDictionary] valueForKey: @"Object"];
+  NSMutableSet * queue = [[[NSThread currentThread] threadDictionary] valueForKey: @"Queue"];
+  NSLock * lock = [[[NSThread currentThread] threadDictionary] valueForKey: @"Lock"];
+  
+  for (NSXMLNode * group in objects)
   {
-    Group * g = [[Group alloc] initWithIdentifier: [[group readNode: @"/identifier"] numberValueInteger]];
-    [g setName: [[group readNode: @"/name"] stringValue]];
-    [g setCategory: [Category findWithIdentifier: [[group readNode: @"/categoryIdentifier"] numberValueInteger]]];
+    NSDictionary * dictionary = [[NSDictionary alloc] initWithObjectsAndKeys:
+                                 [[group readNode: @"/identifier"] numberValueInteger], @"Identifier",
+                                 [[group readNode: @"/name"] stringValue], @"Name",
+                                 [[group readNode: @"/categoryIdentifier"] numberValueInteger], @"CategoryIdentifier",
+                                 nil];
+    
+    [lock lock];
+    [queue addObject: dictionary];
+    [lock unlock];
   }
 }
 

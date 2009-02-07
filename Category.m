@@ -26,6 +26,15 @@
 @dynamic identifier, name, published;
 @dynamic groups;
 
+- (id) initWithDictionary: (NSDictionary *) dictionary
+{
+  if (self = [super initWithIdentifier: [dictionary valueForKey: @"Identifier"]]) {
+    [self setName: [dictionary valueForKey: @"Name"]];
+  }
+  
+  return self;
+}
+
 + (NSEntityDescription *) entityDescription
 {
   static NSEntityDescription * entityDescription;
@@ -41,10 +50,26 @@
 {
   NSArray * categories = [document readNodes: @"/categories/category"];
   
-  for (NSXMLNode * category in categories)
+  NSThread * worker = [[NSThread alloc] initWithTarget: [self class] selector: @selector(worker) object: nil];
+  [worker process: categories sender: self];
+}
+
++ (void) worker
+{
+  NSArray * objects = [[[NSThread currentThread] threadDictionary] valueForKey: @"Object"];
+  NSMutableSet * queue = [[[NSThread currentThread] threadDictionary] valueForKey: @"Queue"];
+  NSLock * lock = [[[NSThread currentThread] threadDictionary] valueForKey: @"Lock"];
+  
+  for (NSXMLNode * category in objects)
   {
-    Category * c = [[Category alloc] initWithIdentifier: [[category readNode: @"/identifier"] numberValueInteger]];
-    [c setName: [[category readNode: @"/name"] stringValue]];
+    NSDictionary * dictionary = [[NSDictionary alloc] initWithObjectsAndKeys:
+                                 [[category readNode: @"/identifier"] numberValueInteger], @"Identifier",
+                                 [[category readNode: @"/name"] stringValue], @"Name",
+                                 nil];
+    
+    [lock lock];
+    [queue addObject: dictionary];
+    [lock unlock];
   }
 }
 

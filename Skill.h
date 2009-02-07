@@ -34,6 +34,4 @@
 
 - (NSNumber *) skillpointsForLevel: (NSNumber *) level;
 
-+ (void) load: (NSXMLDocument *) document;
-
 @end

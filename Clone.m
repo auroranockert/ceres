@@ -25,6 +25,15 @@
 
 @dynamic skillpoints;
 
+- (id) initWithDictionary: (NSDictionary *) dictionary
+{
+  if (self = [super initWithDictionary: dictionary]) {
+    [self setSkillpoints: [dictionary objectForKey: @"Skillpoints"]];
+  }
+  
+  return self;
+}
+
 + (NSEntityDescription *) entityDescription
 {
   static NSEntityDescription * entityDescription;
@@ -40,13 +49,28 @@
 {
   NSArray * clones = [document readNodes: @"/clones/clone"];
   
-  for (NSXMLNode * clone in clones)
+  NSThread * worker = [[NSThread alloc] initWithTarget: [self class] selector: @selector(worker) object: nil];
+  [worker process: clones sender: self];
+}
+
++ (void) worker
+{
+  NSArray * objects = [[[NSThread currentThread] threadDictionary] valueForKey: @"Object"];
+  NSMutableSet * queue = [[[NSThread currentThread] threadDictionary] valueForKey: @"Queue"];
+  NSLock * lock = [[[NSThread currentThread] threadDictionary] valueForKey: @"Lock"];
+  
+  for (NSXMLNode * clone in objects)
   {
-    Clone * c = [[Clone alloc] initWithIdentifier: [[clone readNode: @"/identifier"] numberValueInteger]];
+    NSDictionary * dictionary = [[NSDictionary alloc] initWithObjectsAndKeys:
+                                 [[clone readNode: @"/identifier"] numberValueInteger], @"Identifier",
+                                 [[clone readNode: @"/name"] stringValue], @"Name",
+                                 [[clone readNode: @"/price"] numberValueInteger], @"Price",
+                                 [[clone readNode: @"/skillpoints"] numberValueInteger], @"Skillpoints",
+                                 nil];
     
-    [c setName: [[clone readNode: @"/name"] stringValue]];
-    [c setSkillpoints:[[clone readNode: @"/skillpoints"] numberValueInteger]];
-    [c setPrice: [[clone readNode: @"/price"] numberValueInteger]];
+    [lock lock];
+    [queue addObject: dictionary];
+    [lock unlock];
   }
 }
 

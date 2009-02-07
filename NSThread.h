@@ -1,5 +1,5 @@
 //
-//  NSArray.h
+//  NSThread.h
 //  This file is part of Ceres.
 //
 //  Ceres is free software: you can redistribute it and/or modify
@@ -15,14 +15,15 @@
 //  You should have received a copy of the GNU General Public License
 //  along with Ceres.  If not, see <http://www.gnu.org/licenses/>.
 //
-//  Created by Jens Nockert on 2/6/09.
+//  Created by Jens Nockert on 2/7/09.
 //
 
-#import "NSArray.h"
-#import "NSBundle.h"
+#import <Cocoa/Cocoa.h>
 
-#import "NSXMLDocument.h"
-#import "NSXMLNode.h"
 
-#import "NSNumber.h"
-#import "NSThread.h"
+@interface NSThread (CeresAdditions)
+
+- (void) process: (NSArray *) object sender: (id) sender;
+- (void) setObject: (id) object queue: (NSMutableSet *) queue lock: (NSLock *) lock;
+
+@end

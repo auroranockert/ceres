@@ -25,6 +25,19 @@
 
 @dynamic rank, primaryAttribute, secondaryAttribute;
 
+- (id) initWithDictionary: (NSDictionary *) dictionary
+{
+  if (self = [super initWithDictionary: dictionary]) {
+    [self setRank: [dictionary objectForKey: @"Rank"]];
+    [self setPrimaryAttribute: [dictionary objectForKey: @"PrimaryAttribute"]];
+    [self setSecondaryAttribute: [dictionary objectForKey: @"SecondaryAttribute"]];
+    [self setMarketGroup: [MarketGroup findWithIdentifier: [dictionary objectForKey: @"MarketGroupIdentifier"]]];
+    [self setGroup: [Group findWithIdentifier: [dictionary objectForKey: @"GroupIdentifier"]]];
+  }
+  
+  return self;  
+}
+
 + (NSEntityDescription *) entityDescription
 {
   static NSEntityDescription * entityDescription;
@@ -40,24 +53,33 @@
 {
   NSArray * skills = [document readNodes: @"/skills/skill"];
   
-  for (NSXMLNode * skill in skills)
+  NSThread * worker = [[NSThread alloc] initWithTarget: [self class] selector: @selector(worker) object: nil];
+  [worker process: skills sender: self];
+}
+
++ (void) worker
+{
+  NSArray * objects = [[[NSThread currentThread] threadDictionary] valueForKey: @"Object"];
+  NSMutableSet * queue = [[[NSThread currentThread] threadDictionary] valueForKey: @"Queue"];
+  NSLock * lock = [[[NSThread currentThread] threadDictionary] valueForKey: @"Lock"];
+  
+  for (NSXMLNode * clone in objects)
   {
-    Skill * s = [[Skill alloc] initWithIdentifier: [[skill readNode: @"/identifier"] numberValueInteger]];
-    [s setName: [[skill readNode: @"/name"] stringValue]];
-    [s setPrice: [[skill readNode: @"/price"] numberValueInteger]];
-    [s setRank: [[skill readNode: @"/rank"] numberValueInteger]];
-    [s setPrimaryAttribute: [[skill readNode: @"/primaryAttribute"] stringValue]];
-    [s setSecondaryAttribute: [[skill readNode: @"/secondaryAttribute"] stringValue]];
-    NSInteger ident = [[skill readNode: @"/marketGroupIdentifier"] integerValue];
-    if (ident) {
-      [s setMarketGroup: [MarketGroup findWithIdentifier: [NSNumber numberWithInteger: ident]]];
-    }
+    NSDictionary * dictionary = [[NSDictionary alloc] initWithObjectsAndKeys:
+                                 [[clone readNode: @"/identifier"] numberValueInteger], @"Identifier",
+                                 [[clone readNode: @"/name"] stringValue], @"Name",
+                                 [[clone readNode: @"/price"] numberValueInteger], @"Price",
+                                 [[clone readNode: @"/rank"] numberValueInteger], @"Rank",
+                                 [[clone readNode: @"/primaryAttribute"] stringValue], @"PrimaryAttribute",
+                                 [[clone readNode: @"/secondaryAttribute"] stringValue], @"SecondaryAttribute",
+                                 [[clone readNode: @"/marketGroupIdentifier"] numberValueInteger], @"MarketGroupIdentifier",
+                                 [[clone readNode: @"/groupIdentifier"] numberValueInteger], @"GroupIdentifier",
+                                 nil];
     
-    ident = [[skill readNode: @"/groupIdentifier"] integerValue];
-    if (ident) {
-      [s setGroup: [Group findWithIdentifier: [NSNumber numberWithInteger: ident]]];
-    }
-  }
+    [lock lock];
+    [queue addObject: dictionary];
+    [lock unlock];
+  }  
 }
 
 - (NSNumber *) skillpointsForLevel: (NSNumber *) level

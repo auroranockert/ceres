@@ -25,6 +25,16 @@
 
 @dynamic price, description, group, marketGroup;
 
+- (id) initWithDictionary: (NSDictionary *) dictionary
+{
+  if (self = [super initWithIdentifier: [dictionary objectForKey: @"Identifier"]]) {
+    [self setName: [dictionary objectForKey: @"Name"]];
+    [self setPrice: [dictionary objectForKey: @"Price"]];
+  }
+      
+  return self;
+}
+
 + (NSEntityDescription *) entityDescription
 {
   static NSEntityDescription * entityDescription;
@@ -34,6 +44,16 @@
   }
   
   return entityDescription;  
+}
+
++ (void) load: (NSXMLDocument *) document
+{
+  NSLog(@"Error: Loading ItemType.");
+}
+
++ (void) worker
+{
+  NSLog(@"Error: Worker ItemType.");
 }
 
 - (void) invalidate

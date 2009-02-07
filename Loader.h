@@ -52,3 +52,10 @@
 - (void) finished;
 
 @end
+
+@interface NSObject (LoadingDelegate)
+
+- (void) setName: (NSString *) count: (NSInteger) count;
+- (void) setComplete: (NSInteger) complete;
+
+@end

@@ -33,6 +33,9 @@
 @property(retain) Category * category;
 @property(retain) NSSet * items;
 
+- (id) initWithDictionary: (NSDictionary *) dictionary;
+
 + (void) load: (NSXMLDocument *) document;
++ (void) worker;
 
 @end

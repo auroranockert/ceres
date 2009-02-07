@@ -20,11 +20,22 @@
 
 #import "MarketGroup.h"
 
+#import "Loader.h"
 
 @implementation MarketGroup
 
 @dynamic identifier, name, published;
 @dynamic parent, children, items, hasTypes;
+
+- (id) initWithDictionary: (NSDictionary *) dictionary
+{
+  if (self = [super initWithIdentifier: [dictionary valueForKey: @"Identifier"]]) {
+    [self setName: [dictionary valueForKey: @"Name"]];
+    [self setHasTypes: [dictionary valueForKey: @"HasTypes"]];
+  }
+  
+  return self;
+}
 
 + (NSEntityDescription *) entityDescription
 {
@@ -41,25 +52,36 @@
 {
   NSArray * marketGroups = [document readNodes: @"/marketgroups/marketgroup"];
   
+  NSThread * worker = [[NSThread alloc] initWithTarget: [self class] selector: @selector(worker) object: nil];
+  [worker process: marketGroups sender: self];
+  
   for (NSXMLNode * marketGroup in marketGroups)
   {
-    MarketGroup * group = [[MarketGroup alloc] initWithIdentifier: [NSNumber numberWithInteger: [[[marketGroup readNode: @"/identifier"] stringValue] integerValue]]];
-    [group setName: [[marketGroup readNode: @"/name"] stringValue]];
-    [group setHasTypes: [NSNumber numberWithBool: [[[marketGroup readNode: @"/hasTypes"] stringValue] compare: @"1"] ? true : false]];
+    NSInteger parentIdentifier = [[marketGroup readNode: @"/parentIdentifier"] integerValue];
+    
+    if(parentIdentifier) {
+      [[MarketGroup findWithIdentifier: [[marketGroup readNode: @"/identifier"] numberValueInteger]] setParent: [MarketGroup findWithIdentifier: [[marketGroup readNode: @"/parentIdentifier"] numberValueInteger]]];
+    }
   }
-    
-  for (NSXMLNode * marketGroup in marketGroups)
+}
+
++ (void) worker
+{
+  NSArray * objects = [[[NSThread currentThread] threadDictionary] valueForKey: @"Object"];
+  NSMutableSet * queue = [[[NSThread currentThread] threadDictionary] valueForKey: @"Queue"];
+  NSLock * lock = [[[NSThread currentThread] threadDictionary] valueForKey: @"Lock"];
+  
+  for (NSXMLNode * marketGroup in objects)
   {
-    MarketGroup * child = [MarketGroup findWithIdentifier: [[marketGroup readNode: @"/identifier"] numberValueInteger]];
-    MarketGroup * parent;
-    if([[marketGroup readNode: @"/parentIdentifier"] integerValue] == 0) {
-      parent = nil;
-    }
-    else {
-      parent = [MarketGroup findWithIdentifier: [[marketGroup readNode: @"/parentIdentifier"] numberValueInteger]];
-    }
+    NSDictionary * dictionary = [[NSDictionary alloc] initWithObjectsAndKeys:
+    [[marketGroup readNode: @"/identifier"] numberValueInteger], @"Identifier",
+    [[marketGroup readNode: @"/name"] stringValue], @"Name",
+    [NSNumber numberWithBool: [[marketGroup readNode: @"/hasTypes"] integerValue]], @"HasTypes",
+     nil];
     
-    [child setParent: parent];
+    [lock lock];
+    [queue addObject: dictionary];
+    [lock unlock];
   }
 }
 

@@ -32,6 +32,9 @@
 @property(retain) NSSet * children, * items;
 @property(retain) NSNumber * hasTypes;
 
+- (id) initWithDictionary: (NSDictionary *) dictionary;
+
 + (void) load: (NSXMLDocument *) document;
++ (void) worker;
 
 @end

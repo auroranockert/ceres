@@ -26,6 +26,19 @@
 @dynamic slot;
 @dynamic attribute, attributeBonus;
 
+- (id) initWithDictionary: (NSDictionary *) dictionary
+{
+  if (self = [super initWithDictionary: dictionary]) {
+    [self setAttribute: [dictionary objectForKey: @"Attribute"]];
+    [self setAttributeBonus: [dictionary objectForKey: @"AttributeBonus"]];
+    [self setSlot: [dictionary objectForKey: @"AttributeBonus"]];
+    [self setMarketGroup: [MarketGroup findWithIdentifier: [dictionary objectForKey: @"MarketGroupIdentifier"]]];
+    [self setGroup: [Group findWithIdentifier: [dictionary objectForKey: @"GroupIdentifier"]]];
+  }
+  
+  return self;
+}
+
 + (NSEntityDescription *) entityDescription
 {
   static NSEntityDescription * entityDescription;
@@ -41,24 +54,32 @@
 {
   NSArray * implants = [document readNodes: @"/implants/implant"];
   
-  for (NSXMLNode * implant in implants)
+  NSThread * worker = [[NSThread alloc] initWithTarget: [self class] selector: @selector(worker) object: nil];
+  [worker process: implants sender: self];
+}
+
++ (void) worker
+{
+  NSArray * objects = [[[NSThread currentThread] threadDictionary] valueForKey: @"Object"];
+  NSMutableSet * queue = [[[NSThread currentThread] threadDictionary] valueForKey: @"Queue"];
+  NSLock * lock = [[[NSThread currentThread] threadDictionary] valueForKey: @"Lock"];
+  
+  for (NSXMLNode * clone in objects)
   {
-    Implant * i = [[Implant alloc] initWithIdentifier: [[implant readNode: @"/identifier"] numberValueInteger]];
-    [i setName: [[implant readNode: @"/name"] stringValue]];
-    [i setPrice: [[implant readNode: @"/price"] numberValueInteger]];
-    [i setAttribute: [[implant readNode: @"/attribute"] stringValue]];
-    [i setAttributeBonus: [[implant readNode: @"/attributeBonus"] numberValueInteger]];
-    [i setSlot: [[implant readNode: @"/slot"] numberValueInteger]];
+    NSDictionary * dictionary = [[NSDictionary alloc] initWithObjectsAndKeys:
+                                 [[clone readNode: @"/identifier"] numberValueInteger], @"Identifier",
+                                 [[clone readNode: @"/name"] stringValue], @"Name",
+                                 [[clone readNode: @"/price"] numberValueInteger], @"Price",
+                                 [[clone readNode: @"/attribute"] stringValue], @"Attribute",
+                                 [[clone readNode: @"/attributeBonus"] numberValueInteger], @"AttributeBonus",
+                                 [[clone readNode: @"/slot"] numberValueInteger], @"Slot",
+                                 [[clone readNode: @"/marketGroupIdentifier"] numberValueInteger], @"MarketGroupIdentifier",
+                                 [[clone readNode: @"/groupIdentifier"] numberValueInteger], @"GroupIdentifier",
+                                 nil];
     
-    NSInteger ident = [[implant readNode: @"/marketGroupIdentifier"] integerValue];
-    if (ident) {
-      [i setMarketGroup: [MarketGroup findWithIdentifier: [NSNumber numberWithInteger: ident]]];
-    }
-    
-    ident = [[implant readNode: @"/groupIdentifier"] integerValue];
-    if (ident) {
-      [i setGroup: [Group findWithIdentifier: [NSNumber numberWithInteger: ident]]];
-    }
+    [lock lock];
+    [queue addObject: dictionary];
+    [lock unlock];
   }
 }
 

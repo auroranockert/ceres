@@ -32,4 +32,9 @@
 @property(retain) Group * group;
 @property(retain) MarketGroup * marketGroup;
 
+- (id) initWithDictionary: (NSDictionary *) dictionary;
+
++ (void) load: (NSXMLDocument *) document;
++ (void) worker;
+
 @end
