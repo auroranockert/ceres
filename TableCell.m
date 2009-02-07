@@ -65,7 +65,8 @@
 
 - (NSFont *) nameFont
 {
-  return [NSFont systemFontOfSize: 16];
+  return [NSFont systemFontOfSize: 16
+  ];
 }
 
 - (NSFont *) subStringFont
