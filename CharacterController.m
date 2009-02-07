@@ -120,7 +120,7 @@
 {
   if ([character trainingSkill])
   {
-    return [[NSString alloc] initWithFormat: @"Currently training %@ to level %@", [[character trainingSkill] name], [[character trainingSkill] nextLevel]];
+    return [[NSString alloc] initWithFormat: @"Currently training %@ to level %@ at %@ skillpoints per hour", [[character trainingSkill] name], [[character trainingSkill] nextLevel], [formatter stringFromNumber: [[character trainingSkill] skillpointsPerHour]]];
   }
   else
   {

@@ -76,6 +76,7 @@
 - (CharacterInfo *) characterInfo;
 - (NSImage *) portrait;
 
+- (NSNumber *) attribute: (NSString *) name;
 - (double) learningBonus;
 
 - (void) updateSkillpoints;

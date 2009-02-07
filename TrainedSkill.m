@@ -91,4 +91,9 @@
   }
 }
 
+- (NSNumber *) skillpointsPerHour
+{
+  return [NSNumber numberWithDouble: ([[[self character] attribute: [[self skill] primaryAttribute]] doubleValue] + [[[self character] attribute: [[self skill] secondaryAttribute]] doubleValue] / 2) * 60];
+}
+
 @end

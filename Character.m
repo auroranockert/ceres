@@ -58,6 +58,28 @@
   return 1.0 + 0.02 * [[ts level] integerValue];
 }
 
+- (NSNumber *) attribute: (NSString *) name
+{
+  if ([name compare: @"Intelligence"] == NSOrderedSame) {
+    return [self intelligence];
+  }
+  else if ([name compare: @"Perception"] == NSOrderedSame) {
+    return [self perception];
+  }
+  else if ([name compare: @"Charisma"] == NSOrderedSame) {
+    return [self perception];
+  }
+  else if ([name compare: @"Willpower"] == NSOrderedSame) {
+    return [self perception];
+  }
+  else if ([name compare: @"Memory"] == NSOrderedSame) {
+    return [self perception];
+  }
+  else {
+    return nil;
+  }
+}
+
 - (NSNumber *) intelligence
 {
   return [NSNumber numberWithDouble: ([[[self baseAttributes] intelligence] integerValue] + [[[self skillAttributes] intelligence] integerValue] + [[[self implantAttributes] intelligence] integerValue]) * [self learningBonus]];

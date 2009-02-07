@@ -42,6 +42,8 @@
 
 - (NSString *) name;
 - (NSNumber *) nextLevel;
+
 - (NSNumber *) requiredSkillpointsForNextLevel;
+- (NSNumber *) skillpointsPerHour;
 
 @end

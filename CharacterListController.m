@@ -29,7 +29,8 @@
   [[[Ceres instance] notificationCenter] addObserver: self selector: @selector(notification:) name: @"Ceres.character.updatedTraining" object: nil];
   
   NSTableColumn * column = [[characterTableView tableColumns] anyObject];
-  [column setDataCell: [[CharacterCell alloc] initWithController: self]];
+  [column setDataCell: [[CharacterCell alloc] initWithController: self
+   ]];
   
   [self setSortDescriptors: [NSArray arrayWithObject: [[NSSortDescriptor alloc] initWithKey: @"identifier" ascending: false]]];
   
