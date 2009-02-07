@@ -23,10 +23,28 @@
 
 @implementation APIController
 
+- (void) awakeFromNib
+{
+  [apiLink setAllowsEditingTextAttributes: true];
+  NSMutableAttributedString * t = [[apiLink attributedStringValue] mutableCopy];
+  NSDictionary *d = [NSDictionary dictionaryWithObject: @"http://myeve.eve-online.com/api/"
+                                                forKey: NSLinkAttributeName];
+  [t addAttributes: d range: NSMakeRange(0, [t length])];
+  [apiLink setAttributedStringValue: t];
+  
+  [apiLink selectText: self];
+  [[apiWindow fieldEditor: true forObject: apiLink] setSelectedRange: NSMakeRange(0, 0)];
+}
+
 - (void) openApiWindow: (id) sender
 {
   [apiWindow setIsVisible: true];
   [apiWindow makeKeyAndOrderFront: self];
+}
+
+- (void) openApiLink: (id) sender
+{
+  [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString: @"http://myeve.eve-online.com/api/"]];
 }
 
 - (void) addApikey: (id) sender

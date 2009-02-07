@@ -26,10 +26,12 @@
   IBOutlet NSTextField * identifier, * apikey;
   IBOutlet NSButton * button;
   IBOutlet NSWindow * apiWindow;
+  IBOutlet NSTextField * apiLink;
 }
 
 - (IBAction) addApikey: (id) sender;
 - (IBAction) openApiWindow: (id) sender;
+- (IBAction) openApiLink: (id) sender;
 
 - (void) freeze;
 - (void) unfreeze;
