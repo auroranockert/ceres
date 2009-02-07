@@ -30,7 +30,12 @@ static Interface * shared;
   @synchronized(self) {
     if (!shared) {
       [[self alloc] init];
+      
       [shared addDelegates];
+      
+      if (![[Character find] count]) {
+        [shared openApiWindow: self];
+      }
     }    
   }
   
@@ -105,6 +110,20 @@ static Interface * shared;
   return true;  
 }
 
+- (void) openApiWindow: (id) sender
+{
+  if (!apiController) {
+    [self loadNib: @"API"];
+  }
+  
+  [apiController openApiWindow: sender];
+}
+
+- (void) closeCurrentWindow: (id) sender
+{
+  [[[NSApplication sharedApplication] mainWindow] performClose: sender];
+}
+
 - (NSString *) applicationNameForGrowl
 {
   return @"Ceres";
@@ -116,6 +135,15 @@ static Interface * shared;
   [dictionary setValue: [NSArray arrayWithObjects: @"Skill training completed", nil] forKey: GROWL_NOTIFICATIONS_DEFAULT];
   [dictionary setValue: [NSArray arrayWithObjects: @"Skill training completed", nil] forKey: GROWL_NOTIFICATIONS_ALL];
   return dictionary; 
+}
+
+- (bool) applicationShouldHandleReopen: (NSApplication *) application hasVisibleWindows: (bool) visible
+{
+  if (!visible) {
+    [ceresWindow setIsVisible: true];
+    [ceresWindow makeKeyAndOrderFront: self];
+  }
+  return true;
 }
 
 @end

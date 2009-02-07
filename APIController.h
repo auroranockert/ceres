@@ -21,7 +21,6 @@
 #import <Cocoa/Cocoa.h>
 
 #import "CeresHeader.h"
-#import "CharacterListController.h"
 
 @interface APIController : NSObject {
   IBOutlet NSTextField * identifier, * apikey;

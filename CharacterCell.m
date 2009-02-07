@@ -42,10 +42,10 @@
     NSInteger current = [[[self character] trainingCurrentSkillpoints] integerValue];
     
     if ([[[[self character] trainingSkill] requiredSkillpointsForNextLevel] integerValue] == 0) {
-      return [[NSString alloc] initWithFormat: @"Training %@ to level %@ is finished", [[[[self character] trainingSkill] skill] name], [[[self character] trainingSkill] nextLevel]];
+      return [[NSString alloc] initWithFormat: @"Training %@ to level %@ is finished", [[[[self character] trainingSkill] skill] name], [[[[self character] trainingSkill] nextLevel] romanValue]];
     }
     else {
-      return [[NSString alloc] initWithFormat: @"Training %@ to level %@ and is finished by %@", [[[[self character] trainingSkill] skill] name], [[[self character] trainingSkill] nextLevel], [formatter stringFromDate: [[self character] trainingEndsAt]]];
+      return [[NSString alloc] initWithFormat: @"Training %@ to level %@ and is finished by %@", [[[[self character] trainingSkill] skill] name], [[[[self character] trainingSkill] nextLevel] romanValue], [formatter stringFromDate: [[self character] trainingEndsAt]]];
     }
   }
   else

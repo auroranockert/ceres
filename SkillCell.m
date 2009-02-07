@@ -52,12 +52,12 @@
 
 - (NSFont *) nameFont
 {
-  return [NSFont fontWithName: @"Lucida Grande" size: 12];
+  return [NSFont systemFontOfSize: 12];
 }
 
 - (NSString *) subString
 {
-  return [NSString stringWithFormat: @"Level %@ (%@ SP)", [skill level], [skill skillpoints]];
+  return [NSString stringWithFormat: @"Level %@ (%@ SP)", [[skill level] romanValue], [skill skillpoints]];
 }
 
 @end

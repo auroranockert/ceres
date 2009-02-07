@@ -23,13 +23,6 @@
 
 @implementation APIController
 
-- (void) awakeFromNib
-{
-  if ([[Character find] count] == 0) {
-    [self openApiWindow: self];
-  }
-}
-
 - (void) openApiWindow: (id) sender
 {
   [apiWindow setIsVisible: true];

@@ -29,4 +29,6 @@
 - (NSNumber *) addInteger: (NSNumber *) other;
 - (NSNumber *) subtractInteger: (NSNumber *) other;
 
+- (NSString *) romanValue;
+
 @end

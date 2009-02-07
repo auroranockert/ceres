@@ -23,8 +23,11 @@
 #import "CeresHeader.h"
 #import <Growl/GrowlApplicationBridge.h>
 
-@interface Interface : NSObject <GrowlApplicationBridgeDelegate> {
+#import "APIController.h"
 
+@interface Interface : NSObject <GrowlApplicationBridgeDelegate> {
+  IBOutlet APIController * apiController;
+  IBOutlet NSWindow * ceresWindow;
 }
 
 @property(retain, readonly) NSManagedObjectContext * managedObjectContext;
@@ -37,5 +40,10 @@
 
 - (bool) loadNib: (NSString *) name;
 - (bool) loadNib: (NSString *) name owner: (id) owner;
+
+- (IBAction) openApiWindow: (id) sender;
+- (IBAction) closeCurrentWindow: (id) sender;
+
+- (bool) applicationShouldHandleReopen: (NSApplication *) application hasVisibleWindows: (bool) visible;
 
 @end

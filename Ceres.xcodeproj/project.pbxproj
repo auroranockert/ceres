@@ -101,6 +101,7 @@
 		B4E9AE3A0F3C8E34007A175C /* NSXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E9AE380F3C8E34007A175C /* NSXMLNode.m */; };
 		B4E9AE7A0F3CAAC0007A175C /* NSNumber.h in Headers */ = {isa = PBXBuildFile; fileRef = B4E9AE780F3CAAC0007A175C /* NSNumber.h */; };
 		B4E9AE7B0F3CAAC0007A175C /* NSNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E9AE790F3CAAC0007A175C /* NSNumber.m */; };
+		B4E9B0130F3DAB2F007A175C /* API.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4E9B0120F3DAB2F007A175C /* API.xib */; };
 		B4F0E6220F22806E00412957 /* Character.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4F0E6210F22806E00412957 /* Character.xib */; };
 		B4F0E65B0F22865900412957 /* CharacterController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F0E65A0F22865900412957 /* CharacterController.m */; };
 /* End PBXBuildFile section */
@@ -247,6 +248,7 @@
 		B4E9AE380F3C8E34007A175C /* NSXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSXMLNode.m; sourceTree = "<group>"; };
 		B4E9AE780F3CAAC0007A175C /* NSNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSNumber.h; sourceTree = "<group>"; };
 		B4E9AE790F3CAAC0007A175C /* NSNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSNumber.m; sourceTree = "<group>"; };
+		B4E9B0120F3DAB2F007A175C /* API.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = API.xib; sourceTree = "<group>"; };
 		B4F0E6210F22806E00412957 /* Character.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Character.xib; sourceTree = "<group>"; };
 		B4F0E6590F22865900412957 /* CharacterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterController.h; sourceTree = "<group>"; };
 		B4F0E65A0F22865900412957 /* CharacterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacterController.m; sourceTree = "<group>"; };
@@ -328,6 +330,7 @@
 				B4A53A680F20B5B600B404E6 /* Ceres.xib */,
 				B4F0E6210F22806E00412957 /* Character.xib */,
 				B462C17F0F2D3140004D04D8 /* License */,
+				B4E9B0120F3DAB2F007A175C /* API.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -439,6 +442,7 @@
 		B40581400F19AF7C009EEDD8 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B4E9B0150F3DACEB007A175C /* API */,
 				B4F0E6580F22863C00412957 /* Character */,
 				B4F0E5F90F2247E200412957 /* Loading */,
 				B4F0E5F80F2247D500412957 /* Ceres */,
@@ -672,11 +676,18 @@
 			name = NSNumber;
 			sourceTree = "<group>";
 		};
-		B4F0E5F80F2247D500412957 /* Ceres */ = {
+		B4E9B0150F3DACEB007A175C /* API */ = {
 			isa = PBXGroup;
 			children = (
 				B402198A0F18FD6C0068D818 /* APIController.h */,
 				B402198B0F18FD6C0068D818 /* APIController.m */,
+			);
+			name = API;
+			sourceTree = "<group>";
+		};
+		B4F0E5F80F2247D500412957 /* Ceres */ = {
+			isa = PBXGroup;
+			children = (
 				B40581760F19BAFF009EEDD8 /* ServerStatusController.h */,
 				B40581770F19BAFF009EEDD8 /* ServerStatusController.m */,
 				B4A53A700F20B8E000B404E6 /* CharacterListController.h */,
@@ -846,6 +857,7 @@
 				B4F0E6220F22806E00412957 /* Character.xib in Resources */,
 				B462C1810F2D3140004D04D8 /* License in Resources */,
 				B496BF5A0F33BA2B00E92DB4 /* dsa_pub.pem in Resources */,
+				B4E9B0130F3DAB2F007A175C /* API.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
