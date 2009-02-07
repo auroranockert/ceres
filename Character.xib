@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="2"/>
+			<integer value="116"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -407,7 +407,15 @@
 											</object>
 											<double key="NSIntercellSpacingWidth">3.000000e+00</double>
 											<double key="NSIntercellSpacingHeight">2.000000e+00</double>
-											<reference key="NSBackgroundColor" ref="689290186"/>
+											<object class="NSColor" key="NSBackgroundColor">
+												<int key="NSColorSpace">6</int>
+												<string key="NSCatalogName">System</string>
+												<string key="NSColorName">_sourceListBackgroundColor</string>
+												<object class="NSColor" key="NSColor">
+													<int key="NSColorSpace">1</int>
+													<bytes key="NSRGB">MC44MzkyMTU3IDAuODY2NjY2NjcgMC44OTgwMzkyMgA</bytes>
+												</object>
+											</object>
 											<object class="NSColor" key="NSGridColor">
 												<int key="NSColorSpace">6</int>
 												<string key="NSCatalogName">System</string>
@@ -423,6 +431,7 @@
 											<int key="NSDraggingSourceMaskForLocal">15</int>
 											<int key="NSDraggingSourceMaskForNonLocal">0</int>
 											<bool key="NSAllowsTypeSelect">NO</bool>
+											<int key="NSTableViewSelectionHighlightStyle">1</int>
 										</object>
 									</object>
 									<string key="NSFrame">{{1, 17}, {493, 237}}</string>
@@ -851,7 +860,6 @@
 							<reference ref="108731446"/>
 							<reference ref="329753740"/>
 							<reference ref="775112321"/>
-							<reference ref="155037631"/>
 							<reference ref="679933693"/>
 							<reference ref="321734794"/>
 							<reference ref="673133007"/>
@@ -861,6 +869,7 @@
 							<reference ref="700702845"/>
 							<reference ref="331901003"/>
 							<reference ref="409660053"/>
+							<reference ref="155037631"/>
 						</object>
 						<reference key="parent" ref="1005"/>
 					</object>
@@ -1138,7 +1147,6 @@
 					<string>116.IBPluginDependency</string>
 					<string>117.IBPluginDependency</string>
 					<string>118.IBPluginDependency</string>
-					<string>119.CustomClassName</string>
 					<string>119.IBPluginDependency</string>
 					<string>121.IBPluginDependency</string>
 					<string>124.IBPluginDependency</string>
@@ -1192,7 +1200,6 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>CharacterTableView</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -1277,18 +1284,6 @@
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">CharacterController.h</string>
 					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">CharacterTableView</string>
-					<string key="superclassName">NSTableView</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier" id="785554452">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">CharacterTableView.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">NSObject</string>
-					<reference key="sourceIdentifier" ref="785554452"/>
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">NSObject</string>

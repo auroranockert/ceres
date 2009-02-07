@@ -22,6 +22,7 @@
 
 #import "CeresHeader.h"
 
+#import "ShadowTextCell.h"
 #import "CharacterCell.h"
 #import "CharacterTableView.h"
 #import "CharacterController.h"

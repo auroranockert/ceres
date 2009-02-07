@@ -80,7 +80,6 @@
 		B49C080C0EF3F4610044268E /* Data.m in Sources */ = {isa = PBXBuildFile; fileRef = B49C080A0EF3F4610044268E /* Data.m */; };
 		B4A5384F0F1FE25C00B404E6 /* CharacterView.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A5384E0F1FE25C00B404E6 /* CharacterView.m */; };
 		B4A539430F1FEB9100B404E6 /* CharacterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A539410F1FEB9100B404E6 /* CharacterCell.m */; };
-		B4A539EF0F20AE4800B404E6 /* CharacterTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A539EE0F20AE4800B404E6 /* CharacterTableView.m */; };
 		B4A53A690F20B5B600B404E6 /* Ceres.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4A53A680F20B5B600B404E6 /* Ceres.xib */; };
 		B4A53A720F20B8E000B404E6 /* CharacterListController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A53A710F20B8E000B404E6 /* CharacterListController.m */; };
 		B4BC10790F12D8FA00179BAD /* Loader.h in Headers */ = {isa = PBXBuildFile; fileRef = B4BC10770F12D8FA00179BAD /* Loader.h */; };
@@ -227,8 +226,6 @@
 		B4A5384E0F1FE25C00B404E6 /* CharacterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacterView.m; sourceTree = "<group>"; };
 		B4A539410F1FEB9100B404E6 /* CharacterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacterCell.m; sourceTree = "<group>"; };
 		B4A539420F1FEB9100B404E6 /* CharacterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterCell.h; sourceTree = "<group>"; };
-		B4A539ED0F20AE4800B404E6 /* CharacterTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterTableView.h; sourceTree = "<group>"; };
-		B4A539EE0F20AE4800B404E6 /* CharacterTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacterTableView.m; sourceTree = "<group>"; };
 		B4A53A680F20B5B600B404E6 /* Ceres.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Ceres.xib; sourceTree = "<group>"; };
 		B4A53A700F20B8E000B404E6 /* CharacterListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterListController.h; sourceTree = "<group>"; };
 		B4A53A710F20B8E000B404E6 /* CharacterListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacterListController.m; sourceTree = "<group>"; };
@@ -379,7 +376,6 @@
 			isa = PBXGroup;
 			children = (
 				B4A539E90F20AD3D00B404E6 /* Elements */,
-				B4C340EE0F1EE97700B2C12F /* Views */,
 				B40581400F19AF7C009EEDD8 /* Controllers */,
 				B40581140F19AE42009EEDD8 /* Main */,
 			);
@@ -569,19 +565,10 @@
 		B4A539E90F20AD3D00B404E6 /* Elements */ = {
 			isa = PBXGroup;
 			children = (
-				B4A539EC0F20AE3500B404E6 /* Control */,
+				B4C340EE0F1EE97700B2C12F /* Views */,
 				B4A5387A0F1FE67600B404E6 /* Cells */,
 			);
 			name = Elements;
-			sourceTree = "<group>";
-		};
-		B4A539EC0F20AE3500B404E6 /* Control */ = {
-			isa = PBXGroup;
-			children = (
-				B4A539ED0F20AE4800B404E6 /* CharacterTableView.h */,
-				B4A539EE0F20AE4800B404E6 /* CharacterTableView.m */,
-			);
-			name = Control;
 			sourceTree = "<group>";
 		};
 		B4BC10370F12CABA00179BAD /* Base Objects */ = {
@@ -917,7 +904,6 @@
 				B40581780F19BAFF009EEDD8 /* ServerStatusController.m in Sources */,
 				B4A5384F0F1FE25C00B404E6 /* CharacterView.m in Sources */,
 				B4A539430F1FEB9100B404E6 /* CharacterCell.m in Sources */,
-				B4A539EF0F20AE4800B404E6 /* CharacterTableView.m in Sources */,
 				B4A53A720F20B8E000B404E6 /* CharacterListController.m in Sources */,
 				B4F0E65B0F22865900412957 /* CharacterController.m in Sources */,
 				B496BF960F33C94E00E92DB4 /* TableCell.m in Sources */,

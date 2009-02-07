@@ -24,10 +24,6 @@
 #define DEFAULT_IMAGE_TEXT_PADDING		6
 #define LINEBREAKMODE                 NSLineBreakByTruncatingTail
 
-@interface NSCell (UndocumentedHighlightDrawing)
-- (void)_drawHighlightWithFrame: (NSRect) cellFrame inView: (NSView *) controlView;
-@end
-
 @implementation TableCell
 
 @synthesize maxImageWidth, imageTextPadding, highlightWhenNotKey;
@@ -69,7 +65,7 @@
 
 - (NSFont *) nameFont
 {
-  return [NSFont fontWithName: @"Lucida Grande" size: 16];
+  return [NSFont systemFontOfSize: 16];
 }
 
 - (NSFont *) subStringFont
@@ -170,10 +166,10 @@
 		destRect.origin.y += (cellFrame.size.height - destRect.size.height) / 2.0;
 	} 
 	
-	BOOL flippedIt = NO;
+	bool flippedIt = false;
 	if (![image isFlipped]) {
-		[image setFlipped:YES];
-		flippedIt = YES;
+		[image setFlipped: true];
+		flippedIt = true;
 	}
 	
 	[NSGraphicsContext saveGraphicsState];
@@ -185,13 +181,13 @@
 	[NSGraphicsContext restoreGraphicsState];
   
 	if (flippedIt) {
-		[image setFlipped:NO];
+		[image setFlipped: false];
 	}
   
 	return destRect.size;
 }
 
-- (void)drawInteriorWithFrame:(NSRect)cellFrame inView:(NSView *)controlView
+- (void) drawInteriorWithFrame: (NSRect) cellFrame inView: (NSView *) controlView
 {
 	[NSGraphicsContext saveGraphicsState];
   
