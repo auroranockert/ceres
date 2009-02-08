@@ -99,7 +99,7 @@ static Loader * shared;
     [delegate setText: [NSString stringWithFormat: @"Migrating complete"]];
   }
   
-  
+  [[Ceres instance] save];  
   [delegate finished];
   
   [[Updater instance] performSelectorOnMainThread: @selector(prepare) withObject: nil waitUntilDone: true];
@@ -157,24 +157,13 @@ static Loader * shared;
   }
   
   finished = 0;
-  double priority = [NSThread threadPriority];
-  [NSThread setThreadPriority: 0.0];
   for (id key in [[loaders allKeys] sortedArrayUsingSelector: @selector(comparePriority:)])
   {
     [delegate setText: [NSString stringWithFormat: @"Parsing data (%d / %d files processed)", finished, [loaders count]]];
-    NSThread * thread = [[NSThread alloc] initWithTarget: key selector: @selector(load:) object: [[loaders objectForKey: key] xml]];
-    [thread start];
-    
-    while (![thread isFinished]) {
-      [[NSRunLoop mainRunLoop] runUntilDate: [NSDate dateWithTimeIntervalSinceNow: 0.0]];
-      [NSThread sleepForTimeInterval: 1.0];
-    }
-    
+    [[NSRunLoop mainRunLoop] runUntilDate: [NSDate dateWithTimeIntervalSinceNow: 0.1]];
+    [key performSelector: @selector(load:) withObject: [[loaders objectForKey: key] xml]];
     finished++;
   }
-  [NSThread setThreadPriority: priority];
-  
-  [[Ceres instance] save];  
 }
 
 - (void) migrate: (NSManagedObjectContext *) from model: (NSManagedObjectModel *) model

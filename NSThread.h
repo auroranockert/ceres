@@ -24,6 +24,5 @@
 @interface NSThread (CeresAdditions)
 
 - (void) process: (NSArray *) object sender: (id) sender;
-- (void) setObject: (id) object queue: (NSMutableSet *) queue lock: (NSLock *) lock;
 
 @end

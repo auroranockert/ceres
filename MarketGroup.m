@@ -62,6 +62,8 @@
     if(parentIdentifier) {
       [[MarketGroup findWithIdentifier: [[marketGroup readNode: @"/identifier"] numberValueInteger]] setParent: [MarketGroup findWithIdentifier: [[marketGroup readNode: @"/parentIdentifier"] numberValueInteger]]];
     }
+    
+    [[NSRunLoop mainRunLoop] runUntilDate: [NSDate dateWithTimeIntervalSinceNow: 0.0]];
   }
 }
 

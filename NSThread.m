@@ -26,25 +26,23 @@
 - (void) process: (NSArray *) object sender: (id) sender
 {
   NSLock * lock = [[NSLock alloc] init];
-  NSMutableSet * queue = [[NSArray alloc] init];
+  NSMutableSet * queue = [[NSMutableSet alloc] init];
   
-  [self setObject: object queue: queue lock: lock];
+  [[self threadDictionary] setObject: object forKey: @"Object"];
+  [[self threadDictionary] setObject: queue forKey: @"Queue"];
+  [[self threadDictionary] setObject: lock forKey: @"Lock"];    
   
-  while ([self isExecuting]) {
-    [[NSRunLoop mainRunLoop] runUntilDate: [NSDate dateWithTimeIntervalSinceNow: 1.0]];
+  [self start];
+  
+  while ([self isExecuting] || [queue count]) {
     [lock lock];
     for (NSDictionary * dictionary in queue) {
       [[[sender class] alloc] initWithDictionary: dictionary];
+      [[NSRunLoop mainRunLoop] runUntilDate: [NSDate dateWithTimeIntervalSinceNow: 0.0]];
     }
+    [queue removeAllObjects];
     [lock unlock];
   }
-}
-
-- (void) setObject: (id) object queue: (NSMutableSet *) queue lock: (NSLock *) lock
-{
-  [[self threadDictionary] setObject: object forKey: @"Object"];
-  [[self threadDictionary] setObject: queue forKey: @"Queue"];
-  [[self threadDictionary] setObject: lock forKey: @"Lock"];  
 }
 
 @end
