@@ -33,6 +33,6 @@
 - (id) initWithDictionary: (NSDictionary *) dictionary;
 
 + (void) load: (NSXMLDocument *) document;
-+ (void) worker;
++ (void) worker: (NSArray *) arguments;
 
 @end

@@ -98,8 +98,7 @@ static Loader * shared;
     
     [delegate setText: [NSString stringWithFormat: @"Migrating complete"]];
   }
-  
-  [[Ceres instance] save];  
+
   [delegate finished];
   
   [[Updater instance] performSelectorOnMainThread: @selector(prepare) withObject: nil waitUntilDone: true];
@@ -164,6 +163,9 @@ static Loader * shared;
     [key performSelector: @selector(load:) withObject: [[loaders objectForKey: key] xml]];
     finished++;
   }
+  
+  
+  [[Ceres instance] save];  
 }
 
 - (void) migrate: (NSManagedObjectContext *) from model: (NSManagedObjectModel *) model

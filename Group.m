@@ -51,16 +51,15 @@
 {
   NSArray * groups = [document readNodes: @"/groups/group"];
   
-  NSThread * worker = [[NSThread alloc] initWithTarget: [self class] selector: @selector(worker) object: nil];
-  [worker process: groups sender: self];
+  [NSThread process: groups sender: self selector: @selector(worker:)];
 }
 
-+ (void) worker
++ (void) worker: (NSArray *) arguments
 {
-  NSArray * objects = [[[NSThread currentThread] threadDictionary] valueForKey: @"Object"];
-  NSMutableSet * queue = [[[NSThread currentThread] threadDictionary] valueForKey: @"Queue"];
-  NSLock * lock = [[[NSThread currentThread] threadDictionary] valueForKey: @"Lock"];
-  
+  NSArray * objects = [arguments objectAtIndex: 0];
+  NSMutableSet * queue = [arguments objectAtIndex: 1];
+  NSLock * lock = [arguments objectAtIndex: 2];
+   
   for (NSXMLNode * group in objects)
   {
     NSDictionary * dictionary = [[NSDictionary alloc] initWithObjectsAndKeys:

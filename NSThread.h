@@ -23,6 +23,6 @@
 
 @interface NSThread (CeresAdditions)
 
-- (void) process: (NSArray *) object sender: (id) sender;
++ (void) process: (NSArray *) object sender: (id) sender selector: (SEL) selector;
 
 @end

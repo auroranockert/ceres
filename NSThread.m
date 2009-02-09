@@ -23,26 +23,34 @@
 
 @implementation NSThread (CeresAdditions)
 
-- (void) process: (NSArray *) object sender: (id) sender
++ (void) process: (NSArray *) object sender: (id) sender selector: (SEL) selector
 {
   NSLock * lock = [[NSLock alloc] init];
   NSMutableSet * queue = [[NSMutableSet alloc] init];
   
-  [[self threadDictionary] setObject: object forKey: @"Object"];
-  [[self threadDictionary] setObject: queue forKey: @"Queue"];
-  [[self threadDictionary] setObject: lock forKey: @"Lock"];    
+  NSArray * array = [NSArray arrayWithObjects: object, queue, lock, nil];
   
-  [self start];
+  NSInteger done = 0;
   
-  while ([self isExecuting] || [queue count]) {
+  NSThread * thread = [[NSThread alloc] initWithTarget: [sender class] selector: selector object: array];
+  
+  [thread start];
+  
+  while (![thread isFinished] || [queue count]) {
     [lock lock];
-    for (NSDictionary * dictionary in queue) {
-      [[[sender class] alloc] initWithDictionary: dictionary];
-      [[NSRunLoop mainRunLoop] runUntilDate: [NSDate dateWithTimeIntervalSinceNow: 0.0]];
-    }
+    NSSet * set = [queue copy];
     [queue removeAllObjects];
     [lock unlock];
+    
+    done += [set count];
+    
+    for (NSDictionary * dictionary in set) {
+      [[[sender class] alloc] initWithDictionary: dictionary];
+    }
+    [[NSRunLoop mainRunLoop] runUntilDate: [NSDate dateWithTimeIntervalSinceNow: 1.0]];
   }
+  
+  NSLog(@"Finished %d / %d %@", done, [object count], [sender class]);
 }
 
 @end

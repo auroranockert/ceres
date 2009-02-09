@@ -29,9 +29,9 @@
 
 - (id) initWithDictionary: (NSDictionary *) dictionary
 {
-  if (self = [super initWithIdentifier: [dictionary valueForKey: @"Identifier"]]) {
-    [self setName: [dictionary valueForKey: @"Name"]];
-    [self setHasTypes: [dictionary valueForKey: @"HasTypes"]];
+  if (self = [super initWithIdentifier: [dictionary objectForKey: @"Identifier"]]) {
+    [self setName: [dictionary objectForKey: @"Name"]];
+    [self setHasTypes: [dictionary objectForKey: @"HasTypes"]];
   }
   
   return self;
@@ -52,9 +52,8 @@
 {
   NSArray * marketGroups = [document readNodes: @"/marketgroups/marketgroup"];
   
-  NSThread * worker = [[NSThread alloc] initWithTarget: [self class] selector: @selector(worker) object: nil];
-  [worker process: marketGroups sender: self];
-  
+  [NSThread process: marketGroups sender: self selector: @selector(worker:)];
+    
   for (NSXMLNode * marketGroup in marketGroups)
   {
     NSInteger parentIdentifier = [[marketGroup readNode: @"/parentIdentifier"] integerValue];
@@ -67,11 +66,11 @@
   }
 }
 
-+ (void) worker
++ (void) worker: (NSArray *) arguments
 {
-  NSArray * objects = [[[NSThread currentThread] threadDictionary] valueForKey: @"Object"];
-  NSMutableSet * queue = [[[NSThread currentThread] threadDictionary] valueForKey: @"Queue"];
-  NSLock * lock = [[[NSThread currentThread] threadDictionary] valueForKey: @"Lock"];
+  NSArray * objects = [arguments objectAtIndex: 0];
+  NSMutableSet * queue = [arguments objectAtIndex: 1];
+  NSLock * lock = [arguments objectAtIndex: 2];
   
   for (NSXMLNode * marketGroup in objects)
   {
@@ -80,7 +79,7 @@
     [[marketGroup readNode: @"/name"] stringValue], @"Name",
     [NSNumber numberWithBool: [[marketGroup readNode: @"/hasTypes"] integerValue]], @"HasTypes",
      nil];
-    
+        
     [lock lock];
     [queue addObject: dictionary];
     [lock unlock];

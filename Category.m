@@ -28,8 +28,8 @@
 
 - (id) initWithDictionary: (NSDictionary *) dictionary
 {
-  if (self = [super initWithIdentifier: [dictionary valueForKey: @"Identifier"]]) {
-    [self setName: [dictionary valueForKey: @"Name"]];
+  if (self = [super initWithIdentifier: [dictionary objectForKey: @"Identifier"]]) {
+    [self setName: [dictionary objectForKey: @"Name"]];
   }
   
   return self;
@@ -50,15 +50,14 @@
 {
   NSArray * categories = [document readNodes: @"/categories/category"];
   
-  NSThread * worker = [[NSThread alloc] initWithTarget: [self class] selector: @selector(worker) object: nil];
-  [worker process: categories sender: self];
+  [NSThread process: categories sender: self selector: @selector(worker:)];
 }
 
-+ (void) worker
++ (void) worker: (NSArray *) arguments
 {
-  NSArray * objects = [[[NSThread currentThread] threadDictionary] valueForKey: @"Object"];
-  NSMutableSet * queue = [[[NSThread currentThread] threadDictionary] valueForKey: @"Queue"];
-  NSLock * lock = [[[NSThread currentThread] threadDictionary] valueForKey: @"Lock"];
+  NSArray * objects = [arguments objectAtIndex: 0];
+  NSMutableSet * queue = [arguments objectAtIndex: 1];
+  NSLock * lock = [arguments objectAtIndex: 2];
   
   for (NSXMLNode * category in objects)
   {

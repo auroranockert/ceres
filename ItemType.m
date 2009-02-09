@@ -51,7 +51,7 @@
   NSLog(@"Error: Loading ItemType.");
 }
 
-+ (void) worker
++ (void) worker: (NSArray *) arguments
 {
   NSLog(@"Error: Worker ItemType.");
 }
