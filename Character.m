@@ -67,13 +67,13 @@
     return [self perception];
   }
   else if ([name compare: @"Charisma"] == NSOrderedSame) {
-    return [self perception];
+    return [self charisma];
   }
   else if ([name compare: @"Willpower"] == NSOrderedSame) {
-    return [self perception];
+    return [self willpower];
   }
   else if ([name compare: @"Memory"] == NSOrderedSame) {
-    return [self perception];
+    return [self memory];
   }
   else {
     return nil;
