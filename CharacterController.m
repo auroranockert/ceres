@@ -149,6 +149,11 @@
   }
 }
 
+- (NSString *) skillCount
+{
+  return [NSString stringWithFormat: @"%d of %d skills are currently trained to level V.", [[[character skills] filteredSetUsingPredicate: [NSPredicate predicateWithFormat: @"level = 5"]] count], [[character skills] count]];
+}
+
 - (NSString *) clone
 {
   return [NSString stringWithFormat: @"%@ (Stores %@ SP)", [[character clone] name], [spFormatter stringFromNumber: [[character clone] skillpoints]]];
