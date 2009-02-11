@@ -77,7 +77,7 @@ static Interface * shared;
   [GrowlApplicationBridge notifyWithTitle: [character name]
                               description: [NSString stringWithFormat: @"Training %@ to level %@ complete", [[character trainingSkill] nextLevel], [[character trainingSkill] name]]
                          notificationName: @"Skill training completed"
-                                 iconData: [character portraitData]
+                                 iconData: [[[character portrait] imageWithRoundedCorners: 10.0] TIFFRepresentation]
                                  priority: 0
                                  isSticky: true
                              clickContext: nil];

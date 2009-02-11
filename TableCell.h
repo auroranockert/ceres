@@ -20,15 +20,13 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import "CeresAdditions.h"
 
-@interface TableCell : NSCell {
-	float maxImageWidth;
-	float imageTextPadding;
-	bool highlightWhenNotKey;  
+@interface TableCell : NSTextFieldCell {
+  float maxImageWidth, imageTextPadding;
 }
 
 @property(assign) float maxImageWidth, imageTextPadding;
-@property(assign) bool highlightWhenNotKey;
 
 - (NSImage *) image;
 
@@ -37,5 +35,7 @@
 
 - (NSFont *) nameFont;
 - (NSFont *) subStringFont;
+
+- (NSParagraphStyle *) paragraphStyle;
 
 @end

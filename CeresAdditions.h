@@ -26,3 +26,6 @@
 
 #import "NSNumber.h"
 #import "NSThread.h"
+
+#import "NSRect.h"
+#import "NSImage.h"

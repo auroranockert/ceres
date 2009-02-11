@@ -65,7 +65,6 @@
 
 - (void) setObjectValue: (id) object
 {
-  [super setObjectValue: object];
   [self setCharacter: object];
 }
 

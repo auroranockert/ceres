@@ -11,6 +11,9 @@
 		8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
 		B402188D0F183BCB0068D818 /* LoadingController.m in Sources */ = {isa = PBXBuildFile; fileRef = B402188C0F183BCB0068D818 /* LoadingController.m */; };
 		B402198C0F18FD6C0068D818 /* APIController.m in Sources */ = {isa = PBXBuildFile; fileRef = B402198B0F18FD6C0068D818 /* APIController.m */; };
+		B403190C0F41D20400A99577 /* NSRect.h in Headers */ = {isa = PBXBuildFile; fileRef = B403190A0F41D20400A99577 /* NSRect.h */; };
+		B40319EE0F4251C200A99577 /* NSImage.h in Headers */ = {isa = PBXBuildFile; fileRef = B40319EC0F4251C200A99577 /* NSImage.h */; };
+		B40319EF0F4251C200A99577 /* NSImage.m in Sources */ = {isa = PBXBuildFile; fileRef = B40319ED0F4251C200A99577 /* NSImage.m */; };
 		B4050EDF0EF5143900584535 /* ServerStatus.h in Headers */ = {isa = PBXBuildFile; fileRef = B4050EDD0EF5143900584535 /* ServerStatus.h */; };
 		B4050EE00EF5143900584535 /* ServerStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = B4050EDE0EF5143900584535 /* ServerStatus.m */; };
 		B40510510EF6C60F00584535 /* ItemType.h in Headers */ = {isa = PBXBuildFile; fileRef = B405104F0EF6C60F00584535 /* ItemType.h */; };
@@ -153,6 +156,9 @@
 		B402188C0F183BCB0068D818 /* LoadingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingController.m; sourceTree = "<group>"; };
 		B402198A0F18FD6C0068D818 /* APIController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIController.h; sourceTree = "<group>"; };
 		B402198B0F18FD6C0068D818 /* APIController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIController.m; sourceTree = "<group>"; };
+		B403190A0F41D20400A99577 /* NSRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSRect.h; sourceTree = "<group>"; };
+		B40319EC0F4251C200A99577 /* NSImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSImage.h; sourceTree = "<group>"; };
+		B40319ED0F4251C200A99577 /* NSImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSImage.m; sourceTree = "<group>"; };
 		B4050EDD0EF5143900584535 /* ServerStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerStatus.h; sourceTree = "<group>"; };
 		B4050EDE0EF5143900584535 /* ServerStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerStatus.m; sourceTree = "<group>"; };
 		B405104F0EF6C60F00584535 /* ItemType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemType.h; sourceTree = "<group>"; };
@@ -390,6 +396,16 @@
 			name = "Ceres Interface";
 			sourceTree = "<group>";
 		};
+		B40319090F41D1F200A99577 /* Geometry */ = {
+			isa = PBXGroup;
+			children = (
+				B403190A0F41D20400A99577 /* NSRect.h */,
+				B40319EC0F4251C200A99577 /* NSImage.h */,
+				B40319ED0F4251C200A99577 /* NSImage.m */,
+			);
+			name = Geometry;
+			sourceTree = "<group>";
+		};
 		B4050EDA0EF5141900584535 /* Server Status */ = {
 			isa = PBXGroup;
 			children = (
@@ -610,6 +626,7 @@
 		B4E9AD950F3C8363007A175C /* Additions */ = {
 			isa = PBXGroup;
 			children = (
+				B40319090F41D1F200A99577 /* Geometry */,
 				B4FF57B70F3DEC1A00F67A6C /* CeresSpecific */,
 				B4E9AE770F3CAAB3007A175C /* NSNumber */,
 				B4E9AE350F3C8E1A007A175C /* XML */,
@@ -773,6 +790,8 @@
 				B4E9AE390F3C8E34007A175C /* NSXMLNode.h in Headers */,
 				B4E9AE7A0F3CAAC0007A175C /* NSNumber.h in Headers */,
 				B4FF57B50F3DEB3B00F67A6C /* NSThread.h in Headers */,
+				B403190C0F41D20400A99577 /* NSRect.h in Headers */,
+				B40319EE0F4251C200A99577 /* NSImage.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -918,6 +937,7 @@
 				B4E9AE3A0F3C8E34007A175C /* NSXMLNode.m in Sources */,
 				B4E9AE7B0F3CAAC0007A175C /* NSNumber.m in Sources */,
 				B4FF57B60F3DEB3B00F67A6C /* NSThread.m in Sources */,
+				B40319EF0F4251C200A99577 /* NSImage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

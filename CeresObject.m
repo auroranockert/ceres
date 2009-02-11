@@ -30,6 +30,12 @@
 
 - (id) initWithIdentifier: (NSNumber *) identifier
 {
+  id possible = [[self class] findWithIdentifier: identifier];
+  
+  if (possible) {
+    return possible;
+  }
+  
   if (self = [self init]) {
     [self setValue: identifier forKey: @"identifier"];
   }
