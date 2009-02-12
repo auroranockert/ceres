@@ -39,6 +39,8 @@
 
 + (NSArray *) findWithCharacter: (Character *) character;
 + (id) findWithCharacter: (Character *) character skill: (Skill *) skill;
++ (NSArray *) findWithCharacter: (Character *) character group: (Group *) group;
++ (NSArray *) findWithCharacter: (Character *) character marketGroup: (MarketGroup *) group;
 
 - (NSString *) name;
 - (NSNumber *) nextLevel;

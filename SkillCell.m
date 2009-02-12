@@ -23,7 +23,7 @@
 
 @implementation SkillCell
 
-@synthesize skill;
+@synthesize skill, group;
 
 - (id)copyWithZone: (NSZone *) zone
 {
@@ -35,9 +35,17 @@
 }
 
 - (void) setObjectValue: (id) object
-{
+{  
   [super setObjectValue: object];
-  [self setSkill: object];
+  
+  if ([object class] == [TrainedSkill class]) {
+    [self setSkill: object];
+    [self setGroup: nil];
+  }
+  else if ([object class] == [Group class]) {
+    [self setSkill: nil];
+    [self setGroup: object];
+  }
 }
 
 - (NSImage *) image
@@ -47,17 +55,29 @@
 
 - (NSString *) name
 {
-  return [[skill skill] name];
+  if (skill) {
+    return [skill name];
+  }
+  
+  return [group name];
 }
 
 - (NSFont *) nameFont
 {
-  return [NSFont systemFontOfSize: 12];
+  if (skill) {
+    return [NSFont systemFontOfSize: 12];
+  }
+  
+  return [NSFont systemFontOfSize: 16];  
 }
 
 - (NSString *) subString
 {
-  return [NSString stringWithFormat: @"Level %@ (%@ SP)", [[skill level] romanValue], [skill skillpoints]];
+  if ([self skill]) {
+    return [NSString stringWithFormat: @"Level %@ (%@ SP)", [[skill level] romanValue], [skill skillpoints]];
+  }
+  
+  return nil;
 }
 
 @end

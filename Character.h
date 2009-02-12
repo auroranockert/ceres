@@ -42,7 +42,7 @@
 @class ImplantSet;
 
 @interface Character : EveObject {
-
+  NSArray * skillGroups;
 }
 
 @property(retain) NSString * race, * bloodline, * gender;
@@ -65,6 +65,7 @@
 @property(retain) TrainedSkill * trainingSkill;
 @property(retain) NSDate * trainingStartedAt, * trainingEndsAt, * trainingCachedUntil;
 @property(retain) NSNumber * trainingToLevel, * trainingSkillpointsEnd;
+@property(retain) NSArray * skillGroups;
 
 @property(retain) NSSet * skills;
 @property(retain) NSNumber * skillpoints;
@@ -79,7 +80,9 @@
 - (NSNumber *) attribute: (NSString *) name;
 - (double) learningBonus;
 
+- (void) updateSkillGroups;
 - (void) updateSkillpoints;
+
 - (NSNumber *) trainingCurrentSkillpoints;
 
 - (void) prepareMessages;

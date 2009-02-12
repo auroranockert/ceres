@@ -29,11 +29,43 @@
 
   character = [characterController character];
   
-  NSTableColumn * column = [[skillTableView tableColumns] anyObject];
+  NSTableColumn * column = [[skillOutlineView tableColumns] anyObject];
   [column setDataCell: [[SkillCell alloc] init]];
   
   [self setSortDescriptors: [NSArray arrayWithObjects: [[NSSortDescriptor alloc] initWithKey: @"skill.group.name" ascending: true], [[NSSortDescriptor alloc] initWithKey: @"skill.name" ascending: true], nil]];
   [self setFetchPredicate: [NSPredicate predicateWithFormat: @"character = %@", character, character]];
+}
+
+- (id) outlineView: (NSOutlineView *) outlineView child: (NSInteger) index ofItem: (id) item
+{
+  if (item) {
+    return [[TrainedSkill findWithCharacter: character group: item] objectAtIndex: index];
+  }
+  
+  return [[character skillGroups] objectAtIndex: index];
+}
+
+- (bool) outlineView: (NSOutlineView *) outlineView isItemExpandable: (id)item
+{
+  if ([item class] == [Group class]) {
+    return true;
+  }
+  
+  return false;
+}
+
+- (NSInteger) outlineView: (NSOutlineView *) outlineView numberOfChildrenOfItem: (id)item
+{
+  if (item) {
+    return [[TrainedSkill findWithCharacter: character group: item] count];
+  }
+  
+  return [[character skillGroups] count];
+}
+
+- (id) outlineView: (NSOutlineView *) outlineView objectValueForTableColumn: (NSTableColumn *) tableColumn byItem: (id) item
+{
+  return item;
 }
 
 @end

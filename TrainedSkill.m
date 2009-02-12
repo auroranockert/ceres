@@ -69,6 +69,22 @@
   return [[self findWithSort: sort predicate: predicate] anyObject];
 }
 
++ (NSArray *) findWithCharacter: (Character *) character group: (Group *) group
+{
+  NSSortDescriptor * sort = [[NSSortDescriptor alloc] initWithKey: @"skill.name" ascending: true];
+  NSPredicate * predicate = [NSPredicate predicateWithFormat: @"character == %@ AND skill.group == %@", character, group];
+  
+  return [self findWithSort: sort predicate: predicate];
+}
+
++ (NSArray *) findWithCharacter: (Character *) character marketGroup: (MarketGroup *) group
+{
+  NSSortDescriptor * sort = [[NSSortDescriptor alloc] initWithKey: @"skill.name" ascending: true];
+  NSPredicate * predicate = [NSPredicate predicateWithFormat: @"character == %@ AND skill.marketGroup == %@", character, group];
+  
+  return [self findWithSort: sort predicate: predicate];
+}
+
 - (NSString *) name
 {
   return [[self skill] name];

@@ -38,6 +38,8 @@
 
 @dynamic skills, skillpoints;
 
+@synthesize skillGroups;
+
 
 - (id) initWithIdentifier: (NSNumber *) ident
                   account: (Account *) acc
@@ -261,6 +263,8 @@
       [ts setLevel: [NSNumber numberWithInteger: [[skill readAttribute: @"level"] integerValue]]];
     }
     
+    [self updateSkillGroups];
+    
     [self updateSkillpoints];
   }
   
@@ -323,6 +327,17 @@
   }
 }
 
+- (void) updateSkillGroups
+{
+  NSMutableSet * groups = [[NSMutableSet alloc] init];
+  
+  for (TrainedSkill * skill in [self skills]) {
+    [groups addObject: [[skill skill] group]];
+  }
+  
+  [self setSkillGroups: [[groups allObjects] sortedArrayUsingDescriptors: [NSArray arrayWithObject: [[NSSortDescriptor alloc] initWithKey: @"name" ascending: true]]]];
+}
+
 - (void) updateSkillpoints
 {
   [[self trainingSkill] setSkillpoints: [[[self trainingSkill] skillpoints] addInteger: [self additionalSkillpoints]]];
@@ -339,6 +354,8 @@
   if ([self trainingSkill]) {
     [[Ceres instance] postNotification: [CharacterNotification notificationWithCharacter: self name: @"skillTrainingCompleted"] date: [self trainingEndsAt]];
   }
+  
+  [self updateSkillGroups];
 }
 
 - (void) invalidate

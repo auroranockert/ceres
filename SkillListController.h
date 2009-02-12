@@ -25,7 +25,7 @@
 
 @interface SkillListController : NSArrayController {
   IBOutlet CharacterController * characterController;
-  IBOutlet NSTableView * skillTableView;
+  IBOutlet NSOutlineView * skillOutlineView;
   
   Character * character;
 }

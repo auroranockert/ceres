@@ -26,8 +26,10 @@
 
 @interface SkillCell : TableCell {
   TrainedSkill * skill;
+  Group * group;
 }
 
 @property(retain) TrainedSkill * skill;
+@property(retain) Group * group;
 
 @end

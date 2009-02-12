@@ -43,6 +43,11 @@
   return self;
 }
 
+- (id) copyWithZone: (NSZone *) zone
+{
+  return self;
+}
+
 + (NSEntityDescription *) entityDescription
 {
   NSLog(@"Dummy Entity Description requested for class %@, returned nil. This is a bug.", [self class]);
@@ -99,11 +104,6 @@
 + (NSComparisonResult) comparePriority: (id) other
 {
   return [[NSNumber numberWithInteger: [other priority]] compare: [NSNumber numberWithInteger: [self priority]]];
-}
-
-- (id)copyWithZone:(NSZone *)zone
-{
-  return self;
 }
 
 - (Api *) api
