@@ -264,7 +264,6 @@
     }
     
     [self updateSkillGroups];
-    
     [self updateSkillpoints];
   }
   

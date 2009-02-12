@@ -27,8 +27,7 @@
 {
   [apiLink setAllowsEditingTextAttributes: true];
   NSMutableAttributedString * t = [[apiLink attributedStringValue] mutableCopy];
-  NSDictionary *d = [NSDictionary dictionaryWithObject: @"http://myeve.eve-online.com/api/"
-                                                forKey: NSLinkAttributeName];
+  NSDictionary *d = [NSDictionary dictionaryWithObjectsAndKeys: @"http://myeve.eve-online.com/api/", NSLinkAttributeName, [NSColor blueColor], NSForegroundColorAttributeName, [NSNumber numberWithInteger: NSSingleUnderlineStyle], NSUnderlineStyleAttributeName, nil];
   [t addAttributes: d range: NSMakeRange(0, [t length])];
   [apiLink setAttributedStringValue: t];
   
