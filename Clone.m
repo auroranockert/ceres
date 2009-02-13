@@ -65,6 +65,7 @@
                                  [[clone readNode: @"/name"] stringValue], @"Name",
                                  [[clone readNode: @"/price"] numberValueInteger], @"Price",
                                  [[clone readNode: @"/skillpoints"] numberValueInteger], @"Skillpoints",
+                                 [NSNumber numberWithInteger: 23], @"groupIdentifier",
                                  nil];
     
     [lock lock];

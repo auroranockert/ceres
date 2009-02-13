@@ -31,8 +31,6 @@
     [self setRank: [dictionary objectForKey: @"Rank"]];
     [self setPrimaryAttribute: [dictionary objectForKey: @"PrimaryAttribute"]];
     [self setSecondaryAttribute: [dictionary objectForKey: @"SecondaryAttribute"]];
-    [self setMarketGroup: [MarketGroup findWithIdentifier: [dictionary objectForKey: @"MarketGroupIdentifier"]]];
-    [self setGroup: [Group findWithIdentifier: [dictionary objectForKey: @"GroupIdentifier"]]];
   }
   
   return self;  

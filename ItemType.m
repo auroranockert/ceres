@@ -30,6 +30,8 @@
   if (self = [super initWithIdentifier: [dictionary objectForKey: @"Identifier"]]) {
     [self setName: [dictionary objectForKey: @"Name"]];
     [self setPrice: [dictionary objectForKey: @"Price"]];
+    [self setMarketGroup: [MarketGroup findWithIdentifier: [dictionary objectForKey: @"MarketGroupIdentifier"]]];
+    [self setGroup: [Group findWithIdentifier: [dictionary objectForKey: @"GroupIdentifier"]]];
   }
       
   return self;

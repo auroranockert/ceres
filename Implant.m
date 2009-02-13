@@ -32,8 +32,6 @@
     [self setAttribute: [dictionary objectForKey: @"Attribute"]];
     [self setAttributeBonus: [dictionary objectForKey: @"AttributeBonus"]];
     [self setSlot: [dictionary objectForKey: @"Slot"]];
-    [self setMarketGroup: [MarketGroup findWithIdentifier: [dictionary objectForKey: @"MarketGroupIdentifier"]]];
-    [self setGroup: [Group findWithIdentifier: [dictionary objectForKey: @"GroupIdentifier"]]];
   }
   
   return self;
