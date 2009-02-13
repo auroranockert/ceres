@@ -30,13 +30,23 @@
   
   NSArray * array = [NSArray arrayWithObjects: object, queue, lock, nil];
   
-  NSInteger done = 0;
+  NSInteger done = 0, total = [object count];
+  ItemCount processors = MPProcessors();
   
-  NSThread * thread = [[NSThread alloc] initWithTarget: [sender class] selector: selector object: array];
-  
-  [thread start];
-  
-  while (![thread isFinished] || [queue count]) {
+  for (int i = 0; i < processors; i++) {
+    NSRange range = NSMakeRange(i * (total / processors) + (total % processors), total / processors);
+    
+    if (i == 0) {
+      range = NSMakeRange(0, (total / processors) + (total % processors));
+    }
+    
+    NSArray * array = [NSArray arrayWithObjects: [object subarrayWithRange: range], queue, lock, nil];
+    NSThread * thread = [[NSThread alloc] initWithTarget: [sender class] selector: selector object: array];
+    
+    [thread start];
+  }
+    
+  while (done != total) {
     [lock lock];
     NSSet * set = [queue copy];
     [queue removeAllObjects];
@@ -47,10 +57,11 @@
     for (NSDictionary * dictionary in set) {
       [[[sender class] alloc] initWithDictionary: dictionary];
     }
+    
+    NSLog(@"Finished %d / %d %@", done, total, [sender class]);
+    
     [[NSRunLoop mainRunLoop] runUntilDate: [NSDate dateWithTimeIntervalSinceNow: 1.0]];
   }
-  
-  NSLog(@"Finished %d / %d %@", done, [object count], [sender class]);
 }
 
 @end
