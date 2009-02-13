@@ -49,6 +49,8 @@
   
     [self invalidate];
     [self update];
+    
+    [[Ceres instance] postNotification: [CharacterNotification notificationWithCharacter: self name: @"characterAdded"]];
   }
   
   return self;
@@ -361,6 +363,13 @@
 {
   [self setCachedUntil: [[NSDate alloc] initWithTimeIntervalSinceNow: -1]];
   [self setTrainingCachedUntil: [[NSDate alloc] initWithTimeIntervalSinceNow: -1]];
+}
+
+- (void) remove
+{
+  [super remove];
+  
+  [[Ceres instance] postNotification: [CharacterNotification notificationWithCharacter: self name: @"characterRemoved"]];
 }
       
 @end

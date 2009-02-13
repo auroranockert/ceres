@@ -151,7 +151,7 @@
   NSString * nameString = [self name];
   NSString * subString = [self subString];
   
-	BOOL highlighted = [self isHighlighted];
+	bool highlighted = [self isHighlighted];
   
 	if (image) {
     frame.origin.x += imageTextPadding;
@@ -169,7 +169,7 @@
     
 		NSWindow * window;
     
-		if (highlighted && ([[view window] isKeyWindow] && ([[view window] firstResponder] == view))) {
+		if (highlighted) {
 			nameStringColor = [NSColor alternateSelectedControlTextColor];
 			subStringStringColor = [NSColor alternateSelectedControlTextColor];
 		} else {
