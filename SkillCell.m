@@ -74,7 +74,7 @@
 - (NSString *) subString
 {
   if ([self skill]) {
-    return [NSString stringWithFormat: @"Level %@ (%@ SP)", [[skill level] romanValue], [skill skillpoints]];
+    return [NSString stringWithFormat: @"Level %@ (Rank %@) %@ SP", [[skill level] romanValue], [[skill skill] rank], [skill skillpoints]];
   }
   
   return nil;
