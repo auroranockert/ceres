@@ -32,7 +32,8 @@ static Interface * shared;
       [[self alloc] init];
       
       [shared addDelegates];
-      
+      [shared loadNib: @"Menu"];
+
       if (![[Character find] count]) {
         [shared openApiWindow: self];
       }
@@ -144,6 +145,11 @@ static Interface * shared;
     [ceresWindow makeKeyAndOrderFront: self];
   }
   return true;
+}
+
+- (void) updateCeres: (id) sender
+{
+  
 }
 
 @end

@@ -28,6 +28,7 @@
 @interface Interface : NSObject <GrowlApplicationBridgeDelegate> {
   IBOutlet APIController * apiController;
   IBOutlet NSWindow * ceresWindow;
+  IBOutlet NSMenu * menu;
 }
 
 @property(retain, readonly) NSManagedObjectContext * managedObjectContext;
@@ -45,5 +46,7 @@
 - (IBAction) closeCurrentWindow: (id) sender;
 
 - (bool) applicationShouldHandleReopen: (NSApplication *) application hasVisibleWindows: (bool) visible;
+
+- (IBAction) updateCeres: (id) sender;
 
 @end
