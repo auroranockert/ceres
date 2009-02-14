@@ -157,7 +157,7 @@ def processDB(dbPath):
   
   #categories
   print "Processing Categories..."
-  c.execute("""SELECT categoryID AS identifier, categoryName AS name, published FROM invCategories;""")
+  c.execute("""SELECT categoryID AS identifier, categoryName AS name, published, description FROM invCategories;""")
   doc = Document()
   categories = doc.createElement("categories")
   doc.appendChild(categories)
@@ -167,6 +167,7 @@ def processDB(dbPath):
     addChild(doc, category, "identifier", str(row[0]))
     addChild(doc, category, "name", str(row[1]))
     addChild(doc, category, "published", str(row[2]))
+    addChild(doc, category, "description", str(row[3]))
     
     categories.appendChild(category)
   
@@ -174,7 +175,7 @@ def processDB(dbPath):
   
   #clones
   print "Processing Clones..."
-  c.execute("""SELECT invTypes.typeID AS identifier, typeName AS name, basePrice AS price, valueInt AS skillpoints
+  c.execute("""SELECT invTypes.typeID AS identifier, typeName AS name, basePrice AS price, valueInt AS skillpoints, description
                FROM invTypes INNER JOIN dgmTypeAttributes ON invTypes.typeID = dgmTypeAttributes.typeID
                WHERE groupId = 23 AND attributeID = 419;""")
   doc = Document()
@@ -187,6 +188,7 @@ def processDB(dbPath):
     addChild(doc, clone, "name", str(row[1]))
     addChild(doc, clone, "price", str(row[2]))
     addChild(doc, clone, "skillpoints", str(row[3]))
+    addChild(doc, clone, "description", str(row[4]))
     
     clones.appendChild(clone)
   
@@ -194,7 +196,7 @@ def processDB(dbPath):
   
   #groups
   print "Processing Groups..."
-  c.execute("""SELECT groupID AS identifier, categoryID as categoryIdentifier, groupName AS name, published
+  c.execute("""SELECT groupID AS identifier, categoryID as categoryIdentifier, groupName AS name, published, description
                FROM invGroups;""")
   doc = Document()
   groups = doc.createElement("groups")
@@ -206,6 +208,7 @@ def processDB(dbPath):
     addChild(doc, group, "categoryIdentifier", str(row[1]))
     addChild(doc, group, "name", str(row[2]))
     addChild(doc, group, "published", str(row[3]))
+    addChild(doc, group, "description", str(row[4]))
     
     groups.appendChild(group)
   
@@ -213,7 +216,7 @@ def processDB(dbPath):
   
   #MarketGroups
   print "Processing MarketGroups..."
-  c.execute("""SELECT marketGroupID AS identifier, parentGroupID AS parentIdentifier, marketGroupName AS name, hasTypes
+  c.execute("""SELECT marketGroupID AS identifier, parentGroupID AS parentIdentifier, marketGroupName AS name, hasTypes, description
                FROM invMarketGroups;""")
   doc = Document()
   marketgroups = doc.createElement("marketgroups")
@@ -225,6 +228,7 @@ def processDB(dbPath):
     addChild(doc, marketgroup, "parentIdentifier", str(row[1]))
     addChild(doc, marketgroup, "name", str(row[2]))
     addChild(doc, marketgroup, "hasTypes", str(row[3]))
+    addChild(doc, marketgroup, "description", str(row[4]))
     
     marketgroups.appendChild(marketgroup)
   
@@ -244,7 +248,8 @@ def processDB(dbPath):
                  inv.published AS published,
                  rank.valueFloat AS rank,
                  (primaryAttribute.valueInt - 164) AS primaryAttribute,
-                 (secondaryAttribute.valueInt - 164) AS secondaryAttribute
+                 (secondaryAttribute.valueInt - 164) AS secondaryAttribute,
+                 inv.description AS description
                FROM invTypes inv
                INNER JOIN invGroups ON (inv.groupID = invGroups.groupID)
                INNER JOIN dgmTypeAttributes primaryAttribute ON (inv.typeID = primaryAttribute.typeID)
@@ -287,6 +292,7 @@ def processDB(dbPath):
     
     addChild(doc, skill, "primaryAttribute", primary)
     addChild(doc, skill, "secondaryAttribute", secondary)
+    addChild(doc, skill, "description", str(row[9]))
     
     skills.appendChild(skill)
   
@@ -294,7 +300,7 @@ def processDB(dbPath):
   
   #implants
   print "Processing Implants..."
-  c.execute("""SELECT invTypes.typeID as Identifier, invTypes.groupID as groupIdentifier, invTypes.typeName as Name, invTypes.basePrice, invTypes.marketGroupID as marketGroupIdentifier, invTypes.published, (invTypes.marketGroupID - 617) AS slot, (attributeID - 175) AS attribute, valueInt AS attributeBonus
+  c.execute("""SELECT invTypes.typeID as Identifier, invTypes.groupID as groupIdentifier, invTypes.typeName as Name, invTypes.basePrice, invTypes.marketGroupID as marketGroupIdentifier, invTypes.published, (invTypes.marketGroupID - 617) AS slot, (attributeID - 175) AS attribute, valueInt AS attributeBonus, description
                FROM dgmTypeAttributes INNER JOIN invTypes ON invTypes.typeID = dgmTypeAttributes.typeID
                WHERE invTypes.marketGroupID >= 618 AND invTypes.marketGroupID <= 627 AND dgmTypeAttributes.attributeID >= 175 AND dgmTypeAttributes.attributeID <= 179 AND dgmTypeAttributes.valueInt != 0""")
   doc = Document()
@@ -321,6 +327,7 @@ def processDB(dbPath):
     
     addChild(doc, implant, "attribute", attribute)
     addChild(doc, implant, "attributeBonus", str(row[8]))
+    addChild(doc, implant, "description", str(row[9]))
     
     implants.appendChild(implant)
   
