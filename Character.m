@@ -268,7 +268,7 @@
     [self updateSkillGroups];
     [self updateSkillpoints];
   }
-  
+    
   if([[self trainingCachedUntil] timeIntervalSinceNow] < 0) {
     NSXMLDocument * document = [[self api] request: @"char/SkillInTraining.xml.aspx"];
     
@@ -281,7 +281,10 @@
       
       if (![self trainingStartedAt] || ![self trainingSkill] || [startDate compare: [self trainingStartedAt]] != NSOrderedSame) {
         [self updateSkillpoints];
+        
+        [[self trainingSkill] setComplete: [NSNumber numberWithBool: false]];
         [[self trainingSkill] setTraining: [NSNumber numberWithBool: false]];
+        
         [self setTrainingStartedAt: startDate];
 
         NSString * endTimeString = [[[document readNode: @"/eveapi/result/trainingEndTime"] stringValue] stringByAppendingString: @" +0000"];
@@ -292,6 +295,7 @@
         [self setTrainingSkill: skill];
         
         [[self trainingSkill] setSkillpoints: [NSNumber numberWithInteger: [[document readNode: @"/eveapi/result/trainingStartSP"] integerValue]]];
+        [[self trainingSkill] setLevelToCurrent];
         [[self trainingSkill] setTraining: [NSNumber numberWithBool: true]];
         
         updatedTraining = true;

@@ -79,6 +79,19 @@
   }  
 }
 
+- (NSNumber *) levelForSkillpoints: (NSNumber *) skillpoints
+{
+  NSInteger sp = [skillpoints integerValue];
+  
+  for (int i = 5; i > 0; i--) {
+    if (sp >= [[self skillpointsForLevel: [NSNumber numberWithInteger: i]] integerValue]) {
+      return [NSNumber numberWithInteger: 5];
+    }
+  }
+  
+  return [NSNumber numberWithInteger: 0];
+}
+
 - (NSNumber *) skillpointsForLevel: (NSNumber *) level
 {
   NSInteger currentLevel = (NSInteger)(250 * [[self rank] integerValue] * pow(32, ([level integerValue] - 1) / 2.0));

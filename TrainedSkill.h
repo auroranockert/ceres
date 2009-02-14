@@ -31,7 +31,7 @@
 
 }
 
-@property(retain) NSNumber * skillpoints, * level, * training;
+@property(retain) NSNumber * skillpoints, * level, * training, * complete;
 @property(retain) Skill * skill;
 @property(retain) Character * character;
 
@@ -47,5 +47,7 @@
 
 - (NSNumber *) requiredSkillpointsForNextLevel;
 - (NSNumber *) skillpointsPerHour;
+
+- (void) setLevelToCurrent;
 
 @end

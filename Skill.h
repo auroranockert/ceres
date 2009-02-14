@@ -32,6 +32,7 @@
 @property(retain) NSNumber * rank;
 @property(retain) NSString * primaryAttribute, * secondaryAttribute;
 
+- (NSNumber *) levelForSkillpoints: (NSNumber *) skillpoints;
 - (NSNumber *) skillpointsForLevel: (NSNumber *) level;
 
 @end

@@ -23,7 +23,7 @@
 
 @implementation TrainedSkill
 
-@dynamic skillpoints, level, training;
+@dynamic skillpoints, level, training, complete;
 @dynamic skill, character;
 
 - (id) initWithCharacter: (Character *) character skill: (Skill *) skill
@@ -99,17 +99,27 @@
 {
   NSInteger sp = [[[self skill] skillpointsForLevel: [self nextLevel]] integerValue] - [[self skillpoints] integerValue];
 
-  if (sp > 0) {
-    return [NSNumber numberWithInteger: sp];
+  if (sp < 0) {
+    [self setComplete: [NSNumber numberWithBool: true]];
+    [self setLevel: [self nextLevel]];
+  }
+   
+  if ([[self complete] boolValue]) {
+    return [NSNumber numberWithInteger: 0];
   }
   else {
-    return [NSNumber numberWithInteger: 0];
+    return [NSNumber numberWithInteger: sp];
   }
 }
 
 - (NSNumber *) skillpointsPerHour
 {
   return [NSNumber numberWithDouble: ([[[self character] attribute: [[self skill] primaryAttribute]] doubleValue] + [[[self character] attribute: [[self skill] secondaryAttribute]] doubleValue] / 2) * 60];
+}
+
+- (void) setLevelToCurrent
+{
+  [self setLevel: [[self skill] levelForSkillpoints: [self skillpoints]]];
 }
 
 @end
