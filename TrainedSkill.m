@@ -101,7 +101,6 @@
 
   if (sp < 0) {
     [self setComplete: [NSNumber numberWithBool: true]];
-    [self setLevel: [self nextLevel]];
   }
    
   if ([[self complete] boolValue]) {
