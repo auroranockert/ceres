@@ -28,7 +28,6 @@
 }
 
 @property(retain) NSNumber * price;
-@property(retain) NSString * description;
 @property(retain) Group * group;
 @property(retain) MarketGroup * marketGroup;
 

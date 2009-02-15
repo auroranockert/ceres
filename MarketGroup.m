@@ -75,9 +75,10 @@
   for (NSXMLNode * marketGroup in objects)
   {
     NSDictionary * dictionary = [[NSDictionary alloc] initWithObjectsAndKeys:
-    [[marketGroup readNode: @"/identifier"] numberValueInteger], @"Identifier",
-    [[marketGroup readNode: @"/name"] stringValue], @"Name",
-    [NSNumber numberWithBool: [[marketGroup readNode: @"/hasTypes"] integerValue]], @"HasTypes",
+                                 [[marketGroup readNode: @"/identifier"] numberValueInteger], @"Identifier",
+                                 [[marketGroup readNode: @"/name"] stringValue], @"Name",
+                                 [NSNumber numberWithBool: [[marketGroup readNode: @"/hasTypes"] integerValue]], @"HasTypes",
+                                 [[marketGroup readNode: @"/description"] stringValue], @"Description",
      nil];
         
     [lock lock];

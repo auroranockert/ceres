@@ -71,6 +71,7 @@
                                  [[clone readNode: @"/secondaryAttribute"] stringValue], @"SecondaryAttribute",
                                  [[clone readNode: @"/marketGroupIdentifier"] numberValueInteger], @"MarketGroupIdentifier",
                                  [[clone readNode: @"/groupIdentifier"] numberValueInteger], @"GroupIdentifier",
+                                 [[clone readNode: @"/description"] stringValue], @"Description",
                                  nil];
     
     [lock lock];

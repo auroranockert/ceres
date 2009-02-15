@@ -23,7 +23,7 @@
 
 @implementation ItemType
 
-@dynamic price, description, group, marketGroup;
+@dynamic price, group, marketGroup;
 
 - (id) initWithDictionary: (NSDictionary *) dictionary
 {
@@ -32,6 +32,7 @@
     [self setPrice: [dictionary objectForKey: @"Price"]];
     [self setMarketGroup: [MarketGroup findWithIdentifier: [dictionary objectForKey: @"MarketGroupIdentifier"]]];
     [self setGroup: [Group findWithIdentifier: [dictionary objectForKey: @"GroupIdentifier"]]];
+    [self setDescription: [dictionary objectForKey: @"Description"]];
   }
       
   return self;

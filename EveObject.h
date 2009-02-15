@@ -27,7 +27,7 @@
 }
 
 @property(retain) NSNumber * identifier, * published;
-@property(retain) NSString * name;
+@property(retain) NSString * name, * description;
 @property(retain) NSDate * cachedUntil;
 
 - (void) update;

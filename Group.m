@@ -66,6 +66,7 @@
                                  [[group readNode: @"/identifier"] numberValueInteger], @"Identifier",
                                  [[group readNode: @"/name"] stringValue], @"Name",
                                  [[group readNode: @"/categoryIdentifier"] numberValueInteger], @"CategoryIdentifier",
+                                 [[group readNode: @"/description"] stringValue], @"Description",
                                  nil];
     
     [lock lock];

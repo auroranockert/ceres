@@ -23,7 +23,7 @@
 
 @implementation EveObject
 
-@dynamic identifier, published, name, cachedUntil;
+@dynamic identifier, published, name, description, cachedUntil;
 
 - (void) update
 {

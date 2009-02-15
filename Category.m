@@ -64,6 +64,7 @@
     NSDictionary * dictionary = [[NSDictionary alloc] initWithObjectsAndKeys:
                                  [[category readNode: @"/identifier"] numberValueInteger], @"Identifier",
                                  [[category readNode: @"/name"] stringValue], @"Name",
+                                 [[category readNode: @"/description"] stringValue], @"Description",
                                  nil];
     
     [lock lock];
