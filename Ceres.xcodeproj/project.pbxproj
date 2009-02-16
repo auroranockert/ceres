@@ -29,6 +29,8 @@
 		B40C1EF70EF1C2050050F22B /* CeresMain.m in Sources */ = {isa = PBXBuildFile; fileRef = B40C1EF60EF1C2050050F22B /* CeresMain.m */; };
 		B40C26DB0F114DFD006D76F0 /* CeresObject.h in Headers */ = {isa = PBXBuildFile; fileRef = B40C26D90F114DFD006D76F0 /* CeresObject.h */; };
 		B40C26DC0F114DFD006D76F0 /* CeresObject.m in Sources */ = {isa = PBXBuildFile; fileRef = B40C26DA0F114DFD006D76F0 /* CeresObject.m */; };
+		B41544920F49D269005B5D48 /* PreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = B41544910F49D269005B5D48 /* PreferencesController.m */; };
+		B415449A0F49F17E005B5D48 /* CeresPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = B41544990F49F17E005B5D48 /* CeresPreferencesController.m */; };
 		B415CDE50F2F5EE80058F57D /* TrainedSkill.h in Headers */ = {isa = PBXBuildFile; fileRef = B415CDE30F2F5EE80058F57D /* TrainedSkill.h */; };
 		B415CDE60F2F5EE80058F57D /* TrainedSkill.m in Sources */ = {isa = PBXBuildFile; fileRef = B415CDE40F2F5EE80058F57D /* TrainedSkill.m */; };
 		B424F4DA0EEC89E900B5E7C5 /* EveObject.h in Headers */ = {isa = PBXBuildFile; fileRef = B424F4D80EEC89E900B5E7C5 /* EveObject.h */; };
@@ -180,6 +182,11 @@
 		B40C1EF60EF1C2050050F22B /* CeresMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CeresMain.m; sourceTree = "<group>"; };
 		B40C26D90F114DFD006D76F0 /* CeresObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CeresObject.h; sourceTree = "<group>"; };
 		B40C26DA0F114DFD006D76F0 /* CeresObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CeresObject.m; sourceTree = "<group>"; };
+		B41544900F49D269005B5D48 /* PreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesController.h; sourceTree = "<group>"; };
+		B41544910F49D269005B5D48 /* PreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesController.m; sourceTree = "<group>"; };
+		B41544930F49D336005B5D48 /* PreferencesModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesModule.h; sourceTree = "<group>"; };
+		B41544980F49F17E005B5D48 /* CeresPreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CeresPreferencesController.h; sourceTree = "<group>"; };
+		B41544990F49F17E005B5D48 /* CeresPreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CeresPreferencesController.m; sourceTree = "<group>"; };
 		B415CDE30F2F5EE80058F57D /* TrainedSkill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrainedSkill.h; sourceTree = "<group>"; };
 		B415CDE40F2F5EE80058F57D /* TrainedSkill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrainedSkill.m; sourceTree = "<group>"; };
 		B424F4D80EEC89E900B5E7C5 /* EveObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EveObject.h; sourceTree = "<group>"; };
@@ -456,12 +463,40 @@
 		B40581400F19AF7C009EEDD8 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B41544970F49F14B005B5D48 /* Preferences */,
 				B4E9B0150F3DACEB007A175C /* API */,
 				B4F0E6580F22863C00412957 /* Character */,
 				B4F0E5F90F2247E200412957 /* Loading */,
 				B4F0E5F80F2247D500412957 /* Ceres */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		B41544870F49D24A005B5D48 /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				B41544900F49D269005B5D48 /* PreferencesController.h */,
+				B41544910F49D269005B5D48 /* PreferencesController.m */,
+				B41544930F49D336005B5D48 /* PreferencesModule.h */,
+			);
+			name = Preferences;
+			sourceTree = "<group>";
+		};
+		B41544960F49F13A005B5D48 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				B41544870F49D24A005B5D48 /* Preferences */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		B41544970F49F14B005B5D48 /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				B41544980F49F17E005B5D48 /* CeresPreferencesController.h */,
+				B41544990F49F17E005B5D48 /* CeresPreferencesController.m */,
+			);
+			name = Preferences;
 			sourceTree = "<group>";
 		};
 		B424F4D40EEC894000B5E7C5 /* Common */ = {
@@ -583,6 +618,7 @@
 		B4A539E90F20AD3D00B404E6 /* Elements */ = {
 			isa = PBXGroup;
 			children = (
+				B41544960F49F13A005B5D48 /* Controllers */,
 				B4A5387A0F1FE67600B404E6 /* Cells */,
 			);
 			name = Elements;
@@ -949,6 +985,8 @@
 				B496BF960F33C94E00E92DB4 /* TableCell.m in Sources */,
 				B496C10E0F348E3000E92DB4 /* SkillListController.m in Sources */,
 				B496C1A30F34A76900E92DB4 /* SkillCell.m in Sources */,
+				B41544920F49D269005B5D48 /* PreferencesController.m in Sources */,
+				B415449A0F49F17E005B5D48 /* CeresPreferencesController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
