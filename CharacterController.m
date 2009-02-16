@@ -33,9 +33,9 @@
     [formatter setMaximumFractionDigits: 2];
     
     spFormatter = [[NSNumberFormatter alloc] init];
-    [formatter setNumberStyle: NSNumberFormatterDecimalStyle];
-    [formatter setMinimumFractionDigits: 0];
-    [formatter setMaximumFractionDigits: 0];
+    [spFormatter setNumberStyle: NSNumberFormatterDecimalStyle];
+    [spFormatter setMinimumFractionDigits: 0];
+    [spFormatter setMaximumFractionDigits: 0];
     
     [[[Ceres instance] notificationCenter] addObserver: self selector: @selector(notification:) name: nil object: character];
   }
