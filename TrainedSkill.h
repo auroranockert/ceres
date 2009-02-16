@@ -48,6 +48,4 @@
 - (NSNumber *) requiredSkillpointsForNextLevel;
 - (NSNumber *) skillpointsPerHour;
 
-- (void) setLevelToCurrent;
-
 @end

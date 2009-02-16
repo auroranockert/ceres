@@ -187,6 +187,16 @@
   return [NSNumber numberWithDouble: ([[[self trainingSkill] requiredSkillpointsForNextLevel] integerValue] * percentage)];
 }
 
+- (NSNumber *) skillpointsForGroup: (Group *) group
+{
+  return [[[self skills] filteredSetUsingPredicate: [NSPredicate predicateWithFormat: @"skill.group == %@", group]] valueForKeyPath: @"@sum.skillpoints"];
+}
+
+- (NSNumber *) skillsForGroup: (Group *) group
+{
+  return [NSNumber numberWithInteger: [[[self skills] filteredSetUsingPredicate: [NSPredicate predicateWithFormat: @"skill.group == %@", group]] count]];
+}
+
 - (NSNumber *) trainingCurrentSkillpoints
 {
   return [[[self trainingSkill] skillpoints] addInteger: [self additionalSkillpoints]];

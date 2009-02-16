@@ -30,7 +30,7 @@
   character = [characterController character];
   
   NSTableColumn * column = [[skillOutlineView tableColumns] anyObject];
-  [column setDataCell: [[SkillCell alloc] init]];
+  [column setDataCell: [[SkillCell alloc] initWithCharacter: character]];
   
   [self setSortDescriptors: [NSArray arrayWithObjects: [[NSSortDescriptor alloc] initWithKey: @"skill.group.name" ascending: true], [[NSSortDescriptor alloc] initWithKey: @"skill.name" ascending: true], nil]];
   [self setFetchPredicate: [NSPredicate predicateWithFormat: @"character = %@", character, character]];

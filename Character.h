@@ -80,6 +80,9 @@
 - (NSNumber *) attribute: (NSString *) name;
 - (double) learningBonus;
 
+- (NSNumber *) skillsForGroup: (Group *) group;
+- (NSNumber *) skillpointsForGroup: (Group *) group;
+
 - (void) updateSkillGroups;
 - (void) updateSkillpoints;
 

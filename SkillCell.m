@@ -25,13 +25,13 @@
 
 @synthesize skill, group;
 
-- (id)copyWithZone: (NSZone *) zone
+- (id) initWithCharacter: (Character *) c
 {
-	SkillCell * newCell = [super copyWithZone: zone];
+  if (self = [super init]) {
+    character = c;
+  }
   
-  [newCell setSkill: [self skill]];
-  
-	return newCell;
+  return self;
 }
 
 - (void) setObjectValue: (id) object
@@ -68,7 +68,7 @@
     return [NSFont systemFontOfSize: 12];
   }
   
-  return [NSFont systemFontOfSize: 16];  
+  return [NSFont systemFontOfSize: 14];  
 }
 
 - (NSString *) subString
@@ -77,7 +77,14 @@
     return [NSString stringWithFormat: @"Level %@ (Rank %@) %@ SP", [[skill level] romanValue], [[skill skill] rank], [skill skillpoints]];
   }
   
-  return nil;
+  NSNumber * skills = [character skillsForGroup: group];
+  
+  if ([skills compare: [NSNumber numberWithInteger: 1]] == NSOrderedSame) {
+    return [NSString stringWithFormat: @"%@ Skill (%@ SP)", skills, [character skillpointsForGroup: group]];
+  }
+  else {
+    return [NSString stringWithFormat: @"%@ Skills (%@ SP)", skills, [character skillpointsForGroup: group]]; 
+  }
 }
 
 @end
