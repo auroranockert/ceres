@@ -32,6 +32,9 @@
 		B415449A0F49F17E005B5D48 /* CeresPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = B41544990F49F17E005B5D48 /* CeresPreferencesController.m */; };
 		B41544D00F49F6CE005B5D48 /* CharacterPreferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = B41544CF0F49F6CE005B5D48 /* CharacterPreferences.xib */; };
 		B41544D40F49F715005B5D48 /* CharacterPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = B41544D30F49F715005B5D48 /* CharacterPreferencesController.m */; };
+		B415458F0F4A08D6005B5D48 /* UserDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = B415458E0F4A08D6005B5D48 /* UserDefaults.plist */; };
+		B41545D90F4A0C28005B5D48 /* NSNumberFormatting.m in Sources */ = {isa = PBXBuildFile; fileRef = B41545D80F4A0C28005B5D48 /* NSNumberFormatting.m */; };
+		B415462F0F4A1106005B5D48 /* NSDateFormatting.m in Sources */ = {isa = PBXBuildFile; fileRef = B415462E0F4A1106005B5D48 /* NSDateFormatting.m */; };
 		B415CDE50F2F5EE80058F57D /* TrainedSkill.h in Headers */ = {isa = PBXBuildFile; fileRef = B415CDE30F2F5EE80058F57D /* TrainedSkill.h */; };
 		B415CDE60F2F5EE80058F57D /* TrainedSkill.m in Sources */ = {isa = PBXBuildFile; fileRef = B415CDE40F2F5EE80058F57D /* TrainedSkill.m */; };
 		B424F4DA0EEC89E900B5E7C5 /* EveObject.h in Headers */ = {isa = PBXBuildFile; fileRef = B424F4D80EEC89E900B5E7C5 /* EveObject.h */; };
@@ -188,6 +191,11 @@
 		B41544CF0F49F6CE005B5D48 /* CharacterPreferences.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterPreferences.xib; sourceTree = "<group>"; };
 		B41544D20F49F715005B5D48 /* CharacterPreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterPreferencesController.h; sourceTree = "<group>"; };
 		B41544D30F49F715005B5D48 /* CharacterPreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacterPreferencesController.m; sourceTree = "<group>"; };
+		B415458E0F4A08D6005B5D48 /* UserDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = UserDefaults.plist; sourceTree = "<group>"; };
+		B41545D70F4A0C28005B5D48 /* NSNumberFormatting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSNumberFormatting.h; sourceTree = "<group>"; };
+		B41545D80F4A0C28005B5D48 /* NSNumberFormatting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSNumberFormatting.m; sourceTree = "<group>"; };
+		B415462D0F4A1106005B5D48 /* NSDateFormatting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDateFormatting.h; sourceTree = "<group>"; };
+		B415462E0F4A1106005B5D48 /* NSDateFormatting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDateFormatting.m; sourceTree = "<group>"; };
 		B415CDE30F2F5EE80058F57D /* TrainedSkill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrainedSkill.h; sourceTree = "<group>"; };
 		B415CDE40F2F5EE80058F57D /* TrainedSkill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrainedSkill.m; sourceTree = "<group>"; };
 		B424F4D80EEC89E900B5E7C5 /* EveObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EveObject.h; sourceTree = "<group>"; };
@@ -324,7 +332,6 @@
 				089C1665FE841158C02AAC07 /* Resources */,
 				0867D69AFE84028FC02AAC07 /* External Frameworks and Libraries */,
 				034768DFFF38A50411DB9C8B /* Products */,
-				B40C1EEF0EF1C1CB0050F22B /* Ceres-Info.plist */,
 			);
 			name = Ceres;
 			sourceTree = "<group>";
@@ -342,6 +349,7 @@
 			isa = PBXGroup;
 			children = (
 				B496BF590F33BA2B00E92DB4 /* dsa_pub.pem */,
+				B40C1EEF0EF1C1CB0050F22B /* Ceres-Info.plist */,
 				8DC2EF5A0486A6940098B216 /* Info.plist */,
 				089C1666FE841158C02AAC07 /* InfoPlist.strings */,
 				B40581430F19AFBA009EEDD8 /* Loading.xib */,
@@ -350,6 +358,7 @@
 				B462C17F0F2D3140004D04D8 /* License */,
 				B4031CB20F45E6C500A99577 /* Menu.xib */,
 				B41544CF0F49F6CE005B5D48 /* CharacterPreferences.xib */,
+				B415458E0F4A08D6005B5D48 /* UserDefaults.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -498,6 +507,17 @@
 				B41544D30F49F715005B5D48 /* CharacterPreferencesController.m */,
 			);
 			name = Preferences;
+			sourceTree = "<group>";
+		};
+		B41545D60F4A0C1B005B5D48 /* Formatting */ = {
+			isa = PBXGroup;
+			children = (
+				B41545D70F4A0C28005B5D48 /* NSNumberFormatting.h */,
+				B41545D80F4A0C28005B5D48 /* NSNumberFormatting.m */,
+				B415462D0F4A1106005B5D48 /* NSDateFormatting.h */,
+				B415462E0F4A1106005B5D48 /* NSDateFormatting.m */,
+			);
+			name = Formatting;
 			sourceTree = "<group>";
 		};
 		B424F4D40EEC894000B5E7C5 /* Common */ = {
@@ -762,6 +782,7 @@
 		B4FF57B70F3DEC1A00F67A6C /* CeresSpecific */ = {
 			isa = PBXGroup;
 			children = (
+				B41545D60F4A0C1B005B5D48 /* Formatting */,
 				B4FF57B20F3DEB2500F67A6C /* NSThread */,
 			);
 			name = CeresSpecific;
@@ -913,6 +934,7 @@
 				B496BF5A0F33BA2B00E92DB4 /* dsa_pub.pem in Resources */,
 				B4031CB30F45E6C500A99577 /* Menu.xib in Resources */,
 				B41544D00F49F6CE005B5D48 /* CharacterPreferences.xib in Resources */,
+				B415458F0F4A08D6005B5D48 /* UserDefaults.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -979,6 +1001,8 @@
 				B41544920F49D269005B5D48 /* PreferencesController.m in Sources */,
 				B415449A0F49F17E005B5D48 /* CeresPreferencesController.m in Sources */,
 				B41544D40F49F715005B5D48 /* CharacterPreferencesController.m in Sources */,
+				B41545D90F4A0C28005B5D48 /* NSNumberFormatting.m in Sources */,
+				B415462F0F4A1106005B5D48 /* NSDateFormatting.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

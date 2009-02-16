@@ -260,7 +260,7 @@
 							<object class="NSComboTableView" key="NSTableView" id="990557982">
 								<reference key="NSNextResponder"/>
 								<int key="NSvFlags">274</int>
-								<string key="NSFrameSize">{15, 0}</string>
+								<string key="NSFrameSize">{13, 42}</string>
 								<reference key="NSSuperview"/>
 								<reference key="NSWindow"/>
 								<bool key="NSEnabled">YES</bool>
@@ -268,7 +268,7 @@
 									<bool key="EncodedWithXMLCoder">YES</bool>
 									<object class="NSTableColumn">
 										<integer value="0" key="NSIdentifier" id="8"/>
-										<double key="NSWidth">1.200000e+01</double>
+										<double key="NSWidth">1.000000e+01</double>
 										<double key="NSMinWidth">1.000000e+01</double>
 										<double key="NSMaxWidth">1.000000e+03</double>
 										<object class="NSTableHeaderCell" key="NSHeaderCell">
@@ -319,7 +319,7 @@
 								</object>
 								<double key="NSRowHeight">1.900000e+01</double>
 								<string key="NSAction">tableViewAction:</string>
-								<int key="NSTvFlags">-767524864</int>
+								<int key="NSTvFlags">-765427712</int>
 								<reference key="NSDelegate" ref="1058987271"/>
 								<reference key="NSDataSource" ref="1058987271"/>
 								<reference key="NSTarget" ref="1058987271"/>
@@ -415,6 +415,15 @@
 				<reference key="NSSuperview"/>
 				<string key="NSClassName">NSView</string>
 			</object>
+			<object class="NSUserDefaultsController" id="186110127">
+				<object class="NSMutableArray" key="NSDeclaredKeys">
+					<bool key="EncodedWithXMLCoder">YES</bool>
+					<string>skillLevels</string>
+					<string>trainingForma</string>
+					<string>trainingFormat</string>
+				</object>
+				<bool key="NSSharedInstance">YES</bool>
+			</object>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
 			<object class="NSMutableArray" key="connectionRecords">
@@ -467,6 +476,38 @@
 					</object>
 					<int key="connectionID">30</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: values.skillLevels</string>
+						<reference key="source" ref="880810523"/>
+						<reference key="destination" ref="186110127"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="880810523"/>
+							<reference key="NSDestination" ref="186110127"/>
+							<string key="NSLabel">value: values.skillLevels</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">values.skillLevels</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">35</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: values.trainingFormat</string>
+						<reference key="source" ref="137546635"/>
+						<reference key="destination" ref="186110127"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="137546635"/>
+							<reference key="NSDestination" ref="186110127"/>
+							<string key="NSLabel">value: values.trainingFormat</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">values.trainingFormat</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">37</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -511,8 +552,8 @@
 							<reference ref="240397554"/>
 							<reference ref="420854308"/>
 							<reference ref="880810523"/>
-							<reference ref="137546635"/>
 							<reference ref="395369884"/>
+							<reference ref="137546635"/>
 						</object>
 						<reference key="parent" ref="1002"/>
 					</object>
@@ -661,6 +702,11 @@
 						<reference key="object" ref="1056479867"/>
 						<reference key="parent" ref="137546635"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">32</int>
+						<reference key="object" ref="186110127"/>
+						<reference key="parent" ref="1002"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -748,7 +794,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">30</int>
+			<int key="maxID">37</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

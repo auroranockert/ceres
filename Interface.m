@@ -32,10 +32,11 @@ static Interface * shared;
       [[self alloc] init];
       
       [shared addDelegates];
+      [shared addPreferences];
       [shared loadNib: @"Menu"];
 
       if (![[Character find] count]) {
-        [shared openApiWindow: self];
+        [[PreferencesController instance] showWindow: self];
       }
     }    
   }
@@ -65,6 +66,17 @@ static Interface * shared;
   [[Ceres instance] addObserver: self selector: @selector(notification:) name: nil object: nil];
   [[Ceres instance] addObserver: self selector: @selector(notificationForSkillTrainingCompleted:) name: [CharacterNotification nameForMessage: @"skillTrainingCompleted"] object: nil];
   [GrowlApplicationBridge setGrowlDelegate: self];
+}
+
+- (void) addPreferences
+{
+  NSDictionary * userDefaultsValues, * initialValues;
+  
+  
+  userDefaultsValues = [NSDictionary dictionaryWithContentsOfFile: [[NSBundle mainBundle] pathForResource: @"UserDefaults" ofType: @"plist"]];
+  
+  [[NSUserDefaults standardUserDefaults] registerDefaults: userDefaultsValues];
+  [[NSUserDefaultsController sharedUserDefaultsController] setInitialValues: userDefaultsValues];
 }
 
 - (void) notification: (NSNotification *) o
@@ -109,15 +121,6 @@ static Interface * shared;
   }
   
   return true;  
-}
-
-- (void) openApiWindow: (id) sender
-{
-  if (!apiController) {
-    [self loadNib: @"API"];
-  }
-  
-  [apiController openApiWindow: sender];
 }
 
 - (void) closeCurrentWindow: (id) sender

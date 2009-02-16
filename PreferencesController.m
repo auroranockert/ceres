@@ -201,7 +201,7 @@ static PreferencesController * shared = nil;
 	[[self window] setFrame: newWindowFrame display: true animate: true];
 	
 	[[self.window toolbar] setSelectedItemIdentifier: [module identifier]];
-	[[self window] setTitle: [module title]];
+	[[self window] setTitle: [NSString stringWithFormat: @"%@ Preferences", [module title]]];
 	
 	currentModule = module;
 	[[[self window] contentView] addSubview:[currentModule view]];

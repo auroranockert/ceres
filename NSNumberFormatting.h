@@ -1,5 +1,5 @@
 //
-//  NSArray.h
+//  NSNumberFormatting.h
 //  This file is part of Ceres.
 //
 //  Ceres is free software: you can redistribute it and/or modify
@@ -15,20 +15,19 @@
 //  You should have received a copy of the GNU General Public License
 //  along with Ceres.  If not, see <http://www.gnu.org/licenses/>.
 //
-//  Created by Jens Nockert on 2/6/09.
+//  Created by Jens Nockert on 2/16/09.
 //
 
-#import "NSArray.h"
-#import "NSBundle.h"
-
-#import "NSXMLDocument.h"
-#import "NSXMLNode.h"
+#import <Cocoa/Cocoa.h>
 
 #import "NSNumber.h"
-#import "NSThread.h"
 
-#import "NSRect.h"
-#import "NSImage.h"
+@interface NSNumber (CeresFormattingAdditions)
 
-#import "NSNumberFormatting.h"
-#import "NSDateFormatting.h"
++ (NSNumberFormatter *) formatter: (NSInteger) fractionDigits;
+
+- (NSString *) level;
+- (NSString *) isk;
+- (NSString *) sp;
+
+@end

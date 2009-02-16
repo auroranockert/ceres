@@ -74,16 +74,16 @@
 - (NSString *) subString
 {
   if ([self skill]) {
-    return [NSString stringWithFormat: @"Level %@ (Rank %@) %@ SP", [[skill level] romanValue], [[skill skill] rank], [skill skillpoints]];
+    return [NSString stringWithFormat: @"Level %@ (Rank %@) %@", [[skill level] level], [[skill skill] rank], [[skill skillpoints] sp]];
   }
   
   NSNumber * skills = [character skillsForGroup: group];
   
   if ([skills compare: [NSNumber numberWithInteger: 1]] == NSOrderedSame) {
-    return [NSString stringWithFormat: @"%@ Skill (%@ SP)", skills, [character skillpointsForGroup: group]];
+    return [NSString stringWithFormat: @"%@ Skill (%@)", skills, [[character skillpointsForGroup: group] sp]];
   }
   else {
-    return [NSString stringWithFormat: @"%@ Skills (%@ SP)", skills, [character skillpointsForGroup: group]]; 
+    return [NSString stringWithFormat: @"%@ Skills (%@)", skills, [[character skillpointsForGroup: group] sp]]; 
   }
 }
 

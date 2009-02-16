@@ -33,7 +33,9 @@
     [formatter setMaximumFractionDigits: 2];
     
     spFormatter = [[NSNumberFormatter alloc] init];
-    [spFormatter setNumberStyle: NSNumberFormatterDecimalStyle];
+    [formatter setNumberStyle: NSNumberFormatterDecimalStyle];
+    [formatter setMinimumFractionDigits: 0];
+    [formatter setMaximumFractionDigits: 0];
     
     [[[Ceres instance] notificationCenter] addObserver: self selector: @selector(notification:) name: nil object: character];
   }
@@ -83,12 +85,12 @@
 
 - (NSString *) balance
 {
-  return [NSString stringWithFormat: @"%@ ISK", [formatter stringFromNumber: [character balance]]];
+  return [[character balance] isk];
 }
 
 - (NSString *) skillpoints
 {
-  return [NSString stringWithFormat: @"%@ SP", [formatter stringFromNumber: [character totalSkillpoints]]];
+  return [[character totalSkillpoints] sp];
 }
 
 - (NSString *) intelligence
@@ -120,7 +122,7 @@
 {
   if ([character trainingSkill])
   {
-    return [[NSString alloc] initWithFormat: @"Currently training %@ to level %@ at %@ SP/h", [[character trainingSkill] name], [[[character trainingSkill] nextLevel] romanValue], [formatter stringFromNumber: [[character trainingSkill] skillpointsPerHour]]];
+    return [[NSString alloc] initWithFormat: @"Currently training %@ to level %@ at %@/h", [[character trainingSkill] name], [[[character trainingSkill] nextLevel] level], [[[character trainingSkill] skillpointsPerHour] sp]];
   }
   else
   {
@@ -132,15 +134,13 @@
 {
   if ([character trainingSkill])
   {
-    NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat: @"HH:mm 'on' MMMM d"];
     NSInteger current = [[character trainingCurrentSkillpoints] integerValue];
         
     if ([[[character trainingSkill] requiredSkillpointsForNextLevel] integerValue] == 0) {
       return @"Finished";
     }
     else {
-      return [[NSString alloc] initWithFormat: @"%@ / %@ SP Complete (Finished by %@)", [spFormatter stringFromNumber: [character trainingCurrentSkillpoints]], [spFormatter stringFromNumber: [[[character trainingSkill] skill] skillpointsForLevel: [[character trainingSkill] nextLevel]]], [dateFormatter stringFromDate: [character trainingEndsAt]]];
+      return [[NSString alloc] initWithFormat: @"%@ / %@ Complete (Finished %@)", [spFormatter stringFromNumber: [character trainingCurrentSkillpoints]], [[[[character trainingSkill] skill] skillpointsForLevel: [[character trainingSkill] nextLevel]] sp], [[character trainingEndsAt] preferedDateFormat]];
     }
   }
   else
@@ -156,7 +156,7 @@
 
 - (NSString *) clone
 {
-  return [NSString stringWithFormat: @"%@ (Stores %@ SP)", [[character clone] name], [spFormatter stringFromNumber: [[character clone] skillpoints]]];
+  return [NSString stringWithFormat: @"%@ (Stores %@)", [[character clone] name], [[[character clone] skillpoints] sp]];
 }
 
 - (NSData *) portraitData

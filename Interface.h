@@ -23,10 +23,9 @@
 #import "CeresHeader.h"
 #import <Growl/GrowlApplicationBridge.h>
 
-#import "APIController.h"
+#import "PreferencesController.h"
 
 @interface Interface : NSObject <GrowlApplicationBridgeDelegate> {
-  IBOutlet APIController * apiController;
   IBOutlet NSWindow * ceresWindow;
   IBOutlet NSMenu * menu;
 }
@@ -36,13 +35,14 @@
 + (Interface *) instance;
 
 - (void) addDelegates;
+- (void) addPreferences;
+
 - (void) notification: (NSNotification *) notification;
 - (void) notificationForSkillTrainingCompleted: (NSNotification *) notification;
 
 - (bool) loadNib: (NSString *) name;
 - (bool) loadNib: (NSString *) name owner: (id) owner;
 
-- (IBAction) openApiWindow: (id) sender;
 - (IBAction) closeCurrentWindow: (id) sender;
 
 - (bool) applicationShouldHandleReopen: (NSApplication *) application hasVisibleWindows: (bool) visible;
