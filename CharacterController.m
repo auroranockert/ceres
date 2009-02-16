@@ -198,8 +198,12 @@
   [[Ceres instance] save];
 }
 
-- (void) notification: (id) argument
+- (void) notification: (NSNotification *) argument
 {
+  if ([[argument name] compare: [CharacterNotification nameForMessage: @"characterRemoved"]] == NSOrderedSame) {
+    [characterWindow close];
+  }
+  
   [self updateCharacter: self];
 }
 

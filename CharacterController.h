@@ -56,6 +56,6 @@
 - (void) update: (id) sender;
 - (void) updateCharacter: (id) sender;
 
-- (void) notification: (id) object;
+- (void) notification: (NSNotification *) object;
 
 @end
