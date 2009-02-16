@@ -290,12 +290,12 @@
         NSString * endTimeString = [[[document readNode: @"/eveapi/result/trainingEndTime"] stringValue] stringByAppendingString: @" +0000"];
         [self setTrainingEndsAt: [[NSDate alloc] initWithString: endTimeString]];
         
-        NSNumber * skillIdentifer = [NSNumber numberWithInteger: [[document readNode: @"/eveapi/result/trainingTypeID"] integerValue]];
+        NSNumber * skillIdentifer = [[document readNode: @"/eveapi/result/trainingTypeID"] numberValueInteger];
         TrainedSkill * skill = [TrainedSkill findWithCharacter: self skill: [Skill findWithIdentifier: skillIdentifer]];
         [self setTrainingSkill: skill];
         
-        [[self trainingSkill] setSkillpoints: [NSNumber numberWithInteger: [[document readNode: @"/eveapi/result/trainingStartSP"] integerValue]]];
-        [[self trainingSkill] setLevelToCurrent];
+        [[self trainingSkill] setSkillpoints: [[document readNode: @"/eveapi/result/trainingStartSP"] numberValueInteger]];
+        [[self trainingSkill] setLevel: [[[document readNode: @"/eveapi/result/trainingToLevel"] numberValueInteger] previous]] ;
         [[self trainingSkill] setTraining: [NSNumber numberWithBool: true]];
         
         updatedTraining = true;

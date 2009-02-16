@@ -116,9 +116,4 @@
   return [NSNumber numberWithDouble: ([[[self character] attribute: [[self skill] primaryAttribute]] doubleValue] + [[[self character] attribute: [[self skill] secondaryAttribute]] doubleValue] / 2) * 60];
 }
 
-- (void) setLevelToCurrent
-{
-  [self setLevel: [[self skill] levelForSkillpoints: [self skillpoints]]];
-}
-
 @end

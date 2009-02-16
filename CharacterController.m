@@ -203,8 +203,9 @@
   if ([[argument name] compare: [CharacterNotification nameForMessage: @"characterRemoved"]] == NSOrderedSame) {
     [characterWindow close];
   }
-  
-  [self updateCharacter: self];
+  else {
+    [self updateCharacter: self];
+  }
 }
 
 - (void) updateCharacter: (id) sender
