@@ -20,13 +20,14 @@
 
 #import "CeresPreferencesController.h"
 
+#import "CharacterPreferencesController.h"
 
 @implementation CeresPreferencesController
 
-
 - (void) awakeFromNib
 {
-	[[PreferencesController instance] setModules: [NSArray arrayWithObjects: nil]];
+  CharacterPreferencesController * character = [[CharacterPreferencesController alloc] initWithNibName: @"CharacterPreferences" bundle: nil];
+	[[PreferencesController instance] setModules: [NSArray arrayWithObjects: character, nil]];
 }
 
 - (void) showPreferences: (id) sender

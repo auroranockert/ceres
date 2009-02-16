@@ -1,5 +1,5 @@
 //
-//  APIController.h
+//  CharacterPreferencesController.h
 //  This file is part of Ceres.
 //
 //  Ceres is free software: you can redistribute it and/or modify
@@ -15,25 +15,22 @@
 //  You should have received a copy of the GNU General Public License
 //  along with Ceres.  If not, see <http://www.gnu.org/licenses/>.
 //
-//  Created by Jens Nockert on 1/10/09.
+//  Created by Jens Nockert on 2/16/09.
 //
 
 #import <Cocoa/Cocoa.h>
 
 #import "CeresHeader.h"
+#import "PreferencesModule.h"
 
-@interface APIController : NSObject {
-  IBOutlet NSTextField * identifier, * apikey;
+@interface CharacterPreferencesController : NSViewController <PreferencesModule> {
+  IBOutlet NSTextField * userid, * apikey, * apilink;
   IBOutlet NSButton * button;
-  IBOutlet NSWindow * apiWindow;
-  IBOutlet NSTextField * apiLink;
 }
 
-- (IBAction) addApikey: (id) sender;
-- (IBAction) openApiWindow: (id) sender;
-- (IBAction) openApiLink: (id) sender;
+- (NSString *) identifier;
+- (NSImage *) icon;
 
-- (void) freeze;
-- (void) unfreeze;
+- (IBAction) addCharacters: (id) sender;
 
 @end

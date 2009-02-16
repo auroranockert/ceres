@@ -10,7 +10,6 @@
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
 		8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
 		B402188D0F183BCB0068D818 /* LoadingController.m in Sources */ = {isa = PBXBuildFile; fileRef = B402188C0F183BCB0068D818 /* LoadingController.m */; };
-		B402198C0F18FD6C0068D818 /* APIController.m in Sources */ = {isa = PBXBuildFile; fileRef = B402198B0F18FD6C0068D818 /* APIController.m */; };
 		B403190C0F41D20400A99577 /* NSRect.h in Headers */ = {isa = PBXBuildFile; fileRef = B403190A0F41D20400A99577 /* NSRect.h */; };
 		B40319EE0F4251C200A99577 /* NSImage.h in Headers */ = {isa = PBXBuildFile; fileRef = B40319EC0F4251C200A99577 /* NSImage.h */; };
 		B40319EF0F4251C200A99577 /* NSImage.m in Sources */ = {isa = PBXBuildFile; fileRef = B40319ED0F4251C200A99577 /* NSImage.m */; };
@@ -31,6 +30,8 @@
 		B40C26DC0F114DFD006D76F0 /* CeresObject.m in Sources */ = {isa = PBXBuildFile; fileRef = B40C26DA0F114DFD006D76F0 /* CeresObject.m */; };
 		B41544920F49D269005B5D48 /* PreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = B41544910F49D269005B5D48 /* PreferencesController.m */; };
 		B415449A0F49F17E005B5D48 /* CeresPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = B41544990F49F17E005B5D48 /* CeresPreferencesController.m */; };
+		B41544D00F49F6CE005B5D48 /* CharacterPreferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = B41544CF0F49F6CE005B5D48 /* CharacterPreferences.xib */; };
+		B41544D40F49F715005B5D48 /* CharacterPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = B41544D30F49F715005B5D48 /* CharacterPreferencesController.m */; };
 		B415CDE50F2F5EE80058F57D /* TrainedSkill.h in Headers */ = {isa = PBXBuildFile; fileRef = B415CDE30F2F5EE80058F57D /* TrainedSkill.h */; };
 		B415CDE60F2F5EE80058F57D /* TrainedSkill.m in Sources */ = {isa = PBXBuildFile; fileRef = B415CDE40F2F5EE80058F57D /* TrainedSkill.m */; };
 		B424F4DA0EEC89E900B5E7C5 /* EveObject.h in Headers */ = {isa = PBXBuildFile; fileRef = B424F4D80EEC89E900B5E7C5 /* EveObject.h */; };
@@ -106,7 +107,6 @@
 		B4E9AE3A0F3C8E34007A175C /* NSXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E9AE380F3C8E34007A175C /* NSXMLNode.m */; };
 		B4E9AE7A0F3CAAC0007A175C /* NSNumber.h in Headers */ = {isa = PBXBuildFile; fileRef = B4E9AE780F3CAAC0007A175C /* NSNumber.h */; };
 		B4E9AE7B0F3CAAC0007A175C /* NSNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E9AE790F3CAAC0007A175C /* NSNumber.m */; };
-		B4E9B0130F3DAB2F007A175C /* API.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4E9B0120F3DAB2F007A175C /* API.xib */; };
 		B4F0E6220F22806E00412957 /* Character.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4F0E6210F22806E00412957 /* Character.xib */; };
 		B4F0E65B0F22865900412957 /* CharacterController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F0E65A0F22865900412957 /* CharacterController.m */; };
 		B4FF57B50F3DEB3B00F67A6C /* NSThread.h in Headers */ = {isa = PBXBuildFile; fileRef = B4FF57B30F3DEB3B00F67A6C /* NSThread.h */; };
@@ -156,8 +156,6 @@
 		8DC2EF5B0486A6940098B216 /* Ceres.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Ceres.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B402188B0F183BCB0068D818 /* LoadingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingController.h; sourceTree = "<group>"; };
 		B402188C0F183BCB0068D818 /* LoadingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingController.m; sourceTree = "<group>"; };
-		B402198A0F18FD6C0068D818 /* APIController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIController.h; sourceTree = "<group>"; };
-		B402198B0F18FD6C0068D818 /* APIController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIController.m; sourceTree = "<group>"; };
 		B403190A0F41D20400A99577 /* NSRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSRect.h; sourceTree = "<group>"; };
 		B40319EC0F4251C200A99577 /* NSImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSImage.h; sourceTree = "<group>"; };
 		B40319ED0F4251C200A99577 /* NSImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSImage.m; sourceTree = "<group>"; };
@@ -187,6 +185,9 @@
 		B41544930F49D336005B5D48 /* PreferencesModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesModule.h; sourceTree = "<group>"; };
 		B41544980F49F17E005B5D48 /* CeresPreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CeresPreferencesController.h; sourceTree = "<group>"; };
 		B41544990F49F17E005B5D48 /* CeresPreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CeresPreferencesController.m; sourceTree = "<group>"; };
+		B41544CF0F49F6CE005B5D48 /* CharacterPreferences.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterPreferences.xib; sourceTree = "<group>"; };
+		B41544D20F49F715005B5D48 /* CharacterPreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterPreferencesController.h; sourceTree = "<group>"; };
+		B41544D30F49F715005B5D48 /* CharacterPreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacterPreferencesController.m; sourceTree = "<group>"; };
 		B415CDE30F2F5EE80058F57D /* TrainedSkill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrainedSkill.h; sourceTree = "<group>"; };
 		B415CDE40F2F5EE80058F57D /* TrainedSkill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrainedSkill.m; sourceTree = "<group>"; };
 		B424F4D80EEC89E900B5E7C5 /* EveObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EveObject.h; sourceTree = "<group>"; };
@@ -263,7 +264,6 @@
 		B4E9AE380F3C8E34007A175C /* NSXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSXMLNode.m; sourceTree = "<group>"; };
 		B4E9AE780F3CAAC0007A175C /* NSNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSNumber.h; sourceTree = "<group>"; };
 		B4E9AE790F3CAAC0007A175C /* NSNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSNumber.m; sourceTree = "<group>"; };
-		B4E9B0120F3DAB2F007A175C /* API.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = API.xib; sourceTree = "<group>"; };
 		B4F0E6210F22806E00412957 /* Character.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Character.xib; sourceTree = "<group>"; };
 		B4F0E6590F22865900412957 /* CharacterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterController.h; sourceTree = "<group>"; };
 		B4F0E65A0F22865900412957 /* CharacterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacterController.m; sourceTree = "<group>"; };
@@ -348,8 +348,8 @@
 				B4A53A680F20B5B600B404E6 /* Ceres.xib */,
 				B4F0E6210F22806E00412957 /* Character.xib */,
 				B462C17F0F2D3140004D04D8 /* License */,
-				B4E9B0120F3DAB2F007A175C /* API.xib */,
 				B4031CB20F45E6C500A99577 /* Menu.xib */,
+				B41544CF0F49F6CE005B5D48 /* CharacterPreferences.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -464,7 +464,6 @@
 			isa = PBXGroup;
 			children = (
 				B41544970F49F14B005B5D48 /* Preferences */,
-				B4E9B0150F3DACEB007A175C /* API */,
 				B4F0E6580F22863C00412957 /* Character */,
 				B4F0E5F90F2247E200412957 /* Loading */,
 				B4F0E5F80F2247D500412957 /* Ceres */,
@@ -495,6 +494,8 @@
 			children = (
 				B41544980F49F17E005B5D48 /* CeresPreferencesController.h */,
 				B41544990F49F17E005B5D48 /* CeresPreferencesController.m */,
+				B41544D20F49F715005B5D48 /* CharacterPreferencesController.h */,
+				B41544D30F49F715005B5D48 /* CharacterPreferencesController.m */,
 			);
 			name = Preferences;
 			sourceTree = "<group>";
@@ -718,15 +719,6 @@
 			name = NSNumber;
 			sourceTree = "<group>";
 		};
-		B4E9B0150F3DACEB007A175C /* API */ = {
-			isa = PBXGroup;
-			children = (
-				B402198A0F18FD6C0068D818 /* APIController.h */,
-				B402198B0F18FD6C0068D818 /* APIController.m */,
-			);
-			name = API;
-			sourceTree = "<group>";
-		};
 		B4F0E5F80F2247D500412957 /* Ceres */ = {
 			isa = PBXGroup;
 			children = (
@@ -919,8 +911,8 @@
 				B4F0E6220F22806E00412957 /* Character.xib in Resources */,
 				B462C1810F2D3140004D04D8 /* License in Resources */,
 				B496BF5A0F33BA2B00E92DB4 /* dsa_pub.pem in Resources */,
-				B4E9B0130F3DAB2F007A175C /* API.xib in Resources */,
 				B4031CB30F45E6C500A99577 /* Menu.xib in Resources */,
+				B41544D00F49F6CE005B5D48 /* CharacterPreferences.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -976,7 +968,6 @@
 				B4C0E7010F38F4D600A96DD6 /* Ceres.xcdatamodeld in Sources */,
 				B40C1EF70EF1C2050050F22B /* CeresMain.m in Sources */,
 				B402188D0F183BCB0068D818 /* LoadingController.m in Sources */,
-				B402198C0F18FD6C0068D818 /* APIController.m in Sources */,
 				B40581170F19AE55009EEDD8 /* Interface.m in Sources */,
 				B40581780F19BAFF009EEDD8 /* ServerStatusController.m in Sources */,
 				B4A539430F1FEB9100B404E6 /* CharacterCell.m in Sources */,
@@ -987,6 +978,7 @@
 				B496C1A30F34A76900E92DB4 /* SkillCell.m in Sources */,
 				B41544920F49D269005B5D48 /* PreferencesController.m in Sources */,
 				B415449A0F49F17E005B5D48 /* CeresPreferencesController.m in Sources */,
+				B41544D40F49F715005B5D48 /* CharacterPreferencesController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
