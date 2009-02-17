@@ -79,11 +79,17 @@
   
   NSNumber * skills = [character skillsForGroup: group];
   
+  NSString * training = @"";
+  
+  if ([[[character trainingSkill] skill] group] == group) {
+    training = @", 1 in training";
+  }
+  
   if ([skills compare: [NSNumber numberWithInteger: 1]] == NSOrderedSame) {
-    return [NSString stringWithFormat: @"%@ Skill (%@ SP)", skills, [[character skillpointsForGroup: group] spString]];
+    return [NSString stringWithFormat: @"%@ Skill (%@ SP%@)", skills, [[character skillpointsForGroup: group] spString], training];
   }
   else {
-    return [NSString stringWithFormat: @"%@ Skills (%@ SP)", skills, [[character skillpointsForGroup: group] spString]]; 
+    return [NSString stringWithFormat: @"%@ Skills (%@ SP%@)", skills, [[character skillpointsForGroup: group] spString], training]; 
   }
 }
 
