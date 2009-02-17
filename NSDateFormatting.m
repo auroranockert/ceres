@@ -23,42 +23,52 @@
 
 @implementation NSDate (CeresFormattingAdditions)
 
-- (NSString *) preferedDateFormat
+- (NSString *) preferedDateFormatString
 {
   NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
   
-  if ([[defaults valueForKey: @"skillLevels"] compare: @"Absolute"] == NSOrderedSame) {
-    NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat: @"'by' HH:mm 'on' MMMM d"];
-    
-    return [dateFormatter stringFromDate: self];
+  if ([[defaults valueForKey: @"trainingFormat"] compare: @"Absolute"] == NSOrderedSame) {
+    return [NSString stringWithFormat: @"by %@", [self absoluteDateString]];
   }
   else {
-    NSInteger time = (NSInteger)[self timeIntervalSinceNow];
-    
-    const int secondsPerMinute = 60;
-    const int secondsPerHour = 60 * secondsPerMinute;
-    const int secondsPerDay = 24 * secondsPerHour;
-    
-    NSInteger seconds, minutes, hours, days;
-    days = time / secondsPerDay;
-    hours = (time % secondsPerDay) / secondsPerHour;
-    minutes = (time % secondsPerHour) / secondsPerMinute;
-    seconds = time % secondsPerMinute;
-    
-    if (days) {
-      return [NSString stringWithFormat: @"in %d days %d hours", days, hours];
-    }
-    else if (hours) {
-      return [NSString stringWithFormat: @"in %d hours %d minutes", hours, minutes];
-    }
-    else if (minutes) {
-      return [NSString stringWithFormat: @"in %d minutes %d seconds", minutes, seconds];
-    }
-    else {
-      return [NSString stringWithFormat: @"in %d seconds", seconds];
-    }
+    return [NSString stringWithFormat: @"in %@", [self relativeDateString]];
   }
+}
+
+- (NSString *) absoluteDateString
+{
+  NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
+  [dateFormatter setDateFormat: @"HH:mm 'on' MMMM d"];
+  
+  return [dateFormatter stringFromDate: self];
+}
+
+- (NSString *) relativeDateString
+{
+  NSInteger time = (NSInteger)[self timeIntervalSinceNow];
+  
+  const int secondsPerMinute = 60;
+  const int secondsPerHour = 60 * secondsPerMinute;
+  const int secondsPerDay = 24 * secondsPerHour;
+  
+  NSInteger seconds, minutes, hours, days;
+  days = time / secondsPerDay;
+  hours = (time % secondsPerDay) / secondsPerHour;
+  minutes = (time % secondsPerHour) / secondsPerMinute;
+  seconds = time % secondsPerMinute;
+  
+  if (days) {
+    return [NSString stringWithFormat: @"%d days %d hours", days, hours];
+  }
+  else if (hours) {
+    return [NSString stringWithFormat: @"%d hours %d minutes", hours, minutes];
+  }
+  else if (minutes) {
+    return [NSString stringWithFormat: @"%d minutes %d seconds", minutes, seconds];
+  }
+  else {
+    return [NSString stringWithFormat: @"%d seconds", seconds];
+  }  
 }
 
 @end

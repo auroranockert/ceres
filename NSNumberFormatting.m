@@ -33,7 +33,7 @@
   return formatter;
 }
 
-- (NSString *) level
+- (NSString *) levelString
 {
   NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
   
@@ -45,14 +45,19 @@
   }
 }
 
-- (NSString *) isk
+- (NSString *) iskString
 {
-  return [NSString stringWithFormat: @"%@ ISK", [[[self class] formatter: 2] stringFromNumber: self]];
+  return [NSString stringWithFormat: @"%@", [[[self class] formatter: 2] stringFromNumber: self]];
 }
 
-- (NSString *) sp
+- (NSString *) spString
 {
-  return [NSString stringWithFormat: @"%@ SP", [[[self class] formatter: 0] stringFromNumber: self]];
+  return [NSString stringWithFormat: @"%@", [[[self class] formatter: 0] stringFromNumber: self]];
+}
+
+- (NSString *) attributeString
+{
+  return [NSString stringWithFormat: @"%@", [[[self class] formatter: 2] stringFromNumber: self]];
 }
 
 @end

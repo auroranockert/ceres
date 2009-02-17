@@ -26,8 +26,9 @@
 
 + (NSNumberFormatter *) formatter: (NSInteger) fractionDigits;
 
-- (NSString *) level;
-- (NSString *) isk;
-- (NSString *) sp;
+- (NSString *) attributeString;
+- (NSString *) levelString;
+- (NSString *) iskString;
+- (NSString *) spString;
 
 @end

@@ -23,6 +23,8 @@
 
 @interface NSDate (CeresFormattingAdditions)
 
-- (NSString *) preferedDateFormat;
+- (NSString *) preferedDateFormatString;
+- (NSString *) absoluteDateString;
+- (NSString *) relativeDateString;
 
 @end
