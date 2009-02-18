@@ -36,8 +36,6 @@
 
 - (void) setObjectValue: (id) object
 {  
-  [super setObjectValue: object];
-  
   if ([object class] == [TrainedSkill class]) {
     [self setSkill: object];
     [self setGroup: nil];

@@ -141,18 +141,20 @@ static Interface * shared;
   return dictionary; 
 }
 
+- (void) makeKeyAndOrderFront
+{
+  [ceresWindow setIsVisible: true];
+  [ceresWindow makeKeyAndOrderFront: self];
+  [[NSApplication sharedApplication] activateIgnoringOtherApps: true];
+  NSLog(@"Called");
+}
+
 - (bool) applicationShouldHandleReopen: (NSApplication *) application hasVisibleWindows: (bool) visible
 {
   if (!visible) {
-    [ceresWindow setIsVisible: true];
-    [ceresWindow makeKeyAndOrderFront: self];
+    [self makeKeyAndOrderFront];
   }
   return true;
-}
-
-- (void) updateCeres: (id) sender
-{
-  
 }
 
 @end

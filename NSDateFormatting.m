@@ -23,6 +23,10 @@
 
 @implementation NSDate (CeresFormattingAdditions)
 
+const NSInteger secondsPerMinute = 60;
+const NSInteger secondsPerHour = 60 * 60;
+const NSInteger secondsPerDay = 24 * 60 * 60;
+
 - (NSString *) preferedDateFormatString
 {
   NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
@@ -46,11 +50,7 @@
 - (NSString *) relativeDateString
 {
   NSInteger time = (NSInteger)[self timeIntervalSinceNow];
-  
-  const int secondsPerMinute = 60;
-  const int secondsPerHour = 60 * secondsPerMinute;
-  const int secondsPerDay = 24 * secondsPerHour;
-  
+    
   NSInteger seconds, minutes, hours, days;
   days = time / secondsPerDay;
   hours = (time % secondsPerDay) / secondsPerHour;
@@ -69,6 +69,30 @@
   else {
     return [NSString stringWithFormat: @"%d seconds", seconds];
   }  
+}
+
+- (NSString *) shortRelativeDateString
+{
+  NSInteger time = (NSInteger)[self timeIntervalSinceNow];
+  
+  NSInteger seconds, minutes, hours, days;
+  days = time / secondsPerDay;
+  hours = (time % secondsPerDay) / secondsPerHour;
+  minutes = (time % secondsPerHour) / secondsPerMinute;
+  seconds = time % secondsPerMinute;
+  
+  if (days) {
+    return [NSString stringWithFormat: @"%dd %dh", days, hours];
+  }
+  else if (hours) {
+    return [NSString stringWithFormat: @"%dh %dm", hours, minutes];
+  }
+  else if (minutes) {
+    return [NSString stringWithFormat: @"%dm %ds", minutes, seconds];
+  }
+  else {
+    return [NSString stringWithFormat: @"%ds", seconds];
+  }    
 }
 
 @end

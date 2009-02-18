@@ -38,15 +38,6 @@
   return self;
 }
 
-- (id)copyWithZone: (NSZone *) zone
-{
-	TableCell * newCell = [super copyWithZone: zone];
-  
-	[newCell setMaxImageWidth: maxImageWidth];
-  
-	return newCell;
-}
-
 - (NSImage *) image
 {
   return nil;
@@ -78,10 +69,10 @@
 {
   NSImage * image = [self image];
   NSString * nameString = [self name];
-  NSString * subString= [self subString];
+  NSString * subString = [self subString];
   
 	NSSize cellSize = NSZeroSize;
-	
+  
 	if (image) {
 		NSSize destSize = [self imageRectForBounds: cellFrame].size;
 		
@@ -131,7 +122,7 @@
   NSRect imageFrame = [self imageRectForBounds: frame];
   
   bool imageFlipped = [image isFlipped];
-  [image setFlipped: true];
+  [image setFlipped: false];
   
   [NSGraphicsContext saveGraphicsState];
   [[NSGraphicsContext currentContext] setImageInterpolation: NSImageInterpolationHigh];
@@ -140,7 +131,7 @@
   
   [image setFlipped: imageFlipped];
   
-	return imageFrame.size;
+  return imageFrame.size;
 }
 
 - (void) drawInteriorWithFrame: (NSRect) frame inView: (NSView *) view

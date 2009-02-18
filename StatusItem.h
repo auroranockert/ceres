@@ -1,5 +1,5 @@
 //
-//  NSArray.m
+//  StatusItem.h
 //  This file is part of Ceres.
 //
 //  Ceres is free software: you can redistribute it and/or modify
@@ -15,27 +15,24 @@
 //  You should have received a copy of the GNU General Public License
 //  along with Ceres.  If not, see <http://www.gnu.org/licenses/>.
 //
-//  Created by Jens Nockert on 2/6/09.
+//  Created by Fernando Alexandre on 1/9/09.
 //
 
-#import "NSArray.h"
+#import <Cocoa/Cocoa.h>
+#import "Interface.h"
+#import "CeresHeader.h"
 
 
-@implementation NSArray (CeresAdditions)
-
-- (id) firstObject
-{
-  if ([self count]) {
-    return [self objectAtIndex: 0];
-  }
-  else {
-    return nil;
-  }
+@interface StatusItem : NSObject {
+	NSStatusItem * statusMenuItem;
+  Character * character;
+  
+  NSString * enabled;
 }
 
-- (id) anyObject 
-{
-  return [self firstObject];
-}
+@property(retain) NSString * enabled;
+
+- (void) update: (id) sender;
+- (void) updateCharacter: (NSNotification *) notification;
 
 @end

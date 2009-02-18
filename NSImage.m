@@ -27,11 +27,14 @@
   NSImage * image = [[NSImage alloc] initWithSize: [self size]];
   NSRect bounds = NSMakeRect(0.0, 0.0, [image size].width, [image size].height);
   
+  NSAffineTransform * transform = [NSAffineTransform transform];
+  
   [image lockFocus];
+
   [[NSColor blackColor] setFill];
   [[NSBezierPath bezierPathWithRoundedRect: bounds xRadius: amount yRadius: amount] fill];
-  
   [self compositeToPoint: NSZeroPoint operation: NSCompositeSourceIn];
+  
   [image unlockFocus];
   
   return image;

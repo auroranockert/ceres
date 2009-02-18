@@ -33,12 +33,14 @@
   NSNumberFormatter * formatter, * spFormatter;
   
   Character * character;
+  
+  NSImage * portrait, * characterViewPortrait;
 }
 
 @property(copy, readonly) NSString * name, * bloodline, * corporation, * balance, * skillpoints;
 @property(copy, readonly) NSString * intelligence, * perception, * charisma, * willpower, * memory;
 @property(copy, readonly) NSString * training, * trainingSkillpoints, * clone;
-@property(retain, readonly) NSData * portraitData;
+@property(retain, readonly) NSImage * portrait, * characterViewPortrait;
 @property(retain, readonly) NSSet * skills;
 
 @property(retain, readonly) Character * character;

@@ -45,8 +45,7 @@
 
 - (IBAction) closeCurrentWindow: (id) sender;
 
+- (void) makeKeyAndOrderFront;
 - (bool) applicationShouldHandleReopen: (NSApplication *) application hasVisibleWindows: (bool) visible;
-
-- (IBAction) updateCeres: (id) sender;
 
 @end

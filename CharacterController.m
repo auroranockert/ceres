@@ -150,9 +150,26 @@
   return [NSString stringWithFormat: @"%@ (Stores %@ SP)", [[character clone] name], [[[character clone] skillpoints] spString]];
 }
 
-- (NSData *) portraitData
+- (NSImage *) portrait
 {
-  return [character portraitData];
+  if (!portrait) {
+    portrait = [character portrait];
+    
+    [portrait setFlipped: true];
+    
+    portrait = [portrait imageWithRoundedCorners: 10.0];
+  }
+  
+  return portrait;
+}
+
+- (NSImage *) characterViewPortrait
+{
+  if (!characterViewPortrait) {
+    characterViewPortrait = [[character portrait] imageWithRoundedCorners: 10.0];
+  }
+  
+  return characterViewPortrait;
 }
 
 - (NSSet *) skills

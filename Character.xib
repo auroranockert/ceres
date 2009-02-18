@@ -710,22 +710,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">data: portraitData</string>
-						<reference key="source" ref="594152638"/>
-						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="594152638"/>
-							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">data: portraitData</string>
-							<string key="NSBinding">data</string>
-							<string key="NSKeyPath">portraitData</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">58</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: intelligence</string>
 						<reference key="source" ref="679933693"/>
 						<reference key="destination" ref="1001"/>
@@ -820,6 +804,22 @@
 					</object>
 					<int key="connectionID">157</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: characterViewPortrait</string>
+						<reference key="source" ref="594152638"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="594152638"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">value: characterViewPortrait</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">characterViewPortrait</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">160</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -871,7 +871,6 @@
 							<reference ref="775112321"/>
 							<reference ref="679933693"/>
 							<reference ref="673133007"/>
-							<reference ref="594152638"/>
 							<reference ref="890565009"/>
 							<reference ref="231500501"/>
 							<reference ref="700702845"/>
@@ -880,6 +879,7 @@
 							<reference ref="413746902"/>
 							<reference ref="321734794"/>
 							<reference ref="741430098"/>
+							<reference ref="594152638"/>
 						</object>
 						<reference key="parent" ref="1005"/>
 					</object>
@@ -1283,7 +1283,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">157</int>
+			<int key="maxID">160</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

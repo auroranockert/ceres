@@ -26,5 +26,6 @@
 - (NSString *) preferedDateFormatString;
 - (NSString *) absoluteDateString;
 - (NSString *) relativeDateString;
+- (NSString *) shortRelativeDateString;
 
 @end

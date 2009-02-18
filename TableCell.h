@@ -23,7 +23,7 @@
 #import "CeresAdditions.h"
 
 @interface TableCell : NSTextFieldCell {
-  float maxImageWidth, imageTextPadding;
+  CGFloat maxImageWidth, imageTextPadding;
 }
 
 @property(assign) float maxImageWidth, imageTextPadding;

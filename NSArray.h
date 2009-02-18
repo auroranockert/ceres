@@ -23,6 +23,7 @@
 
 @interface NSArray (CeresAdditions)
 
+- (id) firstObject;
 - (id) anyObject;
 
 @end

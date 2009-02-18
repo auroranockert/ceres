@@ -52,15 +52,6 @@
   }
 }
 
-- (id)copyWithZone: (NSZone *) zone
-{
-	CharacterCell * newCell = [super copyWithZone: zone];
-  
-  [newCell setCharacter: [self character]];
-    
-	return newCell;
-}
-
 - (void) setObjectValue: (id) object
 {
   [self setCharacter: object];
@@ -73,7 +64,7 @@
 
 - (NSImage *) image
 {
-  return [character portrait];
+  return [[characterListController controllerForCharacter: character] portrait];
 }
 
 - (NSString *) name

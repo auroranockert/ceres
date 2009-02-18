@@ -16,7 +16,7 @@
 #  You should have received a copy of the GNU General Public License
 #  along with Ceres.  If not, see <http://www.gnu.org/licenses/>.
 #
-#  Created by Ibridi on 1/30/09.
+#  Created by Fernando Alexandre on 1/30/09.
 #  Used part of http://snippets.dzone.com/posts/show/2887 by Andrew Pennebaker (andrew.pennebaker@gmail.com)
 #
 
