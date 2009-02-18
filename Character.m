@@ -216,6 +216,12 @@
   if([[self cachedUntil] timeIntervalSinceNow] < 0)
   {
     NSXMLDocument * document = [[self api] request: @"char/CharacterSheet.xml.aspx"];
+    
+    if (!document) {
+      NSLog(@"No character sheet xml available");
+      return;
+    }
+    
     [self setCachedUntil: [document cachedUntil]];
     
     if (![self name]) {
@@ -281,6 +287,11 @@
     
   if([[self trainingCachedUntil] timeIntervalSinceNow] < 0) {
     NSXMLDocument * document = [[self api] request: @"char/SkillInTraining.xml.aspx"];
+    
+    if (!document) {
+      NSLog(@"No skill training xml available");
+      return;
+    }
     
     [self setTrainingCachedUntil: [document cachedUntil]];
     

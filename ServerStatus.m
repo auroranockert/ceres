@@ -61,6 +61,12 @@ static ServerStatus * shared;
   if ([cachedUntil timeIntervalSinceNow] < 0) {
     Api * api = [[Api alloc] init];
     NSXMLDocument * status = [api request: @"server/ServerStatus.xml.aspx"];
+    
+    if (!status) {
+      NSLog(@"No server status xml available");
+      return;
+    }
+    
     NSString * open = [[status readNode: @"/eveapi/result/serverOpen"] stringValue];
     cachedUntil = [status cachedUntil];
     if ([open compare: @"True"] == NSOrderedSame) {
