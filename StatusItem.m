@@ -23,10 +23,6 @@
 
 @implementation StatusItem
 
-static NSUserDefaultsController * defaults;
-
-@dynamic enabled;
-
 - (void) awakeFromNib 
 {
   [[[Ceres instance] notificationCenter] addObserver: self selector: @selector(updateCharacter:) name: [CharacterNotification nameForMessage: @"characterAdded"] object: nil];
@@ -35,10 +31,10 @@ static NSUserDefaultsController * defaults;
 	[[[Ceres instance] notificationCenter] addObserver: self selector: @selector(updateCharacter:) name: [CharacterNotification nameForMessage: @"characterRemoved"] object: nil];
       
   [self updateCharacter: nil];
-  
-  defaults = [NSUserDefaultsController sharedUserDefaultsController];
-  
+    
   [self bind: @"enabled" toObject: [NSUserDefaultsController sharedUserDefaultsController] withKeyPath: @"values.statusIcon" options: nil];
+
+  [self performSelectorOnMainThread: @selector(update:) withObject: self waitUntilDone: false];
 }
 
 - (void) updateCharacter: (NSNotification *) notification
@@ -82,8 +78,6 @@ static NSUserDefaultsController * defaults;
     [statusMenuItem setTarget: [Interface instance]];
     [statusMenuItem setAction: @selector(makeKeyAndOrderFront)];
     [statusMenuItem setEnabled: true];
-    
-    [self performSelectorOnMainThread: @selector(update:) withObject: self waitUntilDone: false];
   }
   else {
     statusMenuItem = nil;
