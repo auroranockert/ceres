@@ -126,7 +126,7 @@
   
   [NSGraphicsContext saveGraphicsState];
   [[NSGraphicsContext currentContext] setImageInterpolation: NSImageInterpolationHigh];
-  [[image imageWithRoundedCorners: 10.0] drawInRect: SquareCenteredInRect((NSHeight(frame) * 0.95), imageFrame) fromRect: NSZeroRect operation: NSCompositeSourceOver fraction: 1.0];
+  [image drawInRect: SquareCenteredInRect((NSHeight(frame) * 0.95), imageFrame) fromRect: NSZeroRect operation: NSCompositeSourceOver fraction: 1.0];
   [NSGraphicsContext restoreGraphicsState];
   
   [image setFlipped: imageFlipped];
