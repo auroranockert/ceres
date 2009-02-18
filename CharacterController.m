@@ -125,9 +125,7 @@
 {
   if ([character trainingSkill])
   {
-    NSInteger current = [[character trainingCurrentSkillpoints] integerValue];
-        
-    if ([[[character trainingSkill] requiredSkillpointsForNextLevel] integerValue] == 0) {
+    if ([[character trainingEndsAt] timeIntervalSinceNow] < 0) {
       return @"Finished";
     }
     else {

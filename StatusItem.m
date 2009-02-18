@@ -49,7 +49,12 @@
 - (void) update: (id) sender
 {
   if (statusMenuItem) {
-    [statusMenuItem setTitle: [[character trainingEndsAt] shortRelativeDateString]];
+    if ([[character trainingEndsAt] timeIntervalSinceNow] < 0) {
+      [statusMenuItem setTitle: @"Done"];
+    }
+    else {
+      [statusMenuItem setTitle: [[character trainingEndsAt] shortRelativeDateString]];
+    }
   }
   
   [self performSelector: @selector(update:) withObject: self afterDelay: 1];

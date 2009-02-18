@@ -91,7 +91,7 @@ static Interface * shared;
                               description: [NSString stringWithFormat: @"Training %@ to level %@ complete", [[character trainingSkill] name], [[[character trainingSkill] nextLevel] levelString]]
                          notificationName: @"Skill training completed"
                                  iconData: [[[character portrait] imageWithRoundedCorners: 10.0] TIFFRepresentation]
-                                 priority: 0
+                                 priority: 2
                                  isSticky: true
                              clickContext: nil];
 }
