@@ -146,7 +146,6 @@ static Interface * shared;
   [ceresWindow setIsVisible: true];
   [ceresWindow makeKeyAndOrderFront: self];
   [[NSApplication sharedApplication] activateIgnoringOtherApps: true];
-  NSLog(@"Called");
 }
 
 - (bool) applicationShouldHandleReopen: (NSApplication *) application hasVisibleWindows: (bool) visible

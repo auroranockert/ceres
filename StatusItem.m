@@ -23,18 +23,22 @@
 
 @implementation StatusItem
 
-@synthesize enabled;
+static NSUserDefaultsController * defaults;
+
+@dynamic enabled;
 
 - (void) awakeFromNib 
-{     
+{
   [[[Ceres instance] notificationCenter] addObserver: self selector: @selector(updateCharacter:) name: [CharacterNotification nameForMessage: @"characterAdded"] object: nil];
 	[[[Ceres instance] notificationCenter] addObserver: self selector: @selector(updateCharacter:) name: [CharacterNotification nameForMessage: @"updatedTraining"] object: nil];
 	[[[Ceres instance] notificationCenter] addObserver: self selector: @selector(updateCharacter:) name: [CharacterNotification nameForMessage: @"skillTrainingCompleted"] object: nil];
 	[[[Ceres instance] notificationCenter] addObserver: self selector: @selector(updateCharacter:) name: [CharacterNotification nameForMessage: @"characterRemoved"] object: nil];
-
-  [self bind: @"enabled" toObject: [NSUserDefaults standardUserDefaults] withKeyPath: @"statusIcon" options: [[NSDictionary alloc] init]];
-  
+      
   [self updateCharacter: nil];
+  
+  defaults = [NSUserDefaultsController sharedUserDefaultsController];
+  
+  [self bind: @"enabled" toObject: [NSUserDefaultsController sharedUserDefaultsController] withKeyPath: @"values.statusIcon" options: nil];
 }
 
 - (void) updateCharacter: (NSNotification *) notification
@@ -50,14 +54,21 @@
 {
   if (statusMenuItem) {
     [statusMenuItem setTitle: [[character trainingEndsAt] shortRelativeDateString]];
-  
-    [self performSelector: @selector(update:) withObject: self afterDelay: 1];
   }
+  
+  [self performSelector: @selector(update:) withObject: self afterDelay: 1];
+}
+
+- (NSString *) enabled
+{
+  return enabled;
 }
 
 - (void) setEnabled: (NSString *) boolean
 {
-  if ([boolean compare: @"Yes"] == NSOrderedSame) {
+  enabled = boolean;
+  
+  if ([enabled compare: @"Yes"] == NSOrderedSame) {
     NSStatusBar * statusBar = [NSStatusBar systemStatusBar]; 
     
     NSImage * menuIcon = [[NSImage alloc] initWithContentsOfFile: [[NSBundle mainBundle] pathForResource: @"StatusIcon" ofType: @"tiff"]];
@@ -77,6 +88,8 @@
   else {
     statusMenuItem = nil;
   }
+  
+  [[NSGarbageCollector defaultCollector] collectExhaustively];
 }
 
 @end
