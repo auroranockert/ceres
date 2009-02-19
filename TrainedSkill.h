@@ -31,7 +31,7 @@
 
 }
 
-@property(retain) NSNumber * skillpoints, * level, * training, * complete;
+@property(retain) NSNumber * skillpoints, * level, * training;
 @property(retain) Skill * skill;
 @property(retain) Character * character;
 
