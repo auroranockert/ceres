@@ -35,6 +35,8 @@
 @property(retain) Skill * skill;
 @property(retain) Character * character;
 
+@property(retain, readonly) NSString * name;
+
 - (id) initWithCharacter: (Character *) character skill: (Skill *) skill;
 
 + (NSArray *) findWithCharacter: (Character *) character;
@@ -42,10 +44,11 @@
 + (NSArray *) findWithCharacter: (Character *) character group: (Group *) group;
 + (NSArray *) findWithCharacter: (Character *) character marketGroup: (MarketGroup *) group;
 
-- (NSString *) name;
 - (NSNumber *) nextLevel;
 
 - (NSNumber *) requiredSkillpointsForNextLevel;
 - (NSNumber *) skillpointsPerHour;
+
+- (bool) complete;
 
 @end

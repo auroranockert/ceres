@@ -125,7 +125,7 @@
 {
   if ([character trainingSkill])
   {
-    if ([[character trainingEndsAt] timeIntervalSinceNow] < 0) {
+    if ([[character trainingSkill] complete]) {
       return @"Finished";
     }
     else {

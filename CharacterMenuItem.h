@@ -1,5 +1,5 @@
 //
-//  StatusItem.h
+//  CharacterMenuItem.h
 //  This file is part of Ceres.
 //
 //  Ceres is free software: you can redistribute it and/or modify
@@ -15,26 +15,17 @@
 //  You should have received a copy of the GNU General Public License
 //  along with Ceres.  If not, see <http://www.gnu.org/licenses/>.
 //
-//  Created by Fernando Alexandre on 1/9/09.
+//  Created by Jens Nockert on 2/21/09.
 //
 
 #import <Cocoa/Cocoa.h>
-#import "Interface.h"
-#import "CeresHeader.h"
-#import "CharacterMenuItem.h"
 
-@interface StatusItem : NSObject {
-	NSStatusItem * statusMenuItem;
+#import "CeresHeader.h"
+
+@interface CharacterMenuItem : NSMenuItem {
   Character * character;
-  
-  NSString * enabled;
 }
 
-@property(retain) NSString * enabled;
-
-- (void) activate: (id) sender;
-
-- (void) update: (id) sender;
-- (void) updateCharacter: (NSNotification *) notification;
+- (id) initWithCharacter: (Character *) character;
 
 @end

@@ -73,7 +73,7 @@
 {
   if ([character trainingSkill])
   {
-    if ([[character trainingEndsAt] timeIntervalSinceNow] < 0) {
+    if ([[character trainingSkill] complete]) {
       return [[NSString alloc] initWithFormat: @"Training %@ to level %ld is finished", [[character trainingSkill] name], [[[character trainingSkill] nextLevel] integerValue]];
     }
     else {

@@ -37,7 +37,8 @@
 		B415462F0F4A1106005B5D48 /* NSDateFormatting.m in Sources */ = {isa = PBXBuildFile; fileRef = B415462E0F4A1106005B5D48 /* NSDateFormatting.m */; };
 		B415470D0F4B4CB1005B5D48 /* StatusItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B415470B0F4B4CB1005B5D48 /* StatusItem.m */; };
 		B415498E0F4B7C98005B5D48 /* StatusIcon.tiff in Resources */ = {isa = PBXBuildFile; fileRef = B415498C0F4B7C98005B5D48 /* StatusIcon.tiff */; };
-		B415498F0F4B7C98005B5D48 /* StatusIconAlternative.tiff in Resources */ = {isa = PBXBuildFile; fileRef = B415498D0F4B7C98005B5D48 /* StatusIconAlternative.tiff */; };
+		B415498F0F4B7C98005B5D48 /* StatusIconAlternate.tiff in Resources */ = {isa = PBXBuildFile; fileRef = B415498D0F4B7C98005B5D48 /* StatusIconAlternate.tiff */; };
+		B4154C730F4F757B005B5D48 /* CharacterMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B4154C720F4F757B005B5D48 /* CharacterMenuItem.m */; };
 		B415CDE50F2F5EE80058F57D /* TrainedSkill.h in Headers */ = {isa = PBXBuildFile; fileRef = B415CDE30F2F5EE80058F57D /* TrainedSkill.h */; };
 		B415CDE60F2F5EE80058F57D /* TrainedSkill.m in Sources */ = {isa = PBXBuildFile; fileRef = B415CDE40F2F5EE80058F57D /* TrainedSkill.m */; };
 		B424F4DA0EEC89E900B5E7C5 /* EveObject.h in Headers */ = {isa = PBXBuildFile; fileRef = B424F4D80EEC89E900B5E7C5 /* EveObject.h */; };
@@ -202,7 +203,9 @@
 		B415470B0F4B4CB1005B5D48 /* StatusItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusItem.m; sourceTree = "<group>"; };
 		B415470C0F4B4CB1005B5D48 /* StatusItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusItem.h; sourceTree = "<group>"; };
 		B415498C0F4B7C98005B5D48 /* StatusIcon.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = StatusIcon.tiff; sourceTree = "<group>"; };
-		B415498D0F4B7C98005B5D48 /* StatusIconAlternative.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = StatusIconAlternative.tiff; sourceTree = "<group>"; };
+		B415498D0F4B7C98005B5D48 /* StatusIconAlternate.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = StatusIconAlternate.tiff; sourceTree = "<group>"; };
+		B4154C710F4F757B005B5D48 /* CharacterMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterMenuItem.h; sourceTree = "<group>"; };
+		B4154C720F4F757B005B5D48 /* CharacterMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacterMenuItem.m; sourceTree = "<group>"; };
 		B415CDE30F2F5EE80058F57D /* TrainedSkill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrainedSkill.h; sourceTree = "<group>"; };
 		B415CDE40F2F5EE80058F57D /* TrainedSkill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrainedSkill.m; sourceTree = "<group>"; };
 		B424F4D80EEC89E900B5E7C5 /* EveObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EveObject.h; sourceTree = "<group>"; };
@@ -359,7 +362,7 @@
 				B40C1EEF0EF1C1CB0050F22B /* Ceres-Info.plist */,
 				8DC2EF5A0486A6940098B216 /* Info.plist */,
 				B415498C0F4B7C98005B5D48 /* StatusIcon.tiff */,
-				B415498D0F4B7C98005B5D48 /* StatusIconAlternative.tiff */,
+				B415498D0F4B7C98005B5D48 /* StatusIconAlternate.tiff */,
 				089C1666FE841158C02AAC07 /* InfoPlist.strings */,
 				B40581430F19AFBA009EEDD8 /* Loading.xib */,
 				B4A53A680F20B5B600B404E6 /* Ceres.xib */,
@@ -535,6 +538,8 @@
 			children = (
 				B415470B0F4B4CB1005B5D48 /* StatusItem.m */,
 				B415470C0F4B4CB1005B5D48 /* StatusItem.h */,
+				B4154C710F4F757B005B5D48 /* CharacterMenuItem.h */,
+				B4154C720F4F757B005B5D48 /* CharacterMenuItem.m */,
 			);
 			name = StatusIcon;
 			sourceTree = "<group>";
@@ -955,7 +960,7 @@
 				B41544D00F49F6CE005B5D48 /* CharacterPreferences.xib in Resources */,
 				B415458F0F4A08D6005B5D48 /* UserDefaults.plist in Resources */,
 				B415498E0F4B7C98005B5D48 /* StatusIcon.tiff in Resources */,
-				B415498F0F4B7C98005B5D48 /* StatusIconAlternative.tiff in Resources */,
+				B415498F0F4B7C98005B5D48 /* StatusIconAlternate.tiff in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1025,6 +1030,7 @@
 				B41545D90F4A0C28005B5D48 /* NSNumberFormatting.m in Sources */,
 				B415462F0F4A1106005B5D48 /* NSDateFormatting.m in Sources */,
 				B415470D0F4B4CB1005B5D48 /* StatusItem.m in Sources */,
+				B4154C730F4F757B005B5D48 /* CharacterMenuItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

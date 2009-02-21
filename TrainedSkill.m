@@ -90,6 +90,15 @@
   return [[self skill] name];
 }
 
+- (bool) complete
+{
+  if (self == [[self character] trainingSkill] && [[[self character] trainingEndsAt] timeIntervalSinceNow] < 0) {
+    return true;
+  }
+  
+  return false;
+}
+
 - (NSNumber *) nextLevel
 {
   return [[self level] next];
