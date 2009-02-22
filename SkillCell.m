@@ -46,7 +46,7 @@
 
 - (NSString *) name
 {
-  return [skill name];
+  return [NSString stringWithFormat: @"%@ (Rank %@)", [skill name], [[skill skill] rank]];
 }
 
 - (NSFont *) nameFont
@@ -59,10 +59,10 @@
   NSString * training = @"";
   
   if ([self skill] == [character trainingSkill]) {
-    training = @" in training";
+    training = @", in training";
   }
   
-  return [NSString stringWithFormat: @"Level %@ (Rank %@) %@ SP (%@%% done) %@", [[skill level] levelString], [[skill skill] rank], [[skill currentSkillpoints] spString], [[skill percentDone] percentString], training];
+  return [NSString stringWithFormat: @"Level %@, %@ SP (%@%% done%@)", [[skill level] levelString], [[skill currentSkillpoints] spString], [[skill percentDone] percentString], training];
 }
 
 @end

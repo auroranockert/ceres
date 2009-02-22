@@ -190,7 +190,7 @@
 {
   if(!characterWindow) {
     [[Interface instance] loadNib: @"Character" owner: self];
-    [characterWindow setFrameAutosaveName: [characterWindow representedFilename]];
+    [characterWindow setFrameAutosaveName: [NSString stringWithFormat: @"CharacterWindow.%@", [character name]]];
   }
   
   [characterWindow setIsVisible: true];
