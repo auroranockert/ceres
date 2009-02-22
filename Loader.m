@@ -143,7 +143,7 @@ static Loader * shared;
       }
     }
     
-    [delegate setText: [NSString stringWithFormat: @"Downloaded %d / %d files (%d / %d kB)", finished, [loaders count], done / 1024, total / 1024]];
+    [delegate setText: [NSString stringWithFormat: @"Downloaded %ld / %ld files (%ld / %ld kB)", finished, [loaders count], done / 1024, total / 1024]];
     
     if (count > 180) {
       [delegate downloadTimeout: count];
@@ -158,7 +158,7 @@ static Loader * shared;
   finished = 0;
   for (id key in [[loaders allKeys] sortedArrayUsingSelector: @selector(comparePriority:)])
   {
-    [delegate setText: [NSString stringWithFormat: @"Parsing data (%d / %d files processed)", finished, [loaders count]]];
+    [delegate setText: [NSString stringWithFormat: @"Parsing data (%ld / %ld files processed)", finished, [loaders count]]];
     [[NSRunLoop mainRunLoop] runUntilDate: [NSDate dateWithTimeIntervalSinceNow: 0.1]];
     [key performSelector: @selector(load:) withObject: [[loaders objectForKey: key] xml]];
     finished++;

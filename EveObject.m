@@ -27,7 +27,7 @@
 
 - (void) update
 {
-  NSLog(@"Dummy Update requested for object %@ (%d), returned nil. This is a bug.", [self name], [self identifier]);
+  NSLog(@"Dummy Update requested for object %@ (%ld), returned nil. This is a bug.", [self name], [self identifier]);
 }
 
 - (void) invalidate

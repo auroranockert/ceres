@@ -58,7 +58,7 @@
       [[[sender class] alloc] initWithDictionary: dictionary];
     }
     
-    NSLog(@"Finished %d / %d %@", done, total, [sender class]);
+    NSLog(@"Finished %ld / %ld %@", done, total, [sender class]);
     
     [[NSRunLoop mainRunLoop] runUntilDate: [NSDate dateWithTimeIntervalSinceNow: 1.0]];
   }

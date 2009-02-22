@@ -58,16 +58,16 @@ const NSInteger secondsPerDay = 24 * 60 * 60;
   seconds = time % secondsPerMinute;
   
   if (days) {
-    return [NSString stringWithFormat: @"%d days %d hours", days, hours];
+    return [NSString stringWithFormat: @"%ld days %ld hours", days, hours];
   }
   else if (hours) {
-    return [NSString stringWithFormat: @"%d hours %d minutes", hours, minutes];
+    return [NSString stringWithFormat: @"%ld hours %ld minutes", hours, minutes];
   }
   else if (minutes) {
-    return [NSString stringWithFormat: @"%d minutes %d seconds", minutes, seconds];
+    return [NSString stringWithFormat: @"%ld minutes %ld seconds", minutes, seconds];
   }
   else {
-    return [NSString stringWithFormat: @"%d seconds", seconds];
+    return [NSString stringWithFormat: @"%ld seconds", seconds];
   }  
 }
 
@@ -82,16 +82,16 @@ const NSInteger secondsPerDay = 24 * 60 * 60;
   seconds = time % secondsPerMinute;
   
   if (days) {
-    return [NSString stringWithFormat: @"%dd %dh", days, hours];
+    return [NSString stringWithFormat: @"%ldd %ldh", days, hours];
   }
   else if (hours) {
-    return [NSString stringWithFormat: @"%dh %dm", hours, minutes];
+    return [NSString stringWithFormat: @"%ldh %ldm", hours, minutes];
   }
   else if (minutes) {
-    return [NSString stringWithFormat: @"%dm %ds", minutes, seconds];
+    return [NSString stringWithFormat: @"%ldm %lds", minutes, seconds];
   }
   else {
-    return [NSString stringWithFormat: @"%ds", seconds];
+    return [NSString stringWithFormat: @"%lds", seconds];
   }    
 }
 

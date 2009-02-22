@@ -58,12 +58,12 @@
   NSString * urlString = [methodApi stringByAppendingString: method];  
   if (identifier)
   {
-    urlString = [urlString stringByAppendingFormat: @"?userId=%d&apiKey=%@", [identifier integerValue], apikey];
+    urlString = [urlString stringByAppendingFormat: @"?userId=%ld&apiKey=%@", [identifier integerValue], apikey];
   }
   
   if (characterIdentifier)
   {
-    urlString = [urlString stringByAppendingFormat: @"&characterId=%d", [characterIdentifier integerValue]];
+    urlString = [urlString stringByAppendingFormat: @"&characterId=%ld", [characterIdentifier integerValue]];
   }
   
   return [super request: urlString];
@@ -78,7 +78,7 @@
 - (NSImage *) requestImage: (NSNumber *) image
                       size: (NSInteger) size
 {
-  NSString * urlString = [[imageApi stringByAppendingFormat: @"?s=%d", size] stringByAppendingFormat: @"&c=%d", [image integerValue]];
+  NSString * urlString = [[imageApi stringByAppendingFormat: @"?s=%ld", size] stringByAppendingFormat: @"&c=%ld", [image integerValue]];
 
   NSURL * url = [[NSURL alloc] initWithString: urlString];
   return [[NSImage alloc] initWithContentsOfURL: url];

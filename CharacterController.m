@@ -140,7 +140,7 @@
 
 - (NSString *) skillCount
 {
-  return [NSString stringWithFormat: @"%d of %d skills are currently trained to level %@.", [[[character skills] filteredSetUsingPredicate: [NSPredicate predicateWithFormat: @"level = 5"]] count], [[character skills] count], [[NSNumber numberWithInteger: 5] levelString]];
+  return [NSString stringWithFormat: @"%ld of %ld skills are currently trained to level %@.", [[[character skills] filteredSetUsingPredicate: [NSPredicate predicateWithFormat: @"level = 5"]] count], [[character skills] count], [[NSNumber numberWithInteger: 5] levelString]];
 }
 
 - (NSString *) clone
