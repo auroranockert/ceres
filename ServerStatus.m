@@ -64,20 +64,23 @@ static ServerStatus * shared;
     
     if (!status) {
       NSLog(@"No server status xml available");
-      return;
-    }
-    
-    NSString * open = [[status readNode: @"/eveapi/result/serverOpen"] stringValue];
-    cachedUntil = [status cachedUntil];
-    if ([open compare: @"True"] == NSOrderedSame) {
-      online = [NSNumber numberWithBool: true];
-      players = [[status readNode: @"/eveapi/result/onlinePlayers"] numberValueInteger];
-    }
-    else {
       online = [NSNumber numberWithBool: false];
       players = [NSNumber numberWithInteger: 0];
+      return;
     }
-        
+    else {
+      NSString * open = [[status readNode: @"/eveapi/result/serverOpen"] stringValue];
+      cachedUntil = [status cachedUntil];
+      if ([open compare: @"True"] == NSOrderedSame) {
+        online = [NSNumber numberWithBool: true];
+        players = [[status readNode: @"/eveapi/result/onlinePlayers"] numberValueInteger];
+      }
+      else {
+        online = [NSNumber numberWithBool: false];
+        players = [NSNumber numberWithInteger: 0];
+      }
+    }
+      
     NSNotification * notification = [NSNotification notificationWithName: @"Ceres.server.playerCountUpdated" object: [self players]]; //[NSNumber numberWithInteger: [self players]]];
     [[Ceres instance] postNotification: notification];
     

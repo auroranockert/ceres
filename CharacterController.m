@@ -190,6 +190,7 @@
 {
   if(!characterWindow) {
     [[Interface instance] loadNib: @"Character" owner: self];
+    [characterWindow setFrameAutosaveName: [characterWindow representedFilename]];
   }
   
   [characterWindow setIsVisible: true];
