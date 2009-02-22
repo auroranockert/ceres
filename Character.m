@@ -197,11 +197,6 @@
   return [NSNumber numberWithInteger: [[[self skills] filteredSetUsingPredicate: [NSPredicate predicateWithFormat: @"skill.group == %@", group]] count]];
 }
 
-- (NSNumber *) trainingCurrentSkillpoints
-{
-  return [[[self trainingSkill] skillpoints] addInteger: [self additionalSkillpoints]];
-}
-
 - (void) update
 {  
   if(![self portraitData]) {

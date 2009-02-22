@@ -20,6 +20,7 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import "CeresAdditions.h"
 #import "CeresObject.h"
 
 #import "Character.h"
@@ -36,6 +37,8 @@
 @property(retain) Character * character;
 
 @property(retain, readonly) NSString * name;
+@property(assign, readonly) bool complete;
+@property(retain, readonly) NSNumber * nextLevel, * requiredSkillpointsForNextLevel, * skillpointsPerHour, * currentSkillpoints, * percentDone;
 
 - (id) initWithCharacter: (Character *) character skill: (Skill *) skill;
 
@@ -43,12 +46,5 @@
 + (id) findWithCharacter: (Character *) character skill: (Skill *) skill;
 + (NSArray *) findWithCharacter: (Character *) character group: (Group *) group;
 + (NSArray *) findWithCharacter: (Character *) character marketGroup: (MarketGroup *) group;
-
-- (NSNumber *) nextLevel;
-
-- (NSNumber *) requiredSkillpointsForNextLevel;
-- (NSNumber *) skillpointsPerHour;
-
-- (bool) complete;
 
 @end

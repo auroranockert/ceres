@@ -119,4 +119,25 @@
   return [NSNumber numberWithDouble: ([[[self character] attribute: [[self skill] primaryAttribute]] doubleValue] + [[[self character] attribute: [[self skill] secondaryAttribute]] doubleValue] / 2) * 60];
 }
 
+- (NSNumber *) currentSkillpoints
+{
+  if (self == [[self character] trainingSkill]) {
+    return [[self skillpoints] addInteger: [[self character] additionalSkillpoints]];
+  }
+  else {
+    return [self skillpoints];
+  }
+}
+
+- (NSNumber *) percentDone
+{
+  if ([[self level] integerValue] < 5) {
+    NSInteger current = [[[self skill] skillpointsForLevel: [self level]] integerValue], next = [[[self skill] skillpointsForLevel: [self nextLevel]] integerValue];
+    return [NSNumber numberWithDouble: (double)([[self currentSkillpoints] integerValue] - current) / (next - current)];
+  }
+  else {
+    return [NSNumber numberWithDouble: 1.0];
+  }
+}
+
 @end

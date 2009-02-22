@@ -60,4 +60,9 @@
   return [NSString stringWithFormat: @"%@", [[[self class] formatter: 2] stringFromNumber: self]];
 }
 
+- (NSString *) percentString
+{
+  return [NSString stringWithFormat: @"%@", [[[self class] formatter: 0] stringFromNumber: [NSNumber numberWithDouble: [self doubleValue] * 100.0]]];
+}
+
 @end

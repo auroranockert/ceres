@@ -30,5 +30,6 @@
 - (NSString *) levelString;
 - (NSString *) iskString;
 - (NSString *) spString;
+- (NSString *) percentString;
 
 @end

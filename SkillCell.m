@@ -71,13 +71,17 @@
 
 - (NSString *) subString
 {
+  NSString * training = @"";
+  
   if ([self skill]) {
-    return [NSString stringWithFormat: @"Level %@ (Rank %@) %@ SP", [[skill level] levelString], [[skill skill] rank], [[skill skillpoints] spString]];
+    if ([self skill] == [character trainingSkill]) {
+      training = @" in training";
+    }
+    
+    return [NSString stringWithFormat: @"Level %@ (Rank %@) %@ SP (%@%% done) %@", [[skill level] levelString], [[skill skill] rank], [[skill currentSkillpoints] spString], [[skill percentDone] percentString], training];
   }
   
   NSNumber * skills = [character skillsForGroup: group];
-  
-  NSString * training = @"";
   
   if ([[[character trainingSkill] skill] group] == group) {
     training = @", 1 in training";

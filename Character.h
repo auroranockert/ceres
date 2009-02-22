@@ -88,7 +88,7 @@
 - (bool) updateCharacterSheet;
 - (bool) updateTrainingSkill;
 
-- (NSNumber *) trainingCurrentSkillpoints;
+- (NSNumber *) additionalSkillpoints;
 
 - (void) prepareMessages;
 
