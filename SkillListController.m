@@ -30,7 +30,11 @@
   character = [characterController character];
   
   NSTableColumn * column = [[skillOutlineView tableColumns] anyObject];
-  [column setDataCell: [[SkillCell alloc] initWithCharacter: character]];
+  skillCell = [[SkillCell alloc] initWithCharacter: character];
+  groupCell = [[GroupCell alloc] initWithCharacter: character];
+  
+  [skillOutlineView setAutosaveName: [NSString stringWithFormat: @"SkillList.%@", [character name]]];
+  [skillOutlineView setAutosaveExpandedItems: true];
   
   [self setSortDescriptors: [NSArray arrayWithObjects: [[NSSortDescriptor alloc] initWithKey: @"skill.group.name" ascending: true], [[NSSortDescriptor alloc] initWithKey: @"skill.name" ascending: true], nil]];
   [self setFetchPredicate: [NSPredicate predicateWithFormat: @"character = %@", character, character]];
@@ -66,6 +70,30 @@
 - (id) outlineView: (NSOutlineView *) outlineView objectValueForTableColumn: (NSTableColumn *) tableColumn byItem: (id) item
 {
   return item;
+}
+
+- (id) outlineView: (NSOutlineView *) outlineView persistentObjectForItem: (id)item
+{
+  return [item identifier];
+}
+
+- (id) outlineView: (NSOutlineView *) outlineView itemForPersistentObject: (id)object
+{
+  return [Group findWithIdentifier: object];
+}
+
+- (NSCell *) outlineView: (NSOutlineView *) outlineView dataCellForTableColumn: (NSTableColumn *) tableColumn item: (id) item
+{
+  if ([item class] == [Group class]) {
+    return groupCell;
+  }
+  else if ([item class] == [TrainedSkill class]) {
+    if (tableColumn) {
+      return skillCell;
+    }
+  }
+  
+  return nil;
 }
 
 @end

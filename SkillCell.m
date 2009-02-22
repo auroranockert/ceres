@@ -23,7 +23,7 @@
 
 @implementation SkillCell
 
-@synthesize skill, group;
+@synthesize skill;
 
 - (id) initWithCharacter: (Character *) c
 {
@@ -36,14 +36,7 @@
 
 - (void) setObjectValue: (id) object
 {  
-  if ([object class] == [TrainedSkill class]) {
-    [self setSkill: object];
-    [self setGroup: nil];
-  }
-  else if ([object class] == [Group class]) {
-    [self setSkill: nil];
-    [self setGroup: object];
-  }
+  [self setSkill: object];
 }
 
 - (NSImage *) image
@@ -53,46 +46,23 @@
 
 - (NSString *) name
 {
-  if (skill) {
-    return [skill name];
-  }
-  
-  return [group name];
+  return [skill name];
 }
 
 - (NSFont *) nameFont
 {
-  if (skill) {
-    return [NSFont systemFontOfSize: 12];
-  }
-  
-  return [NSFont systemFontOfSize: 14];  
+  return [NSFont systemFontOfSize: 12];
 }
 
 - (NSString *) subString
 {
   NSString * training = @"";
   
-  if ([self skill]) {
-    if ([self skill] == [character trainingSkill]) {
-      training = @" in training";
-    }
-    
-    return [NSString stringWithFormat: @"Level %@ (Rank %@) %@ SP (%@%% done) %@", [[skill level] levelString], [[skill skill] rank], [[skill currentSkillpoints] spString], [[skill percentDone] percentString], training];
+  if ([self skill] == [character trainingSkill]) {
+    training = @" in training";
   }
   
-  NSNumber * skills = [character skillsForGroup: group];
-  
-  if ([[[character trainingSkill] skill] group] == group) {
-    training = @", 1 in training";
-  }
-  
-  if ([skills compare: [NSNumber numberWithInteger: 1]] == NSOrderedSame) {
-    return [NSString stringWithFormat: @"%@ Skill (%@ SP%@)", skills, [[character skillpointsForGroup: group] spString], training];
-  }
-  else {
-    return [NSString stringWithFormat: @"%@ Skills (%@ SP%@)", skills, [[character skillpointsForGroup: group] spString], training]; 
-  }
+  return [NSString stringWithFormat: @"Level %@ (Rank %@) %@ SP (%@%% done) %@", [[skill level] levelString], [[skill skill] rank], [[skill currentSkillpoints] spString], [[skill percentDone] percentString], training];
 }
 
 @end

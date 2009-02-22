@@ -448,7 +448,8 @@
 											<int key="NSDraggingSourceMaskForNonLocal">0</int>
 											<bool key="NSAllowsTypeSelect">NO</bool>
 											<int key="NSTableViewSelectionHighlightStyle">1</int>
-											<float key="NSOutlineViewIndentationPerLevelKey">1.400000e+01</float>
+											<float key="NSOutlineViewIndentationPerLevelKey">1.500000e+01</float>
+											<bool key="NSOutlineViewIndentationMarkerFollowsCellKey">NO</bool>
 										</object>
 									</object>
 									<string key="NSFrame">{{1, 17}, {493, 226}}</string>
@@ -837,6 +838,14 @@
 						</object>
 					</object>
 					<int key="connectionID">164</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">delegate</string>
+						<reference key="source" ref="439246065"/>
+						<reference key="destination" ref="856438973"/>
+					</object>
+					<int key="connectionID">165</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -1301,7 +1310,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">164</int>
+			<int key="maxID">165</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

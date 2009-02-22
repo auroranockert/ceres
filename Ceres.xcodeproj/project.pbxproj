@@ -39,6 +39,7 @@
 		B415498E0F4B7C98005B5D48 /* StatusIcon.tiff in Resources */ = {isa = PBXBuildFile; fileRef = B415498C0F4B7C98005B5D48 /* StatusIcon.tiff */; };
 		B415498F0F4B7C98005B5D48 /* StatusIconAlternate.tiff in Resources */ = {isa = PBXBuildFile; fileRef = B415498D0F4B7C98005B5D48 /* StatusIconAlternate.tiff */; };
 		B4154C730F4F757B005B5D48 /* CharacterMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B4154C720F4F757B005B5D48 /* CharacterMenuItem.m */; };
+		B4154D690F518015005B5D48 /* GroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B4154D680F518015005B5D48 /* GroupCell.m */; };
 		B415CDE50F2F5EE80058F57D /* TrainedSkill.h in Headers */ = {isa = PBXBuildFile; fileRef = B415CDE30F2F5EE80058F57D /* TrainedSkill.h */; };
 		B415CDE60F2F5EE80058F57D /* TrainedSkill.m in Sources */ = {isa = PBXBuildFile; fileRef = B415CDE40F2F5EE80058F57D /* TrainedSkill.m */; };
 		B424F4DA0EEC89E900B5E7C5 /* EveObject.h in Headers */ = {isa = PBXBuildFile; fileRef = B424F4D80EEC89E900B5E7C5 /* EveObject.h */; };
@@ -206,6 +207,8 @@
 		B415498D0F4B7C98005B5D48 /* StatusIconAlternate.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = StatusIconAlternate.tiff; sourceTree = "<group>"; };
 		B4154C710F4F757B005B5D48 /* CharacterMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterMenuItem.h; sourceTree = "<group>"; };
 		B4154C720F4F757B005B5D48 /* CharacterMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacterMenuItem.m; sourceTree = "<group>"; };
+		B4154D670F518015005B5D48 /* GroupCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupCell.h; sourceTree = "<group>"; };
+		B4154D680F518015005B5D48 /* GroupCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupCell.m; sourceTree = "<group>"; };
 		B415CDE30F2F5EE80058F57D /* TrainedSkill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrainedSkill.h; sourceTree = "<group>"; };
 		B415CDE40F2F5EE80058F57D /* TrainedSkill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrainedSkill.m; sourceTree = "<group>"; };
 		B424F4D80EEC89E900B5E7C5 /* EveObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EveObject.h; sourceTree = "<group>"; };
@@ -544,6 +547,26 @@
 			name = StatusIcon;
 			sourceTree = "<group>";
 		};
+		B4154D6A0F51801C005B5D48 /* Skill List */ = {
+			isa = PBXGroup;
+			children = (
+				B496C1A10F34A76900E92DB4 /* SkillCell.h */,
+				B496C1A20F34A76900E92DB4 /* SkillCell.m */,
+				B4154D670F518015005B5D48 /* GroupCell.h */,
+				B4154D680F518015005B5D48 /* GroupCell.m */,
+			);
+			name = "Skill List";
+			sourceTree = "<group>";
+		};
+		B4154D910F5181E8005B5D48 /* Character List */ = {
+			isa = PBXGroup;
+			children = (
+				B4A539410F1FEB9100B404E6 /* CharacterCell.m */,
+				B4A539420F1FEB9100B404E6 /* CharacterCell.h */,
+			);
+			name = "Character List";
+			sourceTree = "<group>";
+		};
 		B424F4D40EEC894000B5E7C5 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -650,12 +673,10 @@
 		B4A5387A0F1FE67600B404E6 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				B4A539410F1FEB9100B404E6 /* CharacterCell.m */,
-				B4A539420F1FEB9100B404E6 /* CharacterCell.h */,
+				B4154D910F5181E8005B5D48 /* Character List */,
+				B4154D6A0F51801C005B5D48 /* Skill List */,
 				B496BF940F33C94E00E92DB4 /* TableCell.h */,
 				B496BF950F33C94E00E92DB4 /* TableCell.m */,
-				B496C1A10F34A76900E92DB4 /* SkillCell.h */,
-				B496C1A20F34A76900E92DB4 /* SkillCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -1031,6 +1052,7 @@
 				B415462F0F4A1106005B5D48 /* NSDateFormatting.m in Sources */,
 				B415470D0F4B4CB1005B5D48 /* StatusItem.m in Sources */,
 				B4154C730F4F757B005B5D48 /* CharacterMenuItem.m in Sources */,
+				B4154D690F518015005B5D48 /* GroupCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
