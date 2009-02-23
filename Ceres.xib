@@ -41,7 +41,7 @@
 				<string key="NSWindowRect">{{85, 439}, {480, 208}}</string>
 				<int key="NSWTFlags">1677723648</int>
 				<string key="NSWindowTitle">Ceres</string>
-				<string key="NSWindowClass">NSWindow</string>
+				<string key="NSWindowClass">StickyWindow</string>
 				<object class="NSToolbar" key="NSViewClass" id="997917262">
 					<object class="NSMutableString" key="NSToolbarIdentifier">
 						<characters key="NS.bytes">64D3084E-B454-4BE8-B209-1AD1BEF610C9</characters>
@@ -771,6 +771,14 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">ServerStatusController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">StickyWindow</string>
+					<string key="superclassName">NSWindow</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">StickyWindow.h</string>
 					</object>
 				</object>
 			</object>

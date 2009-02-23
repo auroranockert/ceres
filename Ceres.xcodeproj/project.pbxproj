@@ -42,6 +42,7 @@
 		B4154D690F518015005B5D48 /* GroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B4154D680F518015005B5D48 /* GroupCell.m */; };
 		B4154E070F527AE0005B5D48 /* CacheMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B4154E060F527AE0005B5D48 /* CacheMenuItem.m */; };
 		B4154EC60F52AF79005B5D48 /* CeresArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4154EC50F52AF79005B5D48 /* CeresArrayController.m */; };
+		B415502D0F536019005B5D48 /* StickyWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = B415502C0F536019005B5D48 /* StickyWindow.m */; };
 		B415CDE50F2F5EE80058F57D /* TrainedSkill.h in Headers */ = {isa = PBXBuildFile; fileRef = B415CDE30F2F5EE80058F57D /* TrainedSkill.h */; };
 		B415CDE60F2F5EE80058F57D /* TrainedSkill.m in Sources */ = {isa = PBXBuildFile; fileRef = B415CDE40F2F5EE80058F57D /* TrainedSkill.m */; };
 		B424F4DA0EEC89E900B5E7C5 /* EveObject.h in Headers */ = {isa = PBXBuildFile; fileRef = B424F4D80EEC89E900B5E7C5 /* EveObject.h */; };
@@ -216,6 +217,8 @@
 		B4154E6A0F52A751005B5D48 /* Ceres 0.0.11.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Ceres 0.0.11.xcdatamodel"; sourceTree = "<group>"; };
 		B4154EC40F52AF79005B5D48 /* CeresArrayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CeresArrayController.h; sourceTree = "<group>"; };
 		B4154EC50F52AF79005B5D48 /* CeresArrayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CeresArrayController.m; sourceTree = "<group>"; };
+		B415502B0F536019005B5D48 /* StickyWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StickyWindow.h; sourceTree = "<group>"; };
+		B415502C0F536019005B5D48 /* StickyWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StickyWindow.m; sourceTree = "<group>"; };
 		B415CDE30F2F5EE80058F57D /* TrainedSkill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrainedSkill.h; sourceTree = "<group>"; };
 		B415CDE40F2F5EE80058F57D /* TrainedSkill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrainedSkill.m; sourceTree = "<group>"; };
 		B424F4D80EEC89E900B5E7C5 /* EveObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EveObject.h; sourceTree = "<group>"; };
@@ -593,6 +596,15 @@
 			name = "Array Controller";
 			sourceTree = "<group>";
 		};
+		B415502A0F535FF2005B5D48 /* Window */ = {
+			isa = PBXGroup;
+			children = (
+				B415502B0F536019005B5D48 /* StickyWindow.h */,
+				B415502C0F536019005B5D48 /* StickyWindow.m */,
+			);
+			name = Window;
+			sourceTree = "<group>";
+		};
 		B424F4D40EEC894000B5E7C5 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -710,6 +722,7 @@
 		B4A539E90F20AD3D00B404E6 /* Elements */ = {
 			isa = PBXGroup;
 			children = (
+				B415502A0F535FF2005B5D48 /* Window */,
 				B4154E040F527ACA005B5D48 /* Menu Items */,
 				B41544960F49F13A005B5D48 /* Controllers */,
 				B4A5387A0F1FE67600B404E6 /* Cells */,
@@ -1082,6 +1095,7 @@
 				B4154D690F518015005B5D48 /* GroupCell.m in Sources */,
 				B4154E070F527AE0005B5D48 /* CacheMenuItem.m in Sources */,
 				B4154EC60F52AF79005B5D48 /* CeresArrayController.m in Sources */,
+				B415502D0F536019005B5D48 /* StickyWindow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
