@@ -22,6 +22,7 @@
 
 #import "Interface.h"
 #import "CeresHeader.h"
+#import "CacheMenuItem.h"
 
 #import "CharacterListController.h"
 

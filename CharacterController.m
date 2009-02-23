@@ -41,6 +41,8 @@
   NSMenuItem * showCharacter = [[NSMenuItem alloc] initWithTitle: @"Show more details" action: @selector(showCharacter) keyEquivalent: @""];
   NSMenuItem * invalidateCharacter = [[NSMenuItem alloc] initWithTitle: @"Invalidate cache" action: @selector(invalidateCharacter) keyEquivalent: @""];
   NSMenuItem * removeCharacter = [[NSMenuItem alloc] initWithTitle: @"Remove Character" action: @selector(removeCharacter) keyEquivalent: @""];  
+  NSMenuItem * cacheCharacter = [[CacheMenuItem alloc] initWithCharacter: character type: @"Character"];
+  NSMenuItem * cacheTraining = [[CacheMenuItem alloc] initWithCharacter: character type: @"Training"];
   
   [showCharacter setTarget: self];
   [invalidateCharacter setTarget: self];
@@ -48,6 +50,9 @@
   
   [menu addItem: showCharacter];
   [menu addItem: invalidateCharacter];
+  [menu addItem: [NSMenuItem separatorItem]];
+  [menu addItem: cacheCharacter];
+  [menu addItem: cacheTraining];
   [menu addItem: [NSMenuItem separatorItem]];
   [menu addItem: removeCharacter];
   
