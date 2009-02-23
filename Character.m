@@ -23,6 +23,8 @@
 
 @implementation Character
 
+@dynamic order;
+
 @dynamic balance, race, bloodline, gender;
 @dynamic account, clone, baseAttributes;
 
@@ -47,9 +49,12 @@
   if (self = [super initWithIdentifier: ident]) {
     [self setAccount: acc];
   
+    
+    [self setOrder: [NSNumber numberWithInteger: [[Character find] count]]];
+        
     [self invalidate];
     [self update];
-    
+        
     [[Ceres instance] postNotification: [CharacterNotification notificationWithCharacter: self name: @"characterAdded"]];
   }
   
@@ -384,8 +389,15 @@
 }
 
 - (void) remove
-{
+{  
+  NSSortDescriptor * sort = [[NSSortDescriptor alloc] initWithKey: @"order" ascending: true];
+  NSPredicate * predicate = [NSPredicate predicateWithFormat: @"order > %@", [self order]];
+  
   [super remove];
+  
+  for (Character * c in [Character findWithSort: sort predicate: predicate]) {
+    [c setOrder: [[c order] previous]];
+  }  
   
   [[Ceres instance] postNotification: [CharacterNotification notificationWithCharacter: self name: @"characterRemoved"]];
 }

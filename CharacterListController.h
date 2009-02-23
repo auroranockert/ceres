@@ -22,12 +22,14 @@
 
 #import "CeresHeader.h"
 
+#import "CeresArrayController.h"
+
 #import "CharacterCell.h"
 #import "CharacterController.h"
 
 @class CharacterController;
 
-@interface CharacterListController : NSArrayController {
+@interface CharacterListController : CeresArrayController {
   IBOutlet NSTableView * characterTableView;
   
   NSMutableDictionary * characterControllers;

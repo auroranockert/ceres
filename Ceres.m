@@ -82,7 +82,7 @@ static Ceres * shared;
 
 - (NSString *) applicationVersion
 {
-  return @"0.0.11";
+  return @"0.0.12";
 }
 
 - (CeresVersionComparison) compareVersion

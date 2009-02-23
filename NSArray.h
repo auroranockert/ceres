@@ -25,5 +25,6 @@
 
 - (id) firstObject;
 - (id) anyObject;
+- (id) lastObject;
 
 @end

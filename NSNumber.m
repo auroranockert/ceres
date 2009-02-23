@@ -49,15 +49,15 @@
     case 0:
       return @"0";
     case 1:
-      return @"I";
+      return @"Ⅰ";
     case 2:
-      return @"II";
+      return @"Ⅱ";
     case 3:
-      return @"III";
+      return @"Ⅲ";
     case 4:
-      return @"IV";
+      return @"Ⅳ";
     case 5:
-      return @"V";
+      return @"Ⅴ";
     default:
       return nil;
   }

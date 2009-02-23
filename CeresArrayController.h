@@ -1,5 +1,5 @@
 //
-//  NSArray.m
+//  CeresArrayController.h
 //  This file is part of Ceres.
 //
 //  Ceres is free software: you can redistribute it and/or modify
@@ -15,37 +15,22 @@
 //  You should have received a copy of the GNU General Public License
 //  along with Ceres.  If not, see <http://www.gnu.org/licenses/>.
 //
-//  Created by Jens Nockert on 2/6/09.
+//  Created by Jens Nockert on 2/23/09.
 //
 
-#import "NSArray.h"
+#import <Cocoa/Cocoa.h>
 
+#import "CeresHeader.h"
+#import "CeresAdditions.h"
 
-@implementation NSArray (CeresAdditions)
+#define CeresDataType @"CeresDataType"
 
-- (id) firstObject
-{
-  if ([self count]) {
-    return [self objectAtIndex: 0];
-  }
-  else {
-    return nil;
-  }
+@interface CeresArrayController : NSArrayController {
+
 }
 
-- (id) anyObject 
-{
-  return [self firstObject];
-}
-
-- (id) lastObject
-{
-  if ([self count]) {
-    return [self objectAtIndex: [self count] - 1];
-  }
-  else {
-    return nil;
-  }
-}
+- (bool) tableView: (NSTableView *) tableView writeRows: (NSArray *) rows toPasteboard: (NSPasteboard *) pasteboard;
+- (NSDragOperation) tableView: (NSTableView *) tableView validateDrop: (id <NSDraggingInfo>)info proposedRow: (int) row proposedDropOperation: (NSTableViewDropOperation) op;
+- (bool) tableView: (NSTableView *) tableView acceptDrop: (id <NSDraggingInfo>) info row: (NSInteger)row dropOperation: (NSTableViewDropOperation) operation;
 
 @end

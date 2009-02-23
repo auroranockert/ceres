@@ -28,10 +28,14 @@
     
   [[[Ceres instance] notificationCenter] addObserver: self selector: @selector(notification:) name: @"Ceres.character.updatedTraining" object: nil];
   
+  [characterTableView setDataSource: self];
+  [characterTableView registerForDraggedTypes: [NSArray arrayWithObject: CeresDataType]];
+  
   NSTableColumn * column = [[characterTableView tableColumns] anyObject];
   [column setDataCell: [[CharacterCell alloc] initWithController: self]];
   
-  [self setSortDescriptors: [NSArray arrayWithObject: [[NSSortDescriptor alloc] initWithKey: @"identifier" ascending: false]]];
+  [self setSortDescriptors: [NSArray arrayWithObject: [[NSSortDescriptor alloc] initWithKey: @"order" ascending: true]]];
+  [self setAutomaticallyRearrangesObjects: true];
   
   characterControllers = [[NSMutableDictionary alloc] init];
   

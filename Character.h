@@ -45,6 +45,8 @@
   NSArray * skillGroups;
 }
 
+@property(retain) NSNumber * order;
+
 @property(retain) NSString * race, * bloodline, * gender;
 @property(retain) NSNumber * balance;
 @property(retain) NSData * portraitData;
