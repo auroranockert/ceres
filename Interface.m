@@ -123,6 +123,16 @@ static Interface * shared;
   return true;  
 }
 
+- (void) showAboutWindow: (id) sender
+{
+  if (!aboutWindow) {
+    [self loadNib: @"About" owner: [[AboutController alloc] init]];
+  }
+  
+  [aboutWindow setIsVisible: true];
+  [aboutWindow makeKeyAndOrderFront: self];
+}
+
 - (void) closeCurrentWindow: (id) sender
 {
   [[[NSApplication sharedApplication] mainWindow] performClose: sender];

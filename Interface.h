@@ -23,10 +23,11 @@
 #import "CeresHeader.h"
 #import <Growl/GrowlApplicationBridge.h>
 
+#import "AboutController.h"
 #import "PreferencesController.h"
 
 @interface Interface : NSObject <GrowlApplicationBridgeDelegate> {
-  IBOutlet NSWindow * ceresWindow;
+  IBOutlet NSWindow * ceresWindow, * aboutWindow;
   IBOutlet NSMenu * menu;
 }
 
@@ -43,6 +44,7 @@
 - (bool) loadNib: (NSString *) name;
 - (bool) loadNib: (NSString *) name owner: (id) owner;
 
+- (IBAction) showAboutWindow: (id) sender;
 - (IBAction) closeCurrentWindow: (id) sender;
 
 - (void) makeKeyAndOrderFront;

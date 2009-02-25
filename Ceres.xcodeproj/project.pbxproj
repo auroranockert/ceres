@@ -46,6 +46,8 @@
 		B41551220F556E6F005B5D48 /* ModularController.m in Sources */ = {isa = PBXBuildFile; fileRef = B41551210F556E6F005B5D48 /* ModularController.m */; };
 		B41551690F5571F5005B5D48 /* TabbedCharacterController.m in Sources */ = {isa = PBXBuildFile; fileRef = B41551680F5571F5005B5D48 /* TabbedCharacterController.m */; };
 		B41552110F55AAB7005B5D48 /* CharacterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B41552100F55AAB7005B5D48 /* CharacterViewController.m */; };
+		B415531B0F55FBAD005B5D48 /* About.xib in Resources */ = {isa = PBXBuildFile; fileRef = B415531A0F55FBAD005B5D48 /* About.xib */; };
+		B41553260F55FEDE005B5D48 /* AboutController.m in Sources */ = {isa = PBXBuildFile; fileRef = B41553250F55FEDE005B5D48 /* AboutController.m */; };
 		B415CDE50F2F5EE80058F57D /* TrainedSkill.h in Headers */ = {isa = PBXBuildFile; fileRef = B415CDE30F2F5EE80058F57D /* TrainedSkill.h */; };
 		B415CDE60F2F5EE80058F57D /* TrainedSkill.m in Sources */ = {isa = PBXBuildFile; fileRef = B415CDE40F2F5EE80058F57D /* TrainedSkill.m */; };
 		B424F4DA0EEC89E900B5E7C5 /* EveObject.h in Headers */ = {isa = PBXBuildFile; fileRef = B424F4D80EEC89E900B5E7C5 /* EveObject.h */; };
@@ -228,6 +230,9 @@
 		B41551680F5571F5005B5D48 /* TabbedCharacterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabbedCharacterController.m; sourceTree = "<group>"; };
 		B415520F0F55AAB6005B5D48 /* CharacterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterViewController.h; sourceTree = "<group>"; };
 		B41552100F55AAB7005B5D48 /* CharacterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacterViewController.m; sourceTree = "<group>"; };
+		B415531A0F55FBAD005B5D48 /* About.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = About.xib; sourceTree = "<group>"; };
+		B41553240F55FEDE005B5D48 /* AboutController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutController.h; sourceTree = "<group>"; };
+		B41553250F55FEDE005B5D48 /* AboutController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutController.m; sourceTree = "<group>"; };
 		B415CDE30F2F5EE80058F57D /* TrainedSkill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrainedSkill.h; sourceTree = "<group>"; };
 		B415CDE40F2F5EE80058F57D /* TrainedSkill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrainedSkill.m; sourceTree = "<group>"; };
 		B424F4D80EEC89E900B5E7C5 /* EveObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EveObject.h; sourceTree = "<group>"; };
@@ -393,6 +398,7 @@
 				B4031CB20F45E6C500A99577 /* Menu.xib */,
 				B41544CF0F49F6CE005B5D48 /* CharacterPreferences.xib */,
 				B415458E0F4A08D6005B5D48 /* UserDefaults.plist */,
+				B415531A0F55FBAD005B5D48 /* About.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -506,6 +512,7 @@
 		B40581400F19AF7C009EEDD8 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B41553230F55FD52005B5D48 /* About */,
 				B415470A0F4B4CA4005B5D48 /* StatusIcon */,
 				B41544970F49F14B005B5D48 /* Preferences */,
 				B4F0E6580F22863C00412957 /* Character */,
@@ -622,6 +629,15 @@
 				B41551210F556E6F005B5D48 /* ModularController.m */,
 			);
 			name = Modular;
+			sourceTree = "<group>";
+		};
+		B41553230F55FD52005B5D48 /* About */ = {
+			isa = PBXGroup;
+			children = (
+				B41553240F55FEDE005B5D48 /* AboutController.h */,
+				B41553250F55FEDE005B5D48 /* AboutController.m */,
+			);
+			name = About;
 			sourceTree = "<group>";
 		};
 		B424F4D40EEC894000B5E7C5 /* Common */ = {
@@ -1045,6 +1061,7 @@
 				B415458F0F4A08D6005B5D48 /* UserDefaults.plist in Resources */,
 				B415498E0F4B7C98005B5D48 /* StatusIcon.tiff in Resources */,
 				B415498F0F4B7C98005B5D48 /* StatusIconAlternate.tiff in Resources */,
+				B415531B0F55FBAD005B5D48 /* About.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1122,6 +1139,7 @@
 				B41551220F556E6F005B5D48 /* ModularController.m in Sources */,
 				B41551690F5571F5005B5D48 /* TabbedCharacterController.m in Sources */,
 				B41552110F55AAB7005B5D48 /* CharacterViewController.m in Sources */,
+				B41553260F55FEDE005B5D48 /* AboutController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
