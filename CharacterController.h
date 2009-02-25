@@ -25,28 +25,20 @@
 #import "CacheMenuItem.h"
 
 #import "CharacterListController.h"
+#import "TabbedCharacterController.h"
 
 @class CharacterController;
 
 @interface CharacterController : NSObject {
-  IBOutlet NSWindow * characterWindow;
-  
-  NSNumberFormatter * formatter, * spFormatter;
-  
+  NSWindowController * characterWindowController;
+  CharacterViewController * characterViewController;
+    
   Character * character;
-  
-  NSImage * portrait, * characterViewPortrait;
+  NSImage * portrait;
 }
 
-@property(copy, readonly) NSString * name, * bloodline, * corporation, * balance, * skillpoints;
-@property(copy, readonly) NSString * intelligence, * perception, * charisma, * willpower, * memory;
-@property(copy, readonly) NSString * training, * trainingSkillpoints, * clone;
-@property(retain, readonly) NSImage * portrait, * characterViewPortrait;
-@property(retain, readonly) NSSet * skills;
-
+@property(retain, readonly) NSImage * portrait;
 @property(retain, readonly) Character * character;
-
-@property(retain, readonly) NSManagedObjectContext * managedObjectContext;
 
 - (id) initWithCharacter: (Character *) character;
 
@@ -55,9 +47,6 @@
 - (void) removeCharacter;
 
 - (NSMenu *) menu;
-
-- (void) update: (id) sender;
-- (void) updateCharacter: (id) sender;
 
 - (void) notification: (NSNotification *) object;
 

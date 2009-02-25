@@ -20,17 +20,13 @@
 
 #import <Cocoa/Cocoa.h>
 
-#import "PreferencesModule.h"
+#import "ModularController.h"
+#import "Module.h"
 
-@interface PreferencesController : NSWindowController {
-  NSArray * modules;
-  id <PreferencesModule> currentModule;
+@interface PreferencesController : ModularController {
+  
 }
 
-@property(retain) NSArray * modules;
-
 + (PreferencesController *) instance;
-
-- (id <PreferencesModule>) moduleForIdentifier: (NSString *) name;
 
 @end

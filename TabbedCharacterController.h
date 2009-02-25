@@ -1,5 +1,5 @@
 //
-//  CharacterPreferencesController.h
+//  TabbedCharacterController.h
 //  This file is part of Ceres.
 //
 //  Ceres is free software: you can redistribute it and/or modify
@@ -15,22 +15,22 @@
 //  You should have received a copy of the GNU General Public License
 //  along with Ceres.  If not, see <http://www.gnu.org/licenses/>.
 //
-//  Created by Jens Nockert on 2/16/09.
+//  Created by Jens Nockert on 2/25/09.
 //
 
 #import <Cocoa/Cocoa.h>
 
 #import "CeresHeader.h"
-#import "Module.h"
 
-@interface CharacterPreferencesController : NSViewController <Module> {
-  IBOutlet NSTextField * userid, * apikey, * apilink;
-  IBOutlet NSButton * button;
+#import "ModularController.h"
+#import "CharacterViewController.h"
+
+@interface TabbedCharacterController : ModularController {
+
 }
 
-- (NSString *) identifier;
-- (NSImage *) icon;
++ (TabbedCharacterController *) instance;
 
-- (IBAction) addCharacters: (id) sender;
+- (void) loadCharacters;
 
 @end

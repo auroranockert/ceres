@@ -66,7 +66,6 @@ static ServerStatus * shared;
       NSLog(@"No server status xml available");
       online = [NSNumber numberWithBool: false];
       players = [NSNumber numberWithInteger: 0];
-      return;
     }
     else {
       NSString * open = [[status readNode: @"/eveapi/result/serverOpen"] stringValue];
@@ -81,7 +80,7 @@ static ServerStatus * shared;
       }
     }
       
-    NSNotification * notification = [NSNotification notificationWithName: @"Ceres.server.playerCountUpdated" object: [self players]]; //[NSNumber numberWithInteger: [self players]]];
+    NSNotification * notification = [NSNotification notificationWithName: @"Ceres.server.playerCountUpdated" object: [self players]];
     [[Ceres instance] postNotification: notification];
     
   }

@@ -43,6 +43,9 @@
 		B4154E070F527AE0005B5D48 /* CacheMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B4154E060F527AE0005B5D48 /* CacheMenuItem.m */; };
 		B4154EC60F52AF79005B5D48 /* CeresArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4154EC50F52AF79005B5D48 /* CeresArrayController.m */; };
 		B415502D0F536019005B5D48 /* StickyWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = B415502C0F536019005B5D48 /* StickyWindow.m */; };
+		B41551220F556E6F005B5D48 /* ModularController.m in Sources */ = {isa = PBXBuildFile; fileRef = B41551210F556E6F005B5D48 /* ModularController.m */; };
+		B41551690F5571F5005B5D48 /* TabbedCharacterController.m in Sources */ = {isa = PBXBuildFile; fileRef = B41551680F5571F5005B5D48 /* TabbedCharacterController.m */; };
+		B41552110F55AAB7005B5D48 /* CharacterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B41552100F55AAB7005B5D48 /* CharacterViewController.m */; };
 		B415CDE50F2F5EE80058F57D /* TrainedSkill.h in Headers */ = {isa = PBXBuildFile; fileRef = B415CDE30F2F5EE80058F57D /* TrainedSkill.h */; };
 		B415CDE60F2F5EE80058F57D /* TrainedSkill.m in Sources */ = {isa = PBXBuildFile; fileRef = B415CDE40F2F5EE80058F57D /* TrainedSkill.m */; };
 		B424F4DA0EEC89E900B5E7C5 /* EveObject.h in Headers */ = {isa = PBXBuildFile; fileRef = B424F4D80EEC89E900B5E7C5 /* EveObject.h */; };
@@ -193,7 +196,6 @@
 		B40C26DA0F114DFD006D76F0 /* CeresObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CeresObject.m; sourceTree = "<group>"; };
 		B41544900F49D269005B5D48 /* PreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesController.h; sourceTree = "<group>"; };
 		B41544910F49D269005B5D48 /* PreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesController.m; sourceTree = "<group>"; };
-		B41544930F49D336005B5D48 /* PreferencesModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesModule.h; sourceTree = "<group>"; };
 		B41544980F49F17E005B5D48 /* CeresPreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CeresPreferencesController.h; sourceTree = "<group>"; };
 		B41544990F49F17E005B5D48 /* CeresPreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CeresPreferencesController.m; sourceTree = "<group>"; };
 		B41544CF0F49F6CE005B5D48 /* CharacterPreferences.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterPreferences.xib; sourceTree = "<group>"; };
@@ -219,6 +221,13 @@
 		B4154EC50F52AF79005B5D48 /* CeresArrayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CeresArrayController.m; sourceTree = "<group>"; };
 		B415502B0F536019005B5D48 /* StickyWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StickyWindow.h; sourceTree = "<group>"; };
 		B415502C0F536019005B5D48 /* StickyWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StickyWindow.m; sourceTree = "<group>"; };
+		B41550FA0F556D59005B5D48 /* Module.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Module.h; sourceTree = "<group>"; };
+		B41551200F556E6F005B5D48 /* ModularController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModularController.h; sourceTree = "<group>"; };
+		B41551210F556E6F005B5D48 /* ModularController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModularController.m; sourceTree = "<group>"; };
+		B41551670F5571F5005B5D48 /* TabbedCharacterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabbedCharacterController.h; sourceTree = "<group>"; };
+		B41551680F5571F5005B5D48 /* TabbedCharacterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabbedCharacterController.m; sourceTree = "<group>"; };
+		B415520F0F55AAB6005B5D48 /* CharacterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterViewController.h; sourceTree = "<group>"; };
+		B41552100F55AAB7005B5D48 /* CharacterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacterViewController.m; sourceTree = "<group>"; };
 		B415CDE30F2F5EE80058F57D /* TrainedSkill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrainedSkill.h; sourceTree = "<group>"; };
 		B415CDE40F2F5EE80058F57D /* TrainedSkill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrainedSkill.m; sourceTree = "<group>"; };
 		B424F4D80EEC89E900B5E7C5 /* EveObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EveObject.h; sourceTree = "<group>"; };
@@ -511,7 +520,6 @@
 			children = (
 				B41544900F49D269005B5D48 /* PreferencesController.h */,
 				B41544910F49D269005B5D48 /* PreferencesController.m */,
-				B41544930F49D336005B5D48 /* PreferencesModule.h */,
 			);
 			name = Preferences;
 			sourceTree = "<group>";
@@ -519,8 +527,8 @@
 		B41544960F49F13A005B5D48 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B41550F90F54C185005B5D48 /* Modular */,
 				B4154EC30F52AF6C005B5D48 /* Array Controller */,
-				B41544870F49D24A005B5D48 /* Preferences */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -603,6 +611,17 @@
 				B415502C0F536019005B5D48 /* StickyWindow.m */,
 			);
 			name = Window;
+			sourceTree = "<group>";
+		};
+		B41550F90F54C185005B5D48 /* Modular */ = {
+			isa = PBXGroup;
+			children = (
+				B41544870F49D24A005B5D48 /* Preferences */,
+				B41550FA0F556D59005B5D48 /* Module.h */,
+				B41551200F556E6F005B5D48 /* ModularController.h */,
+				B41551210F556E6F005B5D48 /* ModularController.m */,
+			);
+			name = Modular;
 			sourceTree = "<group>";
 		};
 		B424F4D40EEC894000B5E7C5 /* Common */ = {
@@ -827,6 +846,8 @@
 		B4F0E5F80F2247D500412957 /* Ceres */ = {
 			isa = PBXGroup;
 			children = (
+				B4F0E6590F22865900412957 /* CharacterController.h */,
+				B4F0E65A0F22865900412957 /* CharacterController.m */,
 				B40581760F19BAFF009EEDD8 /* ServerStatusController.h */,
 				B40581770F19BAFF009EEDD8 /* ServerStatusController.m */,
 				B4A53A700F20B8E000B404E6 /* CharacterListController.h */,
@@ -847,10 +868,12 @@
 		B4F0E6580F22863C00412957 /* Character */ = {
 			isa = PBXGroup;
 			children = (
-				B4F0E6590F22865900412957 /* CharacterController.h */,
-				B4F0E65A0F22865900412957 /* CharacterController.m */,
+				B41551670F5571F5005B5D48 /* TabbedCharacterController.h */,
+				B41551680F5571F5005B5D48 /* TabbedCharacterController.m */,
 				B496C10C0F348E3000E92DB4 /* SkillListController.h */,
 				B496C10D0F348E3000E92DB4 /* SkillListController.m */,
+				B415520F0F55AAB6005B5D48 /* CharacterViewController.h */,
+				B41552100F55AAB7005B5D48 /* CharacterViewController.m */,
 			);
 			name = Character;
 			sourceTree = "<group>";
@@ -1096,6 +1119,9 @@
 				B4154E070F527AE0005B5D48 /* CacheMenuItem.m in Sources */,
 				B4154EC60F52AF79005B5D48 /* CeresArrayController.m in Sources */,
 				B415502D0F536019005B5D48 /* StickyWindow.m in Sources */,
+				B41551220F556E6F005B5D48 /* ModularController.m in Sources */,
+				B41551690F5571F5005B5D48 /* TabbedCharacterController.m in Sources */,
+				B41552110F55AAB7005B5D48 /* CharacterViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

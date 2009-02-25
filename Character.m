@@ -195,7 +195,7 @@
 - (NSNumber *) skillpointsForGroup: (Group *) group
 {
   NSNumber * sp = [[[self skills] filteredSetUsingPredicate: [NSPredicate predicateWithFormat: @"skill.group == %@", group]] valueForKeyPath: @"@sum.skillpoints"];
-  if (group = [[[self trainingSkill] skill] group]) {
+  if (group == [[[self trainingSkill] skill] group]) {
     sp = [sp addInteger: [self additionalSkillpoints]];
   }
   

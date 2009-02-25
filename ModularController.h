@@ -1,5 +1,5 @@
 //
-//  PreferencesModule.h
+//  ModularController.h
 //  This file is part of Ceres.
 //
 //  Ceres is free software: you can redistribute it and/or modify
@@ -15,17 +15,23 @@
 //  You should have received a copy of the GNU General Public License
 //  along with Ceres.  If not, see <http://www.gnu.org/licenses/>.
 //
-//  Created by Jens Nockert on 2/16/09.
+//  Created by Jens Nockert on 2/25/09.
 //
 
 #import <Cocoa/Cocoa.h>
 
+#import "Module.h"
 
-@protocol PreferencesModule
+@interface ModularController : NSWindowController {
+  NSArray * modules;
+  id <Module> currentModule;
+}
 
-- (NSString *) title;
-- (NSString *) identifier;
-- (NSImage *) icon;
-- (NSView *) view;
+@property(retain) NSArray * modules;
+
+- (NSString *) windowTitle: (id <Module>) module;
+- (NSString *) autosaveKey;
+
+- (id <Module>) moduleForIdentifier: (NSString *) name;
 
 @end

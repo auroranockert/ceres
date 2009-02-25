@@ -20,29 +20,7 @@
 
 #import "PreferencesController.h"
 
-NSString * PreferencesSelectionAutosaveKey = @"Ceres.PreferencesSelection";
-
-@interface PreferencesController (Private)
-- (void) setupToolbar;
-- (void) selectModule: (NSToolbarItem *) sender;
-- (void) changeToModule: (id <PreferencesModule>) module;
-@end
-
 @implementation PreferencesController
-
-@synthesize modules;
-
-- (id)init
-{
-	if (self = [super init]) {
-		NSWindow * prefsWindow = [[NSWindow alloc] initWithContentRect:NSMakeRect(0, 0, 300, 200) styleMask: (NSTitledWindowMask | NSClosableWindowMask) backing: NSBackingStoreBuffered defer: true];
-		[prefsWindow setShowsToolbarButton: false];
-		[self setWindow: prefsWindow];
-		
-		[self setupToolbar];
-	}
-	return self;
-}
 
 static PreferencesController * shared = nil;
 
@@ -65,7 +43,7 @@ static PreferencesController * shared = nil;
 			return shared;
 		}
 	}
-	return nil; // on subsequent allocation attempts return nil
+	return nil;
 }
 
 - (id) copyWithZone: (NSZone *) zone
@@ -73,141 +51,20 @@ static PreferencesController * shared = nil;
 	return self;
 }
 
-- (void) showWindow: (id)sender
+- (void) showWindow: (id) sender
 {
+  [super showWindow: sender];
 	[[self window] center];
-	[super showWindow: sender];
 }
 
-- (void) setupToolbar
+- (NSString *) windowTitle: (id <Module>) module
 {
-	NSToolbar * toolbar = [[NSToolbar alloc] initWithIdentifier: @"PreferencesToolbar"];
-	[toolbar setDisplayMode: NSToolbarDisplayModeIconAndLabel];
-	[toolbar setAllowsUserCustomization: false];
-	[toolbar setDelegate: self];
-	[toolbar setAutosavesConfiguration: false];
-	
-  [[self window] setToolbar: toolbar];
+  return [NSString stringWithFormat: @"%@ Preferences", [module title]];
 }
 
-- (NSArray *) toolbarAllowedItemIdentifiers: (NSToolbar *) toolbar
+- (NSString *) autosaveKey
 {
-	NSMutableArray * identifiers = [NSMutableArray array];
-	for (id <PreferencesModule> module in [self modules]) {
-		[identifiers addObject: [module identifier]];
-	}
-	
-	return identifiers;
-}
-
-- (NSArray *) toolbarDefaultItemIdentifiers: (NSToolbar *) toolbar
-{
-	return nil;
-}
-
-- (NSToolbarItem *) toolbar: (NSToolbar *) toolbar itemForItemIdentifier: (NSString *) itemIdentifier willBeInsertedIntoToolbar: (bool)flag
-{
-	id <PreferencesModule> module = [self moduleForIdentifier: itemIdentifier];
-	
-	NSToolbarItem * item = [[NSToolbarItem alloc] initWithItemIdentifier: itemIdentifier];
-	if (!module) {
-		return item;
-  }
-	
-	[item setLabel: [module title]];
-	[item setImage: [module icon]];
-	[item setTarget: self];
-	[item setAction: @selector(selectModule:)];
-	return item;
-}
-
-- (NSArray *)toolbarSelectableItemIdentifiers: (NSToolbar *) toolbar
-{
-	return [self toolbarAllowedItemIdentifiers: toolbar];
-}
-
-- (id <PreferencesModule>) moduleForIdentifier: (NSString *) identifier
-{
-	for (id <PreferencesModule> module in [self modules]) {
-		if ([[module identifier] compare: identifier] == NSOrderedSame) {
-			return module;
-		}
-	}
-	return nil;
-}
-
-- (void) setModules: (NSArray *) newModules
-{
-	if (newModules != modules) {
-		modules = newModules;
-		
-		// Reset the toolbar items
-		NSToolbar * toolbar = [[self window] toolbar];
-		if (toolbar) {
-			NSInteger index = [[toolbar items] count] - 1;
-			while (index > 0) {
-				[toolbar removeItemAtIndex: index];
-				index--;
-			}
-			
-			// Add the new items
-			for (id <PreferencesModule> module in [self modules]) {
-				[toolbar insertItemWithItemIdentifier: [module identifier] atIndex: [[toolbar items] count]];
-			}
-		}
-		
-		// Change to the correct module
-		if ([[self modules] count]) {
-			id <PreferencesModule> defaultModule = nil;
-			
-			// Check the autosave info
-			NSString * savedIdentifier = [[NSUserDefaults standardUserDefaults] stringForKey: PreferencesSelectionAutosaveKey];
-			defaultModule = [self moduleForIdentifier: savedIdentifier];
-			
-			if (!defaultModule) {
-				defaultModule = [[self modules] objectAtIndex: 0];
-			}
-			
-			[self changeToModule: defaultModule];
-		}
-		
-	}
-}
-
-- (void) selectModule: (NSToolbarItem *) sender
-{
-	if ([sender class] != [NSToolbarItem class]) {
-    NSLog(@"Wrong class...");
-		return;
-  }
-	
-	id <PreferencesModule> module = [self moduleForIdentifier: [sender itemIdentifier]];
-	if (!module)
-		return;
-	
-	[self changeToModule: module];
-}
-
-- (void) changeToModule: (id <PreferencesModule>)module
-{
-	[[currentModule view] removeFromSuperview];
-	
-	NSView * newView = [module view];
-	
-	// Resize the window
-	NSRect newWindowFrame = [[self window] frameRectForContentRect: [newView frame]];
-	newWindowFrame.origin = [[self window] frame].origin;
-	newWindowFrame.origin.y -= newWindowFrame.size.height - [[self window] frame].size.height;
-	[[self window] setFrame: newWindowFrame display: true animate: true];
-	
-	[[self.window toolbar] setSelectedItemIdentifier: [module identifier]];
-	[[self window] setTitle: [NSString stringWithFormat: @"%@ Preferences", [module title]]];
-	
-	currentModule = module;
-	[[[self window] contentView] addSubview:[currentModule view]];
-	
-	// Autosave the selection
-	[[NSUserDefaults standardUserDefaults] setObject: [module identifier] forKey: PreferencesSelectionAutosaveKey];
+  return @"Ceres.PreferencesSelection";
 }
 
 @end

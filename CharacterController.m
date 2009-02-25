@@ -59,100 +59,6 @@
   return menu;
 }
 
-- (NSManagedObjectContext *) managedObjectContext
-{
-  return [[Interface instance] managedObjectContext];
-}
-
-- (NSString *) name
-{
-  return [character name];
-}
-
-- (NSString *) bloodline
-{
-  return [NSString stringWithFormat: @"%@ %@ %@", [character gender], [character race], [character bloodline]];
-}
-
-- (NSString *) corporation
-{
-  return [character corporationName];
-}
-
-- (NSString *) balance
-{
-  return [NSString stringWithFormat: @"%@ ISK", [[character balance] iskString]];
-}
-
-- (NSString *) skillpoints
-{
-  return [NSString stringWithFormat: @"%@ SP", [[character totalSkillpoints] spString]];
-}
-
-- (NSString *) intelligence
-{
-  return [NSString stringWithFormat: @"Intelligence: %@", [[character intelligence] attributeString]];
-}
-
-- (NSString *) perception
-{
-  return [NSString stringWithFormat: @"Perception: %@", [[character perception] attributeString]];
-}
-
-- (NSString *) charisma
-{
-  return [NSString stringWithFormat: @"Charisma: %@", [[character charisma] attributeString]];
-}
-
-- (NSString *) willpower
-{
-  return [NSString stringWithFormat: @"Willpower: %@", [[character willpower] attributeString]];
-}
-
-- (NSString *) memory
-{
-  return [NSString stringWithFormat: @"Memory: %@", [[character memory] attributeString]];
-}
-
-- (NSString *) training
-{
-  if ([character trainingSkill])
-  {
-    return [[NSString alloc] initWithFormat: @"Currently training %@ to level %@ at %@ SP/h", [[character trainingSkill] name], [[[character trainingSkill] nextLevel] levelString], [[[character trainingSkill] skillpointsPerHour] spString]];
-  }
-  else
-  {
-    return @"Not training";
-  }
-}
-
-- (NSString *) trainingSkillpoints
-{
-  if ([character trainingSkill])
-  {
-    if ([[character trainingSkill] complete]) {
-      return @"Finished";
-    }
-    else {
-      return [[NSString alloc] initWithFormat: @"%@ / %@ SP Complete (Finished %@)", [[[character trainingSkill] currentSkillpoints] spString], [[[[character trainingSkill] skill] skillpointsForLevel: [[character trainingSkill] nextLevel]] spString], [[character trainingEndsAt] preferedDateFormatString]];
-    }
-  }
-  else
-  {
-    return @"Not training";
-  }
-}
-
-- (NSString *) skillCount
-{
-  return [NSString stringWithFormat: @"%ld of %ld skills are currently trained to level %@.", [[[character skills] filteredSetUsingPredicate: [NSPredicate predicateWithFormat: @"level = 5"]] count], [[character skills] count], [[NSNumber numberWithInteger: 5] levelString]];
-}
-
-- (NSString *) clone
-{
-  return [NSString stringWithFormat: @"%@ (Stores %@ SP)", [[character clone] name], [[[character clone] skillpoints] spString]];
-}
-
 - (NSImage *) portrait
 {
   if (!portrait) {
@@ -164,20 +70,6 @@
   }
   
   return portrait;
-}
-
-- (NSImage *) characterViewPortrait
-{
-  if (!characterViewPortrait) {
-    characterViewPortrait = [[character portrait] imageWithRoundedCorners: 10.0];
-  }
-  
-  return characterViewPortrait;
-}
-
-- (NSSet *) skills
-{
-  return [character skills];
 }
 
 - (Character *) character
@@ -193,15 +85,21 @@
 
 - (void) showCharacter
 {
-  if(!characterWindow) {
-    [[Interface instance] loadNib: @"Character" owner: self];
-    [characterWindow setFrameAutosaveName: [NSString stringWithFormat: @"CharacterWindow.%@", [character name]]];
+  if ([[[NSUserDefaults standardUserDefaults] valueForKey: @"tabbedCharacters"] compare: @"Yes"] == NSOrderedSame) {
+    [[TabbedCharacterController instance] showWindow: self];
   }
-  
-  [characterWindow setIsVisible: true];
-  [characterWindow makeKeyAndOrderFront: self];
-
-  [self update: self];
+  else {
+    if(!characterViewController) {
+      characterViewController = [[CharacterViewController alloc] initWithNibName: @"Character" bundle: nil character: character];
+      characterWindowController = [[NSWindowController alloc] init];
+      [characterWindowController setWindow: [[NSWindow alloc] initWithContentRect: NSMakeRect(100, 100, 500, 600) styleMask: (NSTitledWindowMask | NSClosableWindowMask | NSMiniaturizableWindowMask | NSResizableWindowMask) backing: NSBackingStoreBuffered defer: true]];
+      [[characterWindowController window] setContentView: [characterViewController view]];
+      [[characterWindowController window] setTitle: [character name]];
+      [[characterWindowController window] setFrameAutosaveName: [NSString stringWithFormat: @"CharacterWindow.%@", [character name]]];
+    }
+    
+    [characterWindowController showWindow: self];
+  }
 }
 
 - (void) removeCharacter
@@ -212,38 +110,7 @@
 
 - (void) notification: (NSNotification *) argument
 {
-  if ([[argument name] compare: [CharacterNotification nameForMessage: @"characterRemoved"]] == NSOrderedSame) {
-    [characterWindow close];
-  }
-  else {
-    [self updateCharacter: self];
-  }
-}
-
-- (void) updateCharacter: (id) sender
-{
-  [self willChangeValueForKey: @"corporation"];
-  [self willChangeValueForKey: @"balance"];
-  [self willChangeValueForKey: @"training"];
-  [self willChangeValueForKey: @"clone"];
-  
-  [self didChangeValueForKey: @"clone"];
-  [self didChangeValueForKey: @"corporation"];
-  [self didChangeValueForKey: @"balance"];
-  [self didChangeValueForKey: @"training"];
-}
-
-- (void) update: (id) sender
-{
-  [self willChangeValueForKey: @"skillpoints"];
-  [self willChangeValueForKey: @"trainingSkillpoints"];
-  
-  [self didChangeValueForKey: @"trainingSkillpoints"];
-  [self didChangeValueForKey: @"skillpoints"];
-  
-  if ([characterWindow isVisible]) {
-    [self performSelector: @selector(update:) withObject: self afterDelay: 1];
-  }
+  // [self updateCharacter: self];
 }
 
 @end
