@@ -23,19 +23,32 @@
 
 @implementation CharacterViewController
 
-@synthesize character;
+@synthesize character, managedObjectContext;
 
 - (id) initWithNibName: (NSString *) nib bundle: (NSBundle *) bundle character: (Character *) c
 {
-  if (self = [super initWithNibName: nib bundle: bundle]) {
+  if (self = [self initWithNibName: nib bundle: bundle]) {
     character = c;
+    
+    [[Ceres instance] addObserver: self selector: @selector(updateCharacter:) name: nil object: character];
+    [self update: self];
   }
   
   return self;
 }
+
+- (void) loadView
+{
+  [super loadView];
+  
+  skillController = [[SkillListController alloc] init];
+  [skillController setCharacter: character];
+  [skillController setSkillOutlineView: skillView];  
+}
+
 - (NSString *) title
 {
-	return [self name];
+	return [character name];
 }
 
 - (NSString *) identifier
@@ -48,14 +61,9 @@
 	return [self portrait];
 }
 
-- (NSManagedObjectContext *) managedObjectContext
+- (NSAttributedString *) name
 {
-  return [[Interface instance] managedObjectContext];
-}
-
-- (NSString *) name
-{
-  return [character name];
+  return [[NSMutableAttributedString alloc] initWithString: [character name] attributes: [NSDictionary dictionaryWithObject: [NSFont systemFontOfSize: 14] forKey:NSFontAttributeName]];
 }
 
 - (NSString *) bloodline

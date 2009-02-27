@@ -29,13 +29,31 @@ static TabbedCharacterController * shared = nil;
 {
 	@synchronized(self) {
 		if (!shared) {
-			shared = [[self alloc] init];
+			[[self alloc] init];
+      
+      [[shared window] setMinSize: NSMakeSize(400, 400)];
       
       [shared loadCharacters];
 		}
 	}
   
 	return shared;
+}
+
++ (id) allocWithZone: (NSZone *) zone
+{
+	@synchronized(self) {
+		if (!shared) {
+			shared = [super allocWithZone: zone];
+			return shared;
+		}
+	}
+	return nil;
+}
+
+- (id) copyWithZone: (NSZone *) zone
+{
+	return self;
 }
 
 - (NSString *) autosaveKey
@@ -52,6 +70,11 @@ static TabbedCharacterController * shared = nil;
   }
   
 	[self setModules: modulesArray];
+}
+
+- (bool) resizable
+{
+  return true;
 }
 
 @end

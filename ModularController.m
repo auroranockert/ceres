@@ -23,22 +23,31 @@
 @interface ModularController (Private)
 - (void) setupToolbar;
 - (void) selectModule: (NSToolbarItem *) sender;
-- (void) changeToModule: (id <Module>) module;
 @end
 
 @implementation ModularController
 
 @synthesize modules;
 
-- (id)init
+- (id) init
 {
 	if (self = [super init]) {
-		NSWindow * window = [[NSWindow alloc] initWithContentRect: NSMakeRect(0, 0, 300, 200) styleMask: (NSTitledWindowMask | NSClosableWindowMask) backing: NSBackingStoreBuffered defer: true];
-		[window setShowsToolbarButton: false];
+		NSWindow * window;
+    if ([self resizable]) {
+      window = [[NSWindow alloc] initWithContentRect: NSMakeRect(100, 100, 500, 600) styleMask: (NSTitledWindowMask | NSClosableWindowMask | NSMiniaturizableWindowMask | NSResizableWindowMask) backing: NSBackingStoreBuffered defer: true];
+      [window setFrameAutosaveName: [NSString stringWithFormat: @"%@.Frame", [self autosaveKey]]];
+
+    }
+    else {
+      window = [[NSWindow alloc] initWithContentRect: NSMakeRect(100, 100, 500, 600) styleMask: (NSTitledWindowMask | NSClosableWindowMask) backing: NSBackingStoreBuffered defer: true];
+    }
+    
+    [window setShowsToolbarButton: false];
+    
 		[self setWindow: window];
-		
 		[self setupToolbar];
 	}
+  
 	return self;
 }
 
@@ -120,12 +129,9 @@
 		}
 		
 		// Change to the correct module
-		if ([[self modules] count]) {
-			id <Module> defaultModule = nil;
-			
+		if ([[self modules] count]) {			
 			// Check the autosave info
-			NSString * savedIdentifier = [[NSUserDefaults standardUserDefaults] stringForKey: [self autosaveKey]];
-			defaultModule = [self moduleForIdentifier: savedIdentifier];
+			id <Module> defaultModule = [self moduleForIdentifier: [[NSUserDefaults standardUserDefaults] stringForKey: [NSString stringWithFormat: @"%@.Module", [self autosaveKey]]]];
 			
 			if (!defaultModule) {
 				defaultModule = [[self modules] objectAtIndex: 0];
@@ -145,32 +151,43 @@
   }
 	
 	id <Module> module = [self moduleForIdentifier: [sender itemIdentifier]];
-	if (!module)
+	if (!module) {
 		return;
+  }
 	
 	[self changeToModule: module];
 }
 
 - (void) changeToModule: (id <Module>)module
 {
-	[[currentModule view] removeFromSuperview];
-	
-	NSView * newView = [module view];
-	
-	// Resize the window
-	NSRect newWindowFrame = [[self window] frameRectForContentRect: [newView frame]];
-	newWindowFrame.origin = [[self window] frame].origin;
-	newWindowFrame.origin.y -= newWindowFrame.size.height - [[self window] frame].size.height;
-	[[self window] setFrame: newWindowFrame display: true animate: true];
-	
-	[[[self window] toolbar] setSelectedItemIdentifier: [module identifier]];
-	[[self window] setTitle: [self windowTitle: module]];
-	
-	currentModule = module;
-	[[[self window] contentView] addSubview: [currentModule view]];
+  if ([self resizable]) {
+    [[self window] setContentView: [module view]];
+  }
+  else {
+    [[currentModule view] removeFromSuperview];
+    
+    NSView * newView = [module view];
+    
+    // Resize the window
+    NSRect newWindowFrame = [[self window] frameRectForContentRect: [newView frame]];
+    newWindowFrame.origin = [[self window] frame].origin;
+    newWindowFrame.origin.y -= newWindowFrame.size.height - [[self window] frame].size.height;
+    [[self window] setFrame: newWindowFrame display: true animate: true];
+    
+    [[[self window] toolbar] setSelectedItemIdentifier: [module identifier]];
+    [[self window] setTitle: [self windowTitle: module]];
+    
+    currentModule = module;
+    [[[self window] contentView] addSubview: [currentModule view]];
+  }
 	
 	// Autosave the selection
-	[[NSUserDefaults standardUserDefaults] setObject: [module identifier] forKey: [self autosaveKey]];
+	[[NSUserDefaults standardUserDefaults] setObject: [module identifier] forKey: [NSString stringWithFormat: @"%@.Module", [self autosaveKey]]];
+}
+
+- (bool) resizable
+{
+  return false;
 }
 
 - (NSString *) windowTitle: (id <Module>) module
@@ -181,7 +198,7 @@
 - (NSString *) autosaveKey
 {
   NSLog(@"No autosave key...");
-  return @"Ceres.ModularSelection";
+  return @"Ceres.Modular";
 }
 
 @end

@@ -29,6 +29,8 @@
   Character * character;
 }
 
+- (id) initWithCharacter: (Character *) character;
+
 @property(retain) TrainedSkill * skill;
 
 @end

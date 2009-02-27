@@ -24,24 +24,32 @@
 
 #import "Module.h"
 #import "Interface.h"
+#import "SkillListController.h"
 
 @interface CharacterViewController : NSViewController <Module> {
+  IBOutlet NSOutlineView * skillView;
+  SkillListController * skillController;
   Character * character;
   
   NSImage * portrait;
+  
+  NSManagedObjectContext * managedObjectContext;
 }
 
 - (id) initWithNibName: (NSString *) nib bundle: (NSBundle *) bundle character: (Character *) character;
 
 @property(retain) Character * character;
-@property(copy, readonly) NSString * name, * bloodline, * corporation, * balance, * skillpoints;
+@property(retain) NSManagedObjectContext * managedObjectContext;
+@property(copy, readonly) NSAttributedString * name;
+@property(copy, readonly) NSString * bloodline, * corporation, * balance, * skillpoints;
 @property(copy, readonly) NSString * intelligence, * perception, * charisma, * willpower, * memory;
 @property(copy, readonly) NSString * training, * trainingSkillpoints, * clone, * skillCount;
 @property(retain, readonly) NSImage * portrait;
-@property(retain, readonly) NSManagedObjectContext * managedObjectContext;
-
 
 - (NSString *) identifier;
 - (NSImage *) icon;
+
+- (void) update: (id) sender;
+- (void) updateCharacter: (id) sender;
 
 @end

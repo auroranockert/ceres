@@ -20,19 +20,21 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import "Interface.h"
 #import "SkillCell.h"
 #import "GroupCell.h"
-#import "CharacterController.h"
 
 @interface SkillListController : NSArrayController {
-  IBOutlet CharacterController * characterController;
-  IBOutlet NSOutlineView * skillOutlineView;
+  NSOutlineView * skillOutlineView;
   
   GroupCell * groupCell;
   SkillCell * skillCell;
   
   Character * character;
 }
+
+@property(retain) Character * character;
+@property(retain) NSOutlineView * skillOutlineView;
 
 - (NSCell *) outlineView: (NSOutlineView *) outlineView dataCellForTableColumn: (NSTableColumn *) tableColumn item: (id) item;
 

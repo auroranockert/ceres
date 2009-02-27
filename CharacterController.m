@@ -86,6 +86,7 @@
 - (void) showCharacter
 {
   if ([[[NSUserDefaults standardUserDefaults] valueForKey: @"tabbedCharacters"] compare: @"Yes"] == NSOrderedSame) {
+    [[TabbedCharacterController instance] changeToModule: [[TabbedCharacterController instance] moduleForIdentifier: [NSString stringWithFormat: @"Ceres.Character.%@", [character name]]]];
     [[TabbedCharacterController instance] showWindow: self];
   }
   else {
@@ -93,6 +94,7 @@
       characterViewController = [[CharacterViewController alloc] initWithNibName: @"Character" bundle: nil character: character];
       characterWindowController = [[NSWindowController alloc] init];
       [characterWindowController setWindow: [[NSWindow alloc] initWithContentRect: NSMakeRect(100, 100, 500, 600) styleMask: (NSTitledWindowMask | NSClosableWindowMask | NSMiniaturizableWindowMask | NSResizableWindowMask) backing: NSBackingStoreBuffered defer: true]];
+      [[characterWindowController window] setMinSize: NSMakeSize(400, 400)];
       [[characterWindowController window] setContentView: [characterViewController view]];
       [[characterWindowController window] setTitle: [character name]];
       [[characterWindowController window] setFrameAutosaveName: [NSString stringWithFormat: @"CharacterWindow.%@", [character name]]];

@@ -23,21 +23,21 @@
 
 @implementation SkillListController
 
-- (void) awakeFromNib
-{
-  [super awakeFromNib];
+@synthesize character, skillOutlineView;
 
-  character = [characterController character];
+- (void) setSkillOutlineView: (NSOutlineView *) view
+{
+  skillOutlineView = view;
   
   NSTableColumn * column = [[skillOutlineView tableColumns] anyObject];
   skillCell = [[SkillCell alloc] initWithCharacter: character];
   groupCell = [[GroupCell alloc] initWithCharacter: character];
   
-  [skillOutlineView setAutosaveName: [NSString stringWithFormat: @"SkillList.%@", [character name]]];
-  [skillOutlineView setAutosaveExpandedItems: true];
+  [skillOutlineView setDataSource: self];
+  [skillOutlineView setDelegate: self];
   
-  [self setSortDescriptors: [NSArray arrayWithObjects: [[NSSortDescriptor alloc] initWithKey: @"skill.group.name" ascending: true], [[NSSortDescriptor alloc] initWithKey: @"skill.name" ascending: true], nil]];
-  [self setFetchPredicate: [NSPredicate predicateWithFormat: @"character = %@", character, character]];
+  [skillOutlineView setAutosaveName: [NSString stringWithFormat: @"Ceres.SkillList.%@", [character name]]];
+  [skillOutlineView setAutosaveExpandedItems: true];
 }
 
 - (id) outlineView: (NSOutlineView *) outlineView child: (NSInteger) index ofItem: (id) item
@@ -59,11 +59,11 @@
 }
 
 - (NSInteger) outlineView: (NSOutlineView *) outlineView numberOfChildrenOfItem: (id)item
-{
+{  
   if (item) {
     return [[TrainedSkill findWithCharacter: character group: item] count];
   }
-  
+    
   return [[character skillGroups] count];
 }
 

@@ -50,7 +50,7 @@
     controller = [[CharacterController alloc] initWithCharacter: character];
     [characterControllers setObject: controller forKey: character];
   }
-  
+    
   return controller;
 }
 

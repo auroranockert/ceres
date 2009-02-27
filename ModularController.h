@@ -29,9 +29,12 @@
 
 @property(retain) NSArray * modules;
 
+- (bool) resizable;
+
 - (NSString *) windowTitle: (id <Module>) module;
 - (NSString *) autosaveKey;
 
+- (void) changeToModule: (id <Module>) module;
 - (id <Module>) moduleForIdentifier: (NSString *) name;
 
 @end
