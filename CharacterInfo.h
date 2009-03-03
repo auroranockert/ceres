@@ -44,7 +44,4 @@
                      name: (NSString *) n
               corporation: (CorporationInfo *) corp
                   account: (Account *) acc;
-
-- (Character *) character;
-
 @end

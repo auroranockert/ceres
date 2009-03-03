@@ -57,14 +57,16 @@
 {
   if([[self cachedUntil] timeIntervalSinceNow] < 0)
   {
-    NSXMLDocument * document = [[self api] request: @"account/Characters.xml.aspx"];
+    NSError * error = nil;
+    IOFuture * future = [[[IOHttpRequestChannel alloc] initWithUrl: [[self api] url: @"account/Characters.xml.aspx"]] get];
+    NSXMLDocument * document = [[NSXMLDocument alloc] initWithData: [future result] options: 0 error: &error];
     NSArray * characterNodes = [document readNodes: @"/eveapi/result/rowset/row"];
         
     [self setCachedUntil: [document cachedUntil]];
     
     chars = [[NSMutableArray alloc] init];
     
-    for(NSXMLNode * node in characterNodes)
+    for (NSXMLNode * node in characterNodes)
     {
       NSString * characterName = [node readAttribute: @"name"];
       NSNumber * characterId = [NSNumber numberWithInteger: [[node readAttribute: @"characterID"] integerValue]];
@@ -82,7 +84,8 @@
     
     if ([chars count] > 0) {
       return chars;
-    } else {
+    }
+    else {
       return nil;
     }
   }

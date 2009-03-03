@@ -20,6 +20,8 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import <CeresIO/CeresIO.h>
+
 #import "CeresObject.h"
 
 @interface EveObject : CeresObject {
@@ -30,7 +32,7 @@
 @property(retain) NSString * name, * description;
 @property(retain) NSDate * cachedUntil;
 
-- (void) update;
+- (IOFuture *) update;
 - (void) invalidate;
 
 @end

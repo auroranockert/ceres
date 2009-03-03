@@ -82,7 +82,7 @@ static Ceres * shared;
 
 - (NSString *) applicationVersion
 {
-  return @"0.0.12";
+  return @"0.0.13";
 }
 
 - (CeresVersionComparison) compareVersion
@@ -262,7 +262,7 @@ static Ceres * shared;
 
 - (void) handleError: (NSError *) error
 {
-  NSLog(@"Error > %@", error);
+  NSLog(@"Error > %@ (Info: %@)", error, [error userInfo]);
 }
 
 @end

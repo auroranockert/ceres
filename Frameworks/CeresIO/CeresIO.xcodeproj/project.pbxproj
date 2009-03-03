@@ -1,0 +1,472 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B408F1640F5CA4D8004CF368 /* TestMain.m in Sources */ = {isa = PBXBuildFile; fileRef = B408F15C0F5CA2D0004CF368 /* TestMain.m */; };
+		B408F2900F5D4BB3004CF368 /* IOFuture.m in Sources */ = {isa = PBXBuildFile; fileRef = B408F0B90F5C9011004CF368 /* IOFuture.m */; };
+		B408F2920F5D4BBC004CF368 /* IOCompositeFuture.m in Sources */ = {isa = PBXBuildFile; fileRef = B408F1E60F5CA820004CF368 /* IOCompositeFuture.m */; };
+		B408F2940F5D4BBF004CF368 /* IOHttpRequestChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = B408F0B50F5C8F5F004CF368 /* IOHttpRequestChannel.m */; };
+		B408F2960F5D4BC2004CF368 /* IOHttpFuture.m in Sources */ = {isa = PBXBuildFile; fileRef = B408F0F50F5C925A004CF368 /* IOHttpFuture.m */; };
+		B408F2A00F5D4CA7004CF368 /* CeresIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B408F2870F5D4B91004CF368 /* CeresIO.framework */; };
+		B408F2FE0F5D4EF9004CF368 /* IOChannel.h in Headers */ = {isa = PBXBuildFile; fileRef = B408F0950F5C898A004CF368 /* IOChannel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B408F2FF0F5D4EF9004CF368 /* IOReadableMessageChannel.h in Headers */ = {isa = PBXBuildFile; fileRef = B408F0A60F5C8C4A004CF368 /* IOReadableMessageChannel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B408F3000F5D4EF9004CF368 /* IOWriteableMessageChannel.h in Headers */ = {isa = PBXBuildFile; fileRef = B408F0AA0F5C8E34004CF368 /* IOWriteableMessageChannel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B408F3020F5D4F03004CF368 /* IOHttpFuture.h in Headers */ = {isa = PBXBuildFile; fileRef = B408F0F40F5C925A004CF368 /* IOHttpFuture.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B408F3040F5D4F06004CF368 /* IOHttpRequestChannel.h in Headers */ = {isa = PBXBuildFile; fileRef = B408F0B40F5C8F5F004CF368 /* IOHttpRequestChannel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B408F3060F5D4F0D004CF368 /* IOFuture.h in Headers */ = {isa = PBXBuildFile; fileRef = B408F0B80F5C9011004CF368 /* IOFuture.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B408F3070F5D4F0D004CF368 /* IOCompositeFuture.h in Headers */ = {isa = PBXBuildFile; fileRef = B408F1E50F5CA820004CF368 /* IOCompositeFuture.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B408F3870F5D5027004CF368 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
+		B408F39D0F5D5081004CF368 /* CeresIO.h in Headers */ = {isa = PBXBuildFile; fileRef = B408F39C0F5D5081004CF368 /* CeresIO.h */; settings = {ATTRIBUTES = (Public, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B408F29D0F5D4CA2004CF368 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B408F2860F5D4B91004CF368;
+			remoteInfo = CeresIO;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0867D69BFE84028FC02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		0867D6A5FE840307C02AAC07 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		32DBCF5E0370ADEE00C91783 /* CeresIO_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CeresIO_Prefix.pch; sourceTree = "<group>"; };
+		B408F0950F5C898A004CF368 /* IOChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOChannel.h; sourceTree = "<group>"; };
+		B408F0A60F5C8C4A004CF368 /* IOReadableMessageChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOReadableMessageChannel.h; sourceTree = "<group>"; };
+		B408F0AA0F5C8E34004CF368 /* IOWriteableMessageChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOWriteableMessageChannel.h; sourceTree = "<group>"; };
+		B408F0B40F5C8F5F004CF368 /* IOHttpRequestChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOHttpRequestChannel.h; sourceTree = "<group>"; };
+		B408F0B50F5C8F5F004CF368 /* IOHttpRequestChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IOHttpRequestChannel.m; sourceTree = "<group>"; };
+		B408F0B80F5C9011004CF368 /* IOFuture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOFuture.h; sourceTree = "<group>"; };
+		B408F0B90F5C9011004CF368 /* IOFuture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IOFuture.m; sourceTree = "<group>"; };
+		B408F0F40F5C925A004CF368 /* IOHttpFuture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOHttpFuture.h; sourceTree = "<group>"; };
+		B408F0F50F5C925A004CF368 /* IOHttpFuture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IOHttpFuture.m; sourceTree = "<group>"; };
+		B408F1540F5CA270004CF368 /* Test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Test; sourceTree = BUILT_PRODUCTS_DIR; };
+		B408F15B0F5CA2D0004CF368 /* TestMain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestMain.h; sourceTree = "<group>"; };
+		B408F15C0F5CA2D0004CF368 /* TestMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestMain.m; sourceTree = "<group>"; };
+		B408F1E50F5CA820004CF368 /* IOCompositeFuture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOCompositeFuture.h; sourceTree = "<group>"; };
+		B408F1E60F5CA820004CF368 /* IOCompositeFuture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IOCompositeFuture.m; sourceTree = "<group>"; };
+		B408F2870F5D4B91004CF368 /* CeresIO.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CeresIO.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B408F2880F5D4B91004CF368 /* CeresIO-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CeresIO-Info.plist"; sourceTree = "<group>"; };
+		B408F39C0F5D5081004CF368 /* CeresIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CeresIO.h; sourceTree = "<group>"; };
+		D2A6134D07B89F6200DD23D3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B408F1520F5CA270004CF368 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B408F2A00F5D4CA7004CF368 /* CeresIO.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B408F2850F5D4B91004CF368 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B408F3870F5D5027004CF368 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		034768DFFF38A50411DB9C8B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B408F1540F5CA270004CF368 /* Test */,
+				B408F2870F5D4B91004CF368 /* CeresIO.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0867D691FE84028FC02AAC07 /* CeresIO */ = {
+			isa = PBXGroup;
+			children = (
+				08FB77AEFE84172EC02AAC07 /* Classes */,
+				32C88DFF0371C24200C91783 /* Other Sources */,
+				0867D69AFE84028FC02AAC07 /* External Frameworks and Libraries */,
+				034768DFFF38A50411DB9C8B /* Products */,
+				B408F2880F5D4B91004CF368 /* CeresIO-Info.plist */,
+			);
+			name = CeresIO;
+			sourceTree = "<group>";
+		};
+		0867D69AFE84028FC02AAC07 /* External Frameworks and Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7B0FEA5585E11CA2CBB /* Linked Frameworks */,
+				1058C7B2FEA5585E11CA2CBB /* Other Frameworks */,
+			);
+			name = "External Frameworks and Libraries";
+			sourceTree = "<group>";
+		};
+		08FB77AEFE84172EC02AAC07 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				B408F39C0F5D5081004CF368 /* CeresIO.h */,
+				B408F0A50F5C8C27004CF368 /* Future */,
+				B408F0940F5C8979004CF368 /* Channel */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		1058C7B0FEA5585E11CA2CBB /* Linked Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */,
+			);
+			name = "Linked Frameworks";
+			sourceTree = "<group>";
+		};
+		1058C7B2FEA5585E11CA2CBB /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0867D6A5FE840307C02AAC07 /* AppKit.framework */,
+				D2A6134D07B89F6200DD23D3 /* CoreData.framework */,
+				0867D69BFE84028FC02AAC07 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		32C88DFF0371C24200C91783 /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				B408F15B0F5CA2D0004CF368 /* TestMain.h */,
+				B408F15C0F5CA2D0004CF368 /* TestMain.m */,
+				32DBCF5E0370ADEE00C91783 /* CeresIO_Prefix.pch */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		B408F0940F5C8979004CF368 /* Channel */ = {
+			isa = PBXGroup;
+			children = (
+				B408F0AF0F5C8EA2004CF368 /* HTTP */,
+				B408F0950F5C898A004CF368 /* IOChannel.h */,
+				B408F0A60F5C8C4A004CF368 /* IOReadableMessageChannel.h */,
+				B408F0AA0F5C8E34004CF368 /* IOWriteableMessageChannel.h */,
+			);
+			name = Channel;
+			sourceTree = "<group>";
+		};
+		B408F0A50F5C8C27004CF368 /* Future */ = {
+			isa = PBXGroup;
+			children = (
+				B408F0B80F5C9011004CF368 /* IOFuture.h */,
+				B408F0B90F5C9011004CF368 /* IOFuture.m */,
+				B408F1E50F5CA820004CF368 /* IOCompositeFuture.h */,
+				B408F1E60F5CA820004CF368 /* IOCompositeFuture.m */,
+			);
+			name = Future;
+			sourceTree = "<group>";
+		};
+		B408F0AF0F5C8EA2004CF368 /* HTTP */ = {
+			isa = PBXGroup;
+			children = (
+				B408F0B40F5C8F5F004CF368 /* IOHttpRequestChannel.h */,
+				B408F0B50F5C8F5F004CF368 /* IOHttpRequestChannel.m */,
+				B408F0F40F5C925A004CF368 /* IOHttpFuture.h */,
+				B408F0F50F5C925A004CF368 /* IOHttpFuture.m */,
+			);
+			name = HTTP;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		B408F2820F5D4B91004CF368 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B408F3060F5D4F0D004CF368 /* IOFuture.h in Headers */,
+				B408F3070F5D4F0D004CF368 /* IOCompositeFuture.h in Headers */,
+				B408F3040F5D4F06004CF368 /* IOHttpRequestChannel.h in Headers */,
+				B408F3020F5D4F03004CF368 /* IOHttpFuture.h in Headers */,
+				B408F2FE0F5D4EF9004CF368 /* IOChannel.h in Headers */,
+				B408F2FF0F5D4EF9004CF368 /* IOReadableMessageChannel.h in Headers */,
+				B408F3000F5D4EF9004CF368 /* IOWriteableMessageChannel.h in Headers */,
+				B408F39D0F5D5081004CF368 /* CeresIO.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		B408F1530F5CA270004CF368 /* Test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B408F15A0F5CA29D004CF368 /* Build configuration list for PBXNativeTarget "Test" */;
+			buildPhases = (
+				B408F1510F5CA270004CF368 /* Sources */,
+				B408F1520F5CA270004CF368 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B408F29E0F5D4CA2004CF368 /* PBXTargetDependency */,
+			);
+			name = Test;
+			productName = Test;
+			productReference = B408F1540F5CA270004CF368 /* Test */;
+			productType = "com.apple.product-type.tool";
+		};
+		B408F2860F5D4B91004CF368 /* CeresIO */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B408F28F0F5D4B92004CF368 /* Build configuration list for PBXNativeTarget "CeresIO" */;
+			buildPhases = (
+				B408F2820F5D4B91004CF368 /* Headers */,
+				B408F2830F5D4B91004CF368 /* Resources */,
+				B408F2840F5D4B91004CF368 /* Sources */,
+				B408F2850F5D4B91004CF368 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CeresIO;
+			productName = CeresIO;
+			productReference = B408F2870F5D4B91004CF368 /* CeresIO.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0867D690FE84028FC02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 1DEB918108733D990010E9CD /* Build configuration list for PBXProject "CeresIO" */;
+			compatibilityVersion = "Xcode 3.1";
+			hasScannedForEncodings = 1;
+			mainGroup = 0867D691FE84028FC02AAC07 /* CeresIO */;
+			productRefGroup = 034768DFFF38A50411DB9C8B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B408F1530F5CA270004CF368 /* Test */,
+				B408F2860F5D4B91004CF368 /* CeresIO */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B408F2830F5D4B91004CF368 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B408F1510F5CA270004CF368 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B408F1640F5CA4D8004CF368 /* TestMain.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B408F2840F5D4B91004CF368 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B408F2960F5D4BC2004CF368 /* IOHttpFuture.m in Sources */,
+				B408F2940F5D4BBF004CF368 /* IOHttpRequestChannel.m in Sources */,
+				B408F2920F5D4BBC004CF368 /* IOCompositeFuture.m in Sources */,
+				B408F2900F5D4BB3004CF368 /* IOFuture.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B408F29E0F5D4CA2004CF368 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B408F2860F5D4B91004CF368 /* CeresIO */;
+			targetProxy = B408F29D0F5D4CA2004CF368 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1DEB918208733D990010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_ENABLE_OBJC_GC = required;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.5;
+				SYMROOT = ../../build;
+			};
+			name = Debug;
+		};
+		1DEB918308733D990010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_ENABLE_OBJC_GC = required;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.5;
+				SYMROOT = ../../build;
+			};
+			name = Release;
+		};
+		B408F1560F5CA272004CF368 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/build/Debug\"",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = Test;
+			};
+			name = Debug;
+		};
+		B408F1570F5CA272004CF368 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/build/Debug\"",
+				);
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = Test;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		B408F28D0F5D4B92004CF368 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "CeresIO-Info.plist";
+				INSTALL_PATH = "$(HOME)/Library/Frameworks";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = CeresIO;
+			};
+			name = Debug;
+		};
+		B408F28E0F5D4B92004CF368 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "CeresIO-Info.plist";
+				INSTALL_PATH = "$(HOME)/Library/Frameworks";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = CeresIO;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1DEB918108733D990010E9CD /* Build configuration list for PBXProject "CeresIO" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB918208733D990010E9CD /* Debug */,
+				1DEB918308733D990010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B408F15A0F5CA29D004CF368 /* Build configuration list for PBXNativeTarget "Test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B408F1560F5CA272004CF368 /* Debug */,
+				B408F1570F5CA272004CF368 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B408F28F0F5D4B92004CF368 /* Build configuration list for PBXNativeTarget "CeresIO" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B408F28D0F5D4B92004CF368 /* Debug */,
+				B408F28E0F5D4B92004CF368 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0867D690FE84028FC02AAC07 /* Project object */;
+}

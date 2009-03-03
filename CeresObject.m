@@ -75,14 +75,14 @@
 
 + (NSArray *) find
 {
-  NSSortDescriptor * sortDescriptor = [[NSSortDescriptor alloc] initWithKey: @"identifier" ascending: YES];
+  NSSortDescriptor * sortDescriptor = [[NSSortDescriptor alloc] initWithKey: @"identifier" ascending: true];
   NSPredicate * predicate = [NSPredicate predicateWithValue: true];
   return [self findWithSort: sortDescriptor predicate: predicate];
 }
 
 + (id) findWithIdentifier: (NSNumber *) ident
 {
-  NSSortDescriptor * sort = [[NSSortDescriptor alloc] initWithKey: @"identifier" ascending: YES];
+  NSSortDescriptor * sort = [[NSSortDescriptor alloc] initWithKey: @"identifier" ascending: true];
   NSPredicate * predicate = [NSPredicate predicateWithFormat: @"identifier == %@", ident];
   
   return [[[self class] findWithSort: sort predicate: predicate] anyObject];
@@ -90,7 +90,7 @@
 
 + (id) findWithName: (NSString *) n
 {
-  NSSortDescriptor * sort = [[NSSortDescriptor alloc] initWithKey: @"identifier" ascending: YES];
+  NSSortDescriptor * sort = [[NSSortDescriptor alloc] initWithKey: @"identifier" ascending: true];
   NSPredicate * predicate = [NSPredicate predicateWithFormat: @"name == %@", n];
   
   return [[[self class] findWithSort: sort predicate: predicate] anyObject];

@@ -23,24 +23,18 @@
 
 @implementation Xml
 
-- (NSXMLDocument *) request: (NSString *) urlstring
+- (NSURL *) url: (NSString *) url
 {
-  NSURL * url = [NSURL URLWithString: urlstring];
+  return [NSURL URLWithString: url];
+}
+
+- (IOHttpFuture *) request: (NSString *) url target: (id) target selector: (SEL) selector;
+{
+  IOHttpRequestChannel * channel = [[IOHttpRequestChannel alloc] initWithUrl: [self url: url]];
   
-  URLDelegate * delegate = [[URLDelegate alloc] initWithURL: url];
-  
-  while (![delegate done]) {
-    [[NSRunLoop mainRunLoop] runUntilDate: [NSDate dateWithTimeIntervalSinceNow: 0.1]];
-  }
-  
-  NSError * error = nil;
-  if ([[delegate data] length] != 0) {
-    return [[NSXMLDocument alloc] initWithData: [delegate data] options: 0 error: &error];
-  }
-  else {
-    NSLog(@"No data, did finished get called?");
-    return nil;
-  }  
+  IOHttpFuture * future = [channel get];
+  [future addObserver: target selector: selector];
+  return future;
 }
 
 @end

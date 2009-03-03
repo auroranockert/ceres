@@ -21,14 +21,13 @@
 #import <Cocoa/Cocoa.h>
 
 #import "CeresAdditions.h"
-
-#import "URLLoader.h"
-#import "URLDelegate.h"
+#import <CeresIO/CeresIO.h>
 
 @interface Xml : NSObject {
   
 }
 
-- (NSXMLDocument *) request: (NSString *) url;
+- (NSURL *) url: (NSString *) url;
+- (IOHttpFuture *) request: (NSString *) url target: (id) target selector: (SEL) selector;
 
 @end

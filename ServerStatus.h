@@ -36,4 +36,6 @@
 - (void) update;
 - (void) invalidate;
 
+- (void) updateServerStatus: (IOHttpFuture *) future;
+
 @end

@@ -40,9 +40,4 @@
   return self;
 }
 
-- (Character *) character
-{
-  return [[Character alloc] initWithIdentifier: identifier account: account];
-}
-
 @end

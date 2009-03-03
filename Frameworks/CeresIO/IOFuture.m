@@ -1,0 +1,74 @@
+//
+//  IOFuture.m
+//  This file is part of CeresIO.
+//
+//  CeresIO is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
+//
+//  CeresIO is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
+//
+//  You should have received a copy of the GNU General Public License
+//  along with CeresIO.  If not, see <http://www.gnu.org/licenses/>.
+//
+//  Created by Jens Nockert on 3/2/09.
+//
+
+#import "IOFuture.h"
+
+@implementation IOFuture
+
+@synthesize operationComplete;
+
+- (id) init
+{
+  if (self = [super init]) {
+    operationComplete = false;
+    observers = [NSMutableSet set];
+  }
+  
+  return self;
+}
+
+- (void) notify
+{
+  for (NSInvocation * invocation in observers) {
+    [invocation invoke];
+  }
+}
+
+- (id) result
+{
+  [self join];
+  
+  return nil;
+}
+
+- (void) join
+{
+  while (![self operationComplete]) {
+    [[NSRunLoop mainRunLoop] runUntilDate: [NSDate dateWithTimeIntervalSinceNow: 1.0]];
+  }
+}
+
+- (void) addObserver: (id) target selector: (SEL) selector
+{
+  if ([self operationComplete]) {
+    [target performSelectorOnMainThread: selector withObject: self waitUntilDone: true];
+  }
+  
+  NSMethodSignature * signature = [[target class] instanceMethodSignatureForSelector: selector];
+  NSInvocation * invocation = [NSInvocation invocationWithMethodSignature: signature];
+  [invocation setSelector: selector];
+  [invocation setTarget: target];
+  [invocation setArgument: &self atIndex: 2];
+  [invocation retainArguments];
+  
+  [observers addObject: invocation];
+}
+
+@end

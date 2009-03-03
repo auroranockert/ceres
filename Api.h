@@ -20,6 +20,8 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import <CeresIO/CeresIO.h>
+
 #import "Xml.h"
 
 @interface Api : Xml {
@@ -41,7 +43,5 @@
 - (NSImage *) requestImage: (NSNumber *) image;
 - (NSImage *) requestImage: (NSNumber *) image
                       size: (NSInteger) size;
-
-- (NSXMLDocument *) request: (NSString *) method;
 
 @end

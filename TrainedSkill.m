@@ -23,7 +23,7 @@
 
 @implementation TrainedSkill
 
-@dynamic skillpoints, level, training;
+@dynamic skillpoints, level;
 @dynamic skill, character;
 
 - (id) initWithCharacter: (Character *) character skill: (Skill *) skill

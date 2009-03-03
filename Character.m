@@ -48,13 +48,11 @@
 {
   if (self = [super initWithIdentifier: ident]) {
     [self setAccount: acc];
-  
-    
     [self setOrder: [NSNumber numberWithInteger: [[Character find] count]]];
         
     [self invalidate];
-    [self update];
-        
+    [[self update] join];
+    
     [[Ceres instance] postNotification: [CharacterNotification notificationWithCharacter: self name: @"characterAdded"]];
   }
   
@@ -207,150 +205,15 @@
   return [NSNumber numberWithInteger: [[[self skills] filteredSetUsingPredicate: [NSPredicate predicateWithFormat: @"skill.group == %@", group]] count]];
 }
 
-- (void) update
+- (IOFuture *) update
 {  
   if(![self portraitData]) {
     [self setPortraitData: [[[self api] requestImage: [self identifier]] TIFFRepresentation]];
   }
   
-  bool updatedCharacterSheet = [self updateCharacterSheet];
-  bool updatedTrainingSkill = [self updateTrainingSkill];
-      
-    
-  if (updatedCharacterSheet) {
-    [[Ceres instance] postNotification: [CharacterNotification notificationWithCharacter: self name: @"updatedCharacter"]];
-  }
-  
-  if (updatedTrainingSkill) {
-    [[Ceres instance] postNotification: [CharacterNotification notificationWithCharacter: self name: @"updatedTraining"]];
-    
-    if ([self trainingSkill]) {
-      [[Ceres instance] postNotification: [CharacterNotification notificationWithCharacter: self name: @"skillTrainingCompleted"] date: [self trainingEndsAt]];
-    }
-    else {
-      [[Ceres instance] cancelNotification: [CharacterNotification notificationWithCharacter: self name: @"skillTrainingCompleted"]];
-    }
-  }
-  
-  [[Ceres instance] save];
+  return [[CharacterFuture alloc] initWithCharacter: self];
 }
 
-- (bool) updateCharacterSheet
-{
-  if([[self cachedUntil] timeIntervalSinceNow] < 0) {
-    NSXMLDocument * document = [[self api] request: @"char/CharacterSheet.xml.aspx"];
-    
-    if (!document) {
-      NSLog(@"No character sheet xml available");
-      return false;
-    }
-    
-    [self setCachedUntil: [document cachedUntil]];
-    
-    [self setName: [[document readNode: @"/eveapi/result/name"] stringValue]];
-    [self setRace: [[document readNode: @"/eveapi/result/race"] stringValue]];
-    [self setBloodline: [[document readNode: @"/eveapi/result/bloodLine"] stringValue]];
-    [self setGender: [[document readNode: @"/eveapi/result/gender"] stringValue]];
-    
-    NSNumber * intelligence = [[document readNode: @"/eveapi/result/attributes/intelligence"]  numberValueInteger];
-    NSNumber * memory = [[document readNode: @"/eveapi/result/attributes/memory"]  numberValueInteger];
-    NSNumber * charisma = [[document readNode: @"/eveapi/result/attributes/charisma"]  numberValueInteger];
-    NSNumber * perception = [[document readNode: @"/eveapi/result/attributes/perception"]  numberValueInteger];
-    NSNumber * willpower = [[document readNode: @"/eveapi/result/attributes/willpower"]  numberValueInteger];
-    
-    [self setBaseAttributes: [[Attributes alloc] init: intelligence : perception : charisma : memory : willpower]];      
-    
-    [self setCorporationIdentifier: [[document readNode: @"/eveapi/result/corporationID"] numberValueInteger]];
-    [self setCorporationName: [[document readNode: @"/eveapi/result/corporationName"] stringValue]];
-    
-    [self setBalance: [[document readNode: @"/eveapi/result/balance"] numberValueDouble]];
-    [self setClone: [Clone findWithName: [[document readNode: @"/eveapi/result/cloneName"] stringValue]]];
-    
-    if (![self currentImplantSet]) {
-      [self setCurrentImplantSet: [[ImplantSet alloc] init]];
-    }
-    
-    ImplantSet * current = [self currentImplantSet];
-    
-    [current replaceImplant: [Implant findWithName: [[document readNode: @"/eveapi/result/attributeEnhancers/intelligenceBonus/augmentatorName"]  stringValue]]];
-    [current replaceImplant: [Implant findWithName: [[document readNode: @"/eveapi/result/attributeEnhancers/memoryBonus/augmentatorName"]  stringValue]]];
-    [current replaceImplant: [Implant findWithName: [[document readNode: @"/eveapi/result/attributeEnhancers/charismaBonus/augmentatorName"]  stringValue]]];
-    [current replaceImplant: [Implant findWithName: [[document readNode: @"/eveapi/result/attributeEnhancers/perceptionBonus/augmentatorName"]  stringValue]]];
-    [current replaceImplant: [Implant findWithName: [[document readNode: @"/eveapi/result/attributeEnhancers/willpowerBonus/augmentatorName"]  stringValue]]];
-    
-    NSArray * skills = [document readNodes: @"/eveapi/result/rowset[@name='skills']/row"];
-    for (NSXMLNode * skill in skills)
-    {
-      TrainedSkill * ts = [[TrainedSkill alloc] initWithCharacter: self skill: [Skill findWithIdentifier: [NSNumber numberWithInteger: [[skill readAttribute: @"typeID"] integerValue]]]];
-      [ts setSkillpoints: [NSNumber numberWithInteger: [[skill readAttribute: @"skillpoints"] integerValue]]];
-      [ts setLevel: [NSNumber numberWithInteger: [[skill readAttribute: @"level"] integerValue]]];
-    }
-    
-    [self setSkillpoints: [self valueForKeyPath: @"skills.@sum.skillpoints"]];
-    [self updateSkillGroups];
-    
-    return true;
-  }
-    
-  return false;
-}
-    
-- (bool) updateTrainingSkill
-{
-  bool updatedTraining = false;
-  
-  if([[self trainingCachedUntil] timeIntervalSinceNow] < 0) {
-    NSXMLDocument * document = [[self api] request: @"char/SkillInTraining.xml.aspx"];
-    
-    if (!document) {
-      NSLog(@"No skill training xml available");
-      return false;
-    }
-    
-    [self setTrainingCachedUntil: [document cachedUntil]];
-    
-    if ([[document readNode: @"/eveapi/result/skillInTraining"] integerValue])
-    {
-      NSString * startTimeString = [[[document readNode: @"/eveapi/result/trainingStartTime"] stringValue] stringByAppendingString: @" +0000"];      
-      NSDate * startDate = [[NSDate alloc] initWithString: startTimeString];
-      
-      if (![self trainingStartedAt] || ![self trainingSkill] || [startDate compare: [self trainingStartedAt]] != NSOrderedSame) {
-        [self updateSkillpoints];
-        
-        [[self trainingSkill] setTraining: [NSNumber numberWithBool: false]];
-        
-        [self setTrainingStartedAt: startDate];
-        
-        NSString * endTimeString = [[[document readNode: @"/eveapi/result/trainingEndTime"] stringValue] stringByAppendingString: @" +0000"];
-        [self setTrainingEndsAt: [[NSDate alloc] initWithString: endTimeString]];
-        
-        NSNumber * skillIdentifer = [[document readNode: @"/eveapi/result/trainingTypeID"] numberValueInteger];
-        TrainedSkill * skill = [TrainedSkill findWithCharacter: self skill: [Skill findWithIdentifier: skillIdentifer]];
-        [self setTrainingSkill: skill];
-        
-        [[self trainingSkill] setSkillpoints: [[document readNode: @"/eveapi/result/trainingStartSP"] numberValueInteger]];
-        [[self trainingSkill] setLevel: [[[document readNode: @"/eveapi/result/trainingToLevel"] numberValueInteger] previous]] ;
-        [[self trainingSkill] setTraining: [NSNumber numberWithBool: true]];
-        
-        updatedTraining = true;
-      }
-    }
-    else {
-      if ([self trainingSkill]) {
-        [self updateSkillpoints];
-        
-        [[self trainingSkill] setTraining: false];
-        
-        [self setTrainingSkill: nil];
-        
-        updatedTraining = true;
-      }
-    }
-  }
-  
-  return updatedTraining;
-}
-  
 - (void) updateSkillGroups
 {
   NSMutableSet * groups = [[NSMutableSet alloc] init];

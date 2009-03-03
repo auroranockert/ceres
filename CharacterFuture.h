@@ -1,5 +1,5 @@
 //
-//  Data.m
+//  CharacterFuture.h
 //  This file is part of Ceres.
 //
 //  Ceres is free software: you can redistribute it and/or modify
@@ -15,26 +15,27 @@
 //  You should have received a copy of the GNU General Public License
 //  along with Ceres.  If not, see <http://www.gnu.org/licenses/>.
 //
-//  Created by Jens Nockert on 12/13/08.
+//  Created by Jens Nockert on 3/3/09.
 //
 
-#import "Data.h"
+#import <Cocoa/Cocoa.h>
+#import <CeresIO/CeresIO.h>
 
+#import "CeresAdditions.h"
 
-@implementation Data
+#import "Character.h"
 
-- (id) init
-{
-  if (self = [super init]) {
-    dataApi = @"http://Ceres.doesntexist.org/xml/0.0.11/";
-  }
+@class Character;
+
+@interface CharacterFuture : IOFuture {
+  NSInteger complete;
   
-  return self;
+  Character * character;
 }
 
-- (NSURL *) url: (NSString *) file
-{
-  return [super url: [dataApi stringByAppendingString: file]];
-}
+- (id) initWithCharacter: (Character *) character;
+
+- (void) updateCharacterSheet: (IOFuture *) future;
+- (void) updateTrainingSkill: (IOFuture *) future;
 
 @end

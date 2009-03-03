@@ -31,7 +31,6 @@
     characterIdentifier = cha;
     apikey = key;
     
-    // methodApi = [[NSString alloc] initWithString: @"http://Ceres.doesntexist.org/xml/api/"];
     methodApi = [[NSString alloc] initWithString: @"http://api.eve-online.com/"];
     imageApi = [[NSString alloc] initWithString: @"http://img.eve.is/serv.asp"];
   }
@@ -53,9 +52,10 @@
               characterIdentifier: nil];
 }
 
-- (NSXMLDocument *) request: (NSString *) method
+- (NSURL *) url: (NSString *) url
 {
-  NSString * urlString = [methodApi stringByAppendingString: method];  
+  NSString * urlString = [methodApi stringByAppendingString: url];
+  
   if (identifier)
   {
     urlString = [urlString stringByAppendingFormat: @"?userId=%ld&apiKey=%@", [identifier integerValue], apikey];
@@ -66,7 +66,7 @@
     urlString = [urlString stringByAppendingFormat: @"&characterId=%ld", [characterIdentifier integerValue]];
   }
   
-  return [super request: urlString];
+  return [super url: urlString];
 }
 
 - (NSImage *) requestImage: (NSNumber *) image

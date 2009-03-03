@@ -6,6 +6,20 @@
 	objectVersion = 44;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		B408F7ED0F5D5AF9004CF368 /* External Frameworks */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = B408F7F00F5D5B18004CF368 /* Build configuration list for PBXAggregateTarget "External Frameworks" */;
+			buildPhases = (
+			);
+			dependencies = (
+				B408F7F20F5D5B1B004CF368 /* PBXTargetDependency */,
+			);
+			name = "External Frameworks";
+			productName = "External Frameworks";
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
 		8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
@@ -23,6 +37,12 @@
 		B40581170F19AE55009EEDD8 /* Interface.m in Sources */ = {isa = PBXBuildFile; fileRef = B40581160F19AE55009EEDD8 /* Interface.m */; };
 		B40581440F19AFBA009EEDD8 /* Loading.xib in Resources */ = {isa = PBXBuildFile; fileRef = B40581430F19AFBA009EEDD8 /* Loading.xib */; };
 		B40581780F19BAFF009EEDD8 /* ServerStatusController.m in Sources */ = {isa = PBXBuildFile; fileRef = B40581770F19BAFF009EEDD8 /* ServerStatusController.m */; };
+		B408F5BC0F5D57AF004CF368 /* CeresIO.framework in Copy Bundle Frameworks */ = {isa = PBXBuildFile; fileRef = B408F5BA0F5D57A7004CF368 /* CeresIO.framework */; };
+		B408F5DC0F5D580B004CF368 /* CeresIO.framework in Copy Bundle Frameworks */ = {isa = PBXBuildFile; fileRef = B408F5BA0F5D57A7004CF368 /* CeresIO.framework */; };
+		B408F5DE0F5D5814004CF368 /* CeresIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B408F5BA0F5D57A7004CF368 /* CeresIO.framework */; };
+		B408F5E20F5D5861004CF368 /* CeresIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B408F5BA0F5D57A7004CF368 /* CeresIO.framework */; };
+		B408F8D30F5DA628004CF368 /* CharacterFuture.h in Headers */ = {isa = PBXBuildFile; fileRef = B408F8D10F5DA628004CF368 /* CharacterFuture.h */; };
+		B408F8D40F5DA628004CF368 /* CharacterFuture.m in Sources */ = {isa = PBXBuildFile; fileRef = B408F8D20F5DA628004CF368 /* CharacterFuture.m */; };
 		B40C1D410EF1205D0050F22B /* Ceres.h in Headers */ = {isa = PBXBuildFile; fileRef = B40C1D3F0EF1205D0050F22B /* Ceres.h */; };
 		B40C1D420EF1205D0050F22B /* Ceres.m in Sources */ = {isa = PBXBuildFile; fileRef = B40C1D400EF1205D0050F22B /* Ceres.m */; };
 		B40C1EF70EF1C2050050F22B /* CeresMain.m in Sources */ = {isa = PBXBuildFile; fileRef = B40C1EF60EF1C2050050F22B /* CeresMain.m */; };
@@ -130,6 +150,34 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		B408F5B70F5D57A7004CF368 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B408F5AF0F5D57A7004CF368 /* CeresIO.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B408F1540F5CA270004CF368 /* Test */;
+			remoteInfo = Test;
+		};
+		B408F5B90F5D57A7004CF368 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B408F5AF0F5D57A7004CF368 /* CeresIO.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B408F2870F5D4B91004CF368 /* CeresIO.framework */;
+			remoteInfo = CeresIO;
+		};
+		B408F7F10F5D5B1B004CF368 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B408F5AF0F5D57A7004CF368 /* CeresIO.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = B408F2860F5D4B91004CF368 /* CeresIO */;
+			remoteInfo = CeresIO;
+		};
+		B408F7F30F5D5B21004CF368 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B408F7ED0F5D5AF9004CF368 /* External Frameworks */;
+			remoteInfo = "External Frameworks";
+		};
 		B40C1F4C0EF1C8230050F22B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
@@ -147,12 +195,24 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		B408F6520F5D587F004CF368 /* Copy Bundle Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				B408F5BC0F5D57AF004CF368 /* CeresIO.framework in Copy Bundle Frameworks */,
+			);
+			name = "Copy Bundle Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B4668BD30F0058A0002E13B4 /* Copy Bundle Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				B408F5DC0F5D580B004CF368 /* CeresIO.framework in Copy Bundle Frameworks */,
 				B496BF500F33B6FE00E92DB4 /* Sparkle.framework in Copy Bundle Frameworks */,
 				B462C2970F2E109C004D04D8 /* Growl.framework in Copy Bundle Frameworks */,
 				B4668BAB0F005379002E13B4 /* Ceres.framework in Copy Bundle Frameworks */,
@@ -188,6 +248,10 @@
 		B40581430F19AFBA009EEDD8 /* Loading.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Loading.xib; sourceTree = "<group>"; };
 		B40581760F19BAFF009EEDD8 /* ServerStatusController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerStatusController.h; sourceTree = "<group>"; };
 		B40581770F19BAFF009EEDD8 /* ServerStatusController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerStatusController.m; sourceTree = "<group>"; };
+		B408F5AF0F5D57A7004CF368 /* CeresIO.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CeresIO.xcodeproj; path = Frameworks/CeresIO/CeresIO.xcodeproj; sourceTree = "<group>"; };
+		B408F8360F5D603C004CF368 /* Ceres 0.0.12.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Ceres 0.0.12.xcdatamodel"; sourceTree = "<group>"; };
+		B408F8D10F5DA628004CF368 /* CharacterFuture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterFuture.h; sourceTree = "<group>"; };
+		B408F8D20F5DA628004CF368 /* CharacterFuture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacterFuture.m; sourceTree = "<group>"; };
 		B40C1D3F0EF1205D0050F22B /* Ceres.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ceres.h; sourceTree = "<group>"; };
 		B40C1D400EF1205D0050F22B /* Ceres.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ceres.m; sourceTree = "<group>"; };
 		B40C1EED0EF1C1CB0050F22B /* Ceres.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ceres.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -256,7 +320,7 @@
 		B424F6800EED44C800B5E7C5 /* Test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Test; sourceTree = BUILT_PRODUCTS_DIR; };
 		B424F6F60EED4C2D00B5E7C5 /* TestMain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestMain.h; sourceTree = "<group>"; };
 		B424F6F70EED4C2D00B5E7C5 /* TestMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestMain.m; sourceTree = "<group>"; };
-		B424FAE80EEF0CD700B5E7C5 /* Ceres 0.0.12.xcdatamodel */ = {isa = PBXFileReference; explicitFileType = wrapper.xcdatamodel; fileEncoding = 4; path = "Ceres 0.0.12.xcdatamodel"; sourceTree = "<group>"; };
+		B424FAE80EEF0CD700B5E7C5 /* Ceres 0.0.13.xcdatamodel */ = {isa = PBXFileReference; explicitFileType = wrapper.xcdatamodel; fileEncoding = 4; path = "Ceres 0.0.13.xcdatamodel"; sourceTree = "<group>"; };
 		B444ED070F16A8E500DDC5BF /* URLDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLDelegate.h; sourceTree = "<group>"; };
 		B444ED080F16A8E500DDC5BF /* URLDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLDelegate.m; sourceTree = "<group>"; };
 		B462BA9F0F291B9C004D04D8 /* CeresNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CeresNotification.h; sourceTree = "<group>"; };
@@ -323,6 +387,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B408F5E20F5D5861004CF368 /* CeresIO.framework in Frameworks */,
 				8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -331,6 +396,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B408F5DE0F5D5814004CF368 /* CeresIO.framework in Frameworks */,
 				B496BF830F33C08B00E92DB4 /* Sparkle.framework in Frameworks */,
 				B462C2C40F2E11D2004D04D8 /* Growl.framework in Frameworks */,
 				B4668BB10F0053EA002E13B4 /* Ceres.framework in Frameworks */,
@@ -416,6 +482,7 @@
 		1058C7B0FEA5585E11CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B408F5AF0F5D57A7004CF368 /* CeresIO.xcodeproj */,
 				B496BF430F33B6EC00E92DB4 /* Sparkle.framework */,
 				B462C28B0F2E1071004D04D8 /* Growl.framework */,
 				1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */,
@@ -520,6 +587,15 @@
 				B4F0E5F80F2247D500412957 /* Ceres */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		B408F5B00F5D57A7004CF368 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B408F5B80F5D57A7004CF368 /* Test */,
+				B408F5BA0F5D57A7004CF368 /* CeresIO.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		B41544870F49D24A005B5D48 /* Preferences */ = {
@@ -698,6 +774,8 @@
 				B415CDE40F2F5EE80058F57D /* TrainedSkill.m */,
 				B4C0E8050F39C43600A96DD6 /* ImplantSet.h */,
 				B4C0E8060F39C43600A96DD6 /* ImplantSet.m */,
+				B408F8D10F5DA628004CF368 /* CharacterFuture.h */,
+				B408F8D20F5DA628004CF368 /* CharacterFuture.m */,
 			);
 			name = Character;
 			sourceTree = "<group>";
@@ -956,6 +1034,7 @@
 				B4FF57B50F3DEB3B00F67A6C /* NSThread.h in Headers */,
 				B403190C0F41D20400A99577 /* NSRect.h in Headers */,
 				B40319EE0F4251C200A99577 /* NSImage.h in Headers */,
+				B408F8D30F5DA628004CF368 /* CharacterFuture.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -970,6 +1049,7 @@
 				8DC2EF520486A6940098B216 /* Resources */,
 				8DC2EF540486A6940098B216 /* Sources */,
 				8DC2EF560486A6940098B216 /* Frameworks */,
+				B408F6520F5D587F004CF368 /* Copy Bundle Frameworks */,
 			);
 			buildRules = (
 			);
@@ -993,6 +1073,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				B408F7F40F5D5B21004CF368 /* PBXTargetDependency */,
 				B40C1F4D0EF1C8230050F22B /* PBXTargetDependency */,
 			);
 			name = Ceres;
@@ -1028,14 +1109,38 @@
 			mainGroup = 0867D691FE84028FC02AAC07 /* Ceres */;
 			productRefGroup = 034768DFFF38A50411DB9C8B /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = B408F5B00F5D57A7004CF368 /* Products */;
+					ProjectRef = B408F5AF0F5D57A7004CF368 /* CeresIO.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				8DC2EF4F0486A6940098B216 /* Ceres (Framework) */,
 				B424F67F0EED44C800B5E7C5 /* Test */,
 				B40C1EEC0EF1C1CB0050F22B /* Ceres */,
+				B408F7ED0F5D5AF9004CF368 /* External Frameworks */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		B408F5B80F5D57A7004CF368 /* Test */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = Test;
+			remoteRef = B408F5B70F5D57A7004CF368 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B408F5BA0F5D57A7004CF368 /* CeresIO.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CeresIO.framework;
+			remoteRef = B408F5B90F5D57A7004CF368 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		8DC2EF520486A6940098B216 /* Resources */ = {
@@ -1107,6 +1212,7 @@
 				B4E9AE7B0F3CAAC0007A175C /* NSNumber.m in Sources */,
 				B4FF57B60F3DEB3B00F67A6C /* NSThread.m in Sources */,
 				B40319EF0F4251C200A99577 /* NSImage.m in Sources */,
+				B408F8D40F5DA628004CF368 /* CharacterFuture.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1154,6 +1260,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		B408F7F20F5D5B1B004CF368 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CeresIO;
+			targetProxy = B408F7F10F5D5B1B004CF368 /* PBXContainerItemProxy */;
+		};
+		B408F7F40F5D5B21004CF368 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B408F7ED0F5D5AF9004CF368 /* External Frameworks */;
+			targetProxy = B408F7F30F5D5B21004CF368 /* PBXContainerItemProxy */;
+		};
 		B40C1F4D0EF1C8230050F22B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8DC2EF4F0486A6940098B216 /* Ceres (Framework) */;
@@ -1229,6 +1345,8 @@
 		1DEB91B208733DA50010E9CD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1 = "ppc i386 ppc64 x86_64";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_GC = required;
 				GCC_PREPROCESSOR_DEFINITIONS = NS_BUILD_32_LIKE_64;
@@ -1244,6 +1362,8 @@
 		1DEB91B308733DA50010E9CD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1 = "ppc i386 ppc64 x86_64";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_GC = required;
 				GCC_PREPROCESSOR_DEFINITIONS = NS_BUILD_32_LIKE_64;
@@ -1253,6 +1373,27 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
+			};
+			name = Release;
+		};
+		B408F7EE0F5D5AF9004CF368 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = "External Frameworks";
+			};
+			name = Debug;
+		};
+		B408F7EF0F5D5AF9004CF368 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				PRODUCT_NAME = "External Frameworks";
+				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
@@ -1375,6 +1516,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		B408F7F00F5D5B18004CF368 /* Build configuration list for PBXAggregateTarget "External Frameworks" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B408F7EE0F5D5AF9004CF368 /* Debug */,
+				B408F7EF0F5D5AF9004CF368 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		B40C1EF20EF1C1CC0050F22B /* Build configuration list for PBXNativeTarget "Ceres" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1399,13 +1549,14 @@
 		B4C0E31D0F38685E00A96DD6 /* Ceres.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				B424FAE80EEF0CD700B5E7C5 /* Ceres 0.0.12.xcdatamodel */,
+				B424FAE80EEF0CD700B5E7C5 /* Ceres 0.0.13.xcdatamodel */,
 				B4C0E3200F38685E00A96DD6 /* Ceres 0.0.7.xcdatamodel */,
 				B4FF58730F3E677E00F67A6C /* Ceres 0.0.8.xcdatamodel */,
 				B4031D370F47194E00A99577 /* Ceres 0.0.10.xcdatamodel */,
 				B4154E6A0F52A751005B5D48 /* Ceres 0.0.11.xcdatamodel */,
+				B408F8360F5D603C004CF368 /* Ceres 0.0.12.xcdatamodel */,
 			);
-			currentVersion = B424FAE80EEF0CD700B5E7C5 /* Ceres 0.0.12.xcdatamodel */;
+			currentVersion = B424FAE80EEF0CD700B5E7C5 /* Ceres 0.0.13.xcdatamodel */;
 			path = Ceres.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

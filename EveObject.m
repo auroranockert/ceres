@@ -25,9 +25,11 @@
 
 @dynamic identifier, published, name, description, cachedUntil;
 
-- (void) update
+- (IOFuture *) update
 {
   NSLog(@"Dummy Update requested for object %@ (%ld), returned nil. This is a bug.", [self name], [self identifier]);
+  
+  return nil;
 }
 
 - (void) invalidate

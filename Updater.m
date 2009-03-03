@@ -55,24 +55,28 @@ static Updater * shared;
 
 - (void) prepare
 {
-  NSArray * characters = [Character find]; 
-  for (Character * character in characters) {
+  for (Character * character in [Character find]) {
     [character prepareMessages];
   }
 }
 
 - (void) update
 {
-  NSArray * characters = [Character find]; 
-  for (Character * character in characters) {
-    [character update];
+  NSMutableSet * futures = [NSMutableSet set];
+  for (Character * character in [Character find]) {
+    [futures addObject: [character update]];
   }
+  
+  [[[IOCompositeFuture alloc] initWithFutures: futures] addObserver: self selector: @selector(save:)];
   
   [[ServerStatus instance] update];
   
-  NSLog(@"Running");
-  
   [self performSelector: @selector(update) withObject: nil afterDelay: 180];
+}
+
+- (void) save: (IOFuture *) future
+{
+  [[Ceres instance] save];
 }
 
 @end

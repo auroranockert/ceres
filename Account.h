@@ -20,6 +20,8 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import <CeresIO/CeresIO.h>
+
 #import "Api.h"
 #import "CeresObject.h"
 #import "CorporationInfo.h"

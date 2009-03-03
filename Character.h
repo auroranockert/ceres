@@ -20,6 +20,9 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import <CeresIO/CeresIO.h>
+#import "CharacterFuture.h"
+
 #import "CharacterInfo.h"
 #import "CorporationInfo.h"
 
@@ -40,6 +43,7 @@
 @class CharacterInfo;
 @class TrainedSkill;
 @class ImplantSet;
+@class CharacterFuture;
 
 @interface Character : EveObject {
   NSArray * skillGroups;
@@ -87,8 +91,6 @@
 
 - (void) updateSkillGroups;
 - (void) updateSkillpoints;
-- (bool) updateCharacterSheet;
-- (bool) updateTrainingSkill;
 
 - (NSNumber *) additionalSkillpoints;
 

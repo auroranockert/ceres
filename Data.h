@@ -28,6 +28,5 @@
 }
 
 - (NSURL *) url: (NSString *) piece;
-- (NSXMLDocument *) request: (NSString *) piece;
 
 @end

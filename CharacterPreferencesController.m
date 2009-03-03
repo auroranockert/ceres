@@ -64,14 +64,13 @@
   [[NSRunLoop mainRunLoop] runUntilDate: [NSDate dateWithTimeIntervalSinceNow: 0]];
   
   Account * account = [[Account alloc] initWithIdentifier: i apikey: k];
-  NSArray * chars = [account requestCharacters];
   
-  for(CharacterInfo * ci in chars)
+  for (CharacterInfo * ci in [account requestCharacters])
   {
     [[Character alloc] initWithIdentifier: [ci identifier] account: account];
   }
   
-  [[Ceres instance] save];  
+  [[Ceres instance] save];
   
   [userid setEnabled: true];
   [apikey setEnabled: true];

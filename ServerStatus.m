@@ -59,31 +59,35 @@ static ServerStatus * shared;
 - (void) update
 {
   if ([cachedUntil timeIntervalSinceNow] < 0) {
-    Api * api = [[Api alloc] init];
-    NSXMLDocument * status = [api request: @"server/ServerStatus.xml.aspx"];
+    [[[Api alloc] init] request: @"server/ServerStatus.xml.aspx" target: self selector: @selector(updateServerStatus:)];
+  }
+}
+
+- (void) updateServerStatus: (IOHttpFuture *) future
+{
+  NSError * error = nil;
+  NSXMLDocument * status = [[NSXMLDocument alloc] initWithData: [future result] options: 0 error: &error];
     
-    if (!status) {
-      NSLog(@"No server status xml available");
+  if (!status) {
+    NSLog(@"No server status xml available");
+    online = [NSNumber numberWithBool: false];
+    players = [NSNumber numberWithInteger: 0];
+  }
+  else {
+    NSString * open = [[status readNode: @"/eveapi/result/serverOpen"] stringValue];
+    cachedUntil = [status cachedUntil];
+    if ([open compare: @"True"] == NSOrderedSame) {
+      online = [NSNumber numberWithBool: true];
+      players = [[status readNode: @"/eveapi/result/onlinePlayers"] numberValueInteger];
+    }
+    else {
       online = [NSNumber numberWithBool: false];
       players = [NSNumber numberWithInteger: 0];
     }
-    else {
-      NSString * open = [[status readNode: @"/eveapi/result/serverOpen"] stringValue];
-      cachedUntil = [status cachedUntil];
-      if ([open compare: @"True"] == NSOrderedSame) {
-        online = [NSNumber numberWithBool: true];
-        players = [[status readNode: @"/eveapi/result/onlinePlayers"] numberValueInteger];
-      }
-      else {
-        online = [NSNumber numberWithBool: false];
-        players = [NSNumber numberWithInteger: 0];
-      }
-    }
-      
-    NSNotification * notification = [NSNotification notificationWithName: @"Ceres.server.playerCountUpdated" object: [self players]];
-    [[Ceres instance] postNotification: notification];
-    
   }
+  
+  NSNotification * notification = [NSNotification notificationWithName: @"Ceres.server.playerCountUpdated" object: [self players]];
+  [[Ceres instance] postNotification: notification];
 }
 
 - (void) invalidate
