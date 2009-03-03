@@ -158,7 +158,7 @@
 	[self changeToModule: module];
 }
 
-- (void) changeToModule: (id <Module>)module
+- (void) changeToModule: (id <Module>) module
 {
   if ([self resizable]) {
     [[self window] setContentView: [module view]];
@@ -174,12 +174,13 @@
     newWindowFrame.origin.y -= newWindowFrame.size.height - [[self window] frame].size.height;
     [[self window] setFrame: newWindowFrame display: true animate: true];
     
-    [[[self window] toolbar] setSelectedItemIdentifier: [module identifier]];
-    [[self window] setTitle: [self windowTitle: module]];
     
     currentModule = module;
     [[[self window] contentView] addSubview: [currentModule view]];
   }
+  
+  [[self window] setTitle: [self windowTitle: module]];
+  [[[self window] toolbar] setSelectedItemIdentifier: [module identifier]];
 	
 	// Autosave the selection
 	[[NSUserDefaults standardUserDefaults] setObject: [module identifier] forKey: [NSString stringWithFormat: @"%@.Module", [self autosaveKey]]];

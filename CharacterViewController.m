@@ -53,7 +53,7 @@
 
 - (NSString *) identifier
 {
-	return [NSString stringWithFormat: @"Ceres.Character.%@", [self name]];
+	return [NSString stringWithFormat: @"Ceres.Character.%@", [character name]];
 }
 
 - (NSImage *) icon
