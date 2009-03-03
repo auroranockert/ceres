@@ -51,7 +51,7 @@
 
 - (bool) outlineView: (NSOutlineView *) outlineView isItemExpandable: (id)item
 {
-  if ([item class] == [Group class]) {
+  if (item && [item class] == [Group class]) {
     return true;
   }
   
