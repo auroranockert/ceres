@@ -63,7 +63,7 @@
 
 - (NSAttributedString *) name
 {
-  return [[NSMutableAttributedString alloc] initWithString: [character name] attributes: [NSDictionary dictionaryWithObject: [NSFont systemFontOfSize: 14] forKey:NSFontAttributeName]];
+  return [[NSAttributedString alloc] initWithString: [character name] attributes: [NSDictionary dictionaryWithObject: [NSFont systemFontOfSize: 14] forKey:NSFontAttributeName]];
 }
 
 - (NSString *) bloodline
@@ -145,9 +145,15 @@
   return [NSString stringWithFormat: @"%ld of %ld skills are currently trained to level %@.", [[[character skills] filteredSetUsingPredicate: [NSPredicate predicateWithFormat: @"level = 5"]] count], [[character skills] count], [[NSNumber numberWithInteger: 5] levelString]];
 }
 
-- (NSString *) clone
+- (NSAttributedString *) clone
 {
-  return [NSString stringWithFormat: @"%@ (Stores %@ SP)", [[character clone] name], [[[character clone] skillpoints] spString]];
+  NSString * string = [NSString stringWithFormat: @"%@ (Stores %@ SP)", [[character clone] name], [[[character clone] skillpoints] spString]];
+  if ([[[character clone] skillpoints] compare: [character totalSkillpoints]] == NSOrderedAscending) {
+    return [[NSAttributedString alloc] initWithString: string attributes: [NSDictionary dictionaryWithObject: [NSColor redColor] forKey: NSForegroundColorAttributeName]];
+  }
+  else {
+    return [[NSAttributedString alloc] initWithString: string attributes: [NSDictionary dictionaryWithObject: [NSColor blackColor] forKey: NSForegroundColorAttributeName]];
+  }
 }
 
 - (NSImage *) portrait

@@ -43,7 +43,8 @@
 @property(copy, readonly) NSAttributedString * name;
 @property(copy, readonly) NSString * bloodline, * corporation, * balance, * skillpoints;
 @property(copy, readonly) NSString * intelligence, * perception, * charisma, * willpower, * memory;
-@property(copy, readonly) NSString * training, * trainingSkillpoints, * clone, * skillCount;
+@property(copy, readonly) NSAttributedString * clone;
+@property(copy, readonly) NSString * training, * trainingSkillpoints, * skillCount;
 @property(retain, readonly) NSImage * portrait;
 
 - (NSString *) identifier;
