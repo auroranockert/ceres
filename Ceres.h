@@ -38,10 +38,6 @@ typedef enum CeresVersionComparison CeresVersionComparison;
   NSPersistentStoreCoordinator * persistentStoreCoordinator;
   NSManagedObjectModel * managedObjectModel;
   NSManagedObjectContext * managedObjectContext;
-  
-  NSNotificationCenter * notificationCenter;
-  NSNotificationQueue * notificationQueue;
-  NSMutableDictionary * notificationDictionary;
 }
 
 @property(copy) NSDictionary * metadata;
@@ -52,7 +48,6 @@ typedef enum CeresVersionComparison CeresVersionComparison;
 @property(retain, readonly) NSPersistentStore * persistentStore;
 @property(retain, readonly) NSManagedObjectContext * managedObjectContext;
 @property(retain, readonly) NSManagedObjectModel * managedObjectModel;
-@property(retain, readonly) NSNotificationCenter * notificationCenter;
 
 @property(retain, readonly) NSURL * persistentStoreUrl;
 
@@ -62,10 +57,6 @@ typedef enum CeresVersionComparison CeresVersionComparison;
 + (Ceres *) instance;
 
 - (void) save;
-- (void) postNotification: (NSNotification *) notification;
-- (void) postNotification: (NSNotification *) notification date: (NSDate *) date;
-- (void) cancelNotification: (NSNotification *) notification;
-- (void) addObserver: (id) observer selector: (SEL) selector name: (NSString*) name object: (id) object;
 - (void) handleError: (NSError *) error;
 - (CeresVersionComparison) compareVersion;
 

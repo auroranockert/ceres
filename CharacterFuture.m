@@ -118,7 +118,7 @@
   
   [self increment];
   
-  [[Ceres instance] postNotification: [CharacterNotification notificationWithCharacter: character name: @"updatedCharacter"]];
+  [[CeresNotificationCenter instance] postNotification: [CharacterNotification notificationWithCharacter: character name: @"updatedCharacter"]];
 }
 
 - (void) updateTrainingSkill: (IOFuture *) future
@@ -163,10 +163,10 @@
   
   [self increment];
   
-  [[Ceres instance] postNotification: [CharacterNotification notificationWithCharacter: character name: @"updatedTraining"]];
+  [[CeresNotificationCenter instance] postNotification: [CharacterNotification notificationWithCharacter: character name: @"updatedTraining"]];
   
   if ([character trainingSkill]) {
-    [[Ceres instance] postNotification: [CharacterNotification notificationWithCharacter: character name: @"skillTrainingCompleted"] date: [character trainingEndsAt]];
+    [[CeresNotificationCenter instance] postNotification: [CharacterNotification notificationWithCharacter: character name: @"skillTrainingCompleted"] date: [character trainingEndsAt]];
   }
 }
 

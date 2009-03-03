@@ -53,7 +53,7 @@
     [self invalidate];
     [[self update] join];
     
-    [[Ceres instance] postNotification: [CharacterNotification notificationWithCharacter: self name: @"characterAdded"]];
+    [[CeresNotificationCenter instance] postNotification: [CharacterNotification notificationWithCharacter: self name: @"characterAdded"]];
   }
   
   return self;
@@ -239,7 +239,7 @@
 - (void) prepareMessages
 {
   if ([self trainingSkill]) {
-    [[Ceres instance] postNotification: [CharacterNotification notificationWithCharacter: self name: @"skillTrainingCompleted"] date: [self trainingEndsAt]];
+    [[CeresNotificationCenter instance] postNotification: [CharacterNotification notificationWithCharacter: self name: @"skillTrainingCompleted"] date: [self trainingEndsAt]];
   }
   
   [self updateSkillGroups];
@@ -262,7 +262,7 @@
     [c setOrder: [[c order] previous]];
   }  
   
-  [[Ceres instance] postNotification: [CharacterNotification notificationWithCharacter: self name: @"characterRemoved"]];
+  [[CeresNotificationCenter instance] postNotification: [CharacterNotification notificationWithCharacter: self name: @"characterRemoved"]];
 }
       
 @end

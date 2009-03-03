@@ -28,7 +28,7 @@
   if (self = [super init]) {
     character = c;
     
-    [[[Ceres instance] notificationCenter] addObserver: self selector: @selector(notification:) name: nil object: character];
+    [[[CeresNotificationCenter instance] notificationCenter] addObserver: self selector: @selector(notification:) name: nil object: character];
   }
   
   return self;

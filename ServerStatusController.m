@@ -29,7 +29,7 @@
   
   if (!retainer) {
     retainer = self;
-    [[Ceres instance] addObserver: self selector: @selector(notification:) name: @"Ceres.server.playerCountUpdated" object: nil];
+    [[CeresNotificationCenter instance] addObserver: self selector: @selector(notification:) name: @"Ceres.server.playerCountUpdated" object: nil];
   }
   else {
     NSLog(@"ServerStatusController loaded several times, the current hack does not allow this");

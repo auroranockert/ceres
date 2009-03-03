@@ -49,6 +49,7 @@
 
 #import "ServerStatus.h"
 
+#import "CeresNotificationCenter.h"
 #import "CeresNotification.h"
 #import "CharacterNotification.h"
 

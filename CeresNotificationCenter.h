@@ -1,5 +1,5 @@
 //
-//  CharacterFuture.h
+//  CeresNotificationCenter.h
 //  This file is part of Ceres.
 //
 //  Ceres is free software: you can redistribute it and/or modify
@@ -19,24 +19,22 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import <CeresIO/CeresIO.h>
 
-#import "CeresAdditions.h"
-#import "CeresNotificationCenter.h"
 
-#import "Character.h"
-
-@class Character;
-
-@interface CharacterFuture : IOFuture {
-  NSInteger complete;
-  
-  Character * character;
+@interface CeresNotificationCenter : NSObject {  
+  NSNotificationCenter * notificationCenter;
+  NSNotificationQueue * notificationQueue;
+  NSMutableDictionary * notificationDictionary;
 }
 
-- (id) initWithCharacter: (Character *) character;
++ (CeresNotificationCenter *) instance;
 
-- (void) updateCharacterSheet: (IOFuture *) future;
-- (void) updateTrainingSkill: (IOFuture *) future;
+@property(retain, readonly) NSNotificationCenter * notificationCenter;
+@property(retain, readonly) NSNotificationQueue * notificationQueue;
+
+- (void) postNotification: (NSNotification *) notification;
+- (void) postNotification: (NSNotification *) notification date: (NSDate *) date;
+- (void) cancelNotification: (NSNotification *) notification;
+- (void) addObserver: (id) observer selector: (SEL) selector name: (NSString *) name object: (id) object;
 
 @end

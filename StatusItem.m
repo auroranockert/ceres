@@ -25,10 +25,10 @@
 
 - (void) awakeFromNib 
 {
-  [[[Ceres instance] notificationCenter] addObserver: self selector: @selector(updateCharacter:) name: [CharacterNotification nameForMessage: @"characterAdded"] object: nil];
-	[[[Ceres instance] notificationCenter] addObserver: self selector: @selector(updateCharacter:) name: [CharacterNotification nameForMessage: @"updatedTraining"] object: nil];
-	[[[Ceres instance] notificationCenter] addObserver: self selector: @selector(updateCharacter:) name: [CharacterNotification nameForMessage: @"skillTrainingCompleted"] object: nil];
-	[[[Ceres instance] notificationCenter] addObserver: self selector: @selector(updateCharacter:) name: [CharacterNotification nameForMessage: @"characterRemoved"] object: nil];
+  [[[CeresNotificationCenter instance] notificationCenter] addObserver: self selector: @selector(updateCharacter:) name: [CharacterNotification nameForMessage: @"characterAdded"] object: nil];
+	[[[CeresNotificationCenter instance] notificationCenter] addObserver: self selector: @selector(updateCharacter:) name: [CharacterNotification nameForMessage: @"updatedTraining"] object: nil];
+	[[[CeresNotificationCenter instance] notificationCenter] addObserver: self selector: @selector(updateCharacter:) name: [CharacterNotification nameForMessage: @"skillTrainingCompleted"] object: nil];
+	[[[CeresNotificationCenter instance] notificationCenter] addObserver: self selector: @selector(updateCharacter:) name: [CharacterNotification nameForMessage: @"characterRemoved"] object: nil];
       
   [self updateCharacter: nil];
     

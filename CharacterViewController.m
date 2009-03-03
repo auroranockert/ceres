@@ -30,7 +30,7 @@
   if (self = [self initWithNibName: nib bundle: bundle]) {
     character = c;
     
-    [[Ceres instance] addObserver: self selector: @selector(updateCharacter:) name: nil object: character];
+    [[CeresNotificationCenter instance] addObserver: self selector: @selector(updateCharacter:) name: nil object: character];
     [self update: self];
   }
   

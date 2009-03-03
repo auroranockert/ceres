@@ -150,7 +150,6 @@ static Ceres * shared;
     }      
   }
   
-  
   path = [NSString stringWithFormat: @"%@/Ceres %@.mom", path, version];
   return path;
 }
@@ -196,67 +195,11 @@ static Ceres * shared;
   return [NSURL fileURLWithPath: [self persistentStorePathForVersion: nil]];
 }
 
-- (NSNotificationCenter *) notificationCenter
-{
-  if (!notificationCenter) {
-    notificationCenter = [[NSNotificationCenter alloc] init];
-  }
-  
-  return notificationCenter;  
-}
-
-- (NSNotificationQueue *) notificationQueue
-{
-  if (!notificationQueue) {
-    notificationQueue = [[NSNotificationQueue alloc] initWithNotificationCenter: [self notificationCenter]];
-  }
-  
-  return notificationQueue;
-}
-
-
 - (void) save
 {
   NSError * error;
   if ( ![[self managedObjectContext] save: &error] ) {
     [self handleError: error];
-  }
-}
-
-- (void) addObserver: (id) observer selector: (SEL) selector name: (NSString*) name object: (id) object
-{
-  [[self notificationCenter] addObserver: observer selector: selector name: name object: object];
-}
-
-- (void) postNotification: (NSNotification *) notification
-{
-  [[self notificationQueue] enqueueNotification: notification postingStyle: NSPostWhenIdle];
-}
-
-- (void) postNotification: (NSNotification *) notification date: (NSDate *) date
-{
-  [self cancelNotification: notification];
-  
-  NSMutableDictionary * objectDictionary = [notificationDictionary objectForKey: [notification object]];
-  if (!objectDictionary) {
-    objectDictionary = [[NSMutableDictionary alloc] init];
-    [notificationDictionary setObject: objectDictionary forKey: [notification object]];
-  } 
-  
-  [objectDictionary setValue: notification forKey: [notification name]]; 
-  
-  [self performSelector: @selector(postNotification:) withObject: notification afterDelay: [date timeIntervalSinceNow]];
-}
-
-- (void) cancelNotification: (NSNotification *) notification
-{
-  if (!notificationDictionary) {
-    notificationDictionary = [[NSMutableDictionary alloc] init];
-  }
-  
-  NSNotification * oldNotification = [[notificationDictionary objectForKey: [notification object]] objectForKey: [notification name]];
-  if (oldNotification) {
-    [NSObject cancelPreviousPerformRequestsWithTarget: self selector: @selector(postNotification:) object: oldNotification];
   }
 }
 

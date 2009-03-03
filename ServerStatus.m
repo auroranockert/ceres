@@ -87,7 +87,7 @@ static ServerStatus * shared;
   }
   
   NSNotification * notification = [NSNotification notificationWithName: @"Ceres.server.playerCountUpdated" object: [self players]];
-  [[Ceres instance] postNotification: notification];
+  [[CeresNotificationCenter instance] postNotification: notification];
 }
 
 - (void) invalidate

@@ -43,6 +43,8 @@
 		B408F5E20F5D5861004CF368 /* CeresIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B408F5BA0F5D57A7004CF368 /* CeresIO.framework */; };
 		B408F8D30F5DA628004CF368 /* CharacterFuture.h in Headers */ = {isa = PBXBuildFile; fileRef = B408F8D10F5DA628004CF368 /* CharacterFuture.h */; };
 		B408F8D40F5DA628004CF368 /* CharacterFuture.m in Sources */ = {isa = PBXBuildFile; fileRef = B408F8D20F5DA628004CF368 /* CharacterFuture.m */; };
+		B408FBF90F5DECA5004CF368 /* CeresNotificationCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = B408FBF70F5DECA5004CF368 /* CeresNotificationCenter.h */; };
+		B408FBFA0F5DECA5004CF368 /* CeresNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = B408FBF80F5DECA5004CF368 /* CeresNotificationCenter.m */; };
 		B40C1D410EF1205D0050F22B /* Ceres.h in Headers */ = {isa = PBXBuildFile; fileRef = B40C1D3F0EF1205D0050F22B /* Ceres.h */; };
 		B40C1D420EF1205D0050F22B /* Ceres.m in Sources */ = {isa = PBXBuildFile; fileRef = B40C1D400EF1205D0050F22B /* Ceres.m */; };
 		B40C1EF70EF1C2050050F22B /* CeresMain.m in Sources */ = {isa = PBXBuildFile; fileRef = B40C1EF60EF1C2050050F22B /* CeresMain.m */; };
@@ -252,6 +254,8 @@
 		B408F8360F5D603C004CF368 /* Ceres 0.0.12.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Ceres 0.0.12.xcdatamodel"; sourceTree = "<group>"; };
 		B408F8D10F5DA628004CF368 /* CharacterFuture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterFuture.h; sourceTree = "<group>"; };
 		B408F8D20F5DA628004CF368 /* CharacterFuture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacterFuture.m; sourceTree = "<group>"; };
+		B408FBF70F5DECA5004CF368 /* CeresNotificationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CeresNotificationCenter.h; sourceTree = "<group>"; };
+		B408FBF80F5DECA5004CF368 /* CeresNotificationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CeresNotificationCenter.m; sourceTree = "<group>"; };
 		B40C1D3F0EF1205D0050F22B /* Ceres.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ceres.h; sourceTree = "<group>"; };
 		B40C1D400EF1205D0050F22B /* Ceres.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ceres.m; sourceTree = "<group>"; };
 		B40C1EED0EF1C1CB0050F22B /* Ceres.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ceres.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -795,6 +799,8 @@
 				B462BAA00F291B9C004D04D8 /* CeresNotification.m */,
 				B462C36A0F2E4B1B004D04D8 /* CharacterNotification.h */,
 				B462C36B0F2E4B1B004D04D8 /* CharacterNotification.m */,
+				B408FBF70F5DECA5004CF368 /* CeresNotificationCenter.h */,
+				B408FBF80F5DECA5004CF368 /* CeresNotificationCenter.m */,
 			);
 			name = Notifications;
 			sourceTree = "<group>";
@@ -1035,6 +1041,7 @@
 				B403190C0F41D20400A99577 /* NSRect.h in Headers */,
 				B40319EE0F4251C200A99577 /* NSImage.h in Headers */,
 				B408F8D30F5DA628004CF368 /* CharacterFuture.h in Headers */,
+				B408FBF90F5DECA5004CF368 /* CeresNotificationCenter.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1213,6 +1220,7 @@
 				B4FF57B60F3DEB3B00F67A6C /* NSThread.m in Sources */,
 				B40319EF0F4251C200A99577 /* NSImage.m in Sources */,
 				B408F8D40F5DA628004CF368 /* CharacterFuture.m in Sources */,
+				B408FBFA0F5DECA5004CF368 /* CeresNotificationCenter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

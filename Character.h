@@ -23,6 +23,9 @@
 #import <CeresIO/CeresIO.h>
 #import "CharacterFuture.h"
 
+#import "Ceres.h"
+#import "CeresNotificationCenter.h"
+
 #import "CharacterInfo.h"
 #import "CorporationInfo.h"
 

@@ -63,8 +63,8 @@ static Interface * shared;
 
 - (void) addDelegates
 {
-  [[Ceres instance] addObserver: self selector: @selector(notification:) name: nil object: nil];
-  [[Ceres instance] addObserver: self selector: @selector(notificationForSkillTrainingCompleted:) name: [CharacterNotification nameForMessage: @"skillTrainingCompleted"] object: nil];
+  [[CeresNotificationCenter instance] addObserver: self selector: @selector(notification:) name: nil object: nil];
+  [[CeresNotificationCenter instance] addObserver: self selector: @selector(notificationForSkillTrainingCompleted:) name: [CharacterNotification nameForMessage: @"skillTrainingCompleted"] object: nil];
   [GrowlApplicationBridge setGrowlDelegate: self];
 }
 

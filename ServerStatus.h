@@ -21,7 +21,7 @@
 #import <Cocoa/Cocoa.h>
 
 #import "Api.h"
-#import "Ceres.h"
+#import "CeresNotificationCenter.h"
 
 @interface ServerStatus : NSObject {
   NSNumber * online, * players;

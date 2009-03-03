@@ -26,7 +26,7 @@
 {
   [super awakeFromNib];
     
-  [[[Ceres instance] notificationCenter] addObserver: self selector: @selector(notification:) name: @"Ceres.character.updatedTraining" object: nil];
+  [[[CeresNotificationCenter instance] notificationCenter] addObserver: self selector: @selector(notification:) name: @"Ceres.character.updatedTraining" object: nil];
   
   [characterTableView setDataSource: self];
   [characterTableView registerForDraggedTypes: [NSArray arrayWithObject: CeresDataType]];
