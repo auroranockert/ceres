@@ -126,8 +126,6 @@
   
   [toolbar setSelectedItemIdentifier: nil];
   
-  NSLog(@"Count: %ld", [[toolbar items] count]);
-  
   // Add the new items
   for (id <Module> module in [self modules]) {
     [toolbar insertItemWithItemIdentifier: [module identifier] atIndex: [[toolbar items] count]];
