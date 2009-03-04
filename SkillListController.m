@@ -65,9 +65,7 @@
   }
   
   NSInteger count = [[character skillGroups] count];
-  
-  // NSLog(@"Count: %ld", count);
-  
+    
   return count;
 }
 

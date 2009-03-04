@@ -26,7 +26,7 @@
   CGFloat maxImageWidth, imageTextPadding;
 }
 
-@property(assign) float maxImageWidth, imageTextPadding;
+@property(assign) CGFloat maxImageWidth, imageTextPadding;
 
 - (NSImage *) image;
 
