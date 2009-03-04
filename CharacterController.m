@@ -116,6 +116,7 @@
   }
   else {
     if(!characterWindowController) {
+      characterWindowController = [[NSWindowController alloc] init];
       [characterWindowController setWindow: [[NSWindow alloc] initWithContentRect: NSMakeRect(100, 100, 500, 600) styleMask: (NSTitledWindowMask | NSClosableWindowMask | NSMiniaturizableWindowMask | NSResizableWindowMask) backing: NSBackingStoreBuffered defer: true]];
       [[characterWindowController window] setMinSize: NSMakeSize(400, 400)];
       [[characterWindowController window] setContentView: [[self characterViewController] view]];
