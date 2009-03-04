@@ -20,22 +20,34 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import "CeresAdditions.h"
+
 #import "Interface.h"
 #import "SkillCell.h"
 #import "GroupCell.h"
 
-@interface SkillListController : NSArrayController {
+@class SkillCell;
+
+@interface SkillListController : NSObject {
   NSOutlineView * skillOutlineView;
   
   GroupCell * groupCell;
   SkillCell * skillCell;
   
   Character * character;
+  
+  id selection;
 }
+
++ (NSImage *) skillImage;
++ (NSImage *) partialSkillImage;
++ (NSImage *) finishedSkillImage;
 
 @property(retain) Character * character;
 @property(retain) NSOutlineView * skillOutlineView;
 
 - (NSCell *) outlineView: (NSOutlineView *) outlineView dataCellForTableColumn: (NSTableColumn *) tableColumn item: (id) item;
+
+- (void) doubleClick: (id) object;
 
 @end

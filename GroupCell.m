@@ -29,6 +29,7 @@
 {
   if (self = [super init]) {
     character = c;
+    [self setPadding: 15.0];
   }
   
   return self;

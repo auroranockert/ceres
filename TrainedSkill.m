@@ -99,6 +99,15 @@
   return false;
 }
 
+- (bool) partiallyTrained
+{
+  if (self == [[self character] trainingSkill] || [[self skillpoints] compare: [[self skill] skillpointsForLevel: [self level]]] != NSOrderedSame) {
+    return true;
+  }
+  
+  return false;
+}
+
 - (NSNumber *) nextLevel
 {
   return [[self level] next];

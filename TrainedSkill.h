@@ -37,7 +37,7 @@
 @property(retain) Character * character;
 
 @property(retain, readonly) NSString * name;
-@property(assign, readonly) bool complete;
+@property(assign, readonly) bool complete, partiallyTrained;
 @property(retain, readonly) NSNumber * nextLevel, * requiredSkillpointsForNextLevel, * skillpointsPerHour, * currentSkillpoints, * percentDone;
 
 - (id) initWithCharacter: (Character *) character skill: (Skill *) skill;

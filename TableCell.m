@@ -20,17 +20,19 @@
 
 #import "TableCell.h"
 
+#define DEFAULT_PADDING			          0
 #define DEFAULT_MAX_IMAGE_WIDTH			  96
 #define DEFAULT_IMAGE_TEXT_PADDING		4
 #define LINEBREAKMODE                 NSLineBreakByTruncatingTail
 
 @implementation TableCell
 
-@synthesize maxImageWidth, imageTextPadding;
+@synthesize maxImageWidth, imageTextPadding, padding;
 
 - (id) init
 {
   if (self = [super init]) {
+    padding = DEFAULT_PADDING;
 		maxImageWidth = DEFAULT_MAX_IMAGE_WIDTH;
 		imageTextPadding = DEFAULT_IMAGE_TEXT_PADDING;
   }
@@ -76,7 +78,7 @@
 	if (image) {
 		NSSize destSize = [self imageRectForBounds: cellFrame].size;
 		
-    cellSize.width += destSize.width + imageTextPadding;
+    cellSize.width += destSize.width + imageTextPadding * 2;
 		cellSize.height = destSize.height;
 	}
   
@@ -84,12 +86,8 @@
   
   NSSize textSize = NSZeroSize;
 	
-	if (nameString) {
-    
-		cellSize.width += imageTextPadding;
-    
-		textSize = [nameString sizeWithAttributes: attributes];
-  }
+  cellSize.width += padding;
+  textSize = [nameString sizeWithAttributes: attributes];
   
   if (subString) {
     NSSize subStringSize;
@@ -144,62 +142,62 @@
   
 	bool highlighted = [self isHighlighted];
   
+  frame.origin.x += padding;
+  
 	if (image) {
     frame.origin.x += imageTextPadding;
 		NSSize drawnImageSize = [self drawImage: image withFrame: frame];
     frame.origin.x += imageTextPadding + drawnImageSize.width;
 	}
 	
-	if (nameString) {
-		NSAttributedString * attributedNameString = nil, * attributedSubString = nil;
-		NSColor * nameStringColor, * subStringStringColor;
+  NSAttributedString * attributedNameString = nil, * attributedSubString = nil;
+  NSColor * nameStringColor, * subStringStringColor;
+  
+  NSParagraphStyle * paragraphStyle = [self paragraphStyle];
+  NSDictionary * nameAttributes = nil, * subStringAttributes = nil;
+  float	nameStringHeight = 0.0, subStringHeight = 0.0, textSpacing = 0.0;
+  
+  NSWindow * window;
+  
+  if (highlighted) {
+    nameStringColor = [NSColor alternateSelectedControlTextColor];
+    subStringStringColor = [NSColor alternateSelectedControlTextColor];
+  } else {
+    nameStringColor = [NSColor controlTextColor];
+    subStringStringColor = [NSColor colorWithCalibratedWhite: 0.4 alpha: 1.0];
+  }
+  
+  nameAttributes = [NSDictionary dictionaryWithObjectsAndKeys: paragraphStyle, NSParagraphStyleAttributeName, [self nameFont], NSFontAttributeName, nameStringColor, NSForegroundColorAttributeName, nil];
+  attributedNameString = [[NSAttributedString alloc] initWithString: nameString attributes: nameAttributes];
+  
+  if (subString) {
+    subStringAttributes = [NSDictionary dictionaryWithObjectsAndKeys: paragraphStyle, NSParagraphStyleAttributeName, [self subStringFont], NSFontAttributeName, subStringStringColor, NSForegroundColorAttributeName, nil];
+    attributedSubString = [[NSAttributedString alloc] initWithString: subString attributes: subStringAttributes];
+  }
+  
+  nameStringHeight = [nameString sizeWithAttributes: nameAttributes].height;
+  if (subString) {
+    subStringHeight = [subString sizeWithAttributes: subStringAttributes].height;
+  }
+  
+  if (subString) {
+    textSpacing = (frame.size.height - nameStringHeight - subStringHeight) / 3.0;
     
-    NSParagraphStyle * paragraphStyle = [self paragraphStyle];
-		NSDictionary * nameAttributes = nil, * subStringAttributes = nil;
-		float	nameStringHeight = 0.0, subStringHeight = 0.0, textSpacing = 0.0;
-    
-		NSWindow * window;
-    
-		if (highlighted) {
-			nameStringColor = [NSColor alternateSelectedControlTextColor];
-			subStringStringColor = [NSColor alternateSelectedControlTextColor];
-		} else {
-      nameStringColor = [NSColor controlTextColor];
-			subStringStringColor = [NSColor colorWithCalibratedWhite: 0.4 alpha: 1.0];
-		}
-    
-    nameAttributes = [NSDictionary dictionaryWithObjectsAndKeys: paragraphStyle, NSParagraphStyleAttributeName, [self nameFont], NSFontAttributeName, nameStringColor, NSForegroundColorAttributeName, nil];
-		attributedNameString = [[NSAttributedString alloc] initWithString: nameString attributes: nameAttributes];
-		
-		if (subString) {
-			subStringAttributes = [NSDictionary dictionaryWithObjectsAndKeys: paragraphStyle, NSParagraphStyleAttributeName, [self subStringFont], NSFontAttributeName, subStringStringColor, NSForegroundColorAttributeName, nil];
-			attributedSubString = [[NSAttributedString alloc] initWithString: subString attributes: subStringAttributes];
-		}
-    
-    nameStringHeight = [nameString sizeWithAttributes: nameAttributes].height;
-		if (subString) {
-			subStringHeight = [subString sizeWithAttributes: subStringAttributes].height;
-		}
-    
-    if (subString) {
-			textSpacing = (frame.size.height - nameStringHeight - subStringHeight) / 3.0;
-
-			if (textSpacing < 0.0) {
-				textSpacing = 0.0;
-      }
-      
-			frame.origin.y += textSpacing;
-		}
-    else {
-      frame.origin.y += (frame.size.height - nameStringHeight) / 2.0;
+    if (textSpacing < 0.0) {
+      textSpacing = 0.0;
     }
-     
-		[attributedNameString drawInRect: frame];
-		if (subString) {
-      frame.origin.y += nameStringHeight + textSpacing;
-			[attributedSubString drawInRect: frame];
-		}
-	}
+    
+    frame.origin.y += textSpacing;
+  }
+  else {
+    frame.origin.y += (frame.size.height - nameStringHeight) / 2.0;
+  }
+  
+  [attributedNameString drawInRect: frame];
+  if (subString) {
+    frame.origin.y += nameStringHeight + textSpacing;
+    [attributedSubString drawInRect: frame];
+  }
   
 	[NSGraphicsContext restoreGraphicsState];
 }

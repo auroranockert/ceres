@@ -29,6 +29,8 @@
 {
   if (self = [super init]) {
     character = c;
+    [self setPadding: 9.0];
+    [self setImageTextPadding: 0.0];
   }
   
   return self;
@@ -41,7 +43,15 @@
 
 - (NSImage *) image
 {
-  return nil;
+  if ([[skill level] compare: [NSNumber numberWithInteger: 5]] == NSOrderedSame) {
+    return [SkillListController finishedSkillImage];
+  }
+  else if ([skill partiallyTrained]) {
+    return [SkillListController partialSkillImage];
+  }
+  else {
+    return [SkillListController skillImage];
+  }
 }
 
 - (NSString *) name

@@ -23,6 +23,9 @@
 #import "CeresHeader.h"
 
 #import "TableCell.h"
+#import "SkillListController.h"
+
+@class SkillListController;
 
 @interface SkillCell : TableCell {
   TrainedSkill * skill;

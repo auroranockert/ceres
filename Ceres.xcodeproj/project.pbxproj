@@ -50,6 +50,9 @@
 		B408FDFD0F5EC454004CF368 /* Ceres.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* Ceres.framework */; };
 		B408FE0D0F5EC542004CF368 /* Ceres.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B4C0E31D0F38685E00A96DD6 /* Ceres.xcdatamodeld */; };
 		B408FE500F5ECAE6004CF368 /* Ceres.sqlite3 in Resources */ = {isa = PBXBuildFile; fileRef = B408FE4F0F5ECAE6004CF368 /* Ceres.sqlite3 */; };
+		B408FEA30F5ED7A3004CF368 /* Skill.png in Resources */ = {isa = PBXBuildFile; fileRef = B408FEA20F5ED7A3004CF368 /* Skill.png */; };
+		B408FEA50F5ED7B3004CF368 /* PartialSkill.png in Resources */ = {isa = PBXBuildFile; fileRef = B408FEA40F5ED7B3004CF368 /* PartialSkill.png */; };
+		B408FEA70F5ED7CE004CF368 /* FinishedSkill.png in Resources */ = {isa = PBXBuildFile; fileRef = B408FEA60F5ED7CE004CF368 /* FinishedSkill.png */; };
 		B40C1D410EF1205D0050F22B /* Ceres.h in Headers */ = {isa = PBXBuildFile; fileRef = B40C1D3F0EF1205D0050F22B /* Ceres.h */; };
 		B40C1D420EF1205D0050F22B /* Ceres.m in Sources */ = {isa = PBXBuildFile; fileRef = B40C1D400EF1205D0050F22B /* Ceres.m */; };
 		B40C1EF70EF1C2050050F22B /* CeresMain.m in Sources */ = {isa = PBXBuildFile; fileRef = B40C1EF60EF1C2050050F22B /* CeresMain.m */; };
@@ -275,6 +278,9 @@
 		B408FDBD0F5EBE13004CF368 /* GenerateDatabaseMain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenerateDatabaseMain.h; sourceTree = "<group>"; };
 		B408FDBE0F5EBE13004CF368 /* GenerateDatabaseMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenerateDatabaseMain.m; sourceTree = "<group>"; };
 		B408FE4F0F5ECAE6004CF368 /* Ceres.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; name = Ceres.sqlite3; path = Generator/Data/Ceres.sqlite3; sourceTree = SOURCE_ROOT; };
+		B408FEA20F5ED7A3004CF368 /* Skill.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Skill.png; sourceTree = SOURCE_ROOT; };
+		B408FEA40F5ED7B3004CF368 /* PartialSkill.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PartialSkill.png; sourceTree = "<group>"; };
+		B408FEA60F5ED7CE004CF368 /* FinishedSkill.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FinishedSkill.png; sourceTree = "<group>"; };
 		B40C1D3F0EF1205D0050F22B /* Ceres.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ceres.h; sourceTree = "<group>"; };
 		B40C1D400EF1205D0050F22B /* Ceres.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ceres.m; sourceTree = "<group>"; };
 		B40C1EED0EF1C1CB0050F22B /* Ceres.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ceres.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -481,8 +487,11 @@
 			isa = PBXGroup;
 			children = (
 				B496BF590F33BA2B00E92DB4 /* dsa_pub.pem */,
+				B408FEA40F5ED7B3004CF368 /* PartialSkill.png */,
+				B408FEA60F5ED7CE004CF368 /* FinishedSkill.png */,
 				B40C1EEF0EF1C1CB0050F22B /* Ceres-Info.plist */,
 				B408FE4F0F5ECAE6004CF368 /* Ceres.sqlite3 */,
+				B408FEA20F5ED7A3004CF368 /* Skill.png */,
 				8DC2EF5A0486A6940098B216 /* Info.plist */,
 				B415498C0F4B7C98005B5D48 /* StatusIcon.tiff */,
 				B415498D0F4B7C98005B5D48 /* StatusIconAlternate.tiff */,
@@ -1204,6 +1213,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B408FEA50F5ED7B3004CF368 /* PartialSkill.png in Resources */,
+				B408FEA70F5ED7CE004CF368 /* FinishedSkill.png in Resources */,
+				B408FEA30F5ED7A3004CF368 /* Skill.png in Resources */,
 				B408FE500F5ECAE6004CF368 /* Ceres.sqlite3 in Resources */,
 				B40581440F19AFBA009EEDD8 /* Loading.xib in Resources */,
 				B4A53A690F20B5B600B404E6 /* Ceres.xib in Resources */,

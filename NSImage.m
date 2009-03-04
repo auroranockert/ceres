@@ -26,14 +26,42 @@
 {
   NSImage * image = [[NSImage alloc] initWithSize: [self size]];
   NSRect bounds = NSMakeRect(0.0, 0.0, [image size].width, [image size].height);
-  
-  NSAffineTransform * transform = [NSAffineTransform transform];
-  
+    
   [image lockFocus];
 
   [[NSColor blackColor] setFill];
   [[NSBezierPath bezierPathWithRoundedRect: bounds xRadius: amount yRadius: amount] fill];
   [self compositeToPoint: NSZeroPoint operation: NSCompositeSourceIn];
+  
+  [image unlockFocus];
+  
+  return image;
+}
+
+- (NSImage *) flip
+{
+  NSImage * image = [[NSImage alloc] initWithSize: [self size]];
+  NSRect bounds = NSMakeRect(0.0, 0.0, [image size].width, [image size].height);
+  NSPoint center = CentrePointFromRect(bounds);
+  
+  
+  // Create transformations for the rotation and translation..
+  NSAffineTransform * imageRotation = [NSAffineTransform transform];
+  NSAffineTransform * translate = [NSAffineTransform transform];
+  
+  [image lockFocus];
+  
+  [imageRotation rotateByDegrees: 180.0];
+  [translate translateXBy: center.x * 2 yBy: center.y * 2];
+  [imageRotation appendTransform: translate];
+  
+  [imageRotation concat] ; // map the coordinate system
+  
+  // Draw the image in the current coordinate system
+  [self drawAtPoint: NSZeroPoint
+            fromRect: bounds
+           operation: NSCompositeCopy
+            fraction: 1.0];
   
   [image unlockFocus];
   

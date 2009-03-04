@@ -25,6 +25,39 @@
 
 @synthesize character, skillOutlineView;
 
++ (NSImage *) skillImage
+{
+  static NSImage * skillImage;
+  
+  if (!skillImage) {
+    skillImage = [[NSImage imageNamed: @"Skill"] flip];
+  }
+  
+  return skillImage;
+}
+
++ (NSImage *) partialSkillImage
+{
+  static NSImage * partialSkillImage;
+  
+  if (!partialSkillImage) {
+    partialSkillImage = [[NSImage imageNamed: @"PartialSkill"] flip];
+  }
+  
+  return partialSkillImage;
+}
+
++ (NSImage *) finishedSkillImage
+{
+  static NSImage * finishedSkillImage;
+  
+  if (!finishedSkillImage) {
+    finishedSkillImage = [[NSImage imageNamed: @"FinishedSkill"] flip];
+  }
+  
+  return finishedSkillImage;
+}
+
 - (void) setSkillOutlineView: (NSOutlineView *) view
 {
   skillOutlineView = view;
@@ -35,6 +68,10 @@
   
   [skillOutlineView setDataSource: self];
   [skillOutlineView setDelegate: self];
+  
+  [skillOutlineView setTarget: self];
+  [skillOutlineView setAction: @selector(doubleClick:)];
+  [skillOutlineView setDoubleAction: @selector(doubleClick:)];
   
   [skillOutlineView setAutosaveName: [NSString stringWithFormat: @"Ceres.SkillList.%@", [character name]]];
   [skillOutlineView setAutosaveExpandedItems: true];
@@ -96,6 +133,23 @@
   }
   
   return nil;
+}
+
+- (bool) outlineView: (NSOutlineView *)outlineView shouldSelectItem: (id)item
+{
+  selection = item;
+    
+  return true;
+}
+
+- (void) doubleClick: (id) object
+{  
+  if([skillOutlineView isItemExpanded: selection]) {
+    [skillOutlineView collapseItem: selection];
+  }
+  else {
+    [skillOutlineView expandItem: selection];
+  }
 }
 
 @end

@@ -20,10 +20,12 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import "NSRect.h"
 #import "NSArray.h"
 
 @interface NSImage (CeresAdditions)
 
 - (NSImage *) imageWithRoundedCorners: (CGFloat) amount;
+- (NSImage *) flip;
 
 @end
