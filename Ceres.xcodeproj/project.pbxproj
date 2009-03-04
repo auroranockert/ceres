@@ -45,6 +45,11 @@
 		B408F8D40F5DA628004CF368 /* CharacterFuture.m in Sources */ = {isa = PBXBuildFile; fileRef = B408F8D20F5DA628004CF368 /* CharacterFuture.m */; };
 		B408FBF90F5DECA5004CF368 /* CeresNotificationCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = B408FBF70F5DECA5004CF368 /* CeresNotificationCenter.h */; };
 		B408FBFA0F5DECA5004CF368 /* CeresNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = B408FBF80F5DECA5004CF368 /* CeresNotificationCenter.m */; };
+		B408FDBF0F5EBE13004CF368 /* GenerateDatabaseMain.m in Sources */ = {isa = PBXBuildFile; fileRef = B408FDBE0F5EBE13004CF368 /* GenerateDatabaseMain.m */; };
+		B408FDFC0F5EC451004CF368 /* CeresIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B408F5BA0F5D57A7004CF368 /* CeresIO.framework */; };
+		B408FDFD0F5EC454004CF368 /* Ceres.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* Ceres.framework */; };
+		B408FE0D0F5EC542004CF368 /* Ceres.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B4C0E31D0F38685E00A96DD6 /* Ceres.xcdatamodeld */; };
+		B408FE500F5ECAE6004CF368 /* Ceres.sqlite3 in Resources */ = {isa = PBXBuildFile; fileRef = B408FE4F0F5ECAE6004CF368 /* Ceres.sqlite3 */; };
 		B40C1D410EF1205D0050F22B /* Ceres.h in Headers */ = {isa = PBXBuildFile; fileRef = B40C1D3F0EF1205D0050F22B /* Ceres.h */; };
 		B40C1D420EF1205D0050F22B /* Ceres.m in Sources */ = {isa = PBXBuildFile; fileRef = B40C1D400EF1205D0050F22B /* Ceres.m */; };
 		B40C1EF70EF1C2050050F22B /* CeresMain.m in Sources */ = {isa = PBXBuildFile; fileRef = B40C1EF60EF1C2050050F22B /* CeresMain.m */; };
@@ -92,8 +97,6 @@
 		B424F6310EED3D2C00B5E7C5 /* Api.m in Sources */ = {isa = PBXBuildFile; fileRef = B424F62F0EED3D2C00B5E7C5 /* Api.m */; };
 		B424F6F80EED4C2D00B5E7C5 /* TestMain.m in Sources */ = {isa = PBXBuildFile; fileRef = B424F6F70EED4C2D00B5E7C5 /* TestMain.m */; };
 		B424F7380EED700200B5E7C5 /* Ceres.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* Ceres.framework */; };
-		B444ED090F16A8E500DDC5BF /* URLDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = B444ED070F16A8E500DDC5BF /* URLDelegate.h */; };
-		B444ED0A0F16A8E500DDC5BF /* URLDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B444ED080F16A8E500DDC5BF /* URLDelegate.m */; };
 		B462BAA10F291B9C004D04D8 /* CeresNotification.h in Headers */ = {isa = PBXBuildFile; fileRef = B462BA9F0F291B9C004D04D8 /* CeresNotification.h */; };
 		B462BAA20F291B9C004D04D8 /* CeresNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = B462BAA00F291B9C004D04D8 /* CeresNotification.m */; };
 		B462BAF80F292236004D04D8 /* Updater.h in Headers */ = {isa = PBXBuildFile; fileRef = B462BAF60F292236004D04D8 /* Updater.h */; };
@@ -128,8 +131,6 @@
 		B4A53A720F20B8E000B404E6 /* CharacterListController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A53A710F20B8E000B404E6 /* CharacterListController.m */; };
 		B4BC10790F12D8FA00179BAD /* Loader.h in Headers */ = {isa = PBXBuildFile; fileRef = B4BC10770F12D8FA00179BAD /* Loader.h */; };
 		B4BC107A0F12D8FA00179BAD /* Loader.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BC10780F12D8FA00179BAD /* Loader.m */; };
-		B4BDEE890F12DAF300326A9B /* URLLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = B4BDEE870F12DAF300326A9B /* URLLoader.h */; };
-		B4BDEE8A0F12DAF300326A9B /* URLLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BDEE880F12DAF300326A9B /* URLLoader.m */; };
 		B4C0E31E0F38685E00A96DD6 /* Ceres.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B4C0E31D0F38685E00A96DD6 /* Ceres.xcdatamodeld */; };
 		B4C0E7010F38F4D600A96DD6 /* Ceres.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B4C0E31D0F38685E00A96DD6 /* Ceres.xcdatamodeld */; };
 		B4C0E8070F39C43600A96DD6 /* ImplantSet.h in Headers */ = {isa = PBXBuildFile; fileRef = B4C0E8050F39C43600A96DD6 /* ImplantSet.h */; };
@@ -179,6 +180,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = B408F7ED0F5D5AF9004CF368 /* External Frameworks */;
 			remoteInfo = "External Frameworks";
+		};
+		B408FDFF0F5EC461004CF368 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B408F7ED0F5D5AF9004CF368 /* External Frameworks */;
+			remoteInfo = "External Frameworks";
+		};
+		B408FE020F5EC466004CF368 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216 /* Ceres (Framework) */;
+			remoteInfo = "Ceres (Framework)";
 		};
 		B40C1F4C0EF1C8230050F22B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -256,6 +271,10 @@
 		B408F8D20F5DA628004CF368 /* CharacterFuture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacterFuture.m; sourceTree = "<group>"; };
 		B408FBF70F5DECA5004CF368 /* CeresNotificationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CeresNotificationCenter.h; sourceTree = "<group>"; };
 		B408FBF80F5DECA5004CF368 /* CeresNotificationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CeresNotificationCenter.m; sourceTree = "<group>"; };
+		B408FDB80F5EBCE5004CF368 /* GenerateDatabase */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; name = GenerateDatabase; path = build/Release/GenerateDatabase; sourceTree = "<group>"; };
+		B408FDBD0F5EBE13004CF368 /* GenerateDatabaseMain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenerateDatabaseMain.h; sourceTree = "<group>"; };
+		B408FDBE0F5EBE13004CF368 /* GenerateDatabaseMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenerateDatabaseMain.m; sourceTree = "<group>"; };
+		B408FE4F0F5ECAE6004CF368 /* Ceres.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; name = Ceres.sqlite3; path = Generator/Data/Ceres.sqlite3; sourceTree = SOURCE_ROOT; };
 		B40C1D3F0EF1205D0050F22B /* Ceres.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ceres.h; sourceTree = "<group>"; };
 		B40C1D400EF1205D0050F22B /* Ceres.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ceres.m; sourceTree = "<group>"; };
 		B40C1EED0EF1C1CB0050F22B /* Ceres.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ceres.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -325,8 +344,6 @@
 		B424F6F60EED4C2D00B5E7C5 /* TestMain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestMain.h; sourceTree = "<group>"; };
 		B424F6F70EED4C2D00B5E7C5 /* TestMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestMain.m; sourceTree = "<group>"; };
 		B424FAE80EEF0CD700B5E7C5 /* Ceres 0.0.13.xcdatamodel */ = {isa = PBXFileReference; explicitFileType = wrapper.xcdatamodel; fileEncoding = 4; path = "Ceres 0.0.13.xcdatamodel"; sourceTree = "<group>"; };
-		B444ED070F16A8E500DDC5BF /* URLDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLDelegate.h; sourceTree = "<group>"; };
-		B444ED080F16A8E500DDC5BF /* URLDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLDelegate.m; sourceTree = "<group>"; };
 		B462BA9F0F291B9C004D04D8 /* CeresNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CeresNotification.h; sourceTree = "<group>"; };
 		B462BAA00F291B9C004D04D8 /* CeresNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CeresNotification.m; sourceTree = "<group>"; };
 		B462BAF60F292236004D04D8 /* Updater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Updater.h; sourceTree = "<group>"; };
@@ -361,8 +378,6 @@
 		B4A53A710F20B8E000B404E6 /* CharacterListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacterListController.m; sourceTree = "<group>"; };
 		B4BC10770F12D8FA00179BAD /* Loader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Loader.h; sourceTree = "<group>"; };
 		B4BC10780F12D8FA00179BAD /* Loader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Loader.m; sourceTree = "<group>"; };
-		B4BDEE870F12DAF300326A9B /* URLLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLLoader.h; sourceTree = "<group>"; };
-		B4BDEE880F12DAF300326A9B /* URLLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLLoader.m; sourceTree = "<group>"; };
 		B4C0E3200F38685E00A96DD6 /* Ceres 0.0.7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Ceres 0.0.7.xcdatamodel"; sourceTree = "<group>"; };
 		B4C0E8050F39C43600A96DD6 /* ImplantSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImplantSet.h; sourceTree = "<group>"; };
 		B4C0E8060F39C43600A96DD6 /* ImplantSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImplantSet.m; sourceTree = "<group>"; };
@@ -396,6 +411,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B408FDB60F5EBCE5004CF368 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B408FDFD0F5EC454004CF368 /* Ceres.framework in Frameworks */,
+				B408FDFC0F5EC451004CF368 /* CeresIO.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B40C1EEB0EF1C1CB0050F22B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -424,6 +448,7 @@
 				8DC2EF5B0486A6940098B216 /* Ceres.framework */,
 				B424F6800EED44C800B5E7C5 /* Test */,
 				B40C1EED0EF1C1CB0050F22B /* Ceres.app */,
+				B408FDB80F5EBCE5004CF368 /* GenerateDatabase */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -457,6 +482,7 @@
 			children = (
 				B496BF590F33BA2B00E92DB4 /* dsa_pub.pem */,
 				B40C1EEF0EF1C1CB0050F22B /* Ceres-Info.plist */,
+				B408FE4F0F5ECAE6004CF368 /* Ceres.sqlite3 */,
 				8DC2EF5A0486A6940098B216 /* Info.plist */,
 				B415498C0F4B7C98005B5D48 /* StatusIcon.tiff */,
 				B415498D0F4B7C98005B5D48 /* StatusIconAlternate.tiff */,
@@ -510,6 +536,8 @@
 				B424F6F60EED4C2D00B5E7C5 /* TestMain.h */,
 				B424F6F70EED4C2D00B5E7C5 /* TestMain.m */,
 				32DBCF5E0370ADEE00C91783 /* Ceres_Prefix.pch */,
+				B408FDBD0F5EBE13004CF368 /* GenerateDatabaseMain.h */,
+				B408FDBE0F5EBE13004CF368 /* GenerateDatabaseMain.m */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -867,10 +895,6 @@
 			children = (
 				B4BC10770F12D8FA00179BAD /* Loader.h */,
 				B4BC10780F12D8FA00179BAD /* Loader.m */,
-				B4BDEE870F12DAF300326A9B /* URLLoader.h */,
-				B4BDEE880F12DAF300326A9B /* URLLoader.m */,
-				B444ED070F16A8E500DDC5BF /* URLDelegate.h */,
-				B444ED080F16A8E500DDC5BF /* URLDelegate.m */,
 			);
 			name = Loader;
 			sourceTree = "<group>";
@@ -1024,8 +1048,6 @@
 				B4668D420F06A71C002E13B4 /* Xml.h in Headers */,
 				B40C26DB0F114DFD006D76F0 /* CeresObject.h in Headers */,
 				B4BC10790F12D8FA00179BAD /* Loader.h in Headers */,
-				B4BDEE890F12DAF300326A9B /* URLLoader.h in Headers */,
-				B444ED090F16A8E500DDC5BF /* URLDelegate.h in Headers */,
 				B462BAA10F291B9C004D04D8 /* CeresNotification.h in Headers */,
 				B462BAF80F292236004D04D8 /* Updater.h in Headers */,
 				B462C36C0F2E4B1B004D04D8 /* CharacterNotification.h in Headers */,
@@ -1067,6 +1089,24 @@
 			productName = Ceres;
 			productReference = 8DC2EF5B0486A6940098B216 /* Ceres.framework */;
 			productType = "com.apple.product-type.framework";
+		};
+		B408FDB70F5EBCE5004CF368 /* GenerateDatabase */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B408FDBC0F5EBD04004CF368 /* Build configuration list for PBXNativeTarget "GenerateDatabase" */;
+			buildPhases = (
+				B408FDB50F5EBCE5004CF368 /* Sources */,
+				B408FDB60F5EBCE5004CF368 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B408FE000F5EC461004CF368 /* PBXTargetDependency */,
+				B408FE030F5EC466004CF368 /* PBXTargetDependency */,
+			);
+			name = GenerateDatabase;
+			productName = GenerateDatabase;
+			productReference = B408FDB80F5EBCE5004CF368 /* GenerateDatabase */;
+			productType = "com.apple.product-type.tool";
 		};
 		B40C1EEC0EF1C1CB0050F22B /* Ceres */ = {
 			isa = PBXNativeTarget;
@@ -1127,6 +1167,7 @@
 				8DC2EF4F0486A6940098B216 /* Ceres (Framework) */,
 				B424F67F0EED44C800B5E7C5 /* Test */,
 				B40C1EEC0EF1C1CB0050F22B /* Ceres */,
+				B408FDB70F5EBCE5004CF368 /* GenerateDatabase */,
 				B408F7ED0F5D5AF9004CF368 /* External Frameworks */,
 			);
 		};
@@ -1163,6 +1204,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B408FE500F5ECAE6004CF368 /* Ceres.sqlite3 in Resources */,
 				B40581440F19AFBA009EEDD8 /* Loading.xib in Resources */,
 				B4A53A690F20B5B600B404E6 /* Ceres.xib in Resources */,
 				B4F0E6220F22806E00412957 /* Character.xib in Resources */,
@@ -1205,8 +1247,6 @@
 				B4668D430F06A71C002E13B4 /* Xml.m in Sources */,
 				B40C26DC0F114DFD006D76F0 /* CeresObject.m in Sources */,
 				B4BC107A0F12D8FA00179BAD /* Loader.m in Sources */,
-				B4BDEE8A0F12DAF300326A9B /* URLLoader.m in Sources */,
-				B444ED0A0F16A8E500DDC5BF /* URLDelegate.m in Sources */,
 				B462BAA20F291B9C004D04D8 /* CeresNotification.m in Sources */,
 				B462BAF90F292236004D04D8 /* Updater.m in Sources */,
 				B462C36D0F2E4B1B004D04D8 /* CharacterNotification.m in Sources */,
@@ -1221,6 +1261,15 @@
 				B40319EF0F4251C200A99577 /* NSImage.m in Sources */,
 				B408F8D40F5DA628004CF368 /* CharacterFuture.m in Sources */,
 				B408FBFA0F5DECA5004CF368 /* CeresNotificationCenter.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B408FDB50F5EBCE5004CF368 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B408FE0D0F5EC542004CF368 /* Ceres.xcdatamodeld in Sources */,
+				B408FDBF0F5EBE13004CF368 /* GenerateDatabaseMain.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1277,6 +1326,16 @@
 			isa = PBXTargetDependency;
 			target = B408F7ED0F5D5AF9004CF368 /* External Frameworks */;
 			targetProxy = B408F7F30F5D5B21004CF368 /* PBXContainerItemProxy */;
+		};
+		B408FE000F5EC461004CF368 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B408F7ED0F5D5AF9004CF368 /* External Frameworks */;
+			targetProxy = B408FDFF0F5EC461004CF368 /* PBXContainerItemProxy */;
+		};
+		B408FE030F5EC466004CF368 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8DC2EF4F0486A6940098B216 /* Ceres (Framework) */;
+			targetProxy = B408FE020F5EC466004CF368 /* PBXContainerItemProxy */;
 		};
 		B40C1F4D0EF1C8230050F22B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1405,6 +1464,52 @@
 			};
 			name = Release;
 		};
+		B408FDBA0F5EBCE6004CF368 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = GenerateDatabase;
+			};
+			name = Debug;
+		};
+		B408FDBB0F5EBCE6004CF368 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = GenerateDatabase;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 		B40C1EF00EF1C1CC0050F22B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1529,6 +1634,15 @@
 			buildConfigurations = (
 				B408F7EE0F5D5AF9004CF368 /* Debug */,
 				B408F7EF0F5D5AF9004CF368 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B408FDBC0F5EBD04004CF368 /* Build configuration list for PBXNativeTarget "GenerateDatabase" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B408FDBA0F5EBCE6004CF368 /* Debug */,
+				B408FDBB0F5EBCE6004CF368 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

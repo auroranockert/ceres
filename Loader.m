@@ -59,26 +59,38 @@ static Loader * shared;
   
   CeresVersionComparison versionComparison = [[Ceres instance] compareVersion];
   
+  NSString * currentDatabase = [[Ceres instance] persistentStorePathForVersion: nil];
+  NSString * newDatabase = [[NSBundle mainBundle] pathForResource: @"Ceres" ofType: @"sqlite3"];
+  
   if (versionComparison == NoDatabase)
   {
-    [self load: self];
+    [delegate setText: @"Moving new database"];
+    
+    if(![[NSFileManager defaultManager] movePath: newDatabase toPath: currentDatabase handler: nil]) {
+      NSLog(@"Failed to move new database, terminating.");
+      [[NSApplication sharedApplication] terminate: self];
+    }    
   }
   else if (versionComparison == DatabaseNewer) {
     [delegate databaseNewer: [[Ceres instance] databaseVersion]];
   }
   else if (versionComparison == ApplicationNewer) {
     NSString * databaseVersion = [[Ceres instance] databaseVersion];
-    NSString * from = [[Ceres instance] persistentStorePathForVersion: nil];
-    NSString * to = [[Ceres instance] persistentStorePathForVersion: databaseVersion];
+    NSString * oldDatabase = [[Ceres instance] persistentStorePathForVersion: databaseVersion];
         
     [delegate setText: @"Moving old database"];
     
-    if(![[NSFileManager defaultManager] movePath: from toPath: to handler: nil]) {
-      NSLog(@"Failed to move database, terminating.");
+    if(![[NSFileManager defaultManager] movePath: currentDatabase toPath: oldDatabase handler: nil]) {
+      NSLog(@"Failed to move old database, terminating.");
       [[NSApplication sharedApplication] terminate: self];
     }
     
-    [self load: self];
+    [delegate setText: @"Moving new database"];
+    
+    if(![[NSFileManager defaultManager] movePath: newDatabase toPath: currentDatabase handler: nil]) {
+      NSLog(@"Failed to move new database, terminating.");
+      [[NSApplication sharedApplication] terminate: self];
+    }
     
     [delegate setText: [NSString stringWithFormat: @"Migrating from version %@", databaseVersion]];
     
@@ -86,7 +98,7 @@ static Loader * shared;
     
     NSError * error = nil;
     NSPersistentStoreCoordinator * oldPersistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel: oldManagedObjectModel];
-    if (![oldPersistentStoreCoordinator addPersistentStoreWithType: NSSQLiteStoreType configuration: nil URL: [NSURL fileURLWithPath: to] options: nil error: &error] ) {
+    if (![oldPersistentStoreCoordinator addPersistentStoreWithType: NSSQLiteStoreType configuration: nil URL: [NSURL fileURLWithPath: oldDatabase] options: nil error: &error] ) {
       NSLog(@"Failed to open old persistent store, terminating.");
       [[NSApplication sharedApplication] terminate: self];
     }
@@ -103,69 +115,6 @@ static Loader * shared;
   
   [[Updater instance] performSelectorOnMainThread: @selector(prepare) withObject: nil waitUntilDone: true];
   [[Updater instance] performSelectorOnMainThread: @selector(update) withObject: nil waitUntilDone: false];
-}
-
-- (void) load: (id) sender
-{
-  [[Ceres instance] setDatabaseVersion: [[Ceres instance] applicationVersion]];
-  
-  Data * data = [[Data alloc] init];
-  
-  NSMutableDictionary * loaders = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                   @"Clones.xml",       [Clone class],
-                                   @"Skills.xml",       [Skill class],
-                                   @"MarketGroups.xml", [MarketGroup class],
-                                   @"Groups.xml",       [Group class],
-                                   @"Categories.xml",   [Category class],
-                                   @"Implants.xml",     [Implant class],
-                                   nil
-                                   ];
-  
-  for (id key in [loaders allKeys])
-  {
-    NSURL * u = [data url: [loaders objectForKey: key]];
-    URLDelegate * d = [[URLDelegate alloc] initWithURL: u];
-    [loaders setValue: d forKey: key]; 
-  }
-  
-  NSInteger finished = 0;
-  NSInteger count = 0;
-  NSInteger done, total;    
-  while (finished < [loaders count]) {      
-    finished = done = total = 0;
-    for (URLDelegate * d in [loaders allValues])
-    {
-      done += [d receivedData];
-      total += [d totalData];
-      
-      if ([d done]) {
-        finished++;
-      }
-    }
-    
-    [delegate setText: [NSString stringWithFormat: @"Downloaded %ld / %ld files (%ld / %ld kB)", finished, [loaders count], done / 1024, total / 1024]];
-    
-    if (count > 180) {
-      [delegate downloadTimeout: count];
-    }
-    else {
-      count++;
-    }
-    
-    [[NSRunLoop mainRunLoop] runUntilDate: [NSDate dateWithTimeIntervalSinceNow: 1.0]];
-  }
-  
-  finished = 0;
-  for (id key in [[loaders allKeys] sortedArrayUsingSelector: @selector(comparePriority:)])
-  {
-    [delegate setText: [NSString stringWithFormat: @"Parsing data (%ld / %ld files processed)", finished, [loaders count]]];
-    [[NSRunLoop mainRunLoop] runUntilDate: [NSDate dateWithTimeIntervalSinceNow: 0.1]];
-    [key performSelector: @selector(load:) withObject: [[loaders objectForKey: key] xml]];
-    finished++;
-  }
-  
-  
-  [[Ceres instance] save];  
 }
 
 - (void) migrate: (NSManagedObjectContext *) from model: (NSManagedObjectModel *) model

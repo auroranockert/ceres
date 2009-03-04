@@ -34,6 +34,7 @@
   
   IOHttpFuture * future = [channel get];
   [future addObserver: target selector: selector];
+  
   return future;
 }
 

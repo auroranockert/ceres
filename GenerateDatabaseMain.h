@@ -1,5 +1,5 @@
 //
-//  URLLoaderDelegate.h
+//  GenerateDatabaseMain.h
 //  This file is part of Ceres.
 //
 //  Ceres is free software: you can redistribute it and/or modify
@@ -15,26 +15,9 @@
 //  You should have received a copy of the GNU General Public License
 //  along with Ceres.  If not, see <http://www.gnu.org/licenses/>.
 //
-//  Created by Jens Nockert on 1/8/09.
+//  Created by Jens Nockert on 3/4/09.
 //
 
 #import <Cocoa/Cocoa.h>
-
-#import "URLLoader.h"
-
-
-@interface URLDelegate : NSObject {
-  NSData * data;
-  bool done;
-  NSInteger totalData;
-  NSInteger receivedData;
-}
-
-@property(retain) NSData * data;
-@property bool done;
-@property NSInteger totalData, receivedData;
-
-- (id) initWithURL: (NSURL *) url;
-- (NSXMLDocument *) xml;
-
-@end
+#import <CeresIO/CeresIO.h>
+#import "CeresHeader.h"

@@ -20,9 +20,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-#import "URLLoader.h"
-#import "URLDelegate.h"
-
 #import "Updater.h"
 #import "Data.h"
 
@@ -39,7 +36,6 @@
 + (Loader *) instance;
 
 - (void) start: (id) delegate;
-- (void) load: (id) delegate;
 - (void) migrate: (NSManagedObjectContext *) from model: (NSManagedObjectModel *) model;
 
 @end
