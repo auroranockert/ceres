@@ -49,7 +49,7 @@
   return [[character skillGroups] objectAtIndex: index];
 }
 
-- (bool) outlineView: (NSOutlineView *) outlineView isItemExpandable: (id)item
+- (bool) outlineView: (NSOutlineView *) outlineView isItemExpandable: (id) item
 {
   if (item && [item class] == [Group class]) {
     return true;
@@ -58,13 +58,17 @@
   return false;
 }
 
-- (NSInteger) outlineView: (NSOutlineView *) outlineView numberOfChildrenOfItem: (id)item
-{  
+- (NSInteger) outlineView: (NSOutlineView *) outlineView numberOfChildrenOfItem: (id) item
+{
   if (item) {
     return [[TrainedSkill findWithCharacter: character group: item] count];
   }
-    
-  return [[character skillGroups] count];
+  
+  NSInteger count = [[character skillGroups] count];
+  
+  // NSLog(@"Count: %ld", count);
+  
+  return count;
 }
 
 - (id) outlineView: (NSOutlineView *) outlineView objectValueForTableColumn: (NSTableColumn *) tableColumn byItem: (id) item

@@ -57,12 +57,12 @@
 
 - (NSMenu *) menu
 {
-  return [[characterListController controllerForCharacter: character] menu];
+  return [[CharacterController controllerForCharacter: character] menu];
 }
 
 - (NSImage *) image
 {
-  return [[characterListController controllerForCharacter: character] portrait];
+  return [[CharacterController controllerForCharacter: character] portrait];
 }
 
 - (NSString *) name

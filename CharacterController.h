@@ -25,9 +25,8 @@
 #import "CacheMenuItem.h"
 
 #import "CharacterListController.h"
+#import "CharacterViewController.h"
 #import "TabbedCharacterController.h"
-
-@class CharacterController;
 
 @interface CharacterController : NSObject {
   NSWindowController * characterWindowController;
@@ -37,10 +36,13 @@
   NSImage * portrait;
 }
 
+- (id) initWithCharacter: (Character *) character;
+
++ (CharacterController *) controllerForCharacter: (Character *) character;
+
 @property(retain, readonly) NSImage * portrait;
 @property(retain, readonly) Character * character;
-
-- (id) initWithCharacter: (Character *) character;
+@property(retain, readonly) CharacterViewController * characterViewController;
 
 - (void) showCharacter;
 - (void) invalidateCharacter;
@@ -48,6 +50,5 @@
 
 - (NSMenu *) menu;
 
-- (void) notification: (NSNotification *) object;
 
 @end

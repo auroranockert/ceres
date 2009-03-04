@@ -36,27 +36,13 @@
   
   [self setSortDescriptors: [NSArray arrayWithObject: [[NSSortDescriptor alloc] initWithKey: @"order" ascending: true]]];
   [self setAutomaticallyRearrangesObjects: true];
-  
-  characterControllers = [[NSMutableDictionary alloc] init];
-  
-  [self performSelector: @selector(update:) withObject: self afterDelay: 1];
-}
-
-- (CharacterController *) controllerForCharacter: (Character *) character
-{
-  CharacterController * controller = [characterControllers objectForKey: character];
-  
-  if (!controller) {
-    controller = [[CharacterController alloc] initWithCharacter: character];
-    [characterControllers setObject: controller forKey: character];
-  }
     
-  return controller;
+  [self performSelector: @selector(update:) withObject: self afterDelay: 1];
 }
 
 - (void) doubleClick: (id) object
 {
-  [[self controllerForCharacter: object] showCharacter];
+  [[CharacterController controllerForCharacter: object] showCharacter];
 }
 
 - (void) notification: (id) object

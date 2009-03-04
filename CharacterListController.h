@@ -31,11 +31,7 @@
 
 @interface CharacterListController : CeresArrayController {
   IBOutlet NSTableView * characterTableView;
-  
-  NSMutableDictionary * characterControllers;
 }
-
-- (CharacterController *) controllerForCharacter: (Character *) character;
 
 - (void) notification: (id) sender;
 - (void) doubleClick: (id) object;

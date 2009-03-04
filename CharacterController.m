@@ -27,11 +27,27 @@
 {
   if (self = [super init]) {
     character = c;
-    
-    [[[CeresNotificationCenter instance] notificationCenter] addObserver: self selector: @selector(notification:) name: nil object: character];
   }
   
   return self;
+}
+
++ (CharacterController *) controllerForCharacter: (Character *) c
+{
+  static NSMutableDictionary * dictionary;
+  
+  if (!dictionary) {
+    dictionary = [NSMutableDictionary dictionary];
+  }
+  
+  CharacterController * controller = [dictionary objectForKey: c];
+  
+  if (!controller) {
+    controller = [[CharacterController alloc] initWithCharacter: c];
+    [dictionary setObject: controller forKey: c];
+  }
+  
+  return controller;
 }
 
 - (NSMenu *) menu
@@ -83,6 +99,15 @@
   [character update];
 }
 
+- (CharacterViewController *) characterViewController
+{
+  if (!characterViewController) {
+    characterViewController = [[CharacterViewController alloc] initWithNibName: @"Character" bundle: nil character: character];
+  }
+
+  return characterViewController;
+}
+
 - (void) showCharacter
 {
   if ([[[NSUserDefaults standardUserDefaults] valueForKey: @"tabbedCharacters"] compare: @"Yes"] == NSOrderedSame) {
@@ -90,12 +115,10 @@
     [[TabbedCharacterController instance] showWindow: self];
   }
   else {
-    if(!characterViewController) {
-      characterViewController = [[CharacterViewController alloc] initWithNibName: @"Character" bundle: nil character: character];
-      characterWindowController = [[NSWindowController alloc] init];
+    if(!characterWindowController) {
       [characterWindowController setWindow: [[NSWindow alloc] initWithContentRect: NSMakeRect(100, 100, 500, 600) styleMask: (NSTitledWindowMask | NSClosableWindowMask | NSMiniaturizableWindowMask | NSResizableWindowMask) backing: NSBackingStoreBuffered defer: true]];
       [[characterWindowController window] setMinSize: NSMakeSize(400, 400)];
-      [[characterWindowController window] setContentView: [characterViewController view]];
+      [[characterWindowController window] setContentView: [[self characterViewController] view]];
       [[characterWindowController window] setTitle: [character name]];
       [[characterWindowController window] setFrameAutosaveName: [NSString stringWithFormat: @"CharacterWindow.%@", [character name]]];
     }
@@ -108,11 +131,6 @@
 {
   [character remove];
   [[Ceres instance] save];
-}
-
-- (void) notification: (NSNotification *) argument
-{
-  // [self updateCharacter: self];
 }
 
 @end

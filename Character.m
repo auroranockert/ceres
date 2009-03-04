@@ -47,13 +47,15 @@
                   account: (Account *) acc
 {
   if (self = [super initWithIdentifier: ident]) {
-    [self setAccount: acc];
-    [self setOrder: [NSNumber numberWithInteger: [[Character find] count]]];
+    if (![self account]) {
+      [self setAccount: acc];
+      [self setOrder: [NSNumber numberWithInteger: [[Character find] count]]];
         
-    [self invalidate];
-    [[self update] join];
+      [self invalidate];
+      [[self update] join];
     
-    [[CeresNotificationCenter instance] postNotification: [CharacterNotification notificationWithCharacter: self name: @"characterAdded"]];
+      [[CeresNotificationCenter instance] postNotification: [CharacterNotification notificationWithCharacter: self name: @"characterAdded"]];
+    }
   }
   
   return self;

@@ -23,6 +23,7 @@
 #import "CeresHeader.h"
 
 #import "ModularController.h"
+#import "CharacterController.h"
 #import "CharacterViewController.h"
 
 @interface TabbedCharacterController : ModularController {
@@ -31,6 +32,6 @@
 
 + (TabbedCharacterController *) instance;
 
-- (void) loadCharacters;
+- (void) loadCharacters: (id) sender;
 
 @end

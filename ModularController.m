@@ -21,8 +21,10 @@
 #import "ModularController.h"
 
 @interface ModularController (Private)
+
 - (void) setupToolbar;
 - (void) selectModule: (NSToolbarItem *) sender;
+
 @end
 
 @implementation ModularController
@@ -53,7 +55,7 @@
 
 - (void) setupToolbar
 {
-	NSToolbar * toolbar = [[NSToolbar alloc] initWithIdentifier: @"ModularToolbar"];
+	NSToolbar * toolbar = [[NSToolbar alloc] initWithIdentifier: [[self class] description]];
 	[toolbar setDisplayMode: NSToolbarDisplayModeIconAndLabel];
 	[toolbar setAllowsUserCustomization: false];
 	[toolbar setDelegate: self];
@@ -110,37 +112,41 @@
 
 - (void) setModules: (NSArray *) newModules
 {
-	if (newModules != modules) {
-		modules = newModules;
-		
-		// Reset the toolbar items
-		NSToolbar * toolbar = [[self window] toolbar];
-		if (toolbar) {
-			NSInteger index = [[toolbar items] count] - 1;
-			while (index > 0) {
-				[toolbar removeItemAtIndex: index];
-				index--;
-			}
-			
-			// Add the new items
-			for (id <Module> module in [self modules]) {
-				[toolbar insertItemWithItemIdentifier: [module identifier] atIndex: [[toolbar items] count]];
-			}
-		}
-		
-		// Change to the correct module
-		if ([[self modules] count]) {			
-			// Check the autosave info
-			id <Module> defaultModule = [self moduleForIdentifier: [[NSUserDefaults standardUserDefaults] stringForKey: [NSString stringWithFormat: @"%@.Module", [self autosaveKey]]]];
-			
-			if (!defaultModule) {
-				defaultModule = [[self modules] objectAtIndex: 0];
-			}
-			
-			[self changeToModule: defaultModule];
-		}
-		
-	}
+  modules = newModules;
+    
+  [self changeToModule: nil];
+  
+  // Reset the toolbar items
+  NSToolbar * toolbar = [[self window] toolbar];
+  NSInteger index = [[toolbar items] count] - 1;
+  while (index >= 0) {
+    [toolbar removeItemAtIndex: index];
+    index--;
+  }
+  
+  [toolbar setSelectedItemIdentifier: nil];
+  
+  NSLog(@"Count: %ld", [[toolbar items] count]);
+  
+  // Add the new items
+  for (id <Module> module in [self modules]) {
+    [toolbar insertItemWithItemIdentifier: [module identifier] atIndex: [[toolbar items] count]];
+  }
+  
+  // Change to the correct module
+  if ([[toolbar items] count] != 0) {			
+    // Check the autosave info
+    id <Module> defaultModule = [self moduleForIdentifier: [[NSUserDefaults standardUserDefaults] stringForKey: [NSString stringWithFormat: @"%@.Module", [self autosaveKey]]]];
+    
+    if (!defaultModule) {
+      defaultModule = [[self modules] objectAtIndex: 0];
+    }
+    
+    [self changeToModule: defaultModule];
+  }
+  else {
+    [[self window] close];
+  }
 }
 
 - (void) selectModule: (NSToolbarItem *) sender
@@ -160,6 +166,14 @@
 
 - (void) changeToModule: (id <Module>) module
 {
+  if (!module) {
+    [[self window] setContentView: [[NSView alloc] init]];
+    [[self window] setTitle: @"Empty"];
+    [[[self window] toolbar] setSelectedItemIdentifier: nil];
+    
+    return;
+  }
+  
   if ([self resizable]) {
     [[self window] setContentView: [module view]];
   }

@@ -23,7 +23,7 @@
 
 @implementation TabbedCharacterController
 
-static TabbedCharacterController * shared = nil;
+static TabbedCharacterController * shared;
 
 + (TabbedCharacterController *) instance
 {
@@ -33,7 +33,10 @@ static TabbedCharacterController * shared = nil;
       
       [[shared window] setMinSize: NSMakeSize(400, 400)];
       
-      [shared loadCharacters];
+      [shared loadCharacters: self];
+      
+      [[[CeresNotificationCenter instance] notificationCenter] addObserver: shared selector: @selector(loadCharacters:) name: [CharacterNotification nameForMessage: @"characterAdded"] object: nil];
+      [[[CeresNotificationCenter instance] notificationCenter] addObserver: shared selector: @selector(loadCharacters:) name: [CharacterNotification nameForMessage: @"characterRemoved"] object: nil];
 		}
 	}
   
@@ -61,12 +64,14 @@ static TabbedCharacterController * shared = nil;
   return @"Ceres.CharacterSelection";
 }
 
-- (void) loadCharacters
+- (void) loadCharacters: (id) sender
 {
+  NSLog(@"Load: %ld", [[Character find] count]);
+  
   NSMutableArray * modulesArray = [NSMutableArray array];
   
   for (Character * character in [Character findWithSort: [[NSSortDescriptor alloc] initWithKey: @"order" ascending: true] predicate: [NSPredicate predicateWithValue: true]]) {
-    [modulesArray addObject: [[CharacterViewController alloc] initWithNibName: @"Character" bundle: nil character: character]];
+    [modulesArray addObject: [[CharacterController controllerForCharacter: character] characterViewController]];
   }
   
 	[self setModules: modulesArray];
