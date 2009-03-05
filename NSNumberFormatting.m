@@ -35,9 +35,7 @@
 
 - (NSString *) levelString
 {
-  NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
-  
-  if ([[defaults valueForKey: @"skillLevels"] compare: @"Arabic"] == NSOrderedSame) {
+  if ([[[NSUserDefaults standardUserDefaults] valueForKey: @"skillLevels"] compare: @"Arabic"] == NSOrderedSame) {
     return [self stringValue];
   }
   else {

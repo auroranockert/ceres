@@ -36,6 +36,9 @@
 - (NSFont *) nameFont;
 - (NSFont *) subStringFont;
 
+- (NSColor *) nameColor;
+- (NSColor *) subStringColor;
+
 - (NSParagraphStyle *) paragraphStyle;
 
 @end

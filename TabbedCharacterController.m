@@ -66,8 +66,6 @@ static TabbedCharacterController * shared;
 
 - (void) loadCharacters: (id) sender
 {
-  NSLog(@"Load: %ld", [[Character find] count]);
-  
   NSMutableArray * modulesArray = [NSMutableArray array];
   
   for (Character * character in [Character findWithSort: [[NSSortDescriptor alloc] initWithKey: @"order" ascending: true] predicate: [NSPredicate predicateWithValue: true]]) {

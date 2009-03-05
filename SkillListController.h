@@ -49,5 +49,6 @@
 - (NSCell *) outlineView: (NSOutlineView *) outlineView dataCellForTableColumn: (NSTableColumn *) tableColumn item: (id) item;
 
 - (void) doubleClick: (id) object;
+- (void) reload: (NSNotification *) notification;
 
 @end

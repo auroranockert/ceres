@@ -37,6 +37,21 @@
 		B40581170F19AE55009EEDD8 /* Interface.m in Sources */ = {isa = PBXBuildFile; fileRef = B40581160F19AE55009EEDD8 /* Interface.m */; };
 		B40581440F19AFBA009EEDD8 /* Loading.xib in Resources */ = {isa = PBXBuildFile; fileRef = B40581430F19AFBA009EEDD8 /* Loading.xib */; };
 		B40581780F19BAFF009EEDD8 /* ServerStatusController.m in Sources */ = {isa = PBXBuildFile; fileRef = B40581770F19BAFF009EEDD8 /* ServerStatusController.m */; };
+		B40800E00F603F36004CF368 /* Corporation Management.png in Resources */ = {isa = PBXBuildFile; fileRef = B40800D40F603F36004CF368 /* Corporation Management.png */; };
+		B40800E10F603F36004CF368 /* Drones.png in Resources */ = {isa = PBXBuildFile; fileRef = B40800D50F603F36004CF368 /* Drones.png */; };
+		B40800E20F603F36004CF368 /* Electronics.png in Resources */ = {isa = PBXBuildFile; fileRef = B40800D60F603F36004CF368 /* Electronics.png */; };
+		B40800E30F603F36004CF368 /* Gunnery.png in Resources */ = {isa = PBXBuildFile; fileRef = B40800D70F603F36004CF368 /* Gunnery.png */; };
+		B40800E40F603F36004CF368 /* Leadership.png in Resources */ = {isa = PBXBuildFile; fileRef = B40800D80F603F36004CF368 /* Leadership.png */; };
+		B40800E50F603F36004CF368 /* Learning.png in Resources */ = {isa = PBXBuildFile; fileRef = B40800D90F603F36004CF368 /* Learning.png */; };
+		B40800E60F603F36004CF368 /* Mechanic.png in Resources */ = {isa = PBXBuildFile; fileRef = B40800DA0F603F36004CF368 /* Mechanic.png */; };
+		B40800E70F603F36004CF368 /* Navigation.png in Resources */ = {isa = PBXBuildFile; fileRef = B40800DB0F603F36004CF368 /* Navigation.png */; };
+		B40800E80F603F36004CF368 /* Science.png in Resources */ = {isa = PBXBuildFile; fileRef = B40800DC0F603F36004CF368 /* Science.png */; };
+		B40800E90F603F36004CF368 /* Social.png in Resources */ = {isa = PBXBuildFile; fileRef = B40800DD0F603F36004CF368 /* Social.png */; };
+		B40800EA0F603F36004CF368 /* Spaceship Command.png in Resources */ = {isa = PBXBuildFile; fileRef = B40800DE0F603F36004CF368 /* Spaceship Command.png */; };
+		B40800EB0F603F36004CF368 /* Trade.png in Resources */ = {isa = PBXBuildFile; fileRef = B40800DF0F603F36004CF368 /* Trade.png */; };
+		B40801030F6043A2004CF368 /* Industry.png in Resources */ = {isa = PBXBuildFile; fileRef = B40801010F6043A2004CF368 /* Industry.png */; };
+		B40801040F6043A2004CF368 /* Engineering.png in Resources */ = {isa = PBXBuildFile; fileRef = B40801020F6043A2004CF368 /* Engineering.png */; };
+		B40801100F604412004CF368 /* Missile Launcher Operation.png in Resources */ = {isa = PBXBuildFile; fileRef = B408010F0F604412004CF368 /* Missile Launcher Operation.png */; };
 		B408F5BC0F5D57AF004CF368 /* CeresIO.framework in Copy Bundle Frameworks */ = {isa = PBXBuildFile; fileRef = B408F5BA0F5D57A7004CF368 /* CeresIO.framework */; };
 		B408F5DC0F5D580B004CF368 /* CeresIO.framework in Copy Bundle Frameworks */ = {isa = PBXBuildFile; fileRef = B408F5BA0F5D57A7004CF368 /* CeresIO.framework */; };
 		B408F5DE0F5D5814004CF368 /* CeresIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B408F5BA0F5D57A7004CF368 /* CeresIO.framework */; };
@@ -268,6 +283,21 @@
 		B40581430F19AFBA009EEDD8 /* Loading.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Loading.xib; sourceTree = "<group>"; };
 		B40581760F19BAFF009EEDD8 /* ServerStatusController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerStatusController.h; sourceTree = "<group>"; };
 		B40581770F19BAFF009EEDD8 /* ServerStatusController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerStatusController.m; sourceTree = "<group>"; };
+		B40800D40F603F36004CF368 /* Corporation Management.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Corporation Management.png"; path = "Icons/Corporation Management.png"; sourceTree = SOURCE_ROOT; };
+		B40800D50F603F36004CF368 /* Drones.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Drones.png; path = Icons/Drones.png; sourceTree = SOURCE_ROOT; };
+		B40800D60F603F36004CF368 /* Electronics.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Electronics.png; path = Icons/Electronics.png; sourceTree = SOURCE_ROOT; };
+		B40800D70F603F36004CF368 /* Gunnery.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Gunnery.png; path = Icons/Gunnery.png; sourceTree = SOURCE_ROOT; };
+		B40800D80F603F36004CF368 /* Leadership.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Leadership.png; path = Icons/Leadership.png; sourceTree = SOURCE_ROOT; };
+		B40800D90F603F36004CF368 /* Learning.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Learning.png; path = Icons/Learning.png; sourceTree = SOURCE_ROOT; };
+		B40800DA0F603F36004CF368 /* Mechanic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Mechanic.png; path = Icons/Mechanic.png; sourceTree = SOURCE_ROOT; };
+		B40800DB0F603F36004CF368 /* Navigation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Navigation.png; path = Icons/Navigation.png; sourceTree = SOURCE_ROOT; };
+		B40800DC0F603F36004CF368 /* Science.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Science.png; path = Icons/Science.png; sourceTree = SOURCE_ROOT; };
+		B40800DD0F603F36004CF368 /* Social.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Social.png; path = Icons/Social.png; sourceTree = SOURCE_ROOT; };
+		B40800DE0F603F36004CF368 /* Spaceship Command.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Spaceship Command.png"; path = "Icons/Spaceship Command.png"; sourceTree = SOURCE_ROOT; };
+		B40800DF0F603F36004CF368 /* Trade.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Trade.png; path = Icons/Trade.png; sourceTree = SOURCE_ROOT; };
+		B40801010F6043A2004CF368 /* Industry.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Industry.png; sourceTree = "<group>"; };
+		B40801020F6043A2004CF368 /* Engineering.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Engineering.png; path = Icons/Engineering.png; sourceTree = SOURCE_ROOT; };
+		B408010F0F604412004CF368 /* Missile Launcher Operation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Missile Launcher Operation.png"; sourceTree = "<group>"; };
 		B408F5AF0F5D57A7004CF368 /* CeresIO.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CeresIO.xcodeproj; path = Frameworks/CeresIO/CeresIO.xcodeproj; sourceTree = "<group>"; };
 		B408F8360F5D603C004CF368 /* Ceres 0.0.12.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Ceres 0.0.12.xcdatamodel"; sourceTree = "<group>"; };
 		B408F8D10F5DA628004CF368 /* CharacterFuture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterFuture.h; sourceTree = "<group>"; };
@@ -279,8 +309,8 @@
 		B408FDBE0F5EBE13004CF368 /* GenerateDatabaseMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenerateDatabaseMain.m; sourceTree = "<group>"; };
 		B408FE4F0F5ECAE6004CF368 /* Ceres.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; name = Ceres.sqlite3; path = Generator/Data/Ceres.sqlite3; sourceTree = SOURCE_ROOT; };
 		B408FEA20F5ED7A3004CF368 /* Skill.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Skill.png; sourceTree = SOURCE_ROOT; };
-		B408FEA40F5ED7B3004CF368 /* PartialSkill.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PartialSkill.png; sourceTree = "<group>"; };
-		B408FEA60F5ED7CE004CF368 /* FinishedSkill.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FinishedSkill.png; sourceTree = "<group>"; };
+		B408FEA40F5ED7B3004CF368 /* PartialSkill.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PartialSkill.png; path = ../PartialSkill.png; sourceTree = "<group>"; };
+		B408FEA60F5ED7CE004CF368 /* FinishedSkill.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = FinishedSkill.png; path = ../FinishedSkill.png; sourceTree = "<group>"; };
 		B40C1D3F0EF1205D0050F22B /* Ceres.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ceres.h; sourceTree = "<group>"; };
 		B40C1D400EF1205D0050F22B /* Ceres.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ceres.m; sourceTree = "<group>"; };
 		B40C1EED0EF1C1CB0050F22B /* Ceres.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ceres.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -487,11 +517,9 @@
 			isa = PBXGroup;
 			children = (
 				B496BF590F33BA2B00E92DB4 /* dsa_pub.pem */,
-				B408FEA40F5ED7B3004CF368 /* PartialSkill.png */,
-				B408FEA60F5ED7CE004CF368 /* FinishedSkill.png */,
+				B40800D30F603F36004CF368 /* Icons */,
 				B40C1EEF0EF1C1CB0050F22B /* Ceres-Info.plist */,
 				B408FE4F0F5ECAE6004CF368 /* Ceres.sqlite3 */,
-				B408FEA20F5ED7A3004CF368 /* Skill.png */,
 				8DC2EF5A0486A6940098B216 /* Info.plist */,
 				B415498C0F4B7C98005B5D48 /* StatusIcon.tiff */,
 				B415498D0F4B7C98005B5D48 /* StatusIconAlternate.tiff */,
@@ -629,6 +657,31 @@
 			);
 			name = Controllers;
 			sourceTree = "<group>";
+		};
+		B40800D30F603F36004CF368 /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				B408FEA40F5ED7B3004CF368 /* PartialSkill.png */,
+				B408FEA60F5ED7CE004CF368 /* FinishedSkill.png */,
+				B40801010F6043A2004CF368 /* Industry.png */,
+				B40801020F6043A2004CF368 /* Engineering.png */,
+				B40800D40F603F36004CF368 /* Corporation Management.png */,
+				B40800D50F603F36004CF368 /* Drones.png */,
+				B40800D60F603F36004CF368 /* Electronics.png */,
+				B40800D70F603F36004CF368 /* Gunnery.png */,
+				B40800D80F603F36004CF368 /* Leadership.png */,
+				B40800D90F603F36004CF368 /* Learning.png */,
+				B40800DA0F603F36004CF368 /* Mechanic.png */,
+				B408010F0F604412004CF368 /* Missile Launcher Operation.png */,
+				B40800DB0F603F36004CF368 /* Navigation.png */,
+				B40800DC0F603F36004CF368 /* Science.png */,
+				B40800DD0F603F36004CF368 /* Social.png */,
+				B40800DE0F603F36004CF368 /* Spaceship Command.png */,
+				B408FEA20F5ED7A3004CF368 /* Skill.png */,
+				B40800DF0F603F36004CF368 /* Trade.png */,
+			);
+			path = Icons;
+			sourceTree = SOURCE_ROOT;
 		};
 		B408F5B00F5D57A7004CF368 /* Products */ = {
 			isa = PBXGroup;
@@ -1213,9 +1266,24 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B40801100F604412004CF368 /* Missile Launcher Operation.png in Resources */,
 				B408FEA50F5ED7B3004CF368 /* PartialSkill.png in Resources */,
 				B408FEA70F5ED7CE004CF368 /* FinishedSkill.png in Resources */,
+				B40800E00F603F36004CF368 /* Corporation Management.png in Resources */,
+				B40800E10F603F36004CF368 /* Drones.png in Resources */,
+				B40800E20F603F36004CF368 /* Electronics.png in Resources */,
+				B40800E30F603F36004CF368 /* Gunnery.png in Resources */,
+				B40801030F6043A2004CF368 /* Industry.png in Resources */,
+				B40801040F6043A2004CF368 /* Engineering.png in Resources */,
+				B40800E40F603F36004CF368 /* Leadership.png in Resources */,
+				B40800E50F603F36004CF368 /* Learning.png in Resources */,
+				B40800E60F603F36004CF368 /* Mechanic.png in Resources */,
+				B40800E70F603F36004CF368 /* Navigation.png in Resources */,
+				B40800E80F603F36004CF368 /* Science.png in Resources */,
+				B40800E90F603F36004CF368 /* Social.png in Resources */,
+				B40800EA0F603F36004CF368 /* Spaceship Command.png in Resources */,
 				B408FEA30F5ED7A3004CF368 /* Skill.png in Resources */,
+				B40800EB0F603F36004CF368 /* Trade.png in Resources */,
 				B408FE500F5ECAE6004CF368 /* Ceres.sqlite3 in Resources */,
 				B40581440F19AFBA009EEDD8 /* Loading.xib in Resources */,
 				B4A53A690F20B5B600B404E6 /* Ceres.xib in Resources */,

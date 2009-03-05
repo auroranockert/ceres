@@ -70,11 +70,17 @@
   [skillOutlineView setDelegate: self];
   
   [skillOutlineView setTarget: self];
-  [skillOutlineView setAction: @selector(doubleClick:)];
   [skillOutlineView setDoubleAction: @selector(doubleClick:)];
   
   [skillOutlineView setAutosaveName: [NSString stringWithFormat: @"Ceres.SkillList.%@", [character name]]];
   [skillOutlineView setAutosaveExpandedItems: true];
+  
+  [[[CeresNotificationCenter instance] notificationCenter] addObserver: self selector: @selector(reload:) name: [CharacterNotification nameForMessage: @"updatedTraining"] object: character];
+	[[[CeresNotificationCenter instance] notificationCenter] addObserver: self selector: @selector(reload:) name: [CharacterNotification nameForMessage: @"updatedCharacter"] object: character];
+	[[[CeresNotificationCenter instance] notificationCenter] addObserver: self selector: @selector(reload:) name: [CharacterNotification nameForMessage: @"skillTrainingCompleted"] object: character];
+
+  [character updateSkillGroups];
+  [skillOutlineView reloadData];
 }
 
 - (id) outlineView: (NSOutlineView *) outlineView child: (NSInteger) index ofItem: (id) item
@@ -150,6 +156,11 @@
   else {
     [skillOutlineView expandItem: selection];
   }
+}
+
+- (void) reload: (NSNotification *) notification
+{
+  [skillOutlineView reloadData];
 }
 
 @end

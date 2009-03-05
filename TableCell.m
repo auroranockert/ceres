@@ -163,8 +163,8 @@
     nameStringColor = [NSColor alternateSelectedControlTextColor];
     subStringStringColor = [NSColor alternateSelectedControlTextColor];
   } else {
-    nameStringColor = [NSColor controlTextColor];
-    subStringStringColor = [NSColor colorWithCalibratedWhite: 0.4 alpha: 1.0];
+    nameStringColor = [self nameColor];
+    subStringStringColor = [self subStringColor];
   }
   
   nameAttributes = [NSDictionary dictionaryWithObjectsAndKeys: paragraphStyle, NSParagraphStyleAttributeName, [self nameFont], NSFontAttributeName, nameStringColor, NSForegroundColorAttributeName, nil];
@@ -209,6 +209,16 @@
   [paragraphStyle setLineBreakMode: LINEBREAKMODE];
 
   return paragraphStyle;
+}
+
+- (NSColor *) nameColor
+{
+  return [NSColor controlTextColor];
+}
+
+- (NSColor *) subStringColor
+{
+  return [NSColor colorWithCalibratedWhite: 0.4 alpha: 1.0];
 }
 
 @end

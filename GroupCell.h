@@ -20,6 +20,7 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import "CeresAdditions.h"
 #import "CeresHeader.h"
 
 #import "TableCell.h"
@@ -30,6 +31,8 @@
 }
 
 - (id) initWithCharacter: (Character *) character;
+
++ (NSImage *) imageForGroup: (Group *) group;
 
 @property(retain) Group * group;
 

@@ -29,7 +29,7 @@
 {
   if (self = [super init]) {
     character = c;
-    [self setPadding: 9.0];
+    [self setPadding: 20.0];
     [self setImageTextPadding: 0.0];
   }
   
@@ -73,6 +73,26 @@
   }
   
   return [NSString stringWithFormat: @"Level %@, %@ SP (%@%% done%@)", [[skill level] levelString], [[skill currentSkillpoints] spString], [[skill percentDone] percentString], training];
+}
+
+- (NSColor *) nameColor
+{
+  if ([skill partiallyTrained] && [[[NSUserDefaults standardUserDefaults] valueForKey: @"highlightPartial"] compare: @"Yes"] == NSOrderedSame) {
+    return [NSColor orangeColor];
+  }
+  else {
+    return [super nameColor];
+  }
+}
+
+- (NSColor *) subStringColor
+{
+  if ([skill partiallyTrained] && [[[NSUserDefaults standardUserDefaults] valueForKey: @"highlightPartial"] compare: @"Yes"] == NSOrderedSame) {
+    return [NSColor orangeColor];
+  }
+  else {
+    return [super subStringColor];
+  }
 }
 
 @end

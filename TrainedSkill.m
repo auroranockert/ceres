@@ -101,7 +101,7 @@
 
 - (bool) partiallyTrained
 {
-  if (self == [[self character] trainingSkill] || [[self skillpoints] compare: [[self skill] skillpointsForLevel: [self level]]] != NSOrderedSame) {
+  if (self == [[self character] trainingSkill] || [[self skillpoints] integerValue] > [[[self skill] skillpointsForLevel: [self level]] integerValue]) {
     return true;
   }
   

@@ -29,10 +29,25 @@
 {
   if (self = [super init]) {
     character = c;
-    [self setPadding: 15.0];
+    [self setPadding: 10.0];
   }
   
   return self;
+}
+
+static NSMutableDictionary * images;
+
++ (NSImage *) imageForGroup: (Group *) g
+{
+  if (!images) {
+    images = [NSMutableDictionary dictionary];
+  }
+  
+  if (![images objectForKey: g]) {
+    [images setObject: [[NSImage imageNamed: [g name]] flip] forKey: g];
+  }
+  
+  return [images objectForKey: g];
 }
 
 - (void) setObjectValue: (id) object
@@ -42,7 +57,7 @@
 
 - (NSImage *) image
 {
-  return nil;
+  return [GroupCell imageForGroup: group];
 }
 
 - (NSString *) name
