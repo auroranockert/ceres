@@ -20,8 +20,9 @@
 
 #import "CharacterController.h"
 
-
 @implementation CharacterController
+
+@synthesize character, characterWindowController;
 
 - (id) initWithCharacter: (Character *) c
 {
@@ -32,19 +33,19 @@
   return self;
 }
 
+static NSMutableDictionary * controllers;
+
 + (CharacterController *) controllerForCharacter: (Character *) c
-{
-  static NSMutableDictionary * dictionary;
-  
-  if (!dictionary) {
-    dictionary = [NSMutableDictionary dictionary];
+{  
+  if (!controllers) {
+    controllers = [NSMutableDictionary dictionary];
   }
   
-  CharacterController * controller = [dictionary objectForKey: c];
+  CharacterController * controller = [controllers objectForKey: c];
   
   if (!controller) {
     controller = [[CharacterController alloc] initWithCharacter: c];
-    [dictionary setObject: controller forKey: c];
+    [controllers setObject: controller forKey: c];
   }
   
   return controller;
@@ -88,11 +89,6 @@
   return portrait;
 }
 
-- (Character *) character
-{
-  return character;
-}
-
 - (void) invalidateCharacter
 {
   [character invalidate];
@@ -119,12 +115,26 @@
       characterWindowController = [[NSWindowController alloc] init];
       [characterWindowController setWindow: [[NSWindow alloc] initWithContentRect: NSMakeRect(100, 100, 500, 600) styleMask: (NSTitledWindowMask | NSClosableWindowMask | NSMiniaturizableWindowMask | NSResizableWindowMask) backing: NSBackingStoreBuffered defer: true]];
       [[characterWindowController window] setMinSize: NSMakeSize(400, 400)];
-      [[characterWindowController window] setContentView: [[self characterViewController] view]];
       [[characterWindowController window] setTitle: [character name]];
       [[characterWindowController window] setFrameAutosaveName: [NSString stringWithFormat: @"CharacterWindow.%@", [character name]]];
     }
     
+    [[characterWindowController window] setContentView: [[self characterViewController] view]];
     [characterWindowController showWindow: self];
+  }
+  
+  [self fixCharacterWindow];
+}
+
+- (void) fixCharacterWindow
+{
+  if ([[[NSUserDefaults standardUserDefaults] valueForKey: @"tabbedCharacters"] compare: @"Yes"] == NSOrderedSame) {
+    for (CharacterController * c in [controllers allValues]) {
+      [[c characterWindowController] close];
+    }
+  }
+  else {
+    [[TabbedCharacterController instance] close];
   }
 }
 

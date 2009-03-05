@@ -43,8 +43,11 @@
 @property(retain, readonly) NSImage * portrait;
 @property(retain, readonly) Character * character;
 @property(retain, readonly) CharacterViewController * characterViewController;
+@property(retain, readonly) NSWindowController * characterWindowController;
 
 - (void) showCharacter;
+- (void) fixCharacterWindow;
+
 - (void) invalidateCharacter;
 - (void) removeCharacter;
 
