@@ -58,21 +58,21 @@
 + (void) worker: (NSArray *) arguments
 {
   NSArray * objects = [arguments objectAtIndex: 0];
-  NSMutableSet * queue = [arguments objectAtIndex: 1];
+  NSMutableArray * queue = [arguments objectAtIndex: 1];
   NSLock * lock = [arguments objectAtIndex: 2];
   
-  for (NSXMLNode * clone in objects)
+  for (NSXMLNode * implant in objects)
   {
     NSDictionary * dictionary = [[NSDictionary alloc] initWithObjectsAndKeys:
-                                 [[clone readNode: @"/identifier"] numberValueInteger], @"Identifier",
-                                 [[clone readNode: @"/name"] stringValue], @"Name",
-                                 [[clone readNode: @"/price"] numberValueInteger], @"Price",
-                                 [[clone readNode: @"/attribute"] stringValue], @"Attribute",
-                                 [[clone readNode: @"/attributeBonus"] numberValueInteger], @"AttributeBonus",
-                                 [[clone readNode: @"/slot"] numberValueInteger], @"Slot",
-                                 [[clone readNode: @"/marketGroupIdentifier"] numberValueInteger], @"MarketGroupIdentifier",
-                                 [[clone readNode: @"/groupIdentifier"] numberValueInteger], @"GroupIdentifier",
-                                 [[clone readNode: @"/description"] stringValue], @"Description",
+                                 [[implant readNode: @"/identifier"] numberValueInteger], @"Identifier",
+                                 [[implant readNode: @"/name"] stringValue], @"Name",
+                                 [[implant readNode: @"/price"] numberValueInteger], @"Price",
+                                 [[implant readNode: @"/attribute"] stringValue], @"Attribute",
+                                 [[implant readNode: @"/attributeBonus"] numberValueInteger], @"AttributeBonus",
+                                 [[implant readNode: @"/slot"] numberValueInteger], @"Slot",
+                                 [[implant readNode: @"/marketGroupIdentifier"] numberValueInteger], @"MarketGroupIdentifier",
+                                 [[implant readNode: @"/groupIdentifier"] numberValueInteger], @"GroupIdentifier",
+                                 [[implant readNode: @"/description"] stringValue], @"Description",
                                  nil];
     
     [lock lock];

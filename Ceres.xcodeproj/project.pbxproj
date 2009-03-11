@@ -52,6 +52,8 @@
 		B40801030F6043A2004CF368 /* Industry.png in Resources */ = {isa = PBXBuildFile; fileRef = B40801010F6043A2004CF368 /* Industry.png */; };
 		B40801040F6043A2004CF368 /* Engineering.png in Resources */ = {isa = PBXBuildFile; fileRef = B40801020F6043A2004CF368 /* Engineering.png */; };
 		B40801100F604412004CF368 /* Missile Launcher Operation.png in Resources */ = {isa = PBXBuildFile; fileRef = B408010F0F604412004CF368 /* Missile Launcher Operation.png */; };
+		B40801EE0F6183DE004CF368 /* RequiredSkill.h in Headers */ = {isa = PBXBuildFile; fileRef = B40801EC0F6183DE004CF368 /* RequiredSkill.h */; };
+		B40801EF0F6183DE004CF368 /* RequiredSkill.m in Sources */ = {isa = PBXBuildFile; fileRef = B40801ED0F6183DE004CF368 /* RequiredSkill.m */; };
 		B408F5BC0F5D57AF004CF368 /* CeresIO.framework in Copy Bundle Frameworks */ = {isa = PBXBuildFile; fileRef = B408F5BA0F5D57A7004CF368 /* CeresIO.framework */; };
 		B408F5DC0F5D580B004CF368 /* CeresIO.framework in Copy Bundle Frameworks */ = {isa = PBXBuildFile; fileRef = B408F5BA0F5D57A7004CF368 /* CeresIO.framework */; };
 		B408F5DE0F5D5814004CF368 /* CeresIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B408F5BA0F5D57A7004CF368 /* CeresIO.framework */; };
@@ -298,6 +300,9 @@
 		B40801010F6043A2004CF368 /* Industry.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Industry.png; sourceTree = "<group>"; };
 		B40801020F6043A2004CF368 /* Engineering.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Engineering.png; path = Icons/Engineering.png; sourceTree = SOURCE_ROOT; };
 		B408010F0F604412004CF368 /* Missile Launcher Operation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Missile Launcher Operation.png"; sourceTree = "<group>"; };
+		B40801EA0F618289004CF368 /* Ceres 0.0.13.xcdatamodel */ = {isa = PBXFileReference; explicitFileType = wrapper.xcdatamodel; path = "Ceres 0.0.13.xcdatamodel"; sourceTree = "<group>"; };
+		B40801EC0F6183DE004CF368 /* RequiredSkill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequiredSkill.h; sourceTree = "<group>"; };
+		B40801ED0F6183DE004CF368 /* RequiredSkill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequiredSkill.m; sourceTree = "<group>"; };
 		B408F5AF0F5D57A7004CF368 /* CeresIO.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CeresIO.xcodeproj; path = Frameworks/CeresIO/CeresIO.xcodeproj; sourceTree = "<group>"; };
 		B408F8360F5D603C004CF368 /* Ceres 0.0.12.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Ceres 0.0.12.xcdatamodel"; sourceTree = "<group>"; };
 		B408F8D10F5DA628004CF368 /* CharacterFuture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterFuture.h; sourceTree = "<group>"; };
@@ -379,7 +384,7 @@
 		B424F6800EED44C800B5E7C5 /* Test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Test; sourceTree = BUILT_PRODUCTS_DIR; };
 		B424F6F60EED4C2D00B5E7C5 /* TestMain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestMain.h; sourceTree = "<group>"; };
 		B424F6F70EED4C2D00B5E7C5 /* TestMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestMain.m; sourceTree = "<group>"; };
-		B424FAE80EEF0CD700B5E7C5 /* Ceres 0.0.13.xcdatamodel */ = {isa = PBXFileReference; explicitFileType = wrapper.xcdatamodel; fileEncoding = 4; path = "Ceres 0.0.13.xcdatamodel"; sourceTree = "<group>"; };
+		B424FAE80EEF0CD700B5E7C5 /* Ceres 0.0.14.xcdatamodel */ = {isa = PBXFileReference; explicitFileType = wrapper.xcdatamodel; fileEncoding = 4; path = "Ceres 0.0.14.xcdatamodel"; sourceTree = "<group>"; };
 		B462BA9F0F291B9C004D04D8 /* CeresNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CeresNotification.h; sourceTree = "<group>"; };
 		B462BAA00F291B9C004D04D8 /* CeresNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CeresNotification.m; sourceTree = "<group>"; };
 		B462BAF60F292236004D04D8 /* Updater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Updater.h; sourceTree = "<group>"; };
@@ -622,14 +627,13 @@
 		B405104E0EF6C5ED00584535 /* Item Types */ = {
 			isa = PBXGroup;
 			children = (
+				B40801EB0F6183C5004CF368 /* Skill */,
 				B424F5700EEC984100B5E7C5 /* Clone.h */,
 				B424F5710EEC984100B5E7C5 /* Clone.m */,
 				B424F5740EEC98A800B5E7C5 /* Implant.h */,
 				B424F5750EEC98A800B5E7C5 /* Implant.m */,
 				B405104F0EF6C60F00584535 /* ItemType.h */,
 				B40510500EF6C60F00584535 /* ItemType.m */,
-				B405110B0EF96E7F00584535 /* Skill.h */,
-				B405110C0EF96E7F00584535 /* Skill.m */,
 			);
 			name = "Item Types";
 			sourceTree = "<group>";
@@ -682,6 +686,17 @@
 			);
 			path = Icons;
 			sourceTree = SOURCE_ROOT;
+		};
+		B40801EB0F6183C5004CF368 /* Skill */ = {
+			isa = PBXGroup;
+			children = (
+				B405110B0EF96E7F00584535 /* Skill.h */,
+				B405110C0EF96E7F00584535 /* Skill.m */,
+				B40801EC0F6183DE004CF368 /* RequiredSkill.h */,
+				B40801ED0F6183DE004CF368 /* RequiredSkill.m */,
+			);
+			name = Skill;
+			sourceTree = "<group>";
 		};
 		B408F5B00F5D57A7004CF368 /* Products */ = {
 			isa = PBXGroup;
@@ -1126,6 +1141,7 @@
 				B40319EE0F4251C200A99577 /* NSImage.h in Headers */,
 				B408F8D30F5DA628004CF368 /* CharacterFuture.h in Headers */,
 				B408FBF90F5DECA5004CF368 /* CeresNotificationCenter.h in Headers */,
+				B40801EE0F6183DE004CF368 /* RequiredSkill.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1341,6 +1357,7 @@
 				B40319EF0F4251C200A99577 /* NSImage.m in Sources */,
 				B408F8D40F5DA628004CF368 /* CharacterFuture.m in Sources */,
 				B408FBFA0F5DECA5004CF368 /* CeresNotificationCenter.m in Sources */,
+				B40801EF0F6183DE004CF368 /* RequiredSkill.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1753,14 +1770,15 @@
 		B4C0E31D0F38685E00A96DD6 /* Ceres.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				B424FAE80EEF0CD700B5E7C5 /* Ceres 0.0.13.xcdatamodel */,
+				B424FAE80EEF0CD700B5E7C5 /* Ceres 0.0.14.xcdatamodel */,
 				B4C0E3200F38685E00A96DD6 /* Ceres 0.0.7.xcdatamodel */,
 				B4FF58730F3E677E00F67A6C /* Ceres 0.0.8.xcdatamodel */,
 				B4031D370F47194E00A99577 /* Ceres 0.0.10.xcdatamodel */,
 				B4154E6A0F52A751005B5D48 /* Ceres 0.0.11.xcdatamodel */,
 				B408F8360F5D603C004CF368 /* Ceres 0.0.12.xcdatamodel */,
+				B40801EA0F618289004CF368 /* Ceres 0.0.13.xcdatamodel */,
 			);
-			currentVersion = B424FAE80EEF0CD700B5E7C5 /* Ceres 0.0.13.xcdatamodel */;
+			currentVersion = B424FAE80EEF0CD700B5E7C5 /* Ceres 0.0.14.xcdatamodel */;
 			path = Ceres.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

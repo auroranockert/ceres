@@ -1,5 +1,5 @@
 //
-//  Group.m
+//  RequiredSkill.m
 //  This file is part of Ceres.
 //
 //  Ceres is free software: you can redistribute it and/or modify
@@ -15,22 +15,25 @@
 //  You should have received a copy of the GNU General Public License
 //  along with Ceres.  If not, see <http://www.gnu.org/licenses/>.
 //
-//  Created by Jens Nockert on 12/26/08.
+//  Created by Jens Nockert on 3/6/09.
 //
 
-#import "Group.h"
+#import "RequiredSkill.h"
 
 
-@implementation Group
+@implementation RequiredSkill
 
-@dynamic identifier, name, published;
-@dynamic category, items;
+@dynamic item, skill, level, order;
+
+static NSInteger count = 0;
 
 - (id) initWithDictionary: (NSDictionary *) dictionary
 {
-  if (self = [super initWithIdentifier: [dictionary valueForKey: @"Identifier"]]) {
-    [self setName: [dictionary valueForKey: @"Name"]];
-    [self setCategory: [Category findWithIdentifier: [dictionary valueForKey: @"categoryIdentifier"]]];
+  if (self = [super init]) {
+    [self setItem: [ItemType findWithIdentifier: [dictionary objectForKey: @"Item"]]];
+    [self setSkill: [Skill findWithIdentifier: [dictionary objectForKey: @"Skill"]]];
+    [self setLevel: [dictionary objectForKey: @"Level"]];
+    [self setOrder: [dictionary objectForKey: @"Order"]];
   }
   
   return self;
@@ -41,7 +44,7 @@
   static NSEntityDescription * entityDescription;
   
   if (!entityDescription) {
-    entityDescription = [[[[Ceres instance] managedObjectModel] entitiesByName] objectForKey: @"Group"];
+    entityDescription = [[[[Ceres instance] managedObjectModel] entitiesByName] objectForKey: @"RequiredSkill"];
   }
   
   return entityDescription;  
@@ -49,9 +52,9 @@
 
 + (void) load: (NSXMLDocument *) document
 {
-  NSArray * groups = [document readNodes: @"/groups/group"];
+  NSArray * skills = [document readNodes: @"/requirements/requirement"];
   
-  [NSThread process: groups sender: self selector: @selector(worker:)];
+  [NSThread process: skills sender: self selector: @selector(worker:)];
 }
 
 + (void) worker: (NSArray *) arguments
@@ -59,25 +62,19 @@
   NSArray * objects = [arguments objectAtIndex: 0];
   NSMutableArray * queue = [arguments objectAtIndex: 1];
   NSLock * lock = [arguments objectAtIndex: 2];
-   
-  for (NSXMLNode * group in objects)
+  
+  for (NSXMLNode * requirement in objects)
   {
     NSDictionary * dictionary = [[NSDictionary alloc] initWithObjectsAndKeys:
-                                 [[group readNode: @"/identifier"] numberValueInteger], @"Identifier",
-                                 [[group readNode: @"/name"] stringValue], @"Name",
-                                 [[group readNode: @"/categoryIdentifier"] numberValueInteger], @"CategoryIdentifier",
-                                 [[group readNode: @"/description"] stringValue], @"Description",
+                                 [[requirement readNode: @"/typeIdentifier"] numberValueInteger], @"Item",
+                                 [[requirement readNode: @"/skillIdentifier"] numberValueInteger], @"Skill",
+                                 [[requirement readNode: @"/level"] numberValueInteger], @"Level",
+                                 [[requirement readNode: @"/order"] numberValueInteger], @"Order",
                                  nil];
     
     [lock lock];
     [queue addObject: dictionary];
-    [lock unlock];
-  }
-}
-
-+ (NSInteger) priority
-{
-  return 9;
+    [lock unlock];  }
 }
 
 @end

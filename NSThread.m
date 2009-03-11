@@ -26,12 +26,12 @@
 + (void) process: (NSArray *) object sender: (id) sender selector: (SEL) selector
 {
   NSLock * lock = [[NSLock alloc] init];
-  NSMutableSet * queue = [[NSMutableSet alloc] init];
+  NSMutableArray * queue = [[NSMutableArray alloc] init];
   
   NSArray * array = [NSArray arrayWithObjects: object, queue, lock, nil];
   
   NSInteger done = 0, total = [object count];
-  ItemCount processors = MPProcessors();
+  ItemCount processors = MPProcessors() * 2;
   
   for (int i = 0; i < processors; i++) {
     NSRange range = NSMakeRange(i * (total / processors) + (total % processors), total / processors);
@@ -48,7 +48,7 @@
     
   while (done != total) {
     [lock lock];
-    NSSet * set = [queue copy];
+    NSArray * set = [queue copy];
     [queue removeAllObjects];
     [lock unlock];
     
@@ -60,7 +60,7 @@
     
     NSLog(@"Finished %ld / %ld %@", done, total, [sender class]);
     
-    [[NSRunLoop mainRunLoop] runUntilDate: [NSDate dateWithTimeIntervalSinceNow: 1.0]];
+    sleep(1.0);
   }
 }
 

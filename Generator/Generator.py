@@ -332,6 +332,44 @@ def processDB(dbPath):
     implants.appendChild(implant)
   
   writeXML("Implants.xml", doc)
+  
+  # requirements
+  print "Processing Requirements..."
+  # c.execute("""SELECT typeID AS identifier, typeName AS name, invGroups.groupID AS groupIdentifier, marketGroupID AS marketGroupIdentifier, basePrice, invTypes.published
+  #              FROM invTypes INNER JOIN invGroups ON invTypes.groupID = invGroups.groupID
+  #              WHERE categoryID = 16;""")
+  c.execute("""SELECT
+                 invTypes.typeID AS typeIdentifier,
+                 skill.valueInt AS skillIdentifier,
+                 level.valueInt AS level,
+                 (skill.attributeID - 181) AS skillOrder
+               FROM invTypes
+  	             INNER JOIN dgmTypeAttributes AS skill ON invTypes.typeID = skill.typeID
+  	             INNER JOIN dgmTypeAttributes AS level ON invTypes.typeID = level.typeID
+  	             INNER JOIN invGroups ON invTypes.groupID = invGroups.groupID
+               WHERE
+                 skill.attributeID IN (182, 183, 184)
+                 AND
+                 level.attributeID IN (277, 278, 279)
+                 AND
+                 invGroups.categoryID = 16
+                 AND
+                 skill.valueInt IS NOT NULL;""")
+                 
+  doc = Document()
+  requirements = doc.createElement("requirements")
+  doc.appendChild(requirements)
+  for row in c:
+    requirement = doc.createElement("requirement")
+    
+    addChild(doc, requirement, "typeIdentifier", str(row[0]))
+    addChild(doc, requirement, "skillIdentifier", str(row[1]))
+    addChild(doc, requirement, "level", str(row[2]))
+    addChild(doc, requirement, "order", str(row[3]))
+    
+    requirements.appendChild(requirement)
+  
+  writeXML("Requirements.xml", doc)
 
 def main():
   

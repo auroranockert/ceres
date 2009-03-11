@@ -106,6 +106,8 @@ static NSMutableDictionary * controllers;
 
 - (void) showCharacter
 {
+  [self fixCharacterWindow];
+  
   if ([[[NSUserDefaults standardUserDefaults] valueForKey: @"tabbedCharacters"] compare: @"Yes"] == NSOrderedSame) {
     [[TabbedCharacterController instance] changeToModule: [[TabbedCharacterController instance] moduleForIdentifier: [NSString stringWithFormat: @"Ceres.Character.%@", [character name]]]];
     [[TabbedCharacterController instance] showWindow: self];
@@ -122,8 +124,6 @@ static NSMutableDictionary * controllers;
     [[characterWindowController window] setContentView: [[self characterViewController] view]];
     [characterWindowController showWindow: self];
   }
-  
-  [self fixCharacterWindow];
 }
 
 - (void) fixCharacterWindow

@@ -57,21 +57,21 @@
 + (void) worker: (NSArray *) arguments
 {
   NSArray * objects = [arguments objectAtIndex: 0];
-  NSMutableSet * queue = [arguments objectAtIndex: 1];
+  NSMutableArray * queue = [arguments objectAtIndex: 1];
   NSLock * lock = [arguments objectAtIndex: 2];
   
-  for (NSXMLNode * clone in objects)
+  for (NSXMLNode * skill in objects)
   {
     NSDictionary * dictionary = [[NSDictionary alloc] initWithObjectsAndKeys:
-                                 [[clone readNode: @"/identifier"] numberValueInteger], @"Identifier",
-                                 [[clone readNode: @"/name"] stringValue], @"Name",
-                                 [[clone readNode: @"/price"] numberValueInteger], @"Price",
-                                 [[clone readNode: @"/rank"] numberValueInteger], @"Rank",
-                                 [[clone readNode: @"/primaryAttribute"] stringValue], @"PrimaryAttribute",
-                                 [[clone readNode: @"/secondaryAttribute"] stringValue], @"SecondaryAttribute",
-                                 [[clone readNode: @"/marketGroupIdentifier"] numberValueInteger], @"MarketGroupIdentifier",
-                                 [[clone readNode: @"/groupIdentifier"] numberValueInteger], @"GroupIdentifier",
-                                 [[clone readNode: @"/description"] stringValue], @"Description",
+                                 [[skill readNode: @"/identifier"] numberValueInteger], @"Identifier",
+                                 [[skill readNode: @"/name"] stringValue], @"Name",
+                                 [[skill readNode: @"/price"] numberValueInteger], @"Price",
+                                 [[skill readNode: @"/rank"] numberValueInteger], @"Rank",
+                                 [[skill readNode: @"/primaryAttribute"] stringValue], @"PrimaryAttribute",
+                                 [[skill readNode: @"/secondaryAttribute"] stringValue], @"SecondaryAttribute",
+                                 [[skill readNode: @"/marketGroupIdentifier"] numberValueInteger], @"MarketGroupIdentifier",
+                                 [[skill readNode: @"/groupIdentifier"] numberValueInteger], @"GroupIdentifier",
+                                 [[skill readNode: @"/description"] stringValue], @"Description",
                                  nil];
     
     [lock lock];

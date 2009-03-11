@@ -28,8 +28,12 @@ int main(int argc, char *argv[])
   NSString * currentDatabase = [[Ceres instance] persistentStorePathForVersion: nil];
   NSString * oldDatabase = [[Ceres instance] persistentStorePathForVersion: @"Backup"];
   
-  if(![[NSFileManager defaultManager] movePath: currentDatabase toPath: oldDatabase handler: nil]) {
+  if (![[NSFileManager defaultManager] movePath: currentDatabase toPath: oldDatabase handler: nil]) {
     NSLog(@"Failed to move current database.");
+
+    if (![[NSFileManager defaultManager] removeFileAtPath: currentDatabase handler: nil]) {
+      NSLog(@"Failed to remove current database.");
+    }
   }  
   
   [[Ceres instance] setDatabaseVersion: [[Ceres instance] applicationVersion]];
@@ -43,6 +47,7 @@ int main(int argc, char *argv[])
                                    @"Groups.xml",       [Group class],
                                    @"Categories.xml",   [Category class],
                                    @"Implants.xml",     [Implant class],
+                                   @"Requirements.xml", [RequiredSkill class],
                                    nil];
   
   NSMutableSet * futures = [NSMutableSet set];

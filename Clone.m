@@ -55,7 +55,7 @@
 + (void) worker: (NSArray *) arguments
 {
   NSArray * objects = [arguments objectAtIndex: 0];
-  NSMutableSet * queue = [arguments objectAtIndex: 1];
+  NSMutableArray * queue = [arguments objectAtIndex: 1];
   NSLock * lock = [arguments objectAtIndex: 2];
   
   for (NSXMLNode * clone in objects)
