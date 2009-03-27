@@ -109,7 +109,7 @@
 - (void) invalidateCharacter
 {
   [character invalidate];
-  [character update];
+  [[Updater instance] update];
 }
 
 - (CharacterViewController *) characterViewController
@@ -146,7 +146,7 @@
 - (void) removeCharacter
 {
   [character remove];
-  [[Ceres instance] save];
+  [[Updater instance] update];
 }
 
 @end

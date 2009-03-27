@@ -132,23 +132,25 @@
   [character setQueueCachedUntil: [document cachedUntil]];
   [character clearSkillQueue];
   
-  NSArray * skills = [document readNodes: @"/eveapi/result/skill"];
+  NSArray * skills = [document readNodes: @"/eveapi/result/rowset/row"];
   
   for (NSXMLNode * skill in skills)
   {
-    TrainedSkill * ts = [[TrainedSkill alloc] initWithCharacter: character skill: [Skill findWithIdentifier: [[skill readNode: @"/typeID"] numberValueInteger]]];
-    [ts setSkillpoints: [[skill readNode: @"/startSP"] numberValueInteger]];
-    [ts setLevel: [[[skill readNode: @"/level"] numberValueInteger] previous]];
+    TrainedSkill * ts = [[TrainedSkill alloc] initWithCharacter: character skill: [Skill findWithIdentifier: [[skill readAttribute: @"typeID"] numberValueInteger]]];
+    [ts setSkillpoints: [[skill readAttribute: @"startSP"] numberValueInteger]];
+    [ts setLevel: [[[skill readAttribute: @"level"] numberValueInteger] previous]];
     
     SkillQueueEntry * entry = [[SkillQueueEntry alloc] init];
 
-    NSString * startTimeString = [[[skill readNode: @"/startTime"] stringValue] stringByAppendingString: @" +0000"];      
+    NSString * startTimeString = [[skill readAttribute: @"startTime"] stringByAppendingString: @" +0000"];      
     [entry setStartsAt: [[NSDate alloc] initWithString: startTimeString]];
     
-    NSString * endTimeString = [[[skill readNode: @"/endTime"] stringValue] stringByAppendingString: @" +0000"];
+    NSString * endTimeString = [[skill readAttribute: @"endTime"] stringByAppendingString: @" +0000"];
     [entry setEndsAt: [[NSDate alloc] initWithString: endTimeString]];
     
-    [entry setOrder: [[skill readNode: @"/queuePosition"] numberValueInteger]];
+    [entry setToLevel: [[skill readAttribute: @"level"] numberValueInteger]];
+    
+    [entry setOrder: [[skill readAttribute: @"queuePosition"] numberValueInteger]];
     [entry setTrainedSkill: ts];
     [entry setCharacter: character];
   }
@@ -159,7 +161,7 @@
   
   [[CeresNotificationCenter instance] postNotification: [CharacterNotification notificationWithCharacter: character name: @"updatedTraining"]];
   
-  if ([character currentlyTraining]) {
+  if ([character currentSkillQueueEntry]) {
     [[CeresNotificationCenter instance] postNotification: [CharacterNotification notificationWithCharacter: character name: @"skillTrainingCompleted"] date: [[character currentSkillQueueEntry] endsAt]];
   }
 }

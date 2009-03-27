@@ -1,5 +1,5 @@
 //
-//  CharacterMenuItem.m
+//  NSString.m
 //  This file is part of Ceres.
 //
 //  Ceres is free software: you can redistribute it and/or modify
@@ -15,31 +15,22 @@
 //  You should have received a copy of the GNU General Public License
 //  along with Ceres.  If not, see <http://www.gnu.org/licenses/>.
 //
-//  Created by Jens Nockert on 2/21/09.
+//  Created by Jens Nockert on 3/27/09.
 //
 
-#import "CharacterMenuItem.h"
+#import "NSString.h"
 
 
-@implementation CharacterMenuItem
+@implementation NSString (CeresAdditions)
 
-- (id) initWithCharacter: (Character *) c
+- (NSNumber *) numberValueInteger
 {
-  if (self = [super init]) {
-    character = c;
-  }
-  
-  return self;
+  return [NSNumber numberWithInteger: [self integerValue]];
 }
 
-- (NSString *) title
+- (NSNumber *) numberValueDouble
 {
-  if ([[character currentSkillQueueEntry] trainingComplete]) {
-    return [NSString stringWithFormat: @"%@ done.", [character name]];
-  }
-  else {
-    return [NSString stringWithFormat: @"%@ %@", [character name], [[[character currentSkillQueueEntry] endsAt] preferedDateFormatString]];
-  }  
+  return [NSNumber numberWithDouble: [self doubleValue]];
 }
 
 @end

@@ -114,9 +114,9 @@
 
 - (NSString *) training
 {
-  if ([character currentlyTraining])
+  if ([character currentSkillQueueEntry])
   {
-    return [[NSString alloc] initWithFormat: @"Currently training %@ to level %@ at %@ SP/h", [[character currentlyTraining] name], [[[character currentlyTraining] nextLevel] levelString], [[[character currentlyTraining] skillpointsPerHour] spString]];
+    return [[NSString alloc] initWithFormat: @"Currently training %@ to level %@ at %@ SP/h", [[character currentSkillQueueEntry] name], [[[character currentSkillQueueEntry] toLevel] levelString], [[[character currentSkillQueueEntry] skillpointsPerHour] spString]];
   }
   else
   {
@@ -126,13 +126,13 @@
 
 - (NSString *) trainingSkillpoints
 {
-  if ([character currentlyTraining])
+  if ([character currentSkillQueueEntry])
   {
-    if ([[character currentlyTraining] complete]) {
+    if ([[character currentSkillQueueEntry] trainingComplete]) {
       return @"Finished";
     }
     else {
-      return [[NSString alloc] initWithFormat: @"%@ / %@ SP Complete (Finished %@)", [[[character currentlyTraining] currentSkillpoints] spString], [[[[character currentlyTraining] skill] skillpointsForLevel: [[character currentlyTraining] nextLevel]] spString], [[[character currentSkillQueueEntry] endsAt] preferedDateFormatString]];
+      return [[NSString alloc] initWithFormat: @"%@ / %@ SP Complete (Finished %@)", [[[character currentSkillQueueEntry] currentSkillpoints] spString], [[[character currentSkillQueueEntry] toSkillpoints] spString], [[[character currentSkillQueueEntry] endsAt] preferedDateFormatString]];
     }
   }
   else

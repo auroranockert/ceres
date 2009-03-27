@@ -30,6 +30,7 @@
 + (Updater *) instance;
 
 - (void) prepare;
+- (void) tick;
 - (void) update;
 - (void) save: (IOFuture *) future;
 

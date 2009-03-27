@@ -90,18 +90,9 @@
   return [[self skill] name];
 }
 
-- (bool) complete
-{
-  if (self == [[self character] currentlyTraining] && [[[[self character] currentSkillQueueEntry] endsAt] timeIntervalSinceNow] < 0) {
-    return true;
-  }
-  
-  return false;
-}
-
 - (bool) partiallyTrained
 {
-  if (self == [[self character] currentlyTraining] || [[self skillpoints] integerValue] > [[[self skill] skillpointsForLevel: [self level]] integerValue]) {
+  if (self == [[[self character] currentSkillQueueEntry] trainedSkill] || [[self skillpoints] integerValue] > [[[self skill] skillpointsForLevel: [self level]] integerValue]) {
     return true;
   }
   
@@ -130,7 +121,7 @@
 
 - (NSNumber *) currentSkillpoints
 {
-  if (self == [[self character] currentlyTraining]) {
+  if (self == [[[self character] currentSkillQueueEntry] trainedSkill]) {
     return [[self skillpoints] addInteger: [[self character] additionalSkillpoints]];
   }
   else {

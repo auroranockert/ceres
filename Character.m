@@ -207,15 +207,10 @@
   return [[NSImage alloc] initWithData: [self portraitData]];
 }
 
-- (TrainedSkill *) currentlyTraining
-{
-  return [[self currentSkillQueueEntry] trainedSkill];
-}
-
 - (SkillQueueEntry *) lastTrainedSkillQueueEntry
 {
   for (SkillQueueEntry * entry in [self skillQueue]) {
-    if ([[entry startsAt] timeIntervalSinceNow] > 0 && [[entry endsAt] timeIntervalSinceNow] < -60) {
+    if ([[entry startsAt] timeIntervalSinceNow] < 0 && [[entry endsAt] timeIntervalSinceNow] < -60) {
       return entry;
     }
   }
@@ -226,7 +221,7 @@
 - (SkillQueueEntry *) currentSkillQueueEntry
 {
   for (SkillQueueEntry * entry in [self skillQueue]) {
-    if ([[entry startsAt] timeIntervalSinceNow] > 0 && [[entry endsAt] timeIntervalSinceNow] < 0) {
+    if ([[entry startsAt] timeIntervalSinceNow] < 0 && [[entry endsAt] timeIntervalSinceNow] > 0) {
       return entry;
     }
   }
@@ -236,7 +231,17 @@
 
 - (NSArray *) skillQueue
 {
-  return [SkillQueueEntry findWithSort: [[NSSortDescriptor alloc] initWithKey: @"order" ascending: true] predicate: [NSPredicate predicateWithFormat: @"character = %@", self]];
+  if (!queueCached) {
+    [self updateSkillQueue];
+  }
+  
+  return skillQueue;
+}
+
+- (void) updateSkillQueue
+{
+  skillQueue = [SkillQueueEntry findWithSort: [[NSSortDescriptor alloc] initWithKey: @"order" ascending: true] predicate: [NSPredicate predicateWithFormat: @"character = %@", self]];
+  queueCached = true;
 }
 
 - (void) clearSkillQueue
@@ -244,6 +249,8 @@
   for (SkillQueueEntry * entry in [self skillQueue]) {
     [entry remove];
   }
+  
+  queueCached = false;
 }
 
 - (NSNumber *) additionalSkillpoints
@@ -252,14 +259,14 @@
   NSInteger currentDifference = [[[self currentSkillQueueEntry] startsAt] timeIntervalSinceNow];
   double percentage = (double) currentDifference / skillTime;
   
-  return [NSNumber numberWithDouble: ([[[self currentlyTraining] requiredSkillpointsForNextLevel] integerValue] * percentage)];
+  return [NSNumber numberWithDouble: ([[[self currentSkillQueueEntry] toSkillpoints] integerValue] * percentage)];
 }
 
 - (NSNumber *) skillpointsForGroup: (Group *) group
 {
   NSNumber * sp = [[[self skills] filteredSetUsingPredicate: [NSPredicate predicateWithFormat: @"skill.group == %@", group]] valueForKeyPath: @"@sum.skillpoints"];
 
-  if (group == [[[self currentlyTraining] skill] group]) {
+  if (group == [[[self currentSkillQueueEntry] skill] group]) {
     sp = [sp addInteger: [self additionalSkillpoints]];
   }
   
@@ -300,7 +307,7 @@
 {
   [[CeresNotificationCenter instance] addObserver: self selector: @selector(skillTrainingCompleted:) name: [CharacterNotification nameForMessage: @"skillTrainingCompleted"] object: self];
   
-  if ([self currentlyTraining]) {
+  if ([self currentSkillQueueEntry]) {
     [[CeresNotificationCenter instance] postNotification: [CharacterNotification notificationWithCharacter: self name: @"skillTrainingCompleted"] date: [[self currentSkillQueueEntry] endsAt]];
   }
   

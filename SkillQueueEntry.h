@@ -36,4 +36,9 @@
 @property(retain) Character * character;
 @property(retain) TrainedSkill * trainedSkill;
 
+@property(retain, readonly) NSString * name;
+@property(retain, readonly) NSNumber * currentSkillpoints, * toSkillpoints, * skillpointsPerHour;
+@property(assign, readonly) bool trainingComplete;
+@property(retain, readonly) Skill * skill;
+
 @end

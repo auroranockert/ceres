@@ -70,7 +70,7 @@
     [[Character alloc] initWithIdentifier: [ci identifier] account: account];
   }
   
-  [[Ceres instance] save];
+  [[Updater instance] update];
   
   [userid setEnabled: true];
   [apikey setEnabled: true];

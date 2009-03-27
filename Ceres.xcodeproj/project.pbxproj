@@ -138,6 +138,8 @@
 		B4668C1B0F0589FD002E13B4 /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = B4668C190F0589FD002E13B4 /* Category.m */; };
 		B4668D420F06A71C002E13B4 /* Xml.h in Headers */ = {isa = PBXBuildFile; fileRef = B4668D400F06A71C002E13B4 /* Xml.h */; };
 		B4668D430F06A71C002E13B4 /* Xml.m in Sources */ = {isa = PBXBuildFile; fileRef = B4668D410F06A71C002E13B4 /* Xml.m */; };
+		B48E596B0F7D2EF400F40DB6 /* NSString.h in Headers */ = {isa = PBXBuildFile; fileRef = B48E59690F7D2EF400F40DB6 /* NSString.h */; };
+		B48E596C0F7D2EF400F40DB6 /* NSString.m in Sources */ = {isa = PBXBuildFile; fileRef = B48E596A0F7D2EF400F40DB6 /* NSString.m */; };
 		B496BF500F33B6FE00E92DB4 /* Sparkle.framework in Copy Bundle Frameworks */ = {isa = PBXBuildFile; fileRef = B496BF430F33B6EC00E92DB4 /* Sparkle.framework */; };
 		B496BF5A0F33BA2B00E92DB4 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = B496BF590F33BA2B00E92DB4 /* dsa_pub.pem */; };
 		B496BF830F33C08B00E92DB4 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B496BF430F33B6EC00E92DB4 /* Sparkle.framework */; };
@@ -395,6 +397,8 @@
 		B4668C190F0589FD002E13B4 /* Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Category.m; sourceTree = "<group>"; };
 		B4668D400F06A71C002E13B4 /* Xml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Xml.h; sourceTree = "<group>"; };
 		B4668D410F06A71C002E13B4 /* Xml.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Xml.m; sourceTree = "<group>"; };
+		B48E59690F7D2EF400F40DB6 /* NSString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSString.h; sourceTree = "<group>"; };
+		B48E596A0F7D2EF400F40DB6 /* NSString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSString.m; sourceTree = "<group>"; };
 		B496BF430F33B6EC00E92DB4 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Frameworks/Sparkle.framework; sourceTree = "<group>"; };
 		B496BF590F33BA2B00E92DB4 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		B496BF940F33C94E00E92DB4 /* TableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableCell.h; sourceTree = "<group>"; };
@@ -884,8 +888,8 @@
 				B424F5790EEC990100B5E7C5 /* Character.m */,
 				B415CDE30F2F5EE80058F57D /* TrainedSkill.h */,
 				B415CDE40F2F5EE80058F57D /* TrainedSkill.m */,
-				B4C0E8050F39C43600A96DD6 /* ImplantSet.h */,
 				B4C0E8060F39C43600A96DD6 /* ImplantSet.m */,
+				B4C0E8050F39C43600A96DD6 /* ImplantSet.h */,
 				B408F8D10F5DA628004CF368 /* CharacterFuture.h */,
 				B408F8D20F5DA628004CF368 /* CharacterFuture.m */,
 				B40809550F6B31ED004CF368 /* SkillQueueEntry.h */,
@@ -937,6 +941,15 @@
 			name = Groupings;
 			sourceTree = "<group>";
 		};
+		B48E59680F7D2EB200F40DB6 /* NSString */ = {
+			isa = PBXGroup;
+			children = (
+				B48E59690F7D2EF400F40DB6 /* NSString.h */,
+				B48E596A0F7D2EF400F40DB6 /* NSString.m */,
+			);
+			name = NSString;
+			sourceTree = "<group>";
+		};
 		B4A5387A0F1FE67600B404E6 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -984,6 +997,7 @@
 		B4E9AD950F3C8363007A175C /* Additions */ = {
 			isa = PBXGroup;
 			children = (
+				B48E59680F7D2EB200F40DB6 /* NSString */,
 				B40319090F41D1F200A99577 /* Geometry */,
 				B4FF57B70F3DEC1A00F67A6C /* CeresSpecific */,
 				B4E9AE770F3CAAB3007A175C /* NSNumber */,
@@ -1146,6 +1160,7 @@
 				B408FBF90F5DECA5004CF368 /* CeresNotificationCenter.h in Headers */,
 				B40801EE0F6183DE004CF368 /* RequiredSkill.h in Headers */,
 				B40809570F6B31ED004CF368 /* SkillQueueEntry.h in Headers */,
+				B48E596B0F7D2EF400F40DB6 /* NSString.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1345,6 +1360,7 @@
 				B408FBFA0F5DECA5004CF368 /* CeresNotificationCenter.m in Sources */,
 				B40801EF0F6183DE004CF368 /* RequiredSkill.m in Sources */,
 				B40809580F6B31ED004CF368 /* SkillQueueEntry.m in Sources */,
+				B48E596C0F7D2EF400F40DB6 /* NSString.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -58,6 +58,15 @@ static Updater * shared;
   for (Character * character in [Character find]) {
     [character prepareMessages];
   }
+  
+  [self performSelectorOnMainThread: @selector(tick) withObject: nil waitUntilDone: false];
+}
+
+- (void) tick
+{
+  [self update];
+  
+  [self performSelector: @selector(tick) withObject: nil afterDelay: 180];
 }
 
 - (void) update
@@ -70,8 +79,6 @@ static Updater * shared;
   [[[IOCompositeFuture alloc] initWithFutures: futures] addObserver: self selector: @selector(save:)];
   
   [[ServerStatus instance] update];
-  
-  [self performSelector: @selector(update) withObject: nil afterDelay: 180];
 }
 
 - (void) save: (IOFuture *) future

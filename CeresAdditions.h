@@ -23,6 +23,7 @@
 
 #import "NSXMLDocument.h"
 #import "NSXMLNode.h"
+#import "NSString.h"
 
 #import "NSNumber.h"
 #import "NSThread.h"

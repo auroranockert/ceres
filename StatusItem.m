@@ -65,7 +65,7 @@
 - (void) update: (id) sender
 {
   if (statusMenuItem) {
-    if ([[character currentlyTraining] complete]) {
+    if ([[character currentSkillQueueEntry] trainingComplete]) {
       [statusMenuItem setTitle: @"Done"];
     }
     else {

@@ -75,7 +75,7 @@ static NSMutableDictionary * images;
   NSString * training = @"";
   NSNumber * skills = [character skillsForGroup: group];
   
-  if ([[[character currentlyTraining] skill] group] == group) {
+  if ([[[character currentSkillQueueEntry] skill] group] == group) {
     training = @", (1 in training)";
   }
   

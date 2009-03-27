@@ -38,4 +38,38 @@
   return entityDescription;
 }
 
+- (NSString *) name
+{
+  return [[self trainedSkill] name];
+}
+
+- (NSNumber *) currentSkillpoints
+{
+  return [[self trainedSkill] currentSkillpoints];
+}
+
+- (NSNumber *) toSkillpoints
+{
+  return [[[self trainedSkill] skill] skillpointsForLevel: [self toLevel]];
+}
+
+- (NSNumber *) skillpointsPerHour
+{
+  return [[self trainedSkill] skillpointsPerHour];
+}
+
+- (bool) trainingComplete
+{
+  if ([[self endsAt] timeIntervalSinceNow] < 0) {
+    return true;
+  }
+  
+  return false;
+}
+
+- (Skill *) skill
+{
+  return [[self trainedSkill] skill];
+}
+
 @end

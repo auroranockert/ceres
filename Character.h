@@ -51,7 +51,9 @@
 @class CharacterFuture;
 
 @interface Character : EveObject {
-  NSArray * skillGroups;
+  NSArray * skillGroups, * skillQueue;
+  
+  bool queueCached;
 }
 
 @property(retain) NSNumber * order;
@@ -77,7 +79,6 @@
 @property(retain) NSArray * skillGroups;
 
 @property(retain, readonly) SkillQueueEntry * currentSkillQueueEntry, * lastTrainedSkillQueueEntry;
-@property(retain, readonly) TrainedSkill * currentlyTraining;
 @property(retain, readonly) NSArray * skillQueue;
 @property(retain) NSDate * queueCachedUntil;
 
@@ -96,6 +97,7 @@
 - (NSNumber *) skillsForGroup: (Group *) group;
 - (NSNumber *) skillpointsForGroup: (Group *) group;
 
+- (void) updateSkillQueue;
 - (void) updateSkillGroups;
 
 - (void) clearSkillQueue;

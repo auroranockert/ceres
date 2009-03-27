@@ -113,8 +113,7 @@ static Loader * shared;
 
   [delegate finished];
   
-  [[Updater instance] performSelectorOnMainThread: @selector(prepare) withObject: nil waitUntilDone: true];
-  [[Updater instance] performSelectorOnMainThread: @selector(update) withObject: nil waitUntilDone: false];
+  [[Updater instance] performSelectorOnMainThread: @selector(prepare) withObject: nil waitUntilDone: false];
 }
 
 - (void) migrate: (NSManagedObjectContext *) from model: (NSManagedObjectModel *) model
