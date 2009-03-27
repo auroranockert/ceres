@@ -41,7 +41,7 @@
     return [NSString stringWithFormat: @"Character sheet updated %@", [[character cachedUntil] preferedDateFormatString]];
   }
   else {
-    return [NSString stringWithFormat: @"Training updated %@", [[character trainingCachedUntil] preferedDateFormatString]];
+    return [NSString stringWithFormat: @"Queue updated %@", [[character queueCachedUntil] preferedDateFormatString]];
   }
 }
 

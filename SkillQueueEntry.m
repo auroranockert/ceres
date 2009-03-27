@@ -1,5 +1,5 @@
 //
-//  NSNumber.h
+//  SkillQueueEntry.m
 //  This file is part of Ceres.
 //
 //  Ceres is free software: you can redistribute it and/or modify
@@ -15,21 +15,27 @@
 //  You should have received a copy of the GNU General Public License
 //  along with Ceres.  If not, see <http://www.gnu.org/licenses/>.
 //
-//  Created by Jens Nockert on 2/6/09.
+//  Created by Jens Nockert on 3/14/09.
 //
 
-#import <Cocoa/Cocoa.h>
+#import "SkillQueueEntry.h"
 
 
-@interface NSNumber (CeresAdditons)
+@implementation SkillQueueEntry
 
-- (NSNumber *) next;
-- (NSNumber *) previous;
+@dynamic startsAt, endsAt, order, toLevel;
+@dynamic character, trainedSkill;
 
-- (NSNumber *) addInteger: (NSNumber *) other;
-- (NSNumber *) subtractInteger: (NSNumber *) other;
-- (NSNumber *) scale: (NSNumber *) other;
 
-- (NSString *) romanValue;
++ (NSEntityDescription *) entityDescription
+{
+  static NSEntityDescription * entityDescription;
+  
+  if (!entityDescription) {
+    entityDescription = [[[[Ceres instance] managedObjectModel] entitiesByName] objectForKey: @"SkillQueueEntry"];
+  }
+  
+  return entityDescription;
+}
 
 @end

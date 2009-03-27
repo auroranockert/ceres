@@ -21,6 +21,7 @@
 #import <Cocoa/Cocoa.h>
 
 #import "Interface.h"
+#import "CeresAdditions.h"
 #import "CeresHeader.h"
 #import "CacheMenuItem.h"
 
@@ -34,11 +35,15 @@
     
   Character * character;
   NSImage * portrait;
+  
+  CALayer * layer;
 }
 
 - (id) initWithCharacter: (Character *) character;
 
++ (NSMutableDictionary *) controllers;
 + (CharacterController *) controllerForCharacter: (Character *) character;
++ (void) fixCharacterWindows;
 
 @property(retain, readonly) NSImage * portrait;
 @property(retain, readonly) Character * character;
@@ -46,12 +51,10 @@
 @property(retain, readonly) NSWindowController * characterWindowController;
 
 - (void) showCharacter;
-- (void) fixCharacterWindow;
 
 - (void) invalidateCharacter;
 - (void) removeCharacter;
 
 - (NSMenu *) menu;
-
 
 @end

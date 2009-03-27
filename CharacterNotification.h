@@ -31,6 +31,7 @@
 
 - (id) initWithCharacter: (Character *) character name: (NSString *) name;
 
++ (NSString *) nameForMessage: (NSString *) message;
 + (CharacterNotification *) notificationWithCharacter: (Character *) character name: (NSString *) name;
 
 - (Character *) character;

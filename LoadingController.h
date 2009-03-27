@@ -30,7 +30,6 @@
 }
 
 - (void) awakeFromNib;
-- (void) downloadTimeout: (NSInteger) time;
 - (void) databaseNewer: (NSString *) text;
 - (void) setText: (NSString *) text;
 - (void) finished;

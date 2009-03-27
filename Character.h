@@ -38,6 +38,7 @@
 
 #import "Skill.h"
 #import "TrainedSkill.h"
+#import "SkillQueueEntry.h"
 
 #import "Implant.h"
 #import "ImplantSet.h"
@@ -45,6 +46,7 @@
 @class Account;
 @class CharacterInfo;
 @class TrainedSkill;
+@class SkillQueueEntry;
 @class ImplantSet;
 @class CharacterFuture;
 
@@ -66,19 +68,22 @@
 @property(retain) Clone * clone;
 @property(retain) ImplantSet * currentImplantSet;
 
-@property(retain) Attributes * baseAttributes;
-@property(retain, readonly) Attributes * skillAttributes, * implantAttributes;
+@property(retain) NSNumber * baseIntelligence, * basePerception, * baseCharisma, * baseWillpower, * baseMemory;
+@property(retain, readonly) NSNumber * skillIntelligence, * skillPerception, * skillCharisma, * skillWillpower, * skillMemory, * learningBonus;
+@property(retain, readonly) NSNumber * implantIntelligence, * implantPerception, * implantCharisma, * implantWillpower, * implantMemory;
 
 @property(copy, readonly) NSNumber * intelligence, * perception, * charisma, * willpower, * memory;
 
-@property(retain) TrainedSkill * trainingSkill;
-@property(retain) NSDate * trainingStartedAt, * trainingEndsAt, * trainingCachedUntil;
-@property(retain) NSNumber * trainingToLevel, * trainingSkillpointsEnd;
 @property(retain) NSArray * skillGroups;
 
+@property(retain, readonly) SkillQueueEntry * currentSkillQueueEntry, * lastTrainedSkillQueueEntry;
+@property(retain, readonly) TrainedSkill * currentlyTraining;
+@property(retain, readonly) NSArray * skillQueue;
+@property(retain) NSDate * queueCachedUntil;
+
 @property(retain) NSSet * skills;
-@property(retain) NSNumber * skillpoints;
-@property(copy, readonly) NSNumber * totalSkillpoints;
+@property(retain) NSNumber * baseSkillpoints;
+@property(copy, readonly) NSNumber * skillpoints;
 
 - (id) initWithIdentifier: (NSNumber *) ident
                   account: (Account *) acc;
@@ -87,13 +92,13 @@
 - (NSImage *) portrait;
 
 - (NSNumber *) attribute: (NSString *) name;
-- (double) learningBonus;
 
 - (NSNumber *) skillsForGroup: (Group *) group;
 - (NSNumber *) skillpointsForGroup: (Group *) group;
 
 - (void) updateSkillGroups;
-- (void) updateSkillpoints;
+
+- (void) clearSkillQueue;
 
 - (NSNumber *) additionalSkillpoints;
 

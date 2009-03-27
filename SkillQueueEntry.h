@@ -1,5 +1,5 @@
 //
-//  TestMain.h
+//  SkillQueueEntry.h
 //  This file is part of Ceres.
 //
 //  Ceres is free software: you can redistribute it and/or modify
@@ -15,7 +15,25 @@
 //  You should have received a copy of the GNU General Public License
 //  along with Ceres.  If not, see <http://www.gnu.org/licenses/>.
 //
-//  Created by Jens Nockert on 12/8/08.
+//  Created by Jens Nockert on 3/14/09.
 //
 
-#import "CeresHeader.h"
+#import <Cocoa/Cocoa.h>
+
+#import "CeresObject.h"
+#import "Character.h"
+#import "TrainedSkill.h"
+
+@class Character;
+@class TrainedSkill;
+
+@interface SkillQueueEntry : CeresObject {
+
+}
+
+@property(retain) NSDate * startsAt, * endsAt;
+@property(retain) NSNumber * order, * toLevel;
+@property(retain) Character * character;
+@property(retain) TrainedSkill * trainedSkill;
+
+@end

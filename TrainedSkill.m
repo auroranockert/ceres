@@ -26,22 +26,6 @@
 @dynamic skillpoints, level;
 @dynamic skill, character;
 
-- (id) initWithCharacter: (Character *) character skill: (Skill *) skill
-{
-  TrainedSkill * ts = [[self class] findWithCharacter: character skill: skill];
-  
-  if (ts) {
-    return ts;
-  }
-  
-  if (self = [super init]) {
-    [self setCharacter: character];
-    [self setSkill: skill];
-  }
-  
-  return self;
-}
-
 + (NSEntityDescription *) entityDescription
 {
   static NSEntityDescription * entityDescription;
@@ -60,7 +44,7 @@
   
   return [self findWithSort: sort predicate: predicate];
 }
-  
+
 + (id) findWithCharacter: (Character *) character skill: (Skill *) skill
 {
   NSSortDescriptor * sort = [[NSSortDescriptor alloc] initWithKey: @"skill.identifier" ascending: true];
@@ -85,6 +69,22 @@
   return [self findWithSort: sort predicate: predicate];
 }
 
+- (id) initWithCharacter: (Character *) character skill: (Skill *) skill
+{
+  TrainedSkill * ts = [[self class] findWithCharacter: character skill: skill];
+  
+  if (ts) {
+    return ts;
+  }
+  
+  if (self = [super init]) {
+    [self setCharacter: character];
+    [self setSkill: skill];
+  }
+  
+  return self;
+}
+
 - (NSString *) name
 {
   return [[self skill] name];
@@ -92,7 +92,7 @@
 
 - (bool) complete
 {
-  if (self == [[self character] trainingSkill] && [[[self character] trainingEndsAt] timeIntervalSinceNow] < 0) {
+  if (self == [[self character] currentlyTraining] && [[[[self character] currentSkillQueueEntry] endsAt] timeIntervalSinceNow] < 0) {
     return true;
   }
   
@@ -101,7 +101,7 @@
 
 - (bool) partiallyTrained
 {
-  if (self == [[self character] trainingSkill] || [[self skillpoints] integerValue] > [[[self skill] skillpointsForLevel: [self level]] integerValue]) {
+  if (self == [[self character] currentlyTraining] || [[self skillpoints] integerValue] > [[[self skill] skillpointsForLevel: [self level]] integerValue]) {
     return true;
   }
   
@@ -115,7 +115,7 @@
 
 - (NSNumber *) requiredSkillpointsForNextLevel
 {
-  if ([[[self character] trainingEndsAt] timeIntervalSinceNow] < 0) {
+  if ([[[[self character] currentSkillQueueEntry] endsAt] timeIntervalSinceNow] < 0) {
     return [NSNumber numberWithInteger: 0];
   }
   else {
@@ -130,7 +130,7 @@
 
 - (NSNumber *) currentSkillpoints
 {
-  if (self == [[self character] trainingSkill]) {
+  if (self == [[self character] currentlyTraining]) {
     return [[self skillpoints] addInteger: [[self character] additionalSkillpoints]];
   }
   else {

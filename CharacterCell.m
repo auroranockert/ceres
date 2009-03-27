@@ -35,13 +35,13 @@
 
 - (NSString *) training
 {
-  if ([[self character] trainingSkill])
+  if ([[self character] currentlyTraining])
   {
-    if ([[[self character] trainingSkill] complete]) {
-      return [[NSString alloc] initWithFormat: @"Training %@ to level %@ is finished", [[[[self character] trainingSkill] skill] name], [[[[self character] trainingSkill] nextLevel] levelString]];
+    if ([[[self character] currentlyTraining] complete]) {
+      return [[NSString alloc] initWithFormat: @"Training %@ to level %@ is finished", [[[[self character] currentlyTraining] skill] name], [[[[self character] currentlyTraining] nextLevel] levelString]];
     }
     else {
-      return [[NSString alloc] initWithFormat: @"Training %@ to level %@ and is finished %@", [[[[self character] trainingSkill] skill] name], [[[[self character] trainingSkill] nextLevel] levelString], [[[self character] trainingEndsAt] preferedDateFormatString]];
+      return [[NSString alloc] initWithFormat: @"Training %@ to level %@ and is finished %@", [[[[self character] currentlyTraining] skill] name], [[[[self character] currentlyTraining] nextLevel] levelString], [[[[self character] currentSkillQueueEntry] endsAt] preferedDateFormatString]];
     }
   }
   else

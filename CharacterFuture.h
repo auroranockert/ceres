@@ -37,6 +37,6 @@
 - (id) initWithCharacter: (Character *) character;
 
 - (void) updateCharacterSheet: (IOFuture *) future;
-- (void) updateTrainingSkill: (IOFuture *) future;
+- (void) updateSkillQueue: (IOFuture *) future;
 
 @end

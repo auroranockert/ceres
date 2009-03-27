@@ -63,6 +63,7 @@
 
 - (NSAttributedString *) name
 {
+  NSLog(@"%@", [character name]);
   return [[NSAttributedString alloc] initWithString: [character name] attributes: [NSDictionary dictionaryWithObject: [NSFont systemFontOfSize: 14] forKey:NSFontAttributeName]];
 }
 
@@ -83,7 +84,7 @@
 
 - (NSString *) skillpoints
 {
-  return [NSString stringWithFormat: @"%@ SP", [[character totalSkillpoints] spString]];
+  return [NSString stringWithFormat: @"%@ SP", [[character skillpoints] spString]];
 }
 
 - (NSString *) intelligence
@@ -113,9 +114,9 @@
 
 - (NSString *) training
 {
-  if ([character trainingSkill])
+  if ([character currentlyTraining])
   {
-    return [[NSString alloc] initWithFormat: @"Currently training %@ to level %@ at %@ SP/h", [[character trainingSkill] name], [[[character trainingSkill] nextLevel] levelString], [[[character trainingSkill] skillpointsPerHour] spString]];
+    return [[NSString alloc] initWithFormat: @"Currently training %@ to level %@ at %@ SP/h", [[character currentlyTraining] name], [[[character currentlyTraining] nextLevel] levelString], [[[character currentlyTraining] skillpointsPerHour] spString]];
   }
   else
   {
@@ -125,13 +126,13 @@
 
 - (NSString *) trainingSkillpoints
 {
-  if ([character trainingSkill])
+  if ([character currentlyTraining])
   {
-    if ([[character trainingSkill] complete]) {
+    if ([[character currentlyTraining] complete]) {
       return @"Finished";
     }
     else {
-      return [[NSString alloc] initWithFormat: @"%@ / %@ SP Complete (Finished %@)", [[[character trainingSkill] currentSkillpoints] spString], [[[[character trainingSkill] skill] skillpointsForLevel: [[character trainingSkill] nextLevel]] spString], [[character trainingEndsAt] preferedDateFormatString]];
+      return [[NSString alloc] initWithFormat: @"%@ / %@ SP Complete (Finished %@)", [[[character currentlyTraining] currentSkillpoints] spString], [[[[character currentlyTraining] skill] skillpointsForLevel: [[character currentlyTraining] nextLevel]] spString], [[[character currentSkillQueueEntry] endsAt] preferedDateFormatString]];
     }
   }
   else
@@ -148,7 +149,7 @@
 - (NSAttributedString *) clone
 {
   NSString * string = [NSString stringWithFormat: @"%@ (Stores %@ SP)", [[character clone] name], [[[character clone] skillpoints] spString]];
-  if ([[[character clone] skillpoints] compare: [character totalSkillpoints]] == NSOrderedAscending) {
+  if ([[[character clone] skillpoints] compare: [character skillpoints]] == NSOrderedAscending) {
     return [[NSAttributedString alloc] initWithString: string attributes: [NSDictionary dictionaryWithObject: [NSColor redColor] forKey: NSForegroundColorAttributeName]];
   }
   else {

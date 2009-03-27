@@ -20,7 +20,6 @@
 
 #import "Interface.h"
 
-
 @implementation Interface
 
 static Interface * shared;
@@ -34,7 +33,7 @@ static Interface * shared;
       [shared addDelegates];
       [shared addPreferences];
       [shared loadNib: @"Menu"];
-
+            
       if (![[Character find] count]) {
         [[PreferencesController instance] showWindow: self];
       }
@@ -88,7 +87,7 @@ static Interface * shared;
 {
   Character * character = [o object];
   [GrowlApplicationBridge notifyWithTitle: [character name]
-                              description: [NSString stringWithFormat: @"Training %@ to level %@ complete", [[character trainingSkill] name], [[[character trainingSkill] nextLevel] levelString]]
+                              description: [NSString stringWithFormat: @"Training %@ to level %@ complete", [[[character lastTrainedSkillQueueEntry] trainedSkill] name], [[[character lastTrainedSkillQueueEntry] toLevel] levelString]]
                          notificationName: @"Skill training completed"
                                  iconData: [[[character portrait] imageWithRoundedCorners: 10.0] TIFFRepresentation]
                                  priority: 2

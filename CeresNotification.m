@@ -25,7 +25,7 @@
 - (id) initWithObject: (id) o name: (NSString *) n
 {
   object = o;
-  name = [NSString stringWithFormat: @"Ceres.%@", n];
+  name = [[self class] nameForMessage: n];
   
   return self;
 }

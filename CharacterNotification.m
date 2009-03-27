@@ -39,7 +39,7 @@
 
 + (NSString *) nameForMessage: (NSString *) message
 {
-  return [NSString stringWithFormat: @"%@.%@", [super nameForMessage: @"character"], message];
+  return [super nameForMessage: [NSString stringWithFormat: @"character.%@", message]];
 }
 
 - (Character *) character

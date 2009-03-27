@@ -33,22 +33,39 @@
   return self;
 }
 
-static NSMutableDictionary * controllers;
-
-+ (CharacterController *) controllerForCharacter: (Character *) c
-{  
++ (NSMutableDictionary *) controllers
+{
+  static NSMutableDictionary * controllers;
+  
   if (!controllers) {
     controllers = [NSMutableDictionary dictionary];
   }
   
-  CharacterController * controller = [controllers objectForKey: c];
+  return controllers;
+}
+
++ (CharacterController *) controllerForCharacter: (Character *) c
+{
+  CharacterController * controller;
   
-  if (!controller) {
+  if (!(controller = [[self controllers] objectForKey: c])) {
     controller = [[CharacterController alloc] initWithCharacter: c];
-    [controllers setObject: controller forKey: c];
+    [[self controllers] setObject: controller forKey: c];
   }
   
   return controller;
+}
+
++ (void) fixCharacterWindows
+{
+  if ([[[NSUserDefaults standardUserDefaults] valueForKey: @"tabbedCharacters"] compare: @"Yes"] == NSOrderedSame) {
+    for (CharacterController * c in [[self controllers] allValues]) {
+      [[c characterWindowController] close];
+    }
+  }
+  else {
+    [[TabbedCharacterController instance] close];
+  }
 }
 
 - (NSMenu *) menu
@@ -106,7 +123,7 @@ static NSMutableDictionary * controllers;
 
 - (void) showCharacter
 {
-  [self fixCharacterWindow];
+  [CharacterController fixCharacterWindows];
   
   if ([[[NSUserDefaults standardUserDefaults] valueForKey: @"tabbedCharacters"] compare: @"Yes"] == NSOrderedSame) {
     [[TabbedCharacterController instance] changeToModule: [[TabbedCharacterController instance] moduleForIdentifier: [NSString stringWithFormat: @"Ceres.Character.%@", [character name]]]];
@@ -123,18 +140,6 @@ static NSMutableDictionary * controllers;
     
     [[characterWindowController window] setContentView: [[self characterViewController] view]];
     [characterWindowController showWindow: self];
-  }
-}
-
-- (void) fixCharacterWindow
-{
-  if ([[[NSUserDefaults standardUserDefaults] valueForKey: @"tabbedCharacters"] compare: @"Yes"] == NSOrderedSame) {
-    for (CharacterController * c in [controllers allValues]) {
-      [[c characterWindowController] close];
-    }
-  }
-  else {
-    [[TabbedCharacterController instance] close];
   }
 }
 

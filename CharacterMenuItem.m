@@ -34,11 +34,11 @@
 
 - (NSString *) title
 {
-  if ([[character trainingSkill] complete]) {
+  if ([[character currentlyTraining] complete]) {
     return [NSString stringWithFormat: @"%@ done.", [character name]];
   }
   else {
-    return [NSString stringWithFormat: @"%@ %@", [character name], [[character trainingEndsAt] preferedDateFormatString]];
+    return [NSString stringWithFormat: @"%@ %@", [character name], [[[character currentSkillQueueEntry] endsAt] preferedDateFormatString]];
   }  
 }
 

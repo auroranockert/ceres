@@ -68,6 +68,10 @@ int main(int argc, char *argv[])
   
   [[Ceres instance] save];
   
+  if (![[NSFileManager defaultManager] removeFileAtPath: newDatabase handler: nil]) {
+    NSLog(@"Failed to remove current database.");
+  }  
+  
   if(![[NSFileManager defaultManager] movePath: currentDatabase toPath: newDatabase handler: nil]) {
     NSLog(@"Failed to move current database.");
   }

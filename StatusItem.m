@@ -43,13 +43,13 @@
 - (void) updateCharacter: (NSNotification *) notification
 {
   NSMenu * menu = [[NSMenu alloc] init];
-	NSPredicate * training = [NSPredicate predicateWithFormat: @"trainingSkill != nil"];
-	NSSortDescriptor * trainingEndsAt = [[NSSortDescriptor alloc] initWithKey: @"trainingEndsAt" ascending: true];
+	NSSortDescriptor * trainingEndsAt = [[NSSortDescriptor alloc] initWithKey: @"currentSkillQueueEntry.endsAt" ascending: true];
 	
-	NSArray * characters = [Character findWithSort: trainingEndsAt predicate: training];
+	NSArray * characters = [[[Character find] filteredArrayUsingPredicate: [NSPredicate predicateWithFormat: @"currentSkillQueueEntry != nil"]] sortedArrayUsingDescriptors: [NSArray arrayWithObject: trainingEndsAt]];
+  
   character = [characters firstObject];
   
-  for (Character * c in [Character findWithSort: trainingEndsAt predicate: training]) {
+  for (Character * c in characters) {
     [menu addItem: [[CharacterMenuItem alloc] initWithCharacter: c]];
   }
   
@@ -65,11 +65,11 @@
 - (void) update: (id) sender
 {
   if (statusMenuItem) {
-    if ([[character trainingSkill] complete]) {
+    if ([[character currentlyTraining] complete]) {
       [statusMenuItem setTitle: @"Done"];
     }
     else {
-      [statusMenuItem setTitle: [[character trainingEndsAt] shortRelativeDateString]];
+      [statusMenuItem setTitle: [[[character  currentSkillQueueEntry] endsAt] shortRelativeDateString]];
     }
     
     [self performSelector: @selector(update:) withObject: self afterDelay: 1];

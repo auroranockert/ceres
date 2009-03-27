@@ -166,10 +166,12 @@
     nameStringColor = [self nameColor];
     subStringStringColor = [self subStringColor];
   }
-  
-  nameAttributes = [NSDictionary dictionaryWithObjectsAndKeys: paragraphStyle, NSParagraphStyleAttributeName, [self nameFont], NSFontAttributeName, nameStringColor, NSForegroundColorAttributeName, nil];
-  attributedNameString = [[NSAttributedString alloc] initWithString: nameString attributes: nameAttributes];
-  
+    
+  if (nameString) {
+    nameAttributes = [NSDictionary dictionaryWithObjectsAndKeys: paragraphStyle, NSParagraphStyleAttributeName, [self nameFont], NSFontAttributeName, nameStringColor, NSForegroundColorAttributeName, nil];
+    attributedNameString = [[NSAttributedString alloc] initWithString: nameString attributes: nameAttributes];
+  }
+    
   if (subString) {
     subStringAttributes = [NSDictionary dictionaryWithObjectsAndKeys: paragraphStyle, NSParagraphStyleAttributeName, [self subStringFont], NSFontAttributeName, subStringStringColor, NSForegroundColorAttributeName, nil];
     attributedSubString = [[NSAttributedString alloc] initWithString: subString attributes: subStringAttributes];

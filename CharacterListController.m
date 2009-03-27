@@ -29,6 +29,7 @@
   [[[CeresNotificationCenter instance] notificationCenter] addObserver: self selector: @selector(notification:) name: @"Ceres.character.updatedTraining" object: nil];
   
   [characterTableView setDataSource: self];
+  [characterTableView setDelegate: self];
   [characterTableView registerForDraggedTypes: [NSArray arrayWithObject: CeresDataType]];
   
   NSTableColumn * column = [[characterTableView tableColumns] anyObject];
@@ -38,6 +39,21 @@
   [self setAutomaticallyRearrangesObjects: true];
     
   [self performSelector: @selector(update:) withObject: self afterDelay: 1];
+}
+
+- (CGFloat) tableView: (NSTableView *) tableView heightOfRow: (NSInteger) row
+{
+  if ([characterTableView selectedRow] == row) {
+    return 120;
+  }
+  else {
+    return 50;
+  }
+}
+
+- (void) tableViewSelectionDidChange: (NSNotification *) notification
+{
+  NSLog(@"%@", notification);
 }
 
 - (void) doubleClick: (id) object
@@ -61,13 +77,13 @@
 
 - (NSString *) training: (Character *) character
 {
-  if ([character trainingSkill])
+  if ([character currentlyTraining])
   {
-    if ([[character trainingSkill] complete]) {
-      return [[NSString alloc] initWithFormat: @"Training %@ to level %ld is finished", [[character trainingSkill] name], [[[character trainingSkill] nextLevel] integerValue]];
+    if ([[character currentlyTraining] complete]) {
+      return [[NSString alloc] initWithFormat: @"Training %@ to level %ld is finished", [[character currentlyTraining] name], [[[character currentlyTraining] nextLevel] integerValue]];
     }
     else {
-      return [[NSString alloc] initWithFormat: @"Training %@ to level %ld and is finished by %@", [[character trainingSkill] name], [[[character trainingSkill] nextLevel] integerValue], [[character trainingEndsAt] preferedDateFormatString]];
+      return [[NSString alloc] initWithFormat: @"Training %@ to level %ld and is finished by %@", [[character currentlyTraining] name], [[[character currentlyTraining] nextLevel] integerValue], [[[character currentSkillQueueEntry] endsAt] preferedDateFormatString]];
     }
   }
   else

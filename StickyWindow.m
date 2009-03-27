@@ -32,7 +32,7 @@
 
 @implementation StickyWindow
 
-- (id)initWithContentRect: (NSRect) contentRect styleMask: (NSUInteger) aStyle backing: (NSBackingStoreType) bufferingType defer: (bool) flag
+- (id) initWithContentRect: (NSRect) contentRect styleMask: (NSUInteger) aStyle backing: (NSBackingStoreType) bufferingType defer: (bool) flag
 {
 	if ((self = [super initWithContentRect: contentRect styleMask: aStyle backing: bufferingType defer: flag])) {
 		[self initStickyWindow];
@@ -40,7 +40,7 @@
   
 	return self;
 }
-- (id)initWithCoder:(NSCoder *)aDecoder
+- (id) initWithCoder:(NSCoder *)aDecoder
 {
 	if ((self = [super initWithCoder: aDecoder])) {
 		[self initStickyWindow];
@@ -48,7 +48,7 @@
   
 	return self;
 }
-- (id)init
+- (id) init
 {
 	if ((self = [super init])) {
 		[self initStickyWindow];

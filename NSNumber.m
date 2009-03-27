@@ -43,6 +43,11 @@
   return [NSNumber numberWithInteger: [self integerValue] - [other integerValue]];
 }
 
+- (NSNumber *) scale: (NSNumber *) other
+{
+  return [NSNumber numberWithDouble: [self doubleValue] * [other doubleValue]];
+}
+
 - (NSString *) romanValue
 {
   switch ([self integerValue]) {

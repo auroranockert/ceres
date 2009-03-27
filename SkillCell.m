@@ -68,7 +68,7 @@
 {
   NSString * training = @"";
   
-  if ([self skill] == [character trainingSkill]) {
+  if ([self skill] == [character currentlyTraining]) {
     training = @", in training";
   }
   

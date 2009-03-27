@@ -41,8 +41,8 @@
       [self increment];
     }
     
-    if ([[character trainingCachedUntil] timeIntervalSinceNow] < 0) {
-      [[character api] request: @"char/SkillInTraining.xml.aspx" target: self selector: @selector(updateTrainingSkill:)];
+    if ([[character queueCachedUntil] timeIntervalSinceNow] < 0) {
+      [[character api] request: @"char/SkillQueue.xml.aspx" target: self selector: @selector(updateSkillQueue:)];
     }
     else {
       [self increment];
@@ -79,14 +79,12 @@
   [character setBloodline: [[document readNode: @"/eveapi/result/bloodLine"] stringValue]];
   [character setGender: [[document readNode: @"/eveapi/result/gender"] stringValue]];
   
-  NSNumber * intelligence = [[document readNode: @"/eveapi/result/attributes/intelligence"]  numberValueInteger];
-  NSNumber * memory = [[document readNode: @"/eveapi/result/attributes/memory"]  numberValueInteger];
-  NSNumber * charisma = [[document readNode: @"/eveapi/result/attributes/charisma"]  numberValueInteger];
-  NSNumber * perception = [[document readNode: @"/eveapi/result/attributes/perception"]  numberValueInteger];
-  NSNumber * willpower = [[document readNode: @"/eveapi/result/attributes/willpower"]  numberValueInteger];
-  
-  [character setBaseAttributes: [[Attributes alloc] init: intelligence : perception : charisma : memory : willpower]];      
-  
+  [character setBaseIntelligence: [[document readNode: @"/eveapi/result/attributes/intelligence"]  numberValueInteger]];
+  [character setBaseMemory: [[document readNode: @"/eveapi/result/attributes/memory"]  numberValueInteger]];
+  [character setBaseCharisma: [[document readNode: @"/eveapi/result/attributes/charisma"]  numberValueInteger]];
+  [character setBasePerception: [[document readNode: @"/eveapi/result/attributes/perception"]  numberValueInteger]];
+  [character setBaseWillpower: [[document readNode: @"/eveapi/result/attributes/willpower"]  numberValueInteger]];
+    
   [character setCorporationIdentifier: [[document readNode: @"/eveapi/result/corporationID"] numberValueInteger]];
   [character setCorporationName: [[document readNode: @"/eveapi/result/corporationName"] stringValue]];
   
@@ -113,7 +111,7 @@
     [ts setLevel: [NSNumber numberWithInteger: [[skill readAttribute: @"level"] integerValue]]];
   }
   
-  [character setSkillpoints: [character valueForKeyPath: @"skills.@sum.skillpoints"]];
+  [character setBaseSkillpoints: [character valueForKeyPath: @"skills.@sum.skillpoints"]];
   [character updateSkillGroups];
   
   [self increment];
@@ -121,52 +119,48 @@
   [[CeresNotificationCenter instance] postNotification: [CharacterNotification notificationWithCharacter: character name: @"updatedCharacter"]];
 }
 
-- (void) updateTrainingSkill: (IOFuture *) future
+- (void) updateSkillQueue: (IOFuture *) future
 {
   NSError * error = nil;
   NSXMLDocument * document = [[NSXMLDocument alloc] initWithData: [future result] options: 0 error: &error];
   
   if (!document) {
-    NSLog(@"No skill training xml available");
+    NSLog(@"No skill queue xml available");
     return;
   }
   
-  [character setTrainingCachedUntil: [document cachedUntil]];
+  [character setQueueCachedUntil: [document cachedUntil]];
+  [character clearSkillQueue];
   
-  if ([[document readNode: @"/eveapi/result/skillInTraining"] integerValue])
+  NSArray * skills = [document readNodes: @"/eveapi/result/skill"];
+  
+  for (NSXMLNode * skill in skills)
   {
-    NSString * startTimeString = [[[document readNode: @"/eveapi/result/trainingStartTime"] stringValue] stringByAppendingString: @" +0000"];      
-    NSDate * startDate = [[NSDate alloc] initWithString: startTimeString];
+    TrainedSkill * ts = [[TrainedSkill alloc] initWithCharacter: character skill: [Skill findWithIdentifier: [[skill readNode: @"/typeID"] numberValueInteger]]];
+    [ts setSkillpoints: [[skill readNode: @"/startSP"] numberValueInteger]];
+    [ts setLevel: [[[skill readNode: @"/level"] numberValueInteger] previous]];
     
-    if (![character trainingStartedAt] || ![character trainingSkill] || [startDate compare: [character trainingStartedAt]] != NSOrderedSame) {
-      [character updateSkillpoints];
-      
-      [character setTrainingStartedAt: startDate];
-      
-      NSString * endTimeString = [[[document readNode: @"/eveapi/result/trainingEndTime"] stringValue] stringByAppendingString: @" +0000"];
-      [character setTrainingEndsAt: [[NSDate alloc] initWithString: endTimeString]];
-      
-      NSNumber * skillIdentifer = [[document readNode: @"/eveapi/result/trainingTypeID"] numberValueInteger];
-      TrainedSkill * skill = [[TrainedSkill alloc] initWithCharacter: character skill: [Skill findWithIdentifier: skillIdentifer]];
-      [skill setSkillpoints: [[document readNode: @"/eveapi/result/trainingStartSP"] numberValueInteger]];
-      [skill setLevel: [[[document readNode: @"/eveapi/result/trainingToLevel"] numberValueInteger] previous]];
+    SkillQueueEntry * entry = [[SkillQueueEntry alloc] init];
 
-      [character setTrainingSkill: skill];
-    }
+    NSString * startTimeString = [[[skill readNode: @"/startTime"] stringValue] stringByAppendingString: @" +0000"];      
+    [entry setStartsAt: [[NSDate alloc] initWithString: startTimeString]];
+    
+    NSString * endTimeString = [[[skill readNode: @"/endTime"] stringValue] stringByAppendingString: @" +0000"];
+    [entry setEndsAt: [[NSDate alloc] initWithString: endTimeString]];
+    
+    [entry setOrder: [[skill readNode: @"/queuePosition"] numberValueInteger]];
+    [entry setTrainedSkill: ts];
+    [entry setCharacter: character];
   }
-  else {
-    if ([character trainingSkill]) {
-      [character updateSkillpoints];
-      [character setTrainingSkill: nil];
-    }
-  }
+  
+  [character setBaseSkillpoints: [character valueForKeyPath: @"skills.@sum.skillpoints"]];
   
   [self increment];
   
   [[CeresNotificationCenter instance] postNotification: [CharacterNotification notificationWithCharacter: character name: @"updatedTraining"]];
   
-  if ([character trainingSkill]) {
-    [[CeresNotificationCenter instance] postNotification: [CharacterNotification notificationWithCharacter: character name: @"skillTrainingCompleted"] date: [character trainingEndsAt]];
+  if ([character currentlyTraining]) {
+    [[CeresNotificationCenter instance] postNotification: [CharacterNotification notificationWithCharacter: character name: @"skillTrainingCompleted"] date: [[character currentSkillQueueEntry] endsAt]];
   }
 }
 
