@@ -28,11 +28,15 @@ int main(int argc, char *argv[])
   NSString * currentDatabase = [[Ceres instance] persistentStorePathForVersion: nil];
   NSString * oldDatabase = [[Ceres instance] persistentStorePathForVersion: @"Backup"];
   
+  if (![[NSFileManager defaultManager] removeFileAtPath: newDatabase handler: nil]) {
+    NSLog(@"Failed to remove old database at %@.", newDatabase);
+  }
+  
   if (![[NSFileManager defaultManager] movePath: currentDatabase toPath: oldDatabase handler: nil]) {
-    NSLog(@"Failed to move current database.");
+    NSLog(@"Failed to move the active database database from %@ to %@.", currentDatabase, oldDatabase);
 
     if (![[NSFileManager defaultManager] removeFileAtPath: currentDatabase handler: nil]) {
-      NSLog(@"Failed to remove current database.");
+      NSLog(@"Failed to remove current database at %@.", currentDatabase);
     }
   }  
   
@@ -68,16 +72,12 @@ int main(int argc, char *argv[])
   
   [[Ceres instance] save];
   
-  if (![[NSFileManager defaultManager] removeFileAtPath: newDatabase handler: nil]) {
-    NSLog(@"Failed to remove current database.");
-  }  
-  
   if(![[NSFileManager defaultManager] movePath: currentDatabase toPath: newDatabase handler: nil]) {
-    NSLog(@"Failed to move current database.");
+    NSLog(@"Failed to move current database from %@ to %@.", currentDatabase, newDatabase);
   }
   
   if(![[NSFileManager defaultManager] movePath: oldDatabase toPath: currentDatabase handler: nil]) {
-    NSLog(@"Failed to move old database.");
+    NSLog(@"Failed to move old database from %@ to %@.", oldDatabase, currentDatabase);
   }  
   
   return 0;

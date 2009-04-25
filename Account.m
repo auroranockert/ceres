@@ -64,7 +64,7 @@
         
     [self setCachedUntil: [document cachedUntil]];
     
-    chars = [[NSMutableArray alloc] init];
+    chars = [NSMutableArray array];
     
     for (NSXMLNode * node in characterNodes)
     {
@@ -81,17 +81,14 @@
                                                                     account: self];
       [chars addObject: character];
     }
-    
-    if ([chars count] > 0) {
-      return chars;
-    }
-    else {
-      return nil;
-    }
   }
-  else
-  {
+  
+  
+  if ([chars count] > 0) {
     return chars;
+  }
+  else {
+    return nil;
   }
 }
 

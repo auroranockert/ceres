@@ -21,9 +21,11 @@
 #import <Cocoa/Cocoa.h>
 
 #import "CeresObject.h"
+#import "SkillQueue.h"
 #import "Character.h"
 #import "TrainedSkill.h"
 
+@class SkillQueue;
 @class Character;
 @class TrainedSkill;
 
@@ -33,12 +35,13 @@
 
 @property(retain) NSDate * startsAt, * endsAt;
 @property(retain) NSNumber * order, * toLevel;
-@property(retain) Character * character;
 @property(retain) TrainedSkill * trainedSkill;
+@property(retain) SkillQueue * skillQueue;
 
 @property(retain, readonly) NSString * name;
 @property(retain, readonly) NSNumber * currentSkillpoints, * toSkillpoints, * skillpointsPerHour;
 @property(assign, readonly) bool trainingComplete;
 @property(retain, readonly) Skill * skill;
+@property(retain, readonly) Character * character;
 
 @end

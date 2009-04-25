@@ -24,7 +24,7 @@
 @implementation SkillQueueEntry
 
 @dynamic startsAt, endsAt, order, toLevel;
-@dynamic character, trainedSkill;
+@dynamic trainedSkill, skillQueue;
 
 
 + (NSEntityDescription *) entityDescription
@@ -41,6 +41,11 @@
 - (NSString *) name
 {
   return [[self trainedSkill] name];
+}
+
+- (Character *) character
+{
+  return [[self skillQueue] character];
 }
 
 - (NSNumber *) currentSkillpoints

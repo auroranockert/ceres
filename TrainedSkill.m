@@ -132,8 +132,8 @@
 - (NSNumber *) percentDone
 {
   if ([[self level] integerValue] < 5) {
-    NSInteger current = [[[self skill] skillpointsForLevel: [self level]] integerValue], next = [[[self skill] skillpointsForLevel: [self nextLevel]] integerValue];
-    return [NSNumber numberWithDouble: (double)([[self currentSkillpoints] integerValue] - current) / (next - current)];
+    double current = [[[self skill] skillpointsForLevel: [self level]] doubleValue], next = [[[self skill] skillpointsForLevel: [self nextLevel]] doubleValue];
+    return [NSNumber numberWithDouble: ([[self currentSkillpoints] integerValue] - current) / (next - current)];
   }
   else {
     return [NSNumber numberWithDouble: 1.0];

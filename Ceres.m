@@ -206,6 +206,10 @@ static Ceres * shared;
 - (void) handleError: (NSError *) error
 {
   NSLog(@"Error > %@ (Info: %@)", error, [error userInfo]);
+  
+  for (NSError * innerError in [[error userInfo] objectForKey: NSDetailedErrorsKey]) {
+    NSLog(@"\tInner Error > %@ (Info: %@)", innerError, [innerError userInfo]);
+  }
 }
 
 @end

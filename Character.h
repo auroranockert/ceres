@@ -38,6 +38,8 @@
 
 #import "Skill.h"
 #import "TrainedSkill.h"
+
+#import "SkillQueue.h"
 #import "SkillQueueEntry.h"
 
 #import "Implant.h"
@@ -46,14 +48,13 @@
 @class Account;
 @class CharacterInfo;
 @class TrainedSkill;
+@class SkillQueue;
 @class SkillQueueEntry;
 @class ImplantSet;
 @class CharacterFuture;
 
 @interface Character : EveObject {
-  NSArray * skillGroups, * skillQueue;
-  
-  bool queueCached;
+  NSArray * skillGroups;
 }
 
 @property(retain) NSNumber * order;
@@ -79,10 +80,10 @@
 @property(retain) NSArray * skillGroups;
 
 @property(retain, readonly) SkillQueueEntry * currentSkillQueueEntry, * lastTrainedSkillQueueEntry;
-@property(retain, readonly) NSArray * skillQueue;
+@property(retain) SkillQueue * skillQueue;
 @property(retain) NSDate * queueCachedUntil;
 
-@property(retain) NSSet * skills;
+@property(retain) NSSet * skills, * skillQueueEntries;
 @property(retain) NSNumber * baseSkillpoints;
 @property(copy, readonly) NSNumber * skillpoints;
 
@@ -97,10 +98,7 @@
 - (NSNumber *) skillsForGroup: (Group *) group;
 - (NSNumber *) skillpointsForGroup: (Group *) group;
 
-- (void) updateSkillQueue;
 - (void) updateSkillGroups;
-
-- (void) clearSkillQueue;
 
 - (NSNumber *) additionalSkillpoints;
 

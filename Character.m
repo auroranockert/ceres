@@ -37,7 +37,7 @@
 
 @dynamic portraitData;
 
-@dynamic skills, baseSkillpoints;
+@dynamic skills, skillQueue, skillQueueEntries, baseSkillpoints;
 
 @dynamic queueCachedUntil;
 
@@ -207,59 +207,25 @@
   return [[NSImage alloc] initWithData: [self portraitData]];
 }
 
-- (SkillQueueEntry *) lastTrainedSkillQueueEntry
-{
-  for (SkillQueueEntry * entry in [self skillQueue]) {
-    if ([[entry startsAt] timeIntervalSinceNow] < 0 && [[entry endsAt] timeIntervalSinceNow] < -60) {
-      return entry;
-    }
-  }
-  
-  return nil;
-}
-
 - (SkillQueueEntry *) currentSkillQueueEntry
 {
-  for (SkillQueueEntry * entry in [self skillQueue]) {
-    if ([[entry startsAt] timeIntervalSinceNow] < 0 && [[entry endsAt] timeIntervalSinceNow] > 0) {
-      return entry;
-    }
-  }
-  
-  return nil;
+  return [[self skillQueue] currentSkillQueueEntry];
 }
 
-- (NSArray *) skillQueue
+- (SkillQueueEntry *) lastTrainedSkillQueueEntry
 {
-  if (!queueCached) {
-    [self updateSkillQueue];
-  }
-  
-  return skillQueue;
-}
-
-- (void) updateSkillQueue
-{
-  skillQueue = [SkillQueueEntry findWithSort: [[NSSortDescriptor alloc] initWithKey: @"order" ascending: true] predicate: [NSPredicate predicateWithFormat: @"character = %@", self]];
-  queueCached = true;
-}
-
-- (void) clearSkillQueue
-{
-  for (SkillQueueEntry * entry in [self skillQueue]) {
-    [entry remove];
-  }
-  
-  queueCached = false;
+  return [[self skillQueue] currentSkillQueueEntry];
 }
 
 - (NSNumber *) additionalSkillpoints
 {
-  NSInteger skillTime = [[[self currentSkillQueueEntry] endsAt] timeIntervalSinceReferenceDate] - [[[self currentSkillQueueEntry] startsAt] timeIntervalSinceReferenceDate];
-  NSInteger currentDifference = [[[self currentSkillQueueEntry] startsAt] timeIntervalSinceNow];
-  double percentage = (double) currentDifference / skillTime;
+  TrainedSkill * skill = [[self currentSkillQueueEntry] trainedSkill];
   
-  return [NSNumber numberWithDouble: ([[[self currentSkillQueueEntry] toSkillpoints] integerValue] * percentage)];
+  NSTimeInterval skillTime = [[[self currentSkillQueueEntry] endsAt] timeIntervalSinceReferenceDate] - [[[self currentSkillQueueEntry] startsAt] timeIntervalSinceReferenceDate];
+  NSTimeInterval currentDifference = -[[[self currentSkillQueueEntry] startsAt] timeIntervalSinceNow];
+  double percentage = currentDifference / skillTime;
+  
+  return [NSNumber numberWithDouble: [[skill requiredSkillpointsForNextLevel] integerValue] * percentage];
 }
 
 - (NSNumber *) skillpointsForGroup: (Group *) group
@@ -304,9 +270,7 @@
 }
 
 - (void) prepareMessages
-{
-  [[CeresNotificationCenter instance] addObserver: self selector: @selector(skillTrainingCompleted:) name: [CharacterNotification nameForMessage: @"skillTrainingCompleted"] object: self];
-  
+{  
   if ([self currentSkillQueueEntry]) {
     [[CeresNotificationCenter instance] postNotification: [CharacterNotification notificationWithCharacter: self name: @"skillTrainingCompleted"] date: [[self currentSkillQueueEntry] endsAt]];
   }
@@ -332,16 +296,6 @@
   }  
   
   [[CeresNotificationCenter instance] postNotification: [CharacterNotification notificationWithCharacter: self name: @"characterRemoved"]];
-}
-
-- (void) skillTrainingCompleted: (NSNotification *) notification
-{
-  for (SkillQueueEntry * entry in [self skillQueue]) {
-    if ([[entry endsAt] timeIntervalSinceNow] < 0 && [[entry trainedSkill] level] != [entry toLevel]) {
-      [[entry trainedSkill] setLevel: [entry toLevel]];
-      [[entry trainedSkill] setSkillpoints: [[[entry trainedSkill] skill] skillpointsForLevel: [entry toLevel]]];
-    }
-  }  
 }
       
 @end

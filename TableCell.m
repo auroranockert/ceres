@@ -23,7 +23,6 @@
 #define DEFAULT_PADDING			          0
 #define DEFAULT_MAX_IMAGE_WIDTH			  96
 #define DEFAULT_IMAGE_TEXT_PADDING		4
-#define LINEBREAKMODE                 NSLineBreakByTruncatingTail
 
 @implementation TableCell
 
@@ -208,9 +207,14 @@
 {
   NSMutableParagraphStyle * paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
   [paragraphStyle setAlignment: [self alignment]];
-  [paragraphStyle setLineBreakMode: LINEBREAKMODE];
+  [paragraphStyle setLineBreakMode: [self lineBreakMode]];
 
   return paragraphStyle;
+}
+
+- (NSLineBreakMode) linebreakMode
+{
+  return NSLineBreakByTruncatingTail;
 }
 
 - (NSColor *) nameColor

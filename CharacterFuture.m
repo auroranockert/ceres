@@ -130,31 +130,33 @@
   }
   
   [character setQueueCachedUntil: [document cachedUntil]];
-  [character clearSkillQueue];
   
   NSArray * skills = [document readNodes: @"/eveapi/result/rowset/row"];
   
+  SkillQueue * skillQueue = [[SkillQueue alloc] initWithCharacter: character];
+    
   for (NSXMLNode * skill in skills)
   {
-    TrainedSkill * ts = [[TrainedSkill alloc] initWithCharacter: character skill: [Skill findWithIdentifier: [[skill readAttribute: @"typeID"] numberValueInteger]]];
-    [ts setSkillpoints: [[skill readAttribute: @"startSP"] numberValueInteger]];
-    [ts setLevel: [[[skill readAttribute: @"level"] numberValueInteger] previous]];
-    
     SkillQueueEntry * entry = [[SkillQueueEntry alloc] init];
-
+    [entry setSkillQueue: skillQueue];
+    
+    [entry setToLevel: [[skill readAttribute: @"level"] numberValueInteger]];
+    [entry setOrder: [[skill readAttribute: @"queuePosition"] numberValueInteger]];
+    
     NSString * startTimeString = [[skill readAttribute: @"startTime"] stringByAppendingString: @" +0000"];      
     [entry setStartsAt: [[NSDate alloc] initWithString: startTimeString]];
     
     NSString * endTimeString = [[skill readAttribute: @"endTime"] stringByAppendingString: @" +0000"];
-    [entry setEndsAt: [[NSDate alloc] initWithString: endTimeString]];
+    [entry setEndsAt: [[NSDate alloc] initWithString: endTimeString]];    
     
-    [entry setToLevel: [[skill readAttribute: @"level"] numberValueInteger]];
-    
-    [entry setOrder: [[skill readAttribute: @"queuePosition"] numberValueInteger]];
+    TrainedSkill * ts = [[TrainedSkill alloc] initWithCharacter: character skill: [Skill findWithIdentifier: [[skill readAttribute: @"typeID"] numberValueInteger]]];
+    [ts setSkillpoints: [[skill readAttribute: @"startSP"] numberValueInteger]];
+    [ts setLevel: [[[skill readAttribute: @"level"] numberValueInteger] previous]];
     [entry setTrainedSkill: ts];
-    [entry setCharacter: character];
   }
   
+  [character setSkillQueue: skillQueue];
+    
   [character setBaseSkillpoints: [character valueForKeyPath: @"skills.@sum.skillpoints"]];
   
   [self increment];

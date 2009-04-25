@@ -152,6 +152,8 @@
 		B4A539430F1FEB9100B404E6 /* CharacterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A539410F1FEB9100B404E6 /* CharacterCell.m */; };
 		B4A53A690F20B5B600B404E6 /* Ceres.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4A53A680F20B5B600B404E6 /* Ceres.xib */; };
 		B4A53A720F20B8E000B404E6 /* CharacterListController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A53A710F20B8E000B404E6 /* CharacterListController.m */; };
+		B4BAAE810F9424E200E5B279 /* SkillQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B4BAAE7F0F9424E200E5B279 /* SkillQueue.h */; };
+		B4BAAE820F9424E200E5B279 /* SkillQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BAAE800F9424E200E5B279 /* SkillQueue.m */; };
 		B4BC10790F12D8FA00179BAD /* Loader.h in Headers */ = {isa = PBXBuildFile; fileRef = B4BC10770F12D8FA00179BAD /* Loader.h */; };
 		B4BC107A0F12D8FA00179BAD /* Loader.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BC10780F12D8FA00179BAD /* Loader.m */; };
 		B4C0E31E0F38685E00A96DD6 /* Ceres.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B4C0E31D0F38685E00A96DD6 /* Ceres.xcdatamodeld */; };
@@ -415,6 +417,8 @@
 		B4A53A680F20B5B600B404E6 /* Ceres.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Ceres.xib; sourceTree = "<group>"; };
 		B4A53A700F20B8E000B404E6 /* CharacterListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterListController.h; sourceTree = "<group>"; };
 		B4A53A710F20B8E000B404E6 /* CharacterListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacterListController.m; sourceTree = "<group>"; };
+		B4BAAE7F0F9424E200E5B279 /* SkillQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkillQueue.h; sourceTree = "<group>"; };
+		B4BAAE800F9424E200E5B279 /* SkillQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkillQueue.m; sourceTree = "<group>"; };
 		B4BC10770F12D8FA00179BAD /* Loader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Loader.h; sourceTree = "<group>"; };
 		B4BC10780F12D8FA00179BAD /* Loader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Loader.m; sourceTree = "<group>"; };
 		B4C0E3200F38685E00A96DD6 /* Ceres 0.0.7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Ceres 0.0.7.xcdatamodel"; sourceTree = "<group>"; };
@@ -888,12 +892,14 @@
 				B424F5790EEC990100B5E7C5 /* Character.m */,
 				B415CDE30F2F5EE80058F57D /* TrainedSkill.h */,
 				B415CDE40F2F5EE80058F57D /* TrainedSkill.m */,
-				B4C0E8060F39C43600A96DD6 /* ImplantSet.m */,
 				B4C0E8050F39C43600A96DD6 /* ImplantSet.h */,
+				B4C0E8060F39C43600A96DD6 /* ImplantSet.m */,
 				B408F8D10F5DA628004CF368 /* CharacterFuture.h */,
 				B408F8D20F5DA628004CF368 /* CharacterFuture.m */,
 				B40809550F6B31ED004CF368 /* SkillQueueEntry.h */,
 				B40809560F6B31ED004CF368 /* SkillQueueEntry.m */,
+				B4BAAE7F0F9424E200E5B279 /* SkillQueue.h */,
+				B4BAAE800F9424E200E5B279 /* SkillQueue.m */,
 			);
 			name = Character;
 			sourceTree = "<group>";
@@ -1161,6 +1167,7 @@
 				B40801EE0F6183DE004CF368 /* RequiredSkill.h in Headers */,
 				B40809570F6B31ED004CF368 /* SkillQueueEntry.h in Headers */,
 				B48E596B0F7D2EF400F40DB6 /* NSString.h in Headers */,
+				B4BAAE810F9424E200E5B279 /* SkillQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1361,6 +1368,7 @@
 				B40801EF0F6183DE004CF368 /* RequiredSkill.m in Sources */,
 				B40809580F6B31ED004CF368 /* SkillQueueEntry.m in Sources */,
 				B48E596C0F7D2EF400F40DB6 /* NSString.m in Sources */,
+				B4BAAE820F9424E200E5B279 /* SkillQueue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
