@@ -23,6 +23,7 @@
 #import "CeresAdditions.h"
 
 @interface TableCell : NSTextFieldCell {
+  bool selected;
   CGFloat maxImageWidth, imageTextPadding, padding;
 }
 

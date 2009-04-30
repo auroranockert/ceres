@@ -94,7 +94,7 @@
   
   current = [entries objectAtIndex: currentEntry];
   
-  if ([[current endsAt] compare: [NSDate dateWithTimeIntervalSinceNow: 0]] == NSOrderedDescending) {    
+  if ([[current endsAt] timeIntervalSinceNow] < 0) {    
     if ( !(currentEntry < [self length] - 1)) {
       return current;
     }

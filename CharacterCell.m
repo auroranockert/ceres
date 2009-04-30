@@ -28,6 +28,8 @@
 {
 	if (self = [super init]) {    
     characterListController = controller;
+    
+    [self setLineBreakMode: NSLineBreakByClipping];
 	}
   
 	return self;
@@ -41,7 +43,16 @@
       return [[NSString alloc] initWithFormat: @"Training %@ to level %@ is finished", [[[self character] currentSkillQueueEntry] name], [[[[self character] currentSkillQueueEntry] toLevel] levelString]];
     }
     else {
-      return [[NSString alloc] initWithFormat: @"Training %@ to level %@ and is finished %@", [[[self character] currentSkillQueueEntry] name], [[[[self character] currentSkillQueueEntry] toLevel] levelString], [[[[self character] currentSkillQueueEntry] endsAt] preferedDateFormatString]];
+      if ([self isHighlighted]) {
+        NSString * trainingString = @"";
+        for (SkillQueueEntry * entry in [[character skillQueue] orderedSkillQueueEntries]) {
+          trainingString = [trainingString stringByAppendingFormat: @"Training %@ to level %@ and is finished %@\n", [entry name], [[entry toLevel] levelString], [[entry endsAt] preferedDateFormatString]];
+        }
+        return [trainingString substringToIndex: [trainingString length] - 1];
+      }
+      else {
+        return [[NSString alloc] initWithFormat: @"Training %@ to level %@ and is finished %@", [[[self character] currentSkillQueueEntry] name], [[[[self character] currentSkillQueueEntry] toLevel] levelString], [[[character currentSkillQueueEntry] endsAt] preferedDateFormatString]];
+      }
     }
   }
   else
@@ -73,6 +84,11 @@
 - (NSString *) subString
 {
   return [self training];
+}
+        
+- (NSLineBreakMode) linebreakMode
+{
+  return NSLineBreakByTruncatingTail;
 }
 
 @end

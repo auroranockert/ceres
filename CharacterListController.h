@@ -31,6 +31,10 @@
 
 @interface CharacterListController : CeresArrayController {
   IBOutlet NSTableView * characterTableView;
+  
+  NSInteger selectedRow;
+  CGFloat selectedHeight;
+  Character * selectedCharacter;
 }
 
 - (void) notification: (id) sender;

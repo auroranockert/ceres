@@ -25,6 +25,10 @@
 - (void) awakeFromNib
 {
   [super awakeFromNib];
+  
+  selectedRow = 0;
+  selectedHeight = 50.0;
+  selectedCharacter = nil;
     
   [[[CeresNotificationCenter instance] notificationCenter] addObserver: self selector: @selector(notification:) name: @"Ceres.character.updatedTraining" object: nil];
   
@@ -41,19 +45,28 @@
   [self performSelector: @selector(update:) withObject: self afterDelay: 1];
 }
 
+- (void) tableViewSelectionIsChanging: (NSNotification *) aNotification
+{  
+  selectedRow = [characterTableView selectedRow];
+  selectedCharacter = [[self arrangedObjects] objectAtIndex: selectedRow];
+  
+  if ((selectedHeight = 35.0 + [[selectedCharacter skillQueue] length] * 15.0) < 50.0) {
+    selectedHeight = 50.0;
+  }
+  
+  NSLog(@"SelectionDidChange: %lf", selectedHeight);
+}
+
 - (CGFloat) tableView: (NSTableView *) tableView heightOfRow: (NSInteger) row
 {
-  if ([characterTableView selectedRow] == row) {
-    return 120;
+  if (selectedRow == row) {
+    NSLog(@"HeightOfRow: %lf", selectedHeight);
+    
+    return selectedHeight;
   }
   else {
     return 50;
   }
-}
-
-- (void) tableViewSelectionDidChange: (NSNotification *) notification
-{
-  NSLog(@"%@", notification);
 }
 
 - (void) doubleClick: (id) object

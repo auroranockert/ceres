@@ -236,9 +236,12 @@ def processDB(dbPath):
   
   #Skills
   print "Processing Skills..."
-  # c.execute("""SELECT typeID AS identifier, typeName AS name, invGroups.groupID AS groupIdentifier, marketGroupID AS marketGroupIdentifier, basePrice, invTypes.published
-  #              FROM invTypes INNER JOIN invGroups ON invTypes.groupID = invGroups.groupID
-  #              WHERE categoryID = 16;""")
+  c.execute("""UPDATE dgmTypeAttributes
+               SET valueInt = valueFloat
+               WHERE
+                valueInt IS NULL
+                AND
+                attributeID IN (180, 181);""")
   c.execute("""SELECT
                  inv.typeID AS identifier,
                  inv.typeName AS name,

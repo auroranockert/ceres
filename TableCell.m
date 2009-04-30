@@ -34,6 +34,8 @@
     padding = DEFAULT_PADDING;
 		maxImageWidth = DEFAULT_MAX_IMAGE_WIDTH;
 		imageTextPadding = DEFAULT_IMAGE_TEXT_PADDING;
+    
+    [self setLineBreakMode: NSLineBreakByTruncatingTail];
   }
   
   return self;
@@ -210,11 +212,6 @@
   [paragraphStyle setLineBreakMode: [self lineBreakMode]];
 
   return paragraphStyle;
-}
-
-- (NSLineBreakMode) linebreakMode
-{
-  return NSLineBreakByTruncatingTail;
 }
 
 - (NSColor *) nameColor
